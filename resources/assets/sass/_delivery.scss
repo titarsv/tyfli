@@ -1,0 +1,39 @@
+.tabs-menu{
+    a{
+        font-size: 20px;
+        font-family: Oswald;
+        font-weight: 300;
+        color: #444444;
+        height: 35px;
+        @include bp (xs){
+            font-size: 16px;
+        }
+    }
+}
+.nav-tabs{
+    border: none;
+}
+.nav>li>a{
+    padding: 0 20px;
+    @include bp (xs){
+        padding: 0 10px;
+    }
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    cursor: pointer;
+    color: #5F98B9;
+    border: none;
+    border-bottom: 3px solid #5F98B9;
+    background-color: transparent;
+}
+.tab-content{
+    font-size: 16px;
+    font-family: Oswald;
+    font-weight: 300;
+    line-height: 35px;
+    color: #444444;
+}
+.tab-overflow{
+    overflow-y: scroll;
+    height: 200px;
+}

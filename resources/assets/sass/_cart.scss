@@ -1,0 +1,131 @@
+
+.cart-list-title{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 56px;
+    padding-bottom: 15px;
+     p{
+        color: #4A4A4A;
+        font-family: Oswald;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 16px;
+        width: 70px;
+        text-align: center;
+        @include bp (lg){
+            width: 60px;
+        }
+        @include bp (md){
+            width: 65px;
+        }
+    }
+    @include bp (lg){
+        padding-right: 30px;
+    }
+    @include bp (md){
+        padding-right: 120px;
+    }
+}
+.cart-links{
+    display: flex;
+    margin: 20px 0 30px;
+    li{
+        margin: 0 20px 15px;
+        a{
+            color: #4A4A4A;
+            font-family: Oswald;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 32px;
+        }
+    }
+    li:hover{
+        a{
+            color: #5F98B9;
+        }
+    }
+    @include bp (xs){
+        flex-direction: column;
+    }
+}
+.cart-receipt-wrp{
+    background-color: #FBFBFB;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    @include bp (sm){
+        margin-bottom: 25px;
+    }
+}
+.cart-receipt-item-wrp{
+    padding-bottom: 15px;
+}
+.cart-receipt{
+    padding: 35px 25px 0;;
+}
+.cart-receipt-item{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    h5{
+        color: #4A4A4A;
+        font-family: Oswald;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 25px;
+    }
+    p{
+        color: #9DACB4;
+        font-family: Oswald;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 25px;
+    }
+    span{
+        color: #4A4A4A;
+        font-family: Oswald;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 25px;
+    }
+}
+.prod-quantity{
+    input{
+        border: none;
+        width: 15px;
+        font-size: 14px;
+        margin-left: 5px;
+    }
+}
+.cart-receipt-price{
+    margin: 15px 0;
+    span{
+        font-size: 25px;
+    }
+}
+.minus, .plus{
+    color: #5F98B9;
+}
+.mobile-prod-cart{
+    li{
+        display: flex;
+        align-items: center;
+        font-family: Oswald;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 18px;
+        p{
+            color: #9B9B9B;
+            margin-right: 10px;
+        }
+        span{
+            color: #4A4A4A;
+            
+        }
+    }
+}
+.mobile-prod-cart-title{
+    color: #4A4A4A;
+    font-family: Oswald;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 19px;
+}

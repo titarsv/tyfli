@@ -1,0 +1,308 @@
+i{
+    font-family: 'tyfli-font';
+    font-size: 18px;
+    color: #4A4A4A;
+}
+.fill-wish-heart{
+    color: #5F98B9;
+}
+.default-link-hover:hover{
+    background-color: rgba(95, 152, 185, 0.215);
+}
+.sales-banner{
+    margin: 0;
+}
+.section-title{
+    color: #232121;
+    font-family: Oswald;
+    font-size: 36px;
+    font-weight: 500;
+    text-align: center;
+    margin: 60px 0;
+    @include bp(lg){
+        font-size: 30px;
+        margin: 25px 0;
+    }
+    @include bp(sm){
+        font-size: 25px;
+        margin: 15px 0;   
+    }
+}
+
+.main-content{
+    position: relative;
+    @include bp(sm){
+        margin-bottom: 0;
+    }
+    .col-xs-12{
+        @include bp(sm){
+            padding: 0; 
+        }
+    }
+    .container-fluid{
+        padding: 0;
+    }
+    .row{
+        margin: 0;
+        height: 600px;
+        @include bp(lg){
+            height: 510px;    
+        }
+        @include bp(md){
+            height: 470px;    
+        }
+        @include bp(sm){
+           height: initial; 
+        }
+    }
+}
+.main-content-wrp{
+    padding: 0;
+}
+.index-card-margin{
+    padding-left: 100px;
+    @include bp(xl){
+        padding-left: 80px;
+    }
+    @include bp(md){
+        padding-left:30px;
+    }
+}
+.index-brand-wrp{
+    margin: 0 auto;
+}
+.new-post{
+    position: absolute;
+    width: 50vw;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 90px; 
+    @include bp(md){
+        align-items: flex-end;
+        position: static;
+        width: initial;
+        height: initial;
+        padding-right: 5px;
+    }
+    @include bp(lg){
+        height: 430px;
+    }
+    @include bp(sm){
+        position: static;
+        width: 100%;
+        height: 250px;
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    h4{
+        color: #FFFFFF;
+        font-family: "HelveticaNeue";
+        font-size: 40px;
+        letter-spacing: 4px;
+        line-height: 57px;
+        text-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        @include bp(md){
+            line-height: 35px;
+            font-size: 25px;
+        }
+    }
+    p{
+        color: #FBFBFB;
+        font-family: "HelveticaNeueLight";
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 24px;
+        text-align: center;
+        text-shadow: 2px 2px 7px rgba(150, 150, 150, 1);
+        text-decoration: underline;
+    }
+    a{
+        @include bp(sm){
+            display: none;
+            }
+    }
+}
+.new-for-her{
+    background: url('../images/homepage-images/homepage-women-category.jpg') center; 
+    z-index: 100; 
+    right: 25px;
+    background-size: cover;
+    @include bp(md){
+        right: 5px;
+    }
+}
+.new-for-him{
+    background: url('../images/homepage-images/homepage-men-category.jpg') center;
+    right: 0; 
+    top: -70px;
+    background-size: cover;
+    @include bp(md){
+        right: 5px;
+    }
+}
+
+
+.bag-category-section{
+    div:first-child{
+        padding-left: 0;
+        @include bp(sm){
+            padding: 0;
+         }
+    }
+}
+.bag-category-img{
+    background: url('./../images/homepage-images/homepage-bag-category.jpg') center no-repeat;
+    background-size: cover;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 90px; 
+    @include bp(sm){
+        height: 300px;
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    h4{
+        color: #FFFFFF;
+        font-family: "HelveticaNeue";
+        font-size: 40px;
+        letter-spacing: 4px;
+        line-height: 57px;
+        text-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+        text-transform: uppercase;
+    }
+    p{
+        color: #FBFBFB;
+        font-family: "HelveticaNeueLight";
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 24px;
+        text-align: center;
+        text-shadow: 2px 2px 7px rgba(150, 150, 150, 1);
+        text-decoration: underline;
+    }
+    a{
+        @include bp(sm){
+            display: none;
+        }
+    }
+}
+
+.inform-card-wrp{
+    margin: 40px 0;
+}
+.inform-card{
+    text-align: center;
+    h5{
+        color: #232121;
+        font-family: Oswald;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 19px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+    p{
+        color: #9B9B9B;
+        font-family: "HelveticaNeue";
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 15px;
+    }
+}
+
+.social-links{
+    margin: 15px 0;
+    @include bp(sm){
+        text-align: center;
+    };
+    a{
+        margin-right: 30px;
+    }
+}
+.fixed-up-btn{
+    position: absolute;
+    right: 100px;
+    bottom: -20px;
+    padding: 10px;
+    border-radius: 50%;
+    outline: none;
+    text-decoration: none;
+    background-color: #5F98B9;
+    i{
+        color: #fff;
+        font-size: 75px;
+        @include bp(md){
+            font-size: 30px;
+        }
+        @include bp(sm){
+            font-size: 56px;
+        }
+    }
+}
+.fixed-up-btn-center{
+    position: fixed;
+    bottom: 20px;
+    z-index: 100;
+    // display: none;
+}
+.fixed-up-btn.fixed-up-btn-center{
+    @include bp(sm){
+        display: none;
+    }
+}
+.fixed-up-btn.fixed-up-btn-footer{
+    display: none;
+    @include bp(sm){
+        display: block;
+        top: -30px;
+        right: 5px;
+        height: 80px;
+        width: 80px;
+    }
+}
+.insta-section{
+    .container-fluid{
+        padding: 0;
+    }
+    .row{
+        margin: 0;
+    }
+    .col-md-12{
+        padding: 0;
+    }
+    .section-title{
+        margin: 5px 0;
+    }
+    p{
+        color: #9B9B9B;
+        font-family: "HelveticaNeue";
+        font-size: 14px;
+        text-align: center;
+    }
+}
+.home-page-about-us-text{
+    span{
+        color: #4A4A4A;
+    }
+    color: #9B9B9B;
+    font-family: "HelveticaNeue";
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 25px;
+}
+.home-page-about-us-text:last-child{
+    margin-top: 15px;
+}

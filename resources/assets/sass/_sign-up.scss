@@ -1,0 +1,77 @@
+.sing-up-btn-facebook{
+    width: 100%;
+    p{
+        background-color: #4D66AF;
+        color: #F5F5F5;
+        font-family: "HelveticaNeue";
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 25px;
+        text-align: center;
+        padding: 15px 0;
+         @include bp(lg){
+            font-size: 16px;
+        }
+    }
+}
+.sign-advant{
+    color: #9B9B9B;
+    font-family: "HelveticaNeue";
+    font-size: 14px;
+    line-height: 16px;
+    // text-align: justify;
+    p{
+        color: #444444;
+        margin: 10px 0;
+    }
+    li{
+        list-style-type: disc;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+}
+.sign-up-form{
+    margin: 15px 0;
+}
+.sign-up-form-item{
+    display: flex;
+    margin-bottom: 10px;
+    p{
+        color: #9B9B9B;
+        font-family: "HelveticaNeueLight";
+        font-size: 12px;
+        line-height: 50px;
+        width: 110px;
+        @include bp (xs){
+            line-height: 18px;
+        }
+    }
+    label{
+        color: #9B9B9B;
+        font-family: "HelveticaNeueLight";
+        font-size: 12px;
+        margin-left: 10px;
+        line-height: 20px;
+    }
+    input{
+        padding: 10px 5px;
+        border: 1px solid #9DACB4;
+        color: #444444;
+        font-family: "HelveticaNeue";
+        font-size: 18px;
+        line-height: 30px;
+        text-align: justify;
+    }
+}
+.registr-btn{
+    background-color: #9DACB4;
+    color: #F5F5F5;
+    font-family: "HelveticaNeue";
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 25px;
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+    border: none;
+}

@@ -1,0 +1,139 @@
+.aside-block{
+    width: 100%;
+}
+.profile-grid-container{
+    margin-bottom: 40px;
+}
+.edit-profile{
+    margin-left: 10px;
+}
+.profile-data-item{
+    display: flex;
+    margin-top: 10px;
+    h5{
+        color: #9B9B9B;
+        font-family: "HelveticaNeueLight";
+        font-size: 12px;
+        width: 100px;
+    }
+    span{
+        color: #444444;
+        font-family: "HelveticaNeue";
+        font-size: 14px;
+        line-height: 50px;
+        text-align: justify;
+        @include bp (xs){
+            line-height: 25px;
+        }
+    }
+    .user-name{
+        font-weight: bold;
+        font-size: 20px;
+    }
+    p{
+        color: #444444;
+        font-family: "HelveticaNeue";
+        font-size: 12px;
+        line-height: 50px;
+        text-align: justify;
+        margin-left: 10px;
+    }
+    @include bp (xs){
+        flex-direction: column;
+    }
+}
+.data-name{
+    color: #9B9B9B;
+    font-family: "HelveticaNeueLight";
+    font-size: 12px;
+    // line-height: 50px;
+    width: 100px;
+}
+.profile-data-input{
+    border: none;
+    outline: none;
+    color: #444444;
+    &:focus{
+        outline: none;
+    }
+}
+.birthday-input{
+    border: none;
+    outline: none;
+    color: #444444;
+    &:focus{
+        outline: none;
+    }
+}
+.user-password{
+    p{
+        color: #5F98B9;
+        font-size: 16px;
+    }
+}
+.profile-margin{
+    margin-left: 45px;
+    @include bp (sm){
+        margin-left: 0;
+    }
+}
+.profile-subscr-item{
+    label{
+        color: #444444;
+        font-family: "HelveticaNeue";
+        font-size: 18px;
+        line-height: 40px;
+        text-align: justify;
+        margin-left: 5px;
+    }
+}
+.profile-discount-wrp{
+    display: flex;
+    align-items: baseline;
+    p{
+        color: #444444;
+        font-family: "HelveticaNeue";
+        font-size: 14px;
+        line-height: 50px;
+        text-align: justify;  
+        margin-right: 20px;
+        @include bp (sm){
+            line-height: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+    }
+    span{
+        color: #9B9B9B;
+        font-family: "HelveticaNeueLight";
+        font-size: 12px;
+        line-height: 20px;
+    }
+    @include bp (sm){
+        flex-direction: column;
+    }
+}
+.profile-addredd-wrp{
+    input{
+        padding: 10px;
+        border: 1px solid #DDDDDD;
+        outline: none;
+        color: #444444;
+        font-family: "HelveticaNeue";
+        font-size: 18px; 
+    }
+}
+.city-dropdown{
+    select{
+        padding: 10px;
+        border: 1px solid #DDDDDD;
+        outline: none;
+        color: #444444;
+        font-family: "HelveticaNeue";
+        font-size: 18px;
+        @include bp (xs){
+            font-size: 14px;
+        }
+    }
+}

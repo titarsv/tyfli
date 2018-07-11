@@ -1,0 +1,120 @@
+.footer{
+    background-color: #4A4A4A;
+    padding: 50px 0 0;
+    text-align: left;
+    position: relative;
+    @include bp (sm){
+        padding: 50px 0 0 50px;
+    }
+    @include bp (xs){
+        padding: 50px 0 0 10px;
+    }
+}
+.footer-links-title{
+    margin-bottom: 20px;
+    p{
+        color: #FBFBFB;
+        font-family: "HelveticaNeue";
+        font-size: 14px;
+        line-height: 16px;
+        text-transform: uppercase;
+        padding: 4px;
+    }
+    p:hover{
+        background-color: #3D3D3D;
+    }
+}
+.footer-links {
+    margin-bottom: 10px;
+    @include bp(sm){
+        display: none;
+    }
+    p{
+        color: #CACACA;
+        font-family: "HelveticaNeue";
+        font-size: 10px;
+        line-height: 16px;
+        padding: 4px;
+    }
+    p:hover{
+        background-color: #3D3D3D;
+    }
+}
+.footer-address-list{
+    color: #FBFBFB;
+    font-family: "HelveticaNeue";
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 18px;
+    margin-top: 10px;
+}
+.footer-phones-list-wrp{
+    margin-top: 30px;
+    p{
+        color: #9B9B9B;
+        font-family: "HelveticaNeue";
+        font-size: 10px;
+        line-height: 16px;
+    }
+    a{
+        color: #FBFBFB;
+        font-family: "HelveticaNeue";
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 15px;
+    }
+    ul{
+        margin: 10px 0;
+    }
+}
+.footer-form{
+    margin: 25px 0 10px;
+    p{
+        color: #FBFBFB;
+        font-family: "HelveticaNeue";
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 18px;
+    }
+    div{
+        display: flex;
+        align-items: flex-end;
+        @include bp(sm){
+            justify-content: center;
+        }
+    }
+}
+.footer-input-email, .footer-input-email::placeholder{
+    padding: 5px;
+    color: #444444;
+    font-family: "HelveticaNeue";
+    font-size: 12px;
+    width: 200px;
+    margin-top: 10px;
+    height: 28px;
+}
+.footer-input-email:focus{
+    outline: none;
+}
+.footer-btn{
+    height: 28px;
+    border: 0;
+    background-color: #5F98B9;
+    font-size: 12px;
+    color: #fff;
+}
+.social-links{
+    i{
+        color: #fff;
+    }
+    @include bp(sm){
+        text-align: right;
+    }
+}
+.footer-copyright{
+    color: #9B9B9B;
+    font-family: "HelveticaNeue";
+    font-size: 10px;
+    padding: 10px;
+    border-top: 1px solid #5D5C5D;
+}

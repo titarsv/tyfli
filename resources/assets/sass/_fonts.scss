@@ -1,0 +1,27 @@
+@import 'icons';
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('../fonts/HelveticaNeue.eot');
+    src: url('../fonts/HelveticaNeue.woff2') format('woff2'),
+         url('../fonts/HelveticaNeue.woff') format('woff'),
+         url('../fonts/HelveticaNeue.svg#HelveticaNeue') format('svg'),
+         url('../fonts/HelveticaNeue.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'HelveticaNeueLight';
+    src: url('../fonts/HelveticaNeueLight.eot');
+    src: url('../fonts/HelveticaNeueLight.woff2') format('woff2'),
+         url('../fonts/HelveticaNeueLight.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'tyfli-font';
+    src: url('../fonts/tyfli-font.eot');
+    src: url('../fonts/tyfli-font.woff2') format('woff2'),
+         url('../fonts/tyfli-font.eot') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+  }

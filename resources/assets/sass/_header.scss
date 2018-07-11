@@ -1,0 +1,120 @@
+.header-slider-wrp{
+    .container-fluid{
+        padding: 0;
+    }
+    .row{
+        margin: 0;
+    }
+}
+
+.slider-item-1{
+    background: url('../images/homepage-images/banner-homepage.jpg') center top no-repeat;
+    background-size: cover;
+    height: 650px;
+    @include bp(lg){
+        height: 560px;    
+    }
+    @include bp(md){
+        height: 511px;
+    }
+    @include bp(xs){
+        height: 311px;
+    }
+}
+.slider-item-2{
+    background: url('../images/slider-img-2.jpg') center top no-repeat;
+    background-size: cover;
+    height: 650px;
+    @include bp(lg){
+        height: 560px;    
+    }
+    @include bp(md){
+        height: 511px;
+    }
+    @include bp(xs){
+        height: 311px;
+    }
+}
+.slider-title {
+        color: #FFFFFF;
+        font-family: "Helvetica Neue";
+        font-weight: 300;
+        padding-left: 100px;
+    h2{
+        color: #FFFFFF;
+        font-family: "Helvetica Neue";
+        font-size: 65px;
+        font-weight: 300;
+        line-height: 76px;
+        margin-top: 70px;
+        @include bp(md){
+            font-size: 45px;
+            line-height: 36px;
+        }
+        @include bp(xs){
+            font-size: 25px;
+            line-height: 30px;
+        }
+    }
+    h3{
+        font-size: 55px;
+        line-height: 60px;
+        color:#E7E7E7;
+        font-weight: 300;
+         @include bp(md){
+            font-size: 35px;
+        }
+        @include bp(xs){
+            font-size: 25px;
+            line-height: 30px;
+        }
+    }
+    @include bp(xs){
+        padding-left: 70px;
+    }
+}
+.slider-btn-wrp{
+    display: flex;
+    justify-content: center;
+}
+.slider-btn{
+    margin-top: 16%;
+    @include bp(xl){
+        margin-top: 20%;
+    }
+    @include bp(lg){
+        margin-top: 17%;
+    }
+    @include bp(md){
+        margin-top: 22%;
+    }
+    @include bp(xs){
+        margin-top: 30px;
+    }
+    p{
+        background-color: #FFBE28;    
+        color: #FBFBFB;
+        font-family: "Helvetica Neue";
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 44px;
+        text-align: center;
+        padding: 10px 90px;
+        @include bp(md){
+            font-size: 28px;
+            line-height: 35px;
+            padding: 10px 70px;
+        }
+        @include bp(xs){
+            font-size: 25px;
+            line-height: 35px;
+            padding: 10px 50px;
+        }
+    }
+}
+.slider-btn:focus{
+    outline: none;
+}
+.slider-btn:hover{
+    background-color: darken($color: #FFBE28, $amount: 1.5)
+}

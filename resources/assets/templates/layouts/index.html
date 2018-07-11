@@ -1,0 +1,857 @@
+{{! js_inject_point_text_ab !}}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TYFLI</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body id='body' class="{{! js_inject_point_text_utm !}}">
+
+ <header class="header">
+     <div class="header-top-navigation">
+
+         <div class="top-navigation-wrp">
+             <div class="container">
+                 <div class="row header-for-mobile">
+                    <div class="visible-xs-inline-block col-xs-2 burger-menu-wrp">
+                        <div><input type="checkbox" id="hmt" class="hidden-menu-ticker">
+                            <label class="btn-menu" for="hmt">
+                                <div class="burger-menu"></div>
+                            </label>
+                            <div class="hidden-menu">
+                                <ul>
+                                    <li class="path-underline"> <a href="#">Для женщин</a></li>  
+                                    <li class="path-underline"><a href="#">Для мужчин</a></li>
+                                    <li class="path-underline"><a href="#">Outlet</a></li>
+                                    <li class="path-underline"> <a href="#">Уход</a></li>  
+                                </ul>
+                                <ul class="sections-links">
+                                    <li><a href="./products-grid.html">Женская обувь</a> </li>
+                                    <li><a href="">Мужская обувь</a></li>
+                                    <li><a href="">Аксессуары</a></li>
+                                    <li><a href="">Уход</a></li>
+                                    <li><a href="./brands.html">Бренды</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-2 col-sm-2 col-xs-5">
+                         <div class="logo">
+                             <div class="logo-img">
+                                 <img src="../../images/logo.png" alt="">
+                             </div>
+                             <h2>доступно и модно</h2>
+                         </div>
+                     </div>
+                     <div class="visible-xs-inline-block col-xs-5">
+                        <div class="header-list-wrp">
+                            <a href="">0 800 222 22 22</a>
+                        </div>
+                     </div>
+                     <div class="col-md-10 col-sm-10 hidden-xs top-navigation">
+                        <nav class="navigation">
+                            <a href=""><p>Доставка и Оплата</p></a>
+                            <a href=""><p>Гарантия и Возврат</p></a>
+                            <a href=""><p>Вопросы и Ответы</p></a>
+                            <a href=""><p>Отзывы</p></a>
+                            <a href="./contact.html"><p>Контакты</p></a>
+                        </nav>
+                        <div class="header-list-wrp">
+                            <a href="">0 800 222 22 22</a>
+                            <ul>
+                                <li>Поддержка покупателей</li>
+                                <li>с 10:00-19:00</li>
+                            </ul>
+                        </div>
+                     </div>
+                     <!-- <div class="visible-xs-4">
+                        <div class="header-list-wrp">
+                            <a href="">0 800 222 22 22</a>
+                        </div>
+                     </div> -->
+                 </div>
+             </div>
+         </div>
+
+         <div class="top-menu-wrp">
+             <div class="container">
+                 <div class="row">
+                    <div class="col-md-2 hidden-sm"></div>
+                    <div class="col-md-10 col-sm-12 top-menu-container">
+                        <ul class="top-menu">
+                            <li><a href="" class="js-toggle" aria-label="Open Navigation" data-toggle=".women-catalog">Для женщин</a></li>
+                            <li><a href="" class="js-toggle" aria-label="Open Navigation" data-toggle=".man-catalog">Для мужчин</a></li>
+                            <li><a href="" class="js-toggle" aria-label="Open Navigation" data-toggle=".outlet-catalog">Outlet</a></li>
+                            <li><a href="" class="js-toggle" aria-label="Open Navigation" data-toggle=".care-catalog">Уход</a></li>
+                            <li><a href="./brands.html">Бренды</a></li>
+                        </ul>
+                        <div class="search-input">
+                            <input type="text" placeholder="Поиск">
+                        </div>
+                        <div class="top-menu-functional">
+                            <a href="" class="search">
+                                <i>&#xE806</i>
+                            </a>
+                            <div class="enter-links">
+                               <a href="">
+                                    <i>&#xE805</i>
+                               </a> 
+                                <ul>
+                                    <li><a href="">Вход</a></li>
+                                    <li><a href="./sign-up.html">Регистрация</a></li>
+                                </ul>
+                            </div>
+                            <a href="./wish-list.html">
+                                <i class="fill-wish-heart">&#xE807</i>
+                            </a>
+                            <a href="./cart.html">
+                                <i>&#xE808</i>
+                            </a>
+                            <div class="in-cart-info">
+                                <!-- <p>2 товаров на</p>
+                                <p><span>2310</span> грн</p> -->
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+         </div>
+         
+         <div class="top-menu-catalog-wrp women-catalog path-underline">
+             <div class="container">
+                 <div class="row top-menu-catalog-container">
+                     <div class="col-md-2"></div>
+                     <div class="col-md-5 top-menu-catalog">
+                        <ul class="top-menu-catalog-section">
+                            <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
+                            <li><a href="./products-grid.html" class="top-menu-catalog-link">New collection</a></li>
+                            <li><a href="#">Слиперы</a></li>
+                            <li><a href="#">Шлепанцы</a></li>
+                            <li><a href="#">Балетки	</a></li>
+                            <li><a href="#">Ботильоны</a></li>
+                            <li><a href="#">Ботинки</a></li>
+                            <li><a href="#">Ботфорты</a></li>
+                            <li><a href="#">Босоножки</a></li>
+                            <li><a href="#">Кеды</a></li>
+                            <li><a href="#" class="top-menu-catalog-sale">Распродажа</a></li>
+                            <li class="margin-catalog-link"><a href="#" class="top-menu-catalog-link">Смотреть все</a></li>
+                        </ul>
+                        <ul class="top-menu-catalog-section">
+                            <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
+                            <li><a href="#">Сумки</a></li>
+                            <li><a href="#">Рюкзаки</a></li>
+                            <li><a href="#">Клатчи</a></li>
+                            <li  class="margin-catalog-link"><a href="#">New collection	</a></li>
+                            <li><a href="#" class="top-menu-catalog-link">Распродажа</a></li>
+                        </ul>
+                        <ul class="top-menu-catalog-section">
+                            <li><h5 class="top-menu-catalog-title"></h5></li>
+                            <li><a href="#">Большие размеры</a></li>
+                            <li><a href="#" class="js-hover-toggle" aria-label="Open Navigation" data-toggle="img-1">Bestsellers</a></li>
+                        </ul>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="top-menu-catalog-img">
+                             <img src="../../images/homepage-images/homepage-article-2.jpg" alt="" class="catalog-img img-1 ">
+                             <!-- <img src="../../images/product-card/7.png" alt="" class="catalog-img img-2 unactive">
+                             <img src="../../images/homepage-images/homepage-article-1.jpg" alt="" class="catalog-img img-3 unactive"> -->
+                        </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+         <div class="top-menu-catalog-wrp man-catalog path-underline">
+            <div class="container">
+                <div class="row top-menu-catalog-container">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5 top-menu-catalog">
+                       <ul class="top-menu-catalog-section">
+                           <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
+                           <li><a href="#" class="top-menu-catalog-link">New collection</a></li>
+                           <li><a href="#">Слиперы</a></li>
+                           <li><a href="#">Шлепанцы</a></li>
+                           <li><a href="#">Балетки	</a></li>
+                           <li><a href="#">Ботильоны</a></li>
+                           <li><a href="#">Ботинки</a></li>
+                           <li><a href="#">Ботфорты</a></li>
+                           <li><a href="#">Босоножки</a></li>
+                           <li><a href="#">Кеды</a></li>
+                           <li><a href="#" class="top-menu-catalog-sale">Распродажа</a></li>
+                           <li class="margin-catalog-link"><a href="#" class="top-menu-catalog-link">Смотреть все</a></li>
+                       </ul>
+                       <ul class="top-menu-catalog-section">
+                           <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
+                           <li><a href="#">Сумки</a></li>
+                           <li><a href="#">Рюкзаки</a></li>
+                           <li><a href="#">Клатчи</a></li>
+                           <li  class="margin-catalog-link"><a href="#">New collection	</a></li>
+                           <li><a href="#" class="top-menu-catalog-link">Распродажа</a></li>
+                       </ul>
+                       <ul class="top-menu-catalog-section">
+                           <li><h5 class="top-menu-catalog-title"></h5></li>
+                           <li><a href="#">Большие размеры</a></li>
+                           <li><a href="#" class="js-hover-toggle" aria-label="Open Navigation" data-toggle="img-1">Bestsellers</a></li>
+                       </ul>
+                    </div>
+                    <div class="col-md-5">
+                       <div class="top-menu-catalog-img">
+                            <img src="../../images/homepage-images/homepage-article-1.jpg" alt="" class="catalog-img img-1">
+                            <!-- <img src="../../images/product-card/7.png" alt="" class="catalog-img img-2 invisible">
+                            <img src="../../images/homepage-images/homepage-article-1.jpg" alt="" class="catalog-img img-3 invisible"> -->
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="top-menu-catalog-wrp outlet-catalog path-underline">
+            <div class="container">
+                <div class="row top-menu-catalog-container">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5 top-menu-catalog">
+                        <ul class="top-menu-catalog-section">
+                           <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
+                           <li><a href="#">Слиперы</a></li>
+                           <li><a href="#">Шлепанцы</a></li>
+                           <li><a href="#">Балетки	</a></li>
+                           <li><a href="#">Ботильоны</a></li>
+                           <li><a href="#">Ботинки</a></li>
+                           <li><a href="#">Ботфорты</a></li>
+                           <li><a href="#">Босоножки</a></li>
+                           <li><a href="#">Кеды</a></li>
+                           <li class="margin-catalog-link"><a href="#" class="top-menu-catalog-link">Смотреть все</a></li>
+                       </ul>
+                       <ul class="top-menu-catalog-section">
+                           <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
+                           <li><a href="#">Сумки</a></li>
+                           <li><a href="#">Рюкзаки</a></li>
+                           <li><a href="#">Клатчи</a></li>
+                           <li  class="margin-catalog-link"><a href="#">New collection	</a></li>
+                           <li><a href="#" class="top-menu-catalog-link">Распродажа</a></li>
+                       </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="top-menu-catalog-wrp care-catalog path-underline">
+            <div class="container">
+                <div class="row top-menu-catalog-container">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3">
+                        <img src="../../images/menu-img/2.png" alt="" class="catalog-img">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="../../images/menu-img/1.png" alt="" class="catalog-img">
+                        <img src="../../images/menu-img/3.png" alt="" class="catalog-img">
+                    </div>
+                    <div class="col-md-5 top-menu-catalog">
+                       <ul class="top-menu-catalog-section">
+                           <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Вид товара</h5></li>
+                           <li><a href="#">Аэрозоль для обуви</a></li>
+                           <li><a href="#">Крем для обуви</a></li>
+                           <li><a href="#">Щетка</a></li>
+                           <li><a href="#">Дезодорант</a></li>
+                           <li><a href="#">Ботинки</a></li>
+                           <li><a href="#">Ботфорты</a></li>
+                           <li><a href="#">Босоножки</a></li>
+                           <li><a href="#">Кеды</a></li>
+                           <li class="margin-catalog-link"><a href="#" class="top-menu-catalog-link">Смотреть все</a></li>
+                       </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     </div>
+     <div class="header-slider-wrp">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="js-slider slick-slider header-slider" data-slick='{"slidesToShow": 1, "dots": true}'>
+                    <div class="slider-item-1">
+                        <div class="row">
+                            <div class="com-md-12 slider-title">
+                                <h2>Extra Бонус</h2>
+                                <h3>к разделу Sale</h3>
+                            </div>
+                            <div class="com-md-12 slider-btn-wrp">
+                                <a href="./products-grid.html" class="slider-btn">
+                                    <p>Смотреть</p> 
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item-2">
+                        <div class="row">
+                            <div class="com-md-12 slider-title">
+                                <h2>Extra Бонус</h2>
+                                <h3>к разделу Sale</h3>
+                            </div>
+                            <div class="com-md-12 slider-btn-wrp">
+                                <a href="./products-grid.html" class="slider-btn">
+                                    <p>Смотреть</p> 
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+ </header>   
+
+ <section class="brand-navigation">
+    <div class="container-fluid">
+        <div class="row index-brand-wrp">
+            <div class="col-sm-12">
+                <h3 class="section-title">
+                    Популярные бренды
+                </h3>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="js-slider slick-slider slider-brands" data-slick='{"slidesToShow": 6, "responsive":[{"breakpoint":1200,"settings":{"slidesToShow": 4}},{"breakpoint":768,"settings":{"slidesToShow": 3, "arrows": false}},{"breakpoint":480,"settings":{"slidesToShow": 2, "arrows": false}}]}'>
+                    <div class="slider-brand-item">
+                        <a href="">
+                            <p>Aquamarine</p>
+                        </a>
+                    </div>
+                    <div class="slider-brand-item">
+                        <a href="">
+                            <p>2u fashion</p>
+                        </a>
+                    </div>
+                    <div class="slider-brand-item">
+                        <a href="">
+                            <p>Dival & Dino</p>
+                        </a>
+                    </div>
+                    <div class="slider-brand-item">
+                        <a href="">
+                            <p>Franco Lucci</p>
+                        </a>
+                    </div>
+                    <div class="slider-brand-item">
+                        <a href="">
+                            <p>Keddo</p>
+                        </a>
+                    </div>
+                    <div class="slider-brand-item">
+                        <a href="">
+                            <p>La Pinta</p>
+                        </a>
+                    </div>
+                    <div class="slider-brand-item">
+                        <a href="">
+                            <p>Aquamarine</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-12 all-brands-link">
+                    <a href="./brands.html">
+                        <p>Все бренды</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
+
+  <section class="main-content">
+     <div class="container-fluid">
+         <div class="row main-content-wrp">
+            <a href="./products-grid.html">
+                <div class="col-md-6 col-sm-5 col-xs-12">
+                    <div class="new-post new-for-her">
+                        <div>
+                            <h4>Новинки для нее</h4>
+                            <!-- <a href="./products-grid.html"> -->
+                                <p>Смотреть</p>
+                            <!-- </a> -->
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="col-md-6 col-sm-7 col-xs-12">
+                <div class="slick-prod-wrap">
+                   <div class="slick-slider slick-prod popular-slider" data-slick='{"slidesToShow":2, "slidesToScroll":2, "arrows": false, "lazyLoad": "ondemand", "responsive":[ {"breakpoint":768,"settings":{"slidesToShow":2, "slidesToScroll":1, "arrows": false, "lazyLoad": "ondemand"}}]}'>
+                       <div>
+                           <div class="grid-product-card card-margin">
+                               <div class="homepage-product-card-img-wrp">
+                                   <a href="./product-page.html"><img src="../../images/product-card/4.png" alt="" class="homepage-product-card-img"></a>
+                                   <p class="homepage-product-card-new">Новинка</p>
+                                       <div class="prod-card-wish">
+                                       <i class="homepage-product-card-like product-card-like">&#xE801</i>
+                                       <i class="inactive-wishlist-icon fill-wish-heart product-card-like-inactive">&#xE807</i>
+                                   </div>
+                               </div>
+                               <div class="homepage-product-card-text-wrp">
+                                   <div class="homepage-product-card-text">
+                                       <a href="./product-page.html"><h2>Полусапожки зимние Santa</h2></a>
+                                       <p>Код товара: <span>3084 о</span></p>
+                                       <p>Бренд: <span>Santi</span></p>
+                                   </div>
+                                   <div class="homepage-product-card-price">
+                                       <p>1867<span> грн</span></p>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div>
+                            <div class="grid-product-card card-margin">
+                                <div class="homepage-product-card-img-wrp">
+                                    <a href="./product-page.html"><img src="../../images/product-card/4.png" alt="" class="homepage-product-card-img"></a>
+                                    <p class="homepage-product-card-new">Новинка</p>
+                                        <div class="prod-card-wish">
+                                        <i class="homepage-product-card-like product-card-like">&#xE801</i>
+                                        <i class="inactive-wishlist-icon fill-wish-heart product-card-like-inactive">&#xE807</i>
+                                    </div>
+                                </div>
+                                <div class="homepage-product-card-text-wrp">
+                                    <div class="homepage-product-card-text">
+                                        <a href="./product-page.html"><h2>Полусапожки зимние Santa</h2></a>
+                                        <p>Код товара: <span>3084 о</span></p>
+                                        <p>Бренд: <span>Santi</span></p>
+                                    </div>
+                                    <div class="homepage-product-card-price">
+                                        <p>1867<span> грн</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div>
+                           <div class="grid-product-card card-margin">
+                               <div class="homepage-product-card-img-wrp">
+                                   <a href="./product-page.html"><img src="../../images/product-card/1.png" alt="" class="homepage-product-card-img"></a>
+                                   <p class="homepage-product-card-new">Новинка</p>
+                                       <div class="prod-card-wish">
+                                       <i class="homepage-product-card-like product-card-like">&#xE801</i>
+                                       <i class="inactive-wishlist-icon fill-wish-heart product-card-like-inactive">&#xE807</i>
+                                   </div>
+                               </div>
+                               <div class="homepage-product-card-text-wrp">
+                                   <div class="homepage-product-card-text">
+                                       <a href="./product-page.html"><h2>Полусапожки зимние Santa</h2></a>
+                                       <p>Код товара: <span>3084 о</span></p>
+                                       <p>Бренд: <span>Santi</span></p>
+                                   </div>
+                                   <div class="homepage-product-card-price">
+                                       <p>1867<span> грн</span></p>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+         <div class="row main-content-wrp">
+              <div class="col-md-6 col-md-push-6 col-sm-5 col-sm-push-7 col-xs-12">
+               <a href="">
+                    <div class="new-post new-for-him">
+                        <div>
+                            <h4>Новинки для него</h4>
+                            <!-- <a href=""> -->
+                                <p>Смотреть</p>
+                            <!-- </a> -->
+                        </div>
+                    </div>
+               </a>
+            </div>
+
+            <div class="col-md-6 col-md-pull-6 col-sm-7 col-sm-pull-5 col-xs-12">
+                <div class="slick-prod-wrap">
+                   <div class="slick-slider slick-prod popular-slider" data-slick='{"slidesToShow":2, "slidesToScroll":2, "arrows": false, "lazyLoad": "ondemand", "responsive":[ {"breakpoint":768,"settings":{"slidesToShow":2, "slidesToScroll":1, "arrows": false, "lazyLoad": "ondemand"}}]}'>
+                       <div>
+                           <div class="grid-product-card card-margin">
+                               <div class="homepage-product-card-img-wrp">
+                                   <a href="./product-page.html"><img src="../../images/product-card/4.png" alt="" class="homepage-product-card-img"></a>
+                                   <p class="homepage-product-card-new">Новинка</p>
+                                       <div class="prod-card-wish">
+                                       <i class="homepage-product-card-like product-card-like">&#xE801</i>
+                                       <i class="inactive-wishlist-icon fill-wish-heart product-card-like-inactive">&#xE807</i>
+                                   </div>
+                               </div>
+                               <div class="homepage-product-card-text-wrp">
+                                   <div class="homepage-product-card-text">
+                                       <a href="./product-page.html"><h2>Полусапожки зимние Santa</h2></a>
+                                       <p>Код товара: <span>3084 о</span></p>
+                                       <p>Бренд: <span>Santi</span></p>
+                                   </div>
+                                   <div class="homepage-product-card-price">
+                                       <p>1867<span> грн</span></p>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div>
+                            <div class="grid-product-card card-margin">
+                                <div class="homepage-product-card-img-wrp">
+                                    <a href="./product-page.html"><img src="../../images/product-card/4.png" alt="" class="homepage-product-card-img"></a>
+                                    <p class="homepage-product-card-new">Новинка</p>
+                                        <div class="prod-card-wish">
+                                        <i class="homepage-product-card-like product-card-like">&#xE801</i>
+                                        <i class="inactive-wishlist-icon fill-wish-heart product-card-like-inactive">&#xE807</i>
+                                    </div>
+                                </div>
+                                <div class="homepage-product-card-text-wrp">
+                                    <div class="homepage-product-card-text">
+                                        <a href="./product-page.html"><h2>Полусапожки зимние Santa</h2></a>
+                                        <p>Код товара: <span>3084 о</span></p>
+                                        <p>Бренд: <span>Santi</span></p>
+                                    </div>
+                                    <div class="homepage-product-card-price">
+                                        <p>1867<span> грн</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div>
+                           <div class="grid-product-card card-margin">
+                               <div class="homepage-product-card-img-wrp">
+                                   <a href="./product-page.html"><img src="../../images/product-card/1.png" alt="" class="homepage-product-card-img"></a>
+                                   <p class="homepage-product-card-new">Новинка</p>
+                                       <div class="prod-card-wish">
+                                       <i class="homepage-product-card-like product-card-like">&#xE801</i>
+                                       <i class="inactive-wishlist-icon fill-wish-heart product-card-like-inactive">&#xE807</i>
+                                   </div>
+                               </div>
+                               <div class="homepage-product-card-text-wrp">
+                                   <div class="homepage-product-card-text">
+                                       <a href="./product-page.html"><h2>Полусапожки зимние Santa</h2></a>
+                                       <p>Код товара: <span>3084 о</span></p>
+                                       <p>Бренд: <span>Santi</span></p>
+                                   </div>
+                                   <div class="homepage-product-card-price">
+                                       <p>1867<span> грн</span></p>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+ </section>
+ <section class="sales-banner">
+     <div class="container">
+         <div class="row">
+             <div class="col-sm-12 sales-banner-text-wrp">
+                 <div class="col-sm-4 sales-banner-text">
+                    <h5>Sale 50%</h5>
+                    <p>Межсезонная распродажа</p>
+                 </div>
+                 <div class="col-sm-5 hidden-xs">
+                    <a href="" class="sales-banner-btn">
+                        <p>Смотреть</p>
+                    </a>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </section>
+ <section>
+     <div class="container">
+         <div class="row bag-category-section">
+             <div class="col-md-8 col-sm-12 col-xs-12 bag-category-section-img">
+                 <a href="">
+                    <div class="bag-category-img">
+                        <div>
+                            <h4>Новинки сумки</h4>
+                            <!-- <a href=""> -->
+                                <p>Смотреть</p>
+                            <!-- </a> -->
+                        </div>
+                    </div>
+                 </a>
+                <div class="bag-category-banner">
+                    <div class="bag-category-banner-img">
+                        <img src="../../images/homepage-images/sale-banner-man.png" alt="">
+                    </div>
+                    <div class="bag-category-banner-title">
+                        <p>Обувь</p>
+                        <span>БОЛЬШИХ размеров</span>
+                    </div>
+                    <a href="" class="sales-banner-btn bag-category-banner-btn">
+                        <p>Смотреть</p>
+                    </a>
+                </div>
+             </div>
+             <div class="col-md-3 col-sm-12 hidden-xs">
+                <div class="col-md-3 col-sm-6 homepage-product-card">
+                    <div class="homepage-product-card-img-wrp">
+                        <img src="../../images/product-card/5.png" alt="" class="homepage-product-card-img">
+                        <!-- <p class="homepage-product-card-new product-discount">-30%</p> -->
+                         <div class="prod-card-wish">
+                            <i class="homepage-product-card-like product-card-like">&#xE801</i>
+                            <i class="inactive-wishlist-icon fill-wish-heart product-card-like-inactive">&#xE807</i>
+                        </div> 
+                    </div>
+                    <div class="homepage-product-card-text-wrp">
+                        <div class="homepage-product-card-text">
+                            <h2>Сумка</h2>
+                            <p>Код товара: <span>3084 о</span></p>
+                            <p>Бренд: <span>Santi</span></p>
+                        </div>
+                        <div class="homepage-product-card-price">
+                            <p>1590<span> грн</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 homepage-product-card">
+                    <div class="homepage-product-card-img-wrp">
+                        <img src="../../images/product-card/6.png" alt="" class="homepage-product-card-img">
+                        <!-- <p class="homepage-product-card-new product-discount">-30%</p> -->
+                         <div class="prod-card-wish">
+                            <i class="homepage-product-card-like product-card-like">&#xE801</i>
+                            <i class="inactive-wishlist-icon fill-wish-heart product-card-like-inactive">&#xE807</i>
+                        </div> 
+                    </div>
+                    <div class="homepage-product-card-text-wrp">
+                        <div class="homepage-product-card-text">
+                            <h2>Клатч</h2>
+                            <p>Код товара: <span>3084 о</span></p>
+                            <p>Бренд: <span>Santi</span></p>
+                        </div>
+                        <div class="color-and-price-wrp">
+                            <div class="homepage-product-card-color">
+                                <a href="" class="vinous-color color-sample"></a>
+                                <a href="" class="mustard-color color-sample"></a>
+                                <a href="" class="dark-grey-color color-sample"></a>
+                            </div>
+                            <div class="homepage-product-card-price">
+                                <p>1300<span> грн</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+         </div>
+     </div>
+ </section>
+ <section class="inform-card-wrp">
+     <div class="container">
+         <div class="row">
+             <div class="col-sm-4 col-xs-12 inform-card">
+                <a href="./delivery.html">
+                    <h5>Доставка</h5>
+                    <p>Харьков самовывоз из магазинов. В остальные города доставка осуществляется курьерской компанией "Новая почта" по тарифам перевозчика. </p>
+                    <img src="../../images/homepage-icons/delivery icon.svg" alt="">
+                </a>
+             </div>
+             <div class="col-sm-4 col-xs-12 inform-card">
+                <a href="">
+                    <h5>Бонусная программа</h5>
+                    <p>При  покупке от 1000 грн консультант по номеру телефона сделает Вам скидку. Узнать больше о системе начислений Бонусной программы</p>
+                    <img src="../../images/homepage-icons/bonus icon.svg" alt="">
+                </a>
+             </div>
+             <div class="col-sm-4 col-xs-12 inform-card">
+                <a href="">
+                    <h5>Оплата и возврат</h5>
+                    <p>Вы можете оплатить покупки наличными при получении. 
+                        На все модели действует гарантия, и в случае необходимости вы можете ее вернуть.</p>
+                    <img src="../../images/homepage-icons/payment icon.svg" alt="">
+                </a>
+             </div>
+         </div>
+     </div>
+ </section>
+ <section class="article-slider-container">
+     <div class="container">
+         <div class="row">
+             <div class="col-sm-12">
+                <h3 class="section-title">
+                    Новости и Акции
+                </h3>
+             </div>
+             <div class="col-sm-12">
+                 <div class="social-links">
+                     <a href=""><img src="../../images/homepage-icons/instagram icon.svg" alt=""></a> 
+                     <a href=""><img src="../../images/homepage-icons/facebook icon.svg" alt=""></a>
+                     <a href=""><img src="../../images/homepage-icons/vkontakte icon.svg" alt=""></a>
+                 </div>
+             </div>
+             <div class="col-sm-12">
+                <div class="js-slider slick-slider article-slider" data-slick='{"slidesToShow": 2, "responsive":[{"breakpoint":768,"settings":{"slidesToShow":1}}]}'>
+                    <div class="article-slider-item">
+                        <div class="article-slider-item-img">
+                            <a href="./information.html">
+                                <img src="../../images/homepage-images/homepage-article-1.jpg" alt="">
+                            </a>
+                        </div>
+                        <h5 class="article-slider-item-title">
+                            <a href="./information.html">Повседневная обувь</a>
+                        </h5>
+                        <span class="article-slider-item-data">
+                            12 февраля 2018
+                        </span>
+                    </div>
+                    <div class="article-slider-item">
+
+                        <div class="article-slider-item-img">
+                            <a href="./information.html">
+                                <img src="../../images/homepage-images/homepage-article-2.jpg" alt="">
+                            </a>
+                        </div>
+                        <h5 class="article-slider-item-title">
+                            <a href="./information.html">Осень – это не повод для грусти</a>
+                        </h5>
+                        <span class="article-slider-item-data">
+                            12 февраля 2018
+                        </span>
+                    </div>
+                    <div class="article-slider-item">
+                        <div class="article-slider-item-img">
+                            <a href="./information.html">
+                                <img src="../../images/homepage-images/homepage-article-1.jpg" alt="">
+                            </a>
+                        </div>
+                        <h5 class="article-slider-item-title">
+                            <a href="./information.html">Повседневная обувь</a>
+                        </h5>
+                        <span class="article-slider-item-data">
+                            12 февраля 2018
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     
+    <a href="#" class="fixed-up-btn fixed-up-btn-center">
+        <i>&#xE809</i>
+    </a> 
+
+ </section>
+ <section class="insta-section">
+     <div class="container-fluid">
+         <div class="row">
+             <div class="col-sm-12">
+                <h3 class="section-title">
+                    Поделись своим образом в Instagram
+                </h3>
+                <p>Ставь хештег <a href="#">#tyflicom</a> в Instagram дай возможность другим увидеть твой образ</p>
+             </div>
+             <div class="col-sm-12">
+                <div class="js-slider slick-slider slider-margins" data-slick='{"slidesToShow": 6,"autoplay":true, "autoplaySpeed": 1000, "arrows": false, "lazyLoad": "ondemand", "responsive":[{"breakpoint":768,"settings":{"slidesToShow": 4, "arrows": false, "autoplay":true, "autoplaySpeed": 1000, "arrows": false, "lazyLoad": "ondemand"}}, {"breakpoint":480,"settings":{"slidesToShow":1, "autoplay":true, "autoplaySpeed": 1000, "arrows": false, "lazyLoad": "ondemand"}}]}'>
+                    <div class="insta-img"><img src="../../images/images-instagram/1.jpg" alt=""></div>
+                    <div class="insta-img"><img src="../../images/images-instagram/2.jpg" alt=""></div>
+                    <div class="insta-img"><img src="../../images/images-instagram/3.jpg" alt=""></div>
+                    <div class="insta-img"><img src="../../images/images-instagram/4.jpg" alt=""></div>
+                    <div class="insta-img"><img src="../../images/images-instagram/5.jpg" alt=""></div>
+                    <div class="insta-img"><img src="../../images/images-instagram/6.jpg" alt=""></div>
+                    <div class="insta-img"><img src="../../images/images-instagram/3.jpg" alt=""></div>
+                    <div class="insta-img"><img src="../../images/images-instagram/4.jpg" alt=""></div>
+                </div>
+            </div>
+         </div>
+     </div>
+ </section>
+ <section>
+     <div class="container">
+         <div class="row">
+             <div class="col-md-6 col-sm-12 hidden-xs home-page-about-us-text">
+                <span>О нас</span>
+                <p> TYFLI. COM - это онлайн магазин модной женской и мужской обуви от ведущих мировых производителей. 
+                    В нашем ассортименте представлены более 500 наименований обуви, аксессуаров и сопутствующих товаров от 50 отечественных и зарубежных брендов.</p>
+                <p>Наш интернет-магазин сотрудничает только с проверенными и зарекомендовавшими себя компаниями, имеющими многолетний опыт производства качественной обуви. Мы уверены в надежности продаваемой продукции и тщательно контролируем поставки. Модельный ряд товаров постоянно обновляется в соответствии с тенденциями моды и запросами наших клиентов</p>
+                <p>Гибкая система накопительных скидок и индивидуальные предложения для оптовых покупателей позволили нам завоевать украинский рынок. Сегодня услугами нашего интернет-магазина активно пользуются жители Киева, Львова, Днепропетровска, Одессы, Харькова и других городов Украины.</p>
+             </div>
+             <div class="col-md-6 col-sm-12 hidden-xs home-page-about-us-text">
+                <p>Почему покупатели выбирают TYFLI.COM</p>
+                <p>Больше не нужно тратить время на посещение обувных магазинов - мы собрали большую коллекцию товаров от популярных производителей.</p>
+                <p>TYFLI.COM предлагает большой выбор модной и качественной продукции по разумным ценам, регулярно проводятся акции и выгодные предложения.</p>
+                <p>В нашем магазине представлены туфли классика для мужчин, которые пользуются популярностью среди покупателей. Линейка наших размеров: 35-40 или 36-41 для женщин и 40-45 для мужчин. Отдельные бренды предлагают мужскую обувь меньших размеров - от 38. </p>
+             </div>
+         </div>
+     </div>
+ </section>
+ 
+ <footer class="footer">
+        <a href="#" class="fixed-up-btn fixed-up-btn-footer">
+            <i>&#xE809</i>
+        </a>
+     <div class="container">
+         <div class="row">
+             <div class="col-sm-2 col-xs-12">
+               <h5 class="footer-links-title"><a href=""><p>Помощь</p></a> </h5>
+                <ul class="footer-links">
+                    <li><a href="./delivery.html"><p>Оплата и Доставка</p> </a></li>
+                    <li><a href=""><p>Гарантия и Возврат</p></a></li>
+                    <li><a href="./size-guide.html"><p>Таблица размеров</p></a></li>
+                </ul>
+             </div>
+             <div class="col-sm-2 col-xs-12">
+                <h5 class="footer-links-title"><a href=""><p>Информация</p> </a></h5>
+                <ul class="footer-links">
+                    <li><a href=""><p>Новости и Акции</p> </a></li>
+                    <li><a href="./articles.html"><p>Статьи</p></a></li>
+                    <li><a href=""><p>Вопросы и ответы</p></a></li>
+                    <li><a href=""><p>Уход за обувью</p></a></li>
+                    <li><a href=""><p>Бонусныя программа</p></a></li>
+                    <li><a href=""><p>Открытые вакансии</p></a></li>
+                    <li><a href=""><p>Drop Shipping</p></a></li>
+                </ul>
+             </div>
+             <div class="col-sm-2 col-xs-12">
+                <h5 class="footer-links-title"><a href=""><p>Контакты</p></a></h5>
+                <ul class="footer-links">
+                    <li><a href="./contact.html"><p>Контакты</p></a></li>
+                    <li><a href="./response.html"><p>Отзывы</p></a></li>
+                </ul>
+                <ul class="footer-address-list">
+                    <li>г.Харьков,</li>
+                    <li>пр-т Науки 41/43</li>
+                    <li>ул. Полтавкий шлях 147</li>
+                </ul>
+             </div>
+             <div class="col-sm-2 col-xs-12 footer-phones-list-wrp">
+                 <p>Бесплатно по Украине</p>
+                 <a>0 800 222 22 22</a>
+                 <ul>
+                     <li><a href="">098 067 99 94</a></li>
+                     <li><a href="">093 717 99 94</a></li>
+                     <li><a href="">050 242 99 94</a></li>
+                 </ul>
+                 <p>Поддержка покупателей</p>
+                 <a>с 10:00 - 19:00</a>
+             </div>
+             <div class="col-md-3 col-sm-3 col-xs-12">
+                 <form action="" class="footer-form">
+                    <p>Подписка на расслыку новостей</p>
+                    <div>
+                        <input type="email" name="email" id="" placeholder="Ваш email" class="footer-input-email">
+                        <input type="button" value="" class="footer-btn">
+                    </div>
+                </form>
+                <div class="social-links social-links-footer">
+                    <a href="https://www.instagram.com" target="blank">
+                        <i>&#xE804</i>
+                    </a> 
+                    <a href="https://www.facebook.com" target="blank">
+                        <i>&#xE803</i>
+                    </a>
+                    <a href="https://www.vkontakte.com" target="blank">
+                        <i>&#xE800</i>
+                    </a>
+                </div>
+             </div>
+             <div class="col-md-12 col-sm-12 col-xs-12">
+                <p class="footer-copyright">© 2013- 2018 Tyfli.com Все права защищены</p>
+             </div>
+         </div>
+     </div>
+ </footer>
+</body>
+</html>

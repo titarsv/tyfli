@@ -1,0 +1,47 @@
+.cart-img-wrp.history-prod-img{
+    width: 150px;
+    display: flex;
+    align-items: center;
+}
+.cart-list.history-cart-list{
+    ul{
+        width: 50px;
+    }
+}
+.history-list-title{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    p{
+        width: 53px;
+        color: #4A4A4A;
+        font-family: Oswald;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 16px;
+        text-align: center;
+    }
+}
+.history-info-box{
+    color: #9DACB4;
+    font-family: "HelveticaNeue";
+    font-size: 12px;
+    line-height: 14px;
+    padding-bottom: 5px;
+    a{
+        color: #5F98B9;
+    }
+    h5{
+        display: flex;
+        justify-content: space-between;
+        color: #4A4A4A;
+        font-family: Oswald;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 25px;
+        margin-bottom: 5px;
+        span{
+            color: #9DACB4;
+        }
+    }
+}

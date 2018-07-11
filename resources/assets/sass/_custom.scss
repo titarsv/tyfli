@@ -1,0 +1,6 @@
+.prod-card-wish.active .inactive-wishlist-icon, .wishlist-add.active .inactive-wishlist-icon{
+    display: block;
+}
+.checkout-btn{
+    @extend .popup-btn;
+}

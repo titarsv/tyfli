@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="7px" viewBox="0 0 13 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>next copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="profile" transform="translate(-904.000000, -932.000000)" fill="#000000" fill-rule="nonzero">
+            <g id="next-copy" transform="translate(910.500000, 936.000000) rotate(90.000000) translate(-910.500000, -936.000000) translate(907.000000, 930.000000)">
+                <path d="M6.47556299,5.75083682 L0.615218968,0.099790795 C0.477236634,-0.0332635983 0.255944212,-0.0332635983 0.117961878,0.099790795 C-0.0200204556,0.232845188 -0.0200204556,0.44623431 0.117961878,0.579288703 L5.72837564,5.98933054 L0.117961878,11.3993724 C-0.0200204556,11.5324268 -0.0200204556,11.7458159 0.117961878,11.8788703 C0.185651325,11.9441423 0.276771734,11.9792887 0.365288703,11.9792887 C0.453805672,11.9792887 0.544926081,11.9466527 0.612615528,11.8788703 L6.47295955,6.22782427 C6.61094189,6.09728033 6.61094189,5.88138075 6.47556299,5.75083682 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="20px" viewBox="0 0 11 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>next</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="wish-list" transform="translate(-531.000000, -275.000000)" fill="#000000" fill-rule="nonzero">
+            <g id="next" transform="translate(531.000000, 275.000000)">
+                <path d="M10.8143913,9.58472803 L1.02743478,0.166317992 C0.797,-0.0554393305 0.427434783,-0.0554393305 0.197,0.166317992 C-0.0334347826,0.388075314 -0.0334347826,0.743723849 0.197,0.965481172 L9.56656522,9.98221757 L0.197,18.998954 C-0.0334347826,19.2207113 -0.0334347826,19.5763598 0.197,19.7981172 C0.310043478,19.9069038 0.462217391,19.9654812 0.610043478,19.9654812 C0.757869565,19.9654812 0.910043478,19.9110879 1.02308696,19.7981172 L10.8100435,10.3797071 C11.0404783,10.1621339 11.0404783,9.80230126 10.8143913,9.58472803 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

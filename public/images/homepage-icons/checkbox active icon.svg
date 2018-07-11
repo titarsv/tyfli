@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>checkbox active</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="profile" transform="translate(-686.000000, -559.000000)">
+            <g id="Group" transform="translate(686.000000, 539.000000)">
+                <g id="checkbox-active" transform="translate(0.000000, 20.000000)">
+                    <g id="Group-2">
+                        <g id="checkbox" fill="#5F98B9">
+                            <rect id="Rectangle-49-Copy-3" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="checkmark" transform="translate(2.000000, 3.000000)" fill="#FBFBFB" fill-rule="nonzero">
+                            <path d="M2.84477124,5.48311111 L2.84398693,5.48311111 C2.75879739,5.48311111 2.67699346,5.44847059 2.61681046,5.38827451 L0.0934248366,2.84666667 C-0.0318823529,2.72057516 -0.0308366013,2.51711111 0.0947320261,2.3923268 C0.221607843,2.26649673 0.424287582,2.26780392 0.549071895,2.39363399 L2.84528105,4.70678431 L7.4512549,0.101045752 C7.57708497,-0.0245228758 7.78028758,-0.0245228758 7.90559477,0.101045752 C8.0311634,0.226352941 8.0311634,0.429816993 7.90559477,0.555385621 L3.07193464,5.3890719 C3.01175163,5.44924183 2.92996078,5.48311111 2.84477124,5.48311111 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

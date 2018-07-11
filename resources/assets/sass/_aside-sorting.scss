@@ -1,0 +1,208 @@
+.top-menu-border{
+    border-bottom: 1px solid #9DACB4;
+}
+.aside-filter-menu-container{
+    padding: 0;
+}
+// .site-path-wrp{
+//     padding: 0;
+// }
+.site-path{
+    padding: 10px 0;
+    display: flex;
+}
+.path-underline{
+    border-bottom: 1px solid #9DACB4;
+}
+.site-path-link{
+    color: #9DACB4;
+    font-family: Oswald;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 16px;
+    padding: 0 10px;
+    position: relative;
+    &:first-child{
+        padding-left: 0;
+    }
+}
+.site-path-link::after{
+    content: '>';
+    position: absolute;
+    right: 0;
+    color: #9DACB4;
+} 
+// .site-path-link:last-child::after{
+//     display: none;
+// }
+.site-path-link-active{
+    color: #4A4A4A;
+    font-family: Oswald;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 16px;
+    padding-left: 10px;
+}
+.unactive{
+    display: none;
+}
+.aside-filter-menu-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0;
+    border-bottom: 1px solid #9DACB4;
+}
+// .aside-filter-menu-item:hover{
+//     cursor: pointer;
+// }
+.aside-filter-menu-item-filters{
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+        margin-top: 10px;
+        label{
+            color: #4A4A4A;
+            font-family: Oswald;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 28px;
+        }
+        label:hover{
+            cursor: pointer;
+        }
+    }
+    form.overflow-scroll{
+        height: 250px;
+        width: 150px;
+        overflow-x: hidden;
+        margin-bottom: 10px;
+    }
+}
+.aside-filter-menu-item-title{
+	color: #4A4A4A;
+	font-family: Oswald;
+	font-size: 12px;
+	font-weight: bold;
+    line-height: 16px;
+    text-transform: uppercase;
+    // width: 100%;
+    p{
+        color: #4A4A4A;
+        font-family: Oswald;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 16px;
+        text-transform: uppercase;
+    }
+    p:hover{
+        color:#5F98B9;
+    }
+}
+.active-aside-link{
+    width: 100%;
+    p{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #5F98B9;
+    }
+    // p:after{
+    //     content: '';
+    //     background: url('../images/homepage-icons/next-articles-icon.png') center no-repeat;
+    //     background-size: contain;
+    //     display: block;
+    //     width: 10px;
+    //     height: 15px;
+    // }
+}
+.color-filters{
+    form{
+        display: flex;
+        flex-direction: row;
+    }
+}
+.checkbox,
+.radio {
+	display: none;
+}
+.checkbox-custom,
+.radio-custom {
+	width: 12px;
+	height: 12px;
+	border: 1px solid #9DACB4;
+	position: relative;
+}
+.checkbox-custom,
+.radio-custom,
+.label {
+	display: inline-block;
+	vertical-align: middle;
+}
+.checkbox:checked + .checkbox-custom::before,
+.radio:checked + .radio-custom::before {
+	content: url('../images/homepage-icons/checkbox active icon.svg');
+	display: block;
+    position: absolute;
+    bottom: -3px;
+	right: -1px;
+	// top: 2px;
+	// bottom: 2px;
+	// left: 2px;
+	// background: #5F98B9;
+	// border-radius: 2px;
+}
+.checkbox:checked + .color-sample{
+	border: 1px solid black;
+}
+.vinous{
+    background-color: #7A292F;
+}
+.mustard{
+    background-color: #D2A445;
+}
+.dark-grey{
+    background-color: #1F161A;
+}
+.blue{
+    background-color: #5F98B9;
+}
+.white{
+    background-color: #fff;
+    border: 1px solid #9DACB4;
+}
+.green{
+    background-color: #19828F;
+}
+
+.aside-filter-menu-item-btn-toggle{
+    position: relative;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    div{
+        position: absolute;
+        width: 12px;
+        height: 2px;
+        background-color: #5F98B9;
+        right: 0;
+        transition: .2s;
+    }
+}
+.filters-open{
+    div:last-child{
+        transform: rotate(90deg);
+    }
+}
+
+.aside-filter-menu-item-btn-toggle:hover{
+    cursor: pointer;
+}
+.show-more-filters{
+	color: #78A3BC;
+	font-family: Oswald;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 28px;
+}

@@ -1,0 +1,79 @@
+.contact-subtitle{
+    color: #232121;
+    font-family: "HelveticaNeue";
+    font-size: 18px;
+    line-height: 36px;
+    text-align: justify;
+    @include bp (sm){
+        line-height: 20px;
+        font-size: 14px;
+    }
+}
+.temporary-statement{
+    color: #5F98B9;
+    font-family: "HelveticaNeue";
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    margin: 20px 0;
+}
+.store-address{
+    color: #232121;
+    font-family: "HelveticaNeue";
+    font-size: 14px;
+    line-height: 24px;
+    text-align: justify;
+    margin: 10px 0;
+    p{
+        color: #9B9B9B;        
+    }
+}
+.schedule{
+    color: #9B9B9B;
+    font-family: "HelveticaNeue";
+    font-size: 14px;
+    line-height: 24px;
+    text-align: justify;
+}
+.schedule-time{
+    width: 356px;
+    height: 60px;
+    background: url('../images/homepage-icons/schedule-bg.jpg') center no-repeat;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    @include bp (xs){
+        background: none;
+        width: 100%;
+        flex-direction: column; 
+        justify-content: center;
+    }
+    span{
+        color: #9B9B9B;
+        font-family: "HelveticaNeue";
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 24px;
+        text-align: justify;
+    }
+    span:first-child{
+        margin-left: 95px;
+        @include bp (xs){
+            color: #5F98B9;
+            margin-left: 0;
+        }
+    }
+    span:last-child{
+        color: #FBFBFB;
+        margin-left: 76px;
+        @include bp (xs){
+            color: #9B9B9B;
+            margin-left: 0;
+        }
+    }
+}
+.map{
+    margin-bottom: 25px;
+    height: 250px;
+}

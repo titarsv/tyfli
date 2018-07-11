@@ -1,0 +1,128 @@
+
+.jScrollPane{
+    max-height: 700px;
+    overflow-x: scroll;
+    padding: 0 15px;
+}
+.review-scroll-container{
+    @include bp (sm){
+        width: 100%;
+    }
+}
+.review-scroll-container .jspVerticalBar, .review-scroll-container .jspHorizontalBar{
+    display: none;
+}
+.review-product-item{
+    display: flex;
+    margin-bottom: 20px;
+    @include bp (sm){
+        display: block;
+    }
+    .cart-img-wrp.history-prod-img{
+        @include bp (sm){
+            width: 100px;
+        }
+    }
+}
+.review-product-wrp{
+    margin-left: 10px;
+}
+.review-container{
+    padding-bottom: 20px;
+}
+.review-prod-title{
+    width: 100%;
+}
+.stars{
+    color: #FFBE28;
+    margin: 10px 0;
+}
+.review-text{
+    color: #4A4A4A;
+    font-family: "HelveticaNeue";
+    font-size: 14px;
+    line-height: 24px;
+    text-align: justify;
+    @include bp (sm){
+        font-size: 12px;
+    }
+    @include bp (xs){
+        font-size: 10px;
+    }
+}
+.review-info{
+    color: #9DACB4;
+    font-family: Oswald;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 16px;
+}
+.answer-container{
+    padding: 20px 0;
+    border-top: 1px solid #9DACB4;
+}
+.response-form-title{
+    color: #4A4A4A;
+    font-family: Oswald;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 25px;
+}
+.response-form-text{
+    color: #4A4A4A;
+    font-family: Oswald;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+}
+.response-form-input{
+    color: #4A4A4A;
+    font-family: Oswald;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    width: 100%;
+    border:none;
+    border-bottom: 1px solid #9B9B9B;
+}
+.response-form-stars{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.radio-stars{
+    margin-right: 10px;
+}
+.radio-stars:before{
+    content: '\E80B';
+    font-family: 'tyfli-font';
+    color: #FFBE28;
+}
+.radio-stars:hover{
+    cursor: pointer;
+}
+.response-form-stars{
+    .radio:checked ~ .radio-stars:before{
+        content: '\E802';
+    }
+}
+.response-input{
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid #9B9B9B;
+    font-size: 16px;
+    color: #9B9B9B;
+    &:focus{
+        outline: none;
+    }
+}
+.response-phone-input{
+    border: none;
+}
+.response-input-wrp{
+    margin-bottom: 5px;
+    align-items: flex-end;
+    @include bp (xs){
+        align-items: flex-start;
+    }
+}
