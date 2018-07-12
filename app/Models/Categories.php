@@ -116,6 +116,56 @@ class Categories extends Model
 
     }
 
+    public function get_products_count($category_id, $filter, $price = [])
+    {
+        $hash = md5($category_id.serialize($filter).serialize($price));
+
+        $count = Cache::remember($hash, 480, function () use (&$category_id, $filter, $price) {
+            $products = Products::select('products.*');
+
+            $products->where('stock', 1);
+
+            if($category_id !== null) {
+                $categories = [];
+                if(is_array($category_id)){
+                    foreach ($category_id as $id){
+                        $categories = array_merge($categories, [$id], $this->get_children_categories($id));
+                    }
+                }else
+                    $categories = array_merge([$category_id], $this->get_children_categories($category_id));
+                $products->join('product_categories AS cat', 'products.id', '=', 'cat.product_id');
+                $products->whereIn('cat.category_id', $categories);
+            }
+
+            if (!empty($filter)) {
+
+                foreach ($filter as $key => $attribute) {
+
+                    $products->join('product_attributes AS attr' . $key, 'products.id', '=', 'attr' . $key . '.product_id');
+                    $products->where('stock', 1);
+                    $products->where('attr' . $key . '.attribute_id', $key);
+                    $products->where(function($query) use($attribute, $key){
+
+                        foreach ($attribute as $attribute_value) {
+                            $query->orWhere('attr' . $key . '.attribute_value_id', $attribute_value);
+                        }
+                    });
+
+                }
+            }
+
+            if(!empty($price)){
+                $products->whereBetween('products.price', $price);
+            }
+
+            $products->groupBy('products.id');
+
+            return $products->get()->count();
+        });
+
+        return $count;
+    }
+
     public function get_children_categories($cat_id){
 
         $categories = Cache::remember('children_categories_'.$cat_id, 60, function () use (&$cat_id) {

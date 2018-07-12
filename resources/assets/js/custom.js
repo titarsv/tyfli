@@ -395,6 +395,10 @@ $(function() {
         $(this).parent().find('.overflow-scroll').css('height', 'auto');
         $(this).hide();
     });
+
+    $('#filters input').change(function(){
+        $('#filters').submit();
+    });
 });
 
 /**
