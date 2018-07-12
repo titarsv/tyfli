@@ -44,7 +44,7 @@
                 <div class="col-md-3 col-sm-8 col-xs-12">
                     <div class="row">
                         <div class="col-md-12 margin">
-                            <a href="https://www.facebook.com" target="blank" class="sing-up-btn-facebook">
+                            <a href="{{env('APP_URL')}}/login/facebook" class="sing-up-btn-facebook">
                                 <p>Авторизация с Facebook</p>
                             </a>
                             <div class="sign-advant">

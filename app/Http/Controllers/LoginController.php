@@ -13,6 +13,7 @@ use Mail;
 use Carbon\Carbon;
 use App\Http\Controllers\CartController;
 use Socialite;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -379,25 +380,67 @@ class LoginController extends Controller
         return $response;
     }
 
-    public function redirectToProvider()
+    /**
+     * Переадресация в соцсеть для авторизации
+     *
+     * @param null $provider
+     * @return mixed
+     */
+    public function getSocialAuth($provider=null)
     {
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function getSocialAuth($provider=null)
-    {
-        if(!config("services.$provider")) abort('404'); //just to handle providers that doesn't exist
-
-        return $this->socialite->with($provider)->redirect();
-    }
-
-
+    /**
+     * Авторизация/регистрация через соцсеть
+     *
+     * @param null $provider
+     * @return \Illuminate\Http\RedirectResponse|string
+     */
     public function getSocialAuthCallback($provider=null)
     {
-        if($user = $this->socialite->with($provider)->user()){
-            dd($user);
-        }else{
-            return 'something went wrong';
+        if($user = Socialite::driver($provider)->user()){
+            $user_exists = User::where('email', $user->email)->first();
+
+            if ($user_exists) {
+                Sentinel::authenticateAndRemember(Sentinel::findById($user_exists->id));
+
+                return redirect ('/login')
+                    ->with('process', 'authenticate');
+            }else{
+                $name = explode('  ', $user->name);
+                $credentials = [
+                    'first_name' => $name[0],
+                    'last_name' => $name[1],
+                    'email'     => $user->email,
+                    'password'  => Hash::make(str_random(8))
+                ];
+
+                $user = Sentinel::registerAndActivate($credentials);
+                $userRole = Sentinel::findRoleByName('user');
+                $userRole->users()->attach($user);
+
+                CartController::cartToUser($user->id);
+
+                $user_data = new UserData();
+
+                $user_data->create([
+                    'user_id'   => $user->id,
+                    'image_id'  => 1,
+                    'phone'     => '',
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
+
+                $auth = Sentinel::authenticateAndRemember($credentials);
+                if($auth){
+                    return redirect('/user')
+                        ->with('status', 'Вы успешно зарегистрированы! Добро пожаловать в личный кабинет');
+                }
+            }
         }
+
+        return redirect ('/login')
+            ->with('status', 'Не удалось авторизоваться!');
     }
 }

@@ -41,342 +41,385 @@
             <div class="row">
                 <div class="col-md-3 col-sm-4 hidden-xs aside-filter-menu-container">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="aside-filter-menu-item">
-                                <div class="aside-filter-menu-item-title">
-                                    <p>Цена</p>
-                                </div>
-                                <div class="aside-filter-menu-item-filters unactive">
-                                    <form action="">
+                        <form action="#" method="get" id="filters">
+                            <div class="col-md-12">
+                                <div class="aside-filter-menu-item">
+                                    <div class="aside-filter-menu-item-title">
+                                        <p>Цена</p>
+                                    </div>
+                                    <div class="aside-filter-menu-item-filters unactive">
                                         <div>
-                                            <input type="radio" name="price" value="" id="price1" class="radio">
-                                            <span class="radio-custom"></span>
-                                            <label for="price1">До 1000 грн</label>
+                                            <div>
+                                                <input type="radio" name="price" value="" id="price1" class="radio">
+                                                <span class="radio-custom"></span>
+                                                <label for="price1">До 1000 грн</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" name="price" value="" id="price2" class="radio">
+                                                <span class="radio-custom"></span>
+                                                <label for="price2">До 1500 грн</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" name="price" value="" id="price3" class="radio">
+                                                <span class="radio-custom"></span>
+                                                <label for="price3">Дороже 1500 грн</label>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input type="radio" name="price" value="" id="price2" class="radio">
-                                            <span class="radio-custom"></span>
-                                            <label for="price2">До 1500 грн</label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="price" value="" id="price3" class="radio">
-                                            <span class="radio-custom"></span>
-                                            <label for="price3">Дороже 1500 грн</label>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="aside-filter-menu-item-btn-toggle filters-open">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="aside-filter-menu-item">
-                                <div class="aside-filter-menu-item-title">
-                                    <p>Тип</p>
-                                </div>
-                                <div class="aside-filter-menu-item-filters unactive">
-                                    <form action="" class="overflow-scroll">
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type1" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type1">Слиперы</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type2" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type2">Шлепанцы</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type3" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type3">Балетки</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type4" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type4">Ботильоны</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type5" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type5">Ботанки</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type6" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type6">Ботфорты</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type7" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type7">Босоножки</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type8" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type8">Кеды</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type9" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type9">Кроссовки</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="type" value="" id="type10" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type10">На высоком каблуке</label>
-                                        </div>
-                                    </form>
-                                    <a href="" class="show-more-filters">Показать Больше</a>
-                                </div>
-                                <div class="aside-filter-menu-item-btn-toggle filters-open">
-                                    <div></div>
-                                    <div></div>
+                                    </div>
+                                    <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="aside-filter-menu-item">
-                                <div class="aside-filter-menu-item-title">
-                                    <p>Сезон</p>
-                                </div>
-                                <div class="aside-filter-menu-item-filters unactive">
-                                    <form action="">
-                                        <div>
-                                            <input type="checkbox" name="season" value="" id="season1" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="season1">Лето</label>
+
+                            @if($category->parent_id != 0 && !$attributes->isEmpty())
+                                @if(!$attributes->isEmpty())
+                                    @foreach($attributes as $key => $attribute)
+                                        <div class="col-md-12">
+                                            <div class="aside-filter-menu-item">
+                                                <div class="aside-filter-menu-item-title">
+                                                    <p>{{ $attribute->name }}</p>
+                                                </div>
+                                                <div class="aside-filter-menu-item-filters{{ isset($filter[$attribute->id]) ? '' : ' unactive' }}">
+                                                    <div class="overflow-scroll">
+                                                        @foreach($attribute->values as $i => $attribute_value)
+                                                            @if(!empty($attribute_value->name))
+                                                                <div>
+                                                                    <input type="checkbox"
+                                                                           name="filter_attributes[{!! $attribute->id !!}][value][{!! $attribute_value->id !!}]"
+                                                                           data-attribute="{{ $attribute->id }}"
+                                                                           data-value="{{ $attribute_value->id }}"
+                                                                           id="product-filter-{!! $key !!}__check-{!! $i !!}"
+                                                                           class="checkbox"
+                                                                           @if(isset($filter[$attribute->id]) && in_array($attribute_value->id, $filter[$attribute->id]))
+                                                                           checked
+                                                                            @endif>
+                                                                    <span class="checkbox-custom"></span>
+                                                                    <label for="product-filter-{!! $key !!}__check-{!! $i !!}">{!! $attribute_value->name !!}</label>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    </div>
+                                                    <a href="" class="show-more-filters">Показать Больше</a>
+                                                </div>
+                                                <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                                    <div></div>
+                                                    <div></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input type="checkbox" name="season" value="" id="season2" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="season2">Осень</label>
+                                    @endforeach
+                                @endif
+                            @endif
+
+                            <div class="col-md-12">
+                                <div class="aside-filter-menu-item">
+                                    <div class="aside-filter-menu-item-title">
+                                        <p>Тип</p>
+                                    </div>
+                                    <div class="aside-filter-menu-item-filters unactive">
+                                        <div class="overflow-scroll">
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type1" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type1">Слиперы</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type2" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type2">Шлепанцы</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type3" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type3">Балетки</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type4" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type4">Ботильоны</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type5" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type5">Ботанки</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type6" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type6">Ботфорты</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type7" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type7">Босоножки</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type8" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type8">Кеды</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type9" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type9">Кроссовки</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="type" value="" id="type10" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type10">На высоком каблуке</label>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input type="checkbox" name="season" value="" id="season3" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="season3">Зима</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="season" value="" id="season4" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="season4">Весна</label>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="aside-filter-menu-item-btn-toggle filters-open">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="aside-filter-menu-item">
-                                <div class="aside-filter-menu-item-title">
-                                    <p>Стиль</p>
-                                </div>
-                                <div class="aside-filter-menu-item-filters unactive">
-                                    <form action="">
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="style1" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="style1">Рок</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="style2" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="style2">Поп</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="style3" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="style3">Рэп</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="style4" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="style4">Классика</label>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="aside-filter-menu-item-btn-toggle filters-open">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="aside-filter-menu-item">
-                                <div class="aside-filter-menu-item-title">
-                                    <p>Цвет</p>
-                                </div>
-                                <div class="aside-filter-menu-item-filters-color color-filters">
-                                    <form action="">
-                                        <div>
-                                            <input type="checkbox" name="color" value="" id="color1" class="checkbox">
-                                            <label for="color1" class="color-sample vinous"></label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="color" value="" id="color2" class="checkbox">
-                                            <label for="color2" class="color-sample mustard"></label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="color" value="" id="color3" class="checkbox">
-                                            <label for="color3" class="color-sample dark-grey"></label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="color" value="" id="color4" class="checkbox">
-                                            <label for="color4" class="color-sample blue"></label>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="aside-filter-menu-item">
-                                <div class="aside-filter-menu-item-title">
-                                    <p>Материал</p>
-                                </div>
-                                <div class="aside-filter-menu-item-filters unactive">
-                                    <form action="">
-                                        <div>
-                                            <input type="checkbox" name="material" value="" id="material1" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="material1">Кожа</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="material2" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="material2">Экокожа</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="material3" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="material3">Ткань</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="material4" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="material4">Резина</label>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="aside-filter-menu-item-btn-toggle filters-open">
-                                    <div></div>
-                                    <div></div>
+                                        <a href="" class="show-more-filters">Показать Больше</a>
+                                    </div>
+                                    <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="aside-filter-menu-item">
-                                <div class="aside-filter-menu-item-title">
-                                    <p>Тип подошвы</p>
-                                </div>
-                                <div class="aside-filter-menu-item-filters unactive">
-                                    <form action="">
-                                        <div>
-                                            <input type="checkbox" name="sole" value="" id="sole1" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="sole1">Солома</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="sole2" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="sole2">Экокожа</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="sole3" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="sole3">Ткань</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="style" value="" id="sole4" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="sole4">Резина</label>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="aside-filter-menu-item-btn-toggle filters-open">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="aside-filter-menu-item">
-                                <div class="aside-filter-menu-item-title">
-                                    <p>Бренд</p>
-                                </div>
-                                <div class="aside-filter-menu-item-filters unactive">
-                                    <form action="" class="overflow-scroll">
-                                        <div>
-                                            <input type="checkbox" name="brand" value="" id="brand1" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="brand1">Aquamarine</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="brand" value="" id="brand2" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="brand2">2u fashion</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="brand" value="" id="brand3" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="brand3">Dival & Dino</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="brand" value="" id="brand4" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="brand4">Franco Lucci</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="price" value="" id="brand5" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="brand5">Keddo</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="brand" value="" id="brand6" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="brand6">La Pinta</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="brand" value="" id="brand7" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="brand7">Aquamarine</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="brand" value="" id="brand8" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="brand8">Dival & Dino</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="brand" value="" id="brand9" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="type9">2u fashion</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" name="brand" value="" id="brand10" class="checkbox">
-                                            <span class="checkbox-custom"></span>
-                                            <label for="brand10">Keddo</label>
-                                        </div>
-                                    </form>
-                                    <a href="" class="show-more-filters">Показать Больше</a>
-                                </div>
-                                <div class="aside-filter-menu-item-btn-toggle filters-open">
-                                    <div></div>
-                                    <div></div>
+                            <div class="col-md-12">
+                                <div class="aside-filter-menu-item">
+                                    <div class="aside-filter-menu-item-title">
+                                        <p>Сезон</p>
+                                    </div>
+                                    <div class="aside-filter-menu-item-filters unactive">
+                                        <form action="">
+                                            <div>
+                                                <input type="checkbox" name="season" value="" id="season1" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="season1">Лето</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="season" value="" id="season2" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="season2">Осень</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="season" value="" id="season3" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="season3">Зима</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="season" value="" id="season4" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="season4">Весна</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <div class="aside-filter-menu-item">
+                                    <div class="aside-filter-menu-item-title">
+                                        <p>Стиль</p>
+                                    </div>
+                                    <div class="aside-filter-menu-item-filters unactive">
+                                        <form action="">
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="style1" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="style1">Рок</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="style2" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="style2">Поп</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="style3" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="style3">Рэп</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="style4" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="style4">Классика</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="aside-filter-menu-item">
+                                    <div class="aside-filter-menu-item-title">
+                                        <p>Цвет</p>
+                                    </div>
+                                    <div class="aside-filter-menu-item-filters-color color-filters">
+                                        <form action="">
+                                            <div>
+                                                <input type="checkbox" name="color" value="" id="color1" class="checkbox">
+                                                <label for="color1" class="color-sample vinous"></label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="color" value="" id="color2" class="checkbox">
+                                                <label for="color2" class="color-sample mustard"></label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="color" value="" id="color3" class="checkbox">
+                                                <label for="color3" class="color-sample dark-grey"></label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="color" value="" id="color4" class="checkbox">
+                                                <label for="color4" class="color-sample blue"></label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="aside-filter-menu-item">
+                                    <div class="aside-filter-menu-item-title">
+                                        <p>Материал</p>
+                                    </div>
+                                    <div class="aside-filter-menu-item-filters unactive">
+                                        <form action="">
+                                            <div>
+                                                <input type="checkbox" name="material" value="" id="material1" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="material1">Кожа</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="material2" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="material2">Экокожа</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="material3" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="material3">Ткань</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="material4" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="material4">Резина</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="aside-filter-menu-item">
+                                    <div class="aside-filter-menu-item-title">
+                                        <p>Тип подошвы</p>
+                                    </div>
+                                    <div class="aside-filter-menu-item-filters unactive">
+                                        <form action="">
+                                            <div>
+                                                <input type="checkbox" name="sole" value="" id="sole1" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="sole1">Солома</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="sole2" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="sole2">Экокожа</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="sole3" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="sole3">Ткань</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="style" value="" id="sole4" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="sole4">Резина</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="aside-filter-menu-item">
+                                    <div class="aside-filter-menu-item-title">
+                                        <p>Бренд</p>
+                                    </div>
+                                    <div class="aside-filter-menu-item-filters unactive">
+                                        <form action="" class="overflow-scroll">
+                                            <div>
+                                                <input type="checkbox" name="brand" value="" id="brand1" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="brand1">Aquamarine</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="brand" value="" id="brand2" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="brand2">2u fashion</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="brand" value="" id="brand3" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="brand3">Dival & Dino</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="brand" value="" id="brand4" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="brand4">Franco Lucci</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="price" value="" id="brand5" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="brand5">Keddo</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="brand" value="" id="brand6" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="brand6">La Pinta</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="brand" value="" id="brand7" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="brand7">Aquamarine</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="brand" value="" id="brand8" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="brand8">Dival & Dino</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="brand" value="" id="brand9" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="type9">2u fashion</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" name="brand" value="" id="brand10" class="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <label for="brand10">Keddo</label>
+                                            </div>
+                                        </form>
+                                        <a href="" class="show-more-filters">Показать Больше</a>
+                                    </div>
+                                    <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title">
                                     <a href=""><p>Большие размеры</p></a>
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-8 col-xs-12 products-grid-container">
