@@ -399,6 +399,22 @@ $(function() {
     $('#filters input').change(function(){
         $('#filters').submit();
     });
+
+    $('.hover-prod-card').mouseenter(function (e) {
+        var slider = $(this).find('.slick-slider:not(.slick-initialized)');
+
+        if (slider.length) {
+            slider.slick();
+        }
+        $(this).find('.slick-slider').slick('slickGoTo', $(this).find('.slick-slider').slick('slickCurrentSlide'));
+    });
+
+    $('.homepage-product-card-color a').click(function(e){
+        e.preventDefault();
+        var i = $(this).data('id');
+        var slider = $(this).parents('.grid-product-card').find('.slick-slider');
+        slider.slick('slickGoTo', i);
+    });
 });
 
 /**
