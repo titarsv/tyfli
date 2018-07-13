@@ -45,14 +45,12 @@ Route::get('/logout', 'LoginController@logout');
 Route::get('/registration', 'LoginController@registration');
 Route::post('/registration', 'LoginController@store');
 
-//Route::get('/login/facebook', 'LoginController@redirectToProvider');
-
 //Social Login
 Route::get('/login/{provider?}',[
     'uses' => 'LoginController@getSocialAuth',
     'as'   => 'auth.getSocialAuth'
 ]);
-Route::match(['get', 'post'], '/login/callback/{provider?}',[
+Route::get('/login/callback/{provider?}',[
     'uses' => 'LoginController@getSocialAuthCallback',
     'as'   => 'auth.getSocialAuthCallback'
 ]);

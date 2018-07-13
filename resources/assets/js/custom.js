@@ -389,12 +389,6 @@ $(function() {
             }
         });
     });
-
-    $('.show-more-filters').click(function(e){
-        e.preventDefault();
-        $(this).parent().find('.overflow-scroll').css('height', 'auto');
-        $(this).hide();
-    });
 });
 
 /**

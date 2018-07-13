@@ -123,11 +123,11 @@
                             <a href="{{env('APP_URL')}}/contact"><p>Контакты</p></a>
                         </nav>
                         <div class="header-list-wrp">
-                            <a href="tel:08002222222">0 800 222 22 22</a>
                             <ul>
                                 <li>Поддержка покупателей</li>
                                 <li>с 10:00-19:00</li>
                             </ul>
+                            <a href="">0 800 222 22 22</a>
                         </div>
                     </div>
                 </div>
@@ -150,37 +150,17 @@
                             <input type="text" placeholder="Поиск">
                         </div>
                         <div class="top-menu-functional">
-                            {!! Form::open(['route' => 'search', 'class' => 'search-field-wrp', 'method' => 'get']) !!}
-                                {!! Form::input('search', 'text', null, ['class' => 'search-field'] ) !!}
-                            {!! Form::close()!!}
+                            <a href="" class="search">
+                                <i>&#xE806</i>
+                            </a>
                             <div class="enter-links">
-                                @if($user_logged)
-                                    @if (in_array('admin', $user_roles) || in_array('manager', $user_roles))
-                                        <a href="{{env('APP_URL')}}/admin">
-                                            <i>&#xE805</i>
-                                        </a>
-                                        <ul>
-                                            <li><a href="{{env('APP_URL')}}/logout">Выход</a></li>
-                                            <li><a href="{{env('APP_URL')}}/admin">Кабинет</a></li>
-                                        </ul>
-                                    @else
-                                        <a href="{{env('APP_URL')}}/user">
-                                            <i>&#xE805</i>
-                                        </a>
-                                        <ul>
-                                            <li><a href="{{env('APP_URL')}}/logout">Выход</a></li>
-                                            <li><a href="{{env('APP_URL')}}/user">Кабинет</a></li>
-                                        </ul>
-                                    @endif
-                                @else
-                                    <a href="{{env('APP_URL')}}/login">
-                                        <i>&#xE805</i>
-                                    </a>
-                                    <ul>
-                                        <li><a href="{{env('APP_URL')}}/login">Вход</a></li>
-                                        <li><a href="{{env('APP_URL')}}/registration">Регистрация</a></li>
-                                    </ul>
-                                @endif
+                                <a href="{{env('APP_URL')}}/login">
+                                    <i>&#xE805</i>
+                                </a>
+                                <ul>
+                                    <li><a href="{{env('APP_URL')}}/login">Вход</a></li>
+                                    <li><a href="{{env('APP_URL')}}/login#registration">Регистрация</a></li>
+                                </ul>
                             </div>
                             <a href="{{env('APP_URL')}}/user/wishlist">
                                 <i class="fill-wish-heart">&#xE807</i>

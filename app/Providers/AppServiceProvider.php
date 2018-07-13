@@ -117,7 +117,7 @@ class AppServiceProvider extends ServiceProvider
             'errors/*',
             'index',
             'login',
-            'registration',
+            'register',
             'forgotten'
         ], function ($view) use ($user) {
             $settings = new Settings;

@@ -1,8 +1,8 @@
 @extends('public.layouts.main')
 
-@section('breadcrumbs')
-    {!! Breadcrumbs::render('history') !!}
-@endsection
+{{--@section('breadcrumbs')--}}
+    {{--{!! Breadcrumbs::render('history') !!}--}}
+{{--@endsection--}}
 
 @section('content')
     <main>
@@ -10,24 +10,30 @@
             <div class="row">
                 <div class="col-md-3 col-sm-4 hidden-xs aside-filter-menu-container">
                     <div class="row">
+                        <div class="col-md-12 site-path-wrp">
+                            <div class="site-path path-underline">
+                                <a href="./index.html" class="site-path-link">Главная</a>
+                                <a href="./wish-list.html" class="site-path-link-active">Список желаний</a>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title aside-block">
-                                    <a href="/user/history"><p>История покупок</p></a>
+                                    <a href="./history.html"><p>История покупок</p></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title aside-block">
-                                    <a href="javascript:void(0);" class="active-aside-link"><p>Список желаний</p></a>
+                                    <a href="./wish-list.html" class="active-aside-link"><p>Список желаний</p></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title aside-block">
-                                    <a href="/user"><p>Личный кабинет</p></a>
+                                    <a href="./profile.html"><p>Личный кабинет</p></a>
                                 </div>
                             </div>
                         </div>
