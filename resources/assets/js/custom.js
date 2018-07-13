@@ -406,7 +406,7 @@ $(function() {
         if (slider.length) {
             slider.slick();
         }
-        $(this).find('.slick-slider').slick('slickGoTo', $(this).find('.slick-slider').slick('slickCurrentSlide'));
+        $(this).find('.slick-slider').slick('setPosition');
     });
 
     $('.homepage-product-card-color a').click(function(e){

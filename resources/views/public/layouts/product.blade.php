@@ -19,7 +19,7 @@
     <div class="homepage-product-card-img-wrp">
         <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">
             @if(!empty($colors))
-            <div class="slick-slider product-cart-slider-{{ $product->id }}" data-slick='{"arrows":false}'>
+            <div class="slick-slider product-cart-slider-{{ $product->id }}" data-slick='{"arrows":false, "fade":true, "cssEase":"linear"}'>
                 @foreach($colors as $color)
                     <img src="{{ $color['image'] }}" alt="{{ $product->name }}" class="homepage-product-card-img">
                 @endforeach
@@ -48,7 +48,7 @@
                 <div class="homepage-product-card-img-hover">
                     <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">
                         @if(!empty($colors))
-                            <div class="slick-slider product-cart-slider-{{ $product->id }}" data-slick='{"arrows":false}'>
+                            <div class="slick-slider product-cart-slider-{{ $product->id }}" data-slick='{"arrows":false, "fade":true, "cssEase":"linear"}'>
                                 @foreach($colors as $color)
                                     <img src="{{ $color['image'] }}" alt="{{ $product->name }}" class="homepage-product-card-img">
                                 @endforeach
