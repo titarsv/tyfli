@@ -304,6 +304,19 @@ class CategoriesController extends Controller
             $paginator = false;
         }
 
+//        $viewed = json_decode($request->cookie('viewed'), true);
+//
+//        if(!is_array($viewed))
+//            $viewed = [];
+
+//        $viewed_products = $prod::whereIn('id', $viewed)->get();
+
+        $available_categories = [];
+        $available = [];
+        foreach ($available_categories as $cat){
+            $available[] = $cat->id;
+        }
+
         return view('public.category')
             ->with('category', $category)
             ->with('products', $products)
@@ -316,6 +329,10 @@ class CategoriesController extends Controller
 //            ->with('price', array_merge([$min_price, $max_price], $price))
             ->with('price', $this->getPriceRanges($min_price, $max_price, $price, $category_id, $filter))
             ->with('paginator', $paginator)
+//            ->with('viewed_products', $viewed_products)
+//            ->with('selected_categories', isset($_GET['categories'])?$_GET['categories']:[])
+            ->with('available_categories', $available)
+//            ->with('root_categories', $categories->get_root_categories())
             ->with('limit', $take)
             ->with('category_id', $category_id);
     }

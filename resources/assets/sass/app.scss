@@ -91,3 +91,27 @@ a:hover{
 // Подвал
 @import 'footer';
 @import 'custom';
+
+// Вспомогательный фон
+//body{
+//   background: center top url(../images/landing_new_photo.jpg) no-repeat #000;
+//  min-height: 100vh;
+//
+//  background-size: 480px auto;
+//
+//  @media screen and (min-width: 480px){
+//    background-size: 768px auto;
+//  }
+//
+//  @media screen and (min-width: 768px){
+//    background-size: 992px auto;
+//  }
+//
+//  @media screen and (min-width: 992px){
+//    background-size: 1200px auto;
+//  }
+//
+//  @media screen and (min-width: 1200px){
+//    background-size: 1920px auto;
+//  }
+//}
