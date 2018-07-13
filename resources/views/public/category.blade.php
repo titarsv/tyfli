@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-4 hidden-xs aside-filter-menu-container">
                     <div class="row">
-                        <form action="#" method="get" id="filters">
+                        <form action="" method="get" id="filters">
                             <div class="col-md-12">
                                 <div class="aside-filter-menu-item">
                                     <div class="aside-filter-menu-item-title">
