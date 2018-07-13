@@ -389,6 +389,16 @@ $(function() {
             }
         });
     });
+
+    $('.show-more-filters').click(function(e){
+        e.preventDefault();
+        $(this).parent().find('.overflow-scroll').css('height', 'auto');
+        $(this).hide();
+    });
+
+    $('#filters input').change(function(){
+        $('#filters').submit();
+    });
 });
 
 /**

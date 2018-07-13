@@ -4,3 +4,25 @@
 .checkout-btn{
     @extend .popup-btn;
 }
+.aside-filter-menu-item-filters .overflow-scroll {
+    height: 250px;
+    width: 150px;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+}
+.aside-filter-menu-item-filters label {
+  color: #4a4a4a;
+  font-family: Oswald;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 28px;
+}
+.color-filters .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
