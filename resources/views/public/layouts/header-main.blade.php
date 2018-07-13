@@ -77,17 +77,37 @@
                             <input type="text" placeholder="Поиск">
                         </div>
                         <div class="top-menu-functional">
-                            <a href="" class="search">
-                                <i>&#xE806</i>
-                            </a>
+                            {!! Form::open(['route' => 'search', 'class' => 'search-field-wrp', 'method' => 'get']) !!}
+                                {!! Form::input('search', 'text', null, ['class' => 'search-field'] ) !!}
+                            {!! Form::close()!!}
                             <div class="enter-links">
-                                <a href="{{env('APP_URL')}}/login">
-                                    <i>&#xE805</i>
-                                </a>
-                                <ul>
-                                    <li><a href="{{env('APP_URL')}}/login">Вход</a></li>
-                                    <li><a href="{{env('APP_URL')}}/login#registration">Регистрация</a></li>
-                                </ul>
+                                @if($user_logged)
+                                    @if (in_array('admin', $user_roles) || in_array('manager', $user_roles))
+                                        <a href="{{env('APP_URL')}}/admin">
+                                            <i>&#xE805</i>
+                                        </a>
+                                        <ul>
+                                            <li><a href="{{env('APP_URL')}}/logout">Выход</a></li>
+                                            <li><a href="{{env('APP_URL')}}/admin">Кабинет</a></li>
+                                        </ul>
+                                    @else
+                                        <a href="{{env('APP_URL')}}/user">
+                                            <i>&#xE805</i>
+                                        </a>
+                                        <ul>
+                                            <li><a href="{{env('APP_URL')}}/logout">Выход</a></li>
+                                            <li><a href="{{env('APP_URL')}}/user">Кабинет</a></li>
+                                        </ul>
+                                    @endif
+                                @else
+                                    <a href="{{env('APP_URL')}}/login">
+                                        <i>&#xE805</i>
+                                    </a>
+                                    <ul>
+                                        <li><a href="{{env('APP_URL')}}/login">Вход</a></li>
+                                        <li><a href="{{env('APP_URL')}}/registration">Регистрация</a></li>
+                                    </ul>
+                                @endif
                             </div>
                             <a href="{{env('APP_URL')}}/user/wishlist">
                                 <i class="fill-wish-heart">&#xE807</i>
