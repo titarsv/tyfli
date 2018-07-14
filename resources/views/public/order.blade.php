@@ -96,7 +96,7 @@
                             </div>
                         @endif
                     @endforeach
-                    <form action="" class="order-form">
+                    <form action="" method="post" class="order-form">
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
                                 <h5 class="checkout-title">Оформление заказа</h5>
@@ -145,9 +145,11 @@
                                     </div>
                                 </div>
                                 <div class="cart-receipt-btn">
-                                    <a href="" class="popup-btn process">
-                                        <p>Оформить заказ</p>
-                                    </a>
+                                    @if($user_logged)
+                                        <button type="submit" class="checkout-btn" id="checkout-btn">Оформить заказ</button>
+                                    @else
+                                        <a href="{{env('APP_URL')}}/login" class="checkout-btn">Оформить заказ</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

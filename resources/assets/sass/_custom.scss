@@ -26,3 +26,20 @@
   -ms-flex-direction: row;
   flex-direction: row;
 }
+.checkout-btn{
+  color: #F5F5F5;
+  font-family: "HelveticaNeue";
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 25px;
+  text-align: center;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 20px 0;
+  background-color: #5F98B9;
+  display: block;
+}
+.not-valid + .checkbox-custom{
+  border-color: #f00;
+}

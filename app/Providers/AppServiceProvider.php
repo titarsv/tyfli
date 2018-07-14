@@ -70,7 +70,8 @@ class AppServiceProvider extends ServiceProvider
                 'public.product',
                 'public.layouts.cart',
                 'public.category',
-                'admin.orders.edit'
+                'admin.orders.edit',
+                'public.order'
             ], function ($view) {
                 $view->with('user_id', $this->user->id)
                     ->with('user_logged', true)
@@ -82,7 +83,8 @@ class AppServiceProvider extends ServiceProvider
                 'public.layouts.header-main',
                 'public.layouts.header-middle',
                 'public.layouts.product',
-                'public.product'
+                'public.product',
+                'public.order'
                 ], function ($view) {
                 $view->with('user_logged', false);
             });
