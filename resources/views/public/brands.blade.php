@@ -26,7 +26,7 @@
                             <h5 class="title">Бренды</h5>
                         </div>
                         @foreach($brands as $brand)
-                            <a href="javascript:void(0);">
+                            <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[6][value][{{ $brand->id }}]=on">
                                 <div class="col-md-4 col-xs-6 brand-item">{{ $brand->name }}</div>
                             </a>
                         @endforeach

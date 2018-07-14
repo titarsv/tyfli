@@ -96,7 +96,8 @@
                             </div>
                         @endif
                     @endforeach
-                    <form action="" method="post" class="order-form">
+                    <form action="{{env('APP_URL')}}/order/create" method="post" class="order-form" id="order-checkout">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
                                 <h5 class="checkout-title">Оформление заказа</h5>
