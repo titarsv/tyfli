@@ -12,11 +12,12 @@ use App\Models\News;
 use App\Http\Requests;
 use App\Models\Image;
 use App\Models\HTMLContent;
+use App\Models\Attribute;
 
 
 class MainController extends Controller
 {
-    public function index(Categories $categories, Image $image, Modules $modules, Moduleslideshow $slideshow)
+    public function index(Attribute $attribute, Categories $categories, Image $image, Modules $modules, Moduleslideshow $slideshow)
     {
         //$articles = Blog::where('published', 1)->orderBy('updated_at', 'desc')->take(4)->get();
 //        $blog = new Blog();
@@ -33,7 +34,10 @@ class MainController extends Controller
 //            $news[$key]->date = iconv("cp1251", "UTF-8", $news[$key]->updated_at->formatLocalized('%d %b %Y'));
 //        }
 
-        return view('index');
+	    $brands = $attribute->where('name', 'Бренд')->first()->values;
+
+        return view('index')
+	        ->with('brands', $brands);
 //            ->with('settings', Settings::find(1))
 //            ->with('actions', Products::orderBy('created_at', 'desc')->where('stock', 1)->whereNotNull('action')->where('action', '!=', '')->take(24)->get())
 //            ->with('articles', $articles)

@@ -28,11 +28,9 @@ class CheckoutController extends Controller
      * @param Request $request
      * @param Order $order
      * @param Cart $cart
-     * @param UserData $user_data
-     * @param User $users
      * @return \Illuminate\Http\JsonResponse
      */
-    public function createOrder(Request $request, Order $order, Cart $cart, UserData $user_data, User $users)
+    public function createOrder(Request $request, Order $order, Cart $cart)
     {
         $cart = $cart->current_cart();
 
@@ -46,33 +44,14 @@ class CheckoutController extends Controller
         }
 
         $rules = [
-            'first_name' => 'required',
-            'phone'     => 'required|regex:/^[0-9\-! ,\'\"\/+@\.:\(\)]+$/',
-            'email'     =>'required|email',
             'payment' => 'required',
             'delivery' => 'required'
         ];
 
         $messages = [
-            'first_name.required' => 'Вы не указали имя!',
-            'phone.required'    => 'Вы не указали телефон!',
-            'phone.regex'       => 'Некорректный номер телефона!',
-            'email.required'    => 'Вы не указали e-mail!',
-            'email.email'       => 'Некорректный email-адрес!',
             'payment'          => 'Не выбран способ оплаты!',
             'delivery'          => 'Не выбран способ доставки!'
         ];
-
-        if (isset($request->checkout_registration)) {
-            if($request->checkout_registration == 'true'){
-                $rules['password']  = 'required|min:6|confirmed';
-                $rules['password_confirmation'] = 'min:6';
-
-                $messages['password.required'] = 'Вы не указали пароль!';
-                $messages['password.min'] = 'Пароль должен быть не менее 6 символов!';
-                $messages['password.confirmed'] = 'Введенные пароли не совпадают!';
-            }
-        }
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -81,31 +60,10 @@ class CheckoutController extends Controller
             return response()->json(['error' => $errors]);
         }
 
-        if (isset($request->checkout_registration)) {
-            $register = new LoginController();
-
-            if($request->checkout_registration == 'true') {
-                $settings = new Setting();
-                $response = $register->store($request, $user_data, $settings);
-                if ($response == 'error') {
-                    return response()->json(['error' => 'При регистрации произошла ошибка. Попробуйте оформить заказ без регистрации.']);
-                } elseif ($response == 'email error') {
-                    return response()->json(['error' => ['email' => 'Пользователь с таким e-mail адресом уже зарегистрирован!']]);
-                }
-            }
-        }
-
         $user = Sentinel::check();
 
         if (!$user) {
-            $existed_user = $users->checkIfUnregistered($request->phone, $request->email);
-
-            if(!is_null($existed_user)) {
-                $user = $existed_user;
-            } else {
-                $register = new LoginController();
-                $user = $register->storeAsUnregistered($request);
-            }
+	        return response()->json(['error' => 'Вы не авторизованы.']);
         }
 
         $user_name = $request->first_name;
