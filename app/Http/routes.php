@@ -216,7 +216,7 @@ Route::post('/callback', 'UserController@callback');
 Route::get('/livesearch', 'ProductsController@livesearch');
 Route::post('get_models','ProductsController@getModels');
 Route::post('get_years','ProductsController@getYears');
-Route::post('/order/create', 'CheckoutController@createOrder');
+Route::post('order/create', 'CheckoutController@createOrder');
 Route::post('checkout/delivery', 'CheckoutController@delivery');
 Route::post('/checkout/cities', 'CheckoutController@getCities');
 Route::post('/checkout/warehouses', 'CheckoutController@getWarehouses');

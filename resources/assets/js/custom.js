@@ -399,6 +399,45 @@ $(function() {
     $('#filters input').change(function(){
         $('#filters').submit();
     });
+
+    $('.hover-prod-card').mouseenter(function (e) {
+        var slider = $(this).find('.slick-slider:not(.slick-initialized)');
+
+        if (slider.length) {
+            slider.slick();
+        }
+        $(this).find('.slick-slider').slick('setPosition');
+    });
+
+    $('.homepage-product-card-color a').click(function(e){
+        e.preventDefault();
+        var i = $(this).data('id');
+        var slider = $(this).parents('.grid-product-card').find('.slick-slider');
+        slider.slick('slickGoTo', i);
+    });
+
+    $('#checkout-btn').click(function (e) {
+        e.preventDefault();
+        var validate = true;
+        if($('#safe-agreement').prop('checked') == false){
+            $('#safe-agreement').addClass('not-valid');
+            validate = false;
+        }else{
+            $('#safe-agreement').removeClass('not-valid');
+        }
+        if($('#public-agreement').prop('checked') == false){
+            $('#public-agreement').addClass('not-valid');
+            validate = false;
+        }else{
+            $('#public-agreement').removeClass('not-valid');
+        }
+
+        if(validate){
+            $(this).parents('form').submit();
+        }else{
+            return false;
+        }
+    });
 });
 
 /**

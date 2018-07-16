@@ -1,13 +1,33 @@
 @php
     $labels = $product->labels();
     $brand = $product->brand();
-    $colors = $product->colors;
+    //$colors = $product->colors;
     $sizes = $product->sizes;
     $in_wish = $product->in_wish();
+
+    $colors = [];
+    if(is_object($product->colors()->first())) {
+        $colors[$product->id] = ['color' => $product->colors()->first()->value, 'slug' => $product->url_alias, 'image' => $product->image->url()];
+        foreach ($product->related as $prod) {
+            if (is_object($prod->colors()->first()))
+                $colors[$prod->id] = ['color' => $prod->colors()->first()->value, 'slug' => $prod->url_alias, 'image' => $prod->image->url()];
+        }
+        sort($colors);
+    }
 @endphp
 <div class="grid-product-card card-margin">
     <div class="homepage-product-card-img-wrp">
-        <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><img src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}" class="homepage-product-card-img"></a>
+        <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">
+            @if(!empty($colors))
+            <div class="slick-slider product-cart-slider-{{ $product->id }}" data-slick='{"arrows":false, "fade":true, "cssEase":"linear"}'>
+                @foreach($colors as $color)
+                    <img src="{{ $color['image'] }}" alt="{{ $product->name }}" class="homepage-product-card-img">
+                @endforeach
+            </div>
+            @else
+                <img src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}" class="homepage-product-card-img">
+            @endif
+        </a>
         @if(!empty($product->label) && $product->label != 'z' && isset($labels[$product->label]))
             <p class="homepage-product-card-new">{{ $labels[$product->label] }}</p>
         @elseif(!empty($product->old_price))
@@ -26,7 +46,17 @@
         <div>
             <div class="homepage-product-card-img-wrp">
                 <div class="homepage-product-card-img-hover">
-                    <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><img src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}" class="hover-img"></a>
+                    <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">
+                        @if(!empty($colors))
+                            <div class="slick-slider product-cart-slider-{{ $product->id }}" data-slick='{"arrows":false, "fade":true, "cssEase":"linear"}'>
+                                @foreach($colors as $color)
+                                    <img src="{{ $color['image'] }}" alt="{{ $product->name }}" class="homepage-product-card-img">
+                                @endforeach
+                            </div>
+                        @else
+                            <img src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}" class="homepage-product-card-img">
+                        @endif
+                    </a>
                     <div class="one-click-btn-wrp">
                         <a class="hover-pro-card-btn js-toggle-one-click-btn">
                             <div>
@@ -73,8 +103,8 @@
                 </div>
                 <div class="color-and-price-wrp">
                     <div class="homepage-product-card-color">
-                        @foreach($colors as $color)
-                            <a href="javascript:void(0);" class="color-sample" style="background-color: {{ $color->value->value }}"></a>
+                        @foreach($colors as $key => $item)
+                            <a href="{{env('APP_URL')}}/product/{{ $item['slug'] }}" data-id="{{ $key }}" class="color-sample" style="background-color: {{ $item['color']->value }}"></a>
                         @endforeach
                     </div>
                     <div class="homepage-product-card-price">
@@ -87,7 +117,9 @@
             </div>
             <div class="hover-prod-size">
                 @foreach($sizes as $size)
-                    <div class="hover-prod-size-item"><p>{{ $size->value->name }}</p></div>
+                    <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">
+                        <div class="hover-prod-size-item"><p>{{ $size->value->name }}</p></div>
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -106,8 +138,8 @@
         </div>
         <div class="color-and-price-wrp">
             <div class="homepage-product-card-color">
-                @foreach($colors as $color)
-                    <a href="javascript:void(0);" class="color-sample" style="background-color: {{ $color->value->value }}"></a>
+                @foreach($colors as $key => $item)
+                    <a href="{{env('APP_URL')}}/product/{{ $item['slug'] }}" data-id="{{ $key }}" class="color-sample" style="background-color: {{ $item['color']->value }}"></a>
                 @endforeach
             </div>
             <div class="homepage-product-card-price">

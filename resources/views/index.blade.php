@@ -52,44 +52,16 @@
                 </div>
                 <div class="col-sm-12 col-xs-12">
                     <div class="js-slider slick-slider slider-brands" data-slick='{"slidesToShow": 6, "responsive":[{"breakpoint":1200,"settings":{"slidesToShow": 4}},{"breakpoint":768,"settings":{"slidesToShow": 3, "arrows": false}},{"breakpoint":480,"settings":{"slidesToShow": 2, "arrows": false}}]}'>
-                        <div class="slider-brand-item">
-                            <a href="">
-                                <p>Aquamarine</p>
-                            </a>
-                        </div>
-                        <div class="slider-brand-item">
-                            <a href="">
-                                <p>2u fashion</p>
-                            </a>
-                        </div>
-                        <div class="slider-brand-item">
-                            <a href="">
-                                <p>Dival & Dino</p>
-                            </a>
-                        </div>
-                        <div class="slider-brand-item">
-                            <a href="">
-                                <p>Franco Lucci</p>
-                            </a>
-                        </div>
-                        <div class="slider-brand-item">
-                            <a href="">
-                                <p>Keddo</p>
-                            </a>
-                        </div>
-                        <div class="slider-brand-item">
-                            <a href="">
-                                <p>La Pinta</p>
-                            </a>
-                        </div>
-                        <div class="slider-brand-item">
-                            <a href="">
-                                <p>Aquamarine</p>
-                            </a>
-                        </div>
+                        @foreach($brands as $brand)
+                            <div class="slider-brand-item">
+                                <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[6][value][{{ $brand->id }}]=on">
+                                    <p>{{ $brand->name }}</p>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="col-md-12 all-brands-link">
-                        <a href="./brands.html">
+                        <a href="{{env('APP_URL')}}/brands">
                             <p>Все бренды</p>
                         </a>
                     </div>
