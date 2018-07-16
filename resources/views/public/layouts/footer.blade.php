@@ -7,16 +7,16 @@
             <div class="col-sm-2 col-xs-12">
                 <h5 class="footer-links-title"><a href=""><p>Помощь</p></a> </h5>
                 <ul class="footer-links">
-                    <li><a href="./delivery.html"><p>Оплата и Доставка</p> </a></li>
-                    <li><a href=""><p>Гарантия и Возврат</p></a></li>
-                    <li><a href="./size-guide.html"><p>Таблица размеров</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/delivery"><p>Оплата и Доставка</p> </a></li>
+                    <li><a href="javascript:void(0);"><p>Гарантия и Возврат</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/page/sizes"><p>Таблица размеров</p></a></li>
                 </ul>
             </div>
             <div class="col-sm-2 col-xs-12">
                 <h5 class="footer-links-title"><a href=""><p>Информация</p> </a></h5>
                 <ul class="footer-links">
-                    <li><a href=""><p>Новости и Акции</p> </a></li>
-                    <li><a href="./articles.html"><p>Статьи</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/news"><p>Новости и Акции</p> </a></li>
+                    <li><a href="{{env('APP_URL')}}/news"><p>Статьи</p></a></li>
                     <li><a href=""><p>Вопросы и ответы</p></a></li>
                     <li><a href=""><p>Уход за обувью</p></a></li>
                     <li><a href=""><p>Бонусныя программа</p></a></li>
@@ -25,10 +25,10 @@
                 </ul>
             </div>
             <div class="col-sm-2 col-xs-12">
-                <h5 class="footer-links-title"><a href=""><p>Контакты</p></a></h5>
+                <h5 class="footer-links-title"><a href="{{env('APP_URL')}}/contact"><p>Контакты</p></a></h5>
                 <ul class="footer-links">
-                    <li><a href="./contact.html"><p>Контакты</p></a></li>
-                    <li><a href="./response.html"><p>Отзывы</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/contact"><p>Контакты</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/reviews"><p>Отзывы</p></a></li>
                 </ul>
                 <ul class="footer-address-list">
                     <li>г.Харьков,</li>

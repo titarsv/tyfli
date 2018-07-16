@@ -267,13 +267,15 @@ class ProductsController extends Controller
 //        }
 
 //        $product->set_products()->sync($request->sets);
-        foreach (Products::whereIn('id', $request->related)->get() as $prod){
-            $r = [$product->id];
-            foreach ($request->related as $rel_id){
-                if($rel_id != $prod->id)
-                    $r[] = $rel_id;
+        if(!empty($request->related)) {
+            foreach (Products::whereIn('id', $request->related)->get() as $prod) {
+                $r = [$product->id];
+                foreach ($request->related as $rel_id) {
+                    if ($rel_id != $prod->id)
+                        $r[] = $rel_id;
+                }
+                $prod->related()->attach($r);
             }
-            $prod->related()->attach($r);
         }
         $product->related()->sync($request->related);
 

@@ -151,7 +151,7 @@
                                             </a>
                                         </div>
                                         <h5 class="article-slider-item-title">
-                                            <a href="{{env('APP_URL')}}/news/{!!$article->url_alias !!}">Повседневная обувь</a>
+                                            <a href="{{env('APP_URL')}}/news/{!!$article->url_alias !!}">{!! $article->title !!}</a>
                                         </h5>
                                         <span class="article-slider-item-data">
                                             {!! $article->created_at !!}

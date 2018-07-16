@@ -87,7 +87,7 @@ class Categories extends Model
             foreach ($filter as $key => $attribute) {
 
                 $products->join('product_attributes AS attr' . $key, 'products.id', '=', 'attr' . $key . '.product_id');
-                $products->where('stock', 1);
+//                $products->where('stock', 1);
                 $products->where('attr' . $key . '.attribute_id', $key);
                 $products->where(function($query) use($attribute, $key){
 
