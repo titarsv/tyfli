@@ -65,10 +65,10 @@ $(function() {
     });
   });
 
-  $('.fixed-up-btn').on('click', function(event) {
-    event.preventDefault();
-    $('body,html').animate({scrollTop: 0}, 1000);
-    return false;
+  $('.fixed-up-btn').on('click', function() {
+      event.preventDefault();
+      $('body,html').animate({scrollTop: 0}, 1000);
+      return false;
   });
   // TOP MENU CATALOG
   var $toggleElem = $('.js-toggle');

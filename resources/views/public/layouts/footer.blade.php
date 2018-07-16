@@ -51,8 +51,8 @@
                 <form action="" class="footer-form subscribe-form">
                     <p>Подписка на расслыку новостей</p>
                     <div>
-                        <input type="email" name="email" data-validate-required="Обязательное поле" id="" placeholder="Ваш email" class="footer-input-email">
-                        <input type="submit" value="" class="footer-btn">
+                        <input type="email" name="email" id="" placeholder="Ваш email" class="footer-input-email">
+                        <input type="button" value="Отправить" class="footer-btn">
                     </div>
                 </form>
                 <div class="social-links social-links-footer">
