@@ -364,8 +364,6 @@ class UserController extends Controller
             return response()->json($validator->messages(), 200);
         }
 
-        DB::insert('insert into wp_subscribe2 (email, time, ip) values (?, ?, ?)', array($request->email, date('G:i:s'), $this->get_ip()));
-
         $user_exists = User::where('email', $request->email)->first();
 
         if ($user_exists){

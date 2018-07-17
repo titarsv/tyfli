@@ -175,7 +175,7 @@
                                         <p>Межсезонная распродажа</p>
                                     </div>
                                     <div class="col-sm-5 hidden-xs">
-                                        <a href="javascript:void(0);" class="sales-banner-btn grid-products-banner">
+                                        <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[8][value][111]=on" class="sales-banner-btn grid-products-banner">
                                             <p>Смотреть</p>
                                         </a>
                                     </div>
@@ -194,7 +194,7 @@
                                     <p>Межсезонная распродажа</p>
                                 </div>
                                 <div class="col-sm-5 hidden-xs">
-                                    <a href="javascript:void(0);" class="sales-banner-btn grid-products-banner">
+                                    <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[8][value][111]=on" class="sales-banner-btn grid-products-banner">
                                         <p>Смотреть</p>
                                     </a>
                                 </div>

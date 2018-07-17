@@ -48,11 +48,12 @@
                 <a>с 10:00 - 19:00</a>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12">
-                <form action="" class="footer-form subscribe-form">
+                <form action="" class="footer-form subscribe-form" id="subscribe">
+                    {!! csrf_field() !!}
                     <p>Подписка на расслыку новостей</p>
                     <div>
-                        <input type="email" name="email" id="" placeholder="Ваш email" class="footer-input-email">
-                        <input type="button" value="Отправить" class="footer-btn">
+                        <input type="email" name="email" placeholder="Ваш email" class="footer-input-email">
+                        <input type="submit" value="Отправить" class="footer-btn">
                     </div>
                 </form>
                 <div class="social-links social-links-footer">

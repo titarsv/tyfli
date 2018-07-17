@@ -140,7 +140,7 @@
                         <p>Межсезонная распродажа</p>
                     </div>
                     <div class="col-sm-5 hidden-xs">
-                        <a href="" class="sales-banner-btn">
+                        <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[8][value][111]=on" class="sales-banner-btn">
                             <p>Смотреть</p>
                         </a>
                     </div>

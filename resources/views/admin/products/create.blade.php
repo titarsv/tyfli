@@ -267,7 +267,7 @@
                                                     @if (in_array($category->id, (array)old('product_category_id')))
                                                     selected
                                                     @endif
-                                            >{!! $category->name !!}</option>
+                                            >{!! $category->meta_title !!}</option>
                                         @endforeach
                                     </select>
                                     @if($errors->has('product_category_id'))
@@ -309,7 +309,7 @@
                                             <tr class="success">
                                                 <td align="center">Выберите атрибут</td>
                                                 <td align="center">Выберите значение атрибута</td>
-                                                <td align="center">Добавочная стоимость</td>
+                                                {{--<td align="center">Добавочная стоимость</td>--}}
                                                 <td align="center">Действия</td>
                                             </tr>
                                         </thead>
@@ -317,7 +317,7 @@
                                             @if(old('product_attributes') !== null)
                                                 @if(session('attributes_error'))
                                                     <tr>
-                                                        <td colspan="3">
+                                                        <td colspan="2">
                                                             <p class="warning" role="alert">{!! session('attributes_error') !!}</p>
                                                         </td>
                                                     </tr>
@@ -352,9 +352,6 @@
                                                             </select>
                                                         </td>
                                                         <td align="center">
-                                                            <input type="text" value="{{ !empty($attr['price']) ? $attr['price'] : 0 }}" name="product_attributes[{!! $key !!}][price]" placeholder="Добавочная стоимость">
-                                                        </td>
-                                                        <td align="center">
                                                             <button class="btn btn-danger" onclick="$(this).parent().parent().remove();">Удалить</button>
                                                         </td>
                                                     </tr>
@@ -366,7 +363,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="3"></td>
+                                                <td colspan="2"></td>
                                                 <td align="center">
                                                     <button type="button" id="add-attribute" onclick="getAttributes();" class="btn">Добавить</button>
                                                 </td>

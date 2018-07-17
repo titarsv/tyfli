@@ -551,9 +551,16 @@ function addVariation(obj){
     var html = '<div class="form-group">\n' +
         '<div class="row">\n' +
         '<label class="col-sm-2 text-right">Цена</label>\n' +
-        '<div class="form-element col-sm-10">\n' +
+        '<div class="form-element col-sm-4">\n' +
         '<input class="form-control variation-price" name="variations['+$('.variation-price').length+'][price]" value="" type="text">\n' +
         '</div>\n' +
+        '<label class="col-sm-2 text-right">Наличие вариации</label>' +
+        '<div class="form-element col-sm-4">\n' +
+        '<select name="variations['+$('.variation-price').length+'][stock]" class="form-control">\n' +
+        '<option value="1" selected>В наличии</option>\n' +
+        '<option value="0">Нет в наличии</option>\n' +
+        '</select>\n' +
+        '</div>' +
         '</div>\n' +
         '</div>' +
         '<div class="form-group">\n' +
