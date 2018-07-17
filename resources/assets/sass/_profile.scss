@@ -114,7 +114,7 @@
         flex-direction: column;
     }
 }
-.profile-addredd-wrp{
+.profile-address-wrp{
     input{
         padding: 10px;
         border: 1px solid #DDDDDD;
@@ -124,6 +124,47 @@
         font-size: 18px; 
     }
 }
+.profile-edit-data-input{
+    padding: 10px;
+    border: 1px solid #DDDDDD;
+    outline: none;
+    color: #444444;
+    font-family: "HelveticaNeue";
+    font-size: 18px;
+    height: 50px;
+}
+.profile-edit-data-input.unactive{
+    display: none;
+}
+
+.password-edit.unactive{
+    display: none;
+}
+.password-btn{
+    height: 50px;
+    border: none;
+    background-color: #5f98b9;
+    color: #fff;
+    font-size: 18px;
+    margin-left: 5px;
+    &:hover{
+        background-color: darken(#5f98b9, 10);
+    }
+}
+.profile-address-btn{
+    background: #5f98b9;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    padding: 10px;
+    &:hover{
+        background-color: darken(#5f98b9, 10);
+    }
+}
+input[disabled]{
+    background: inherit;
+}
+
 .city-dropdown{
     select{
         padding: 10px;
