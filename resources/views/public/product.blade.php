@@ -371,7 +371,9 @@
                     <div class="slick-slider slick-prod popular-slider" data-slick='{"slidesToShow":4, "slidesToScroll":4, "arrows": false, "lazyLoad": "ondemand", "responsive":[ {"breakpoint":768,"settings":{"slidesToShow":2, "slidesToScroll":1, "arrows": false, "lazyLoad": "ondemand"}}]}'>
                         @foreach($popular as $prod)
                             <div>
-                                @include('public.layouts.product', ['product' => $prod, 'slide' => true])
+                                <div class="grid-product-card card-margin">
+                                    @include('public.layouts.product', ['product' => $prod, 'slide' => true])
+                                </div>
                             </div>
                         @endforeach
                     </div>

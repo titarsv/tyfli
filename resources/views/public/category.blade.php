@@ -164,7 +164,9 @@
                         </div>
                         @forelse($products as $key => $product)
                             <div class="col-lg-4 col-xs-6">
-                                @include('public.layouts.product', ['product' => $product, 'slide' => false])
+                                <div class="grid-product-card card-margin">
+                                    @include('public.layouts.product', ['product' => $product, 'slide' => false])
+                                </div>
                             </div>
                             @if(($key+1)%3 == 0 && ceil(count($products)/6) == ($key+1)/3)
                                 <div class="col-sm-12 col-xs-12 sales-banner-text-wrp">

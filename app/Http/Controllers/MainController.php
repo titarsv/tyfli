@@ -35,9 +35,18 @@ class MainController extends Controller
 //        }
 
 	    $brands = $attribute->where('name', 'Бренд')->first()->values;
+        $women_new_prod = $categories->get_products(1, null, [8 => [113]], ['id', 'desc'], 3, []);
+        $men_new_prod = $categories->get_products(2, null, [8 => [113]], ['id', 'desc'], 3, []);
+        $big_sizes = $categories->get_products(11, null, [8 => [112]], ['id', 'desc'], 2, []);
+        $blog = new News();
+        $articles = $blog->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12);
 
         return view('index')
-	        ->with('brands', $brands);
+	        ->with('women_new_prod', $women_new_prod)
+	        ->with('men_new_prod', $men_new_prod)
+	        ->with('big_sizes', $big_sizes)
+	        ->with('brands', $brands)
+	        ->with('articles', $articles);
 //            ->with('settings', Settings::find(1))
 //            ->with('actions', Products::orderBy('created_at', 'desc')->where('stock', 1)->whereNotNull('action')->where('action', '!=', '')->take(24)->get())
 //            ->with('articles', $articles)
