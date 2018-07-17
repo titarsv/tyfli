@@ -316,7 +316,7 @@ class Products extends Model
             if($table == 'product_categories'){
                 if (!isset($data[$table]) && isset($data['categories']))
                     $result_data['categories'] = $data['categories'];
-                else {
+                elseif(isset($data[$table])) {
                     foreach ($data[$table] as $category) {
                         $result_data['categories'][] = $category['category_id'];
                     }

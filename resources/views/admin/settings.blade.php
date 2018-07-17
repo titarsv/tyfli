@@ -388,25 +388,23 @@
                                 {{--</div>--}}
                             {{--</div>--}}
                         {{--</div>--}}
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4>Курсы валют</h4>
-                            </div>
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <label class="col-sm-2 text-right">Курс гривны</label>
-                                        <div class="form-element col-sm-10">
-                                            <input type="text" class="form-control" name="rate" value="{!! $settings->rate !!}" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+                {{--<div class="panel panel-default">--}}
+                    {{--<div class="panel-heading">--}}
+                        {{--<h4>Курсы валют</h4>--}}
+                    {{--</div>--}}
+                    {{--<div class="panel-body">--}}
+                        {{--<div class="form-group">--}}
+                            {{--<div class="row">--}}
+                                {{--<label class="col-sm-2 text-right">Курс гривны</label>--}}
+                                {{--<div class="form-element col-sm-10">--}}
+                                    {{--<input type="text" class="form-control" name="rate" value="{!! $settings->rate !!}" />--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">

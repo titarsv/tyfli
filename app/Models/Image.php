@@ -370,7 +370,7 @@ class Image extends Model
         if(($original_width < $w && $original_height < $h) || ($method != 'contain' && ($original_width < $w || $original_height < $h)))
             return $new_name;
 
-        if($original_width/$w > $original_height/$h) {
+        if($original_width/$w >= $original_height/$h) {
             switch ($method) {
                 case 'contain':
                     $image->resize($w, null, function ($constraint) {
@@ -391,7 +391,7 @@ class Image extends Model
                     $new_name = $this->save_image_file($image, $original_width, $original_height, $w, $h, $extension, $href, 'crop');
                     break;
             }
-        }elseif($original_width/$w < $original_height/$h) {
+        }elseif($original_width/$w <= $original_height/$h) {
             switch ($method) {
                 case 'contain':
                     $image->resize(null, $h, function ($constraint) {
@@ -412,7 +412,6 @@ class Image extends Model
                     $new_name = $this->save_image_file($image, $original_width, $original_height, $w, $h, $extension, $href, 'crop');
                     break;
             }
-
         }else {
             $this->save_image_file($image, $original_width, $original_height, $w, $h, $extension, $href, 'resize');
         }

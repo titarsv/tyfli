@@ -10,10 +10,16 @@
         //$colors[$product->id] = ['color' => $product->colors()->first()->value, 'slug' => $product->url_alias, 'image' => $product->image->url()];
         foreach ($product->related as $prod) {
             if (is_object($prod->colors()->first()))
-                $colors[$prod->id] = ['color' => $prod->colors()->first()->value, 'slug' => $prod->url_alias, 'image' => $prod->image->url()];
+                $colors[$prod->id] = ['color' => $prod->colors()->first()->value, 'slug' => $prod->url_alias, 'image' => $prod->image->url('product_list')];
         }
-        sort($colors);
-        $colors = array_merge([$product->id => ['color' => $product->colors()->first()->value, 'slug' => $product->url_alias, 'image' => $product->image->url()]], $colors);
+        if(!empty($colors)){
+            sort($colors);
+            $colors = array_merge([$product->id => ['color' => $product->colors()->first()->value, 'slug' => $product->url_alias, 'image' => $product->image->url('product_list')]], $colors);
+        }else{
+            foreach ($product->colors as $color){
+                $colors[] = ['color' => $color->value, 'slug' => $product->url_alias, 'image' => $product->image->url('product_list')];
+            }
+        }
     }
 @endphp
 <div class="homepage-product-card-img-wrp">

@@ -51,7 +51,7 @@
                         @forelse($gallery as $image)
                             @if(is_object($image))
                                 <div class="product-photo">
-                                    <img src="{{ $image->url('full') }}" alt="{{ $product->name }}">
+                                    <img src="{{ $image->url('product') }}" alt="{{ $product->name }}">
                                 </div>
                             @endif
                         @empty

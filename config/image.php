@@ -23,39 +23,19 @@ return array(
     'sizes' => [
         'product_list' => [
             'description' => 'Размер изображения товара в категории',
-            'width' => 195,
-            'height' => 207
+            'width' => 288,
+            'height' => 288
         ],
         'product' => [
             'description' => 'Размер главного изображения в карточке товара',
-            'width' => 495,
-            'height' => 390
-        ],
-        'product_thumb' => [
-            'description' => 'Изображения-ссылки для галереи товара',
-            'width' => 110,
-            'height' => 84
+            'width' => 456,
+            'height' => 456
         ],
         'article' => [
             'description' => 'Размер изображения блога',
             'width' => 555,
             'height' => 370
         ],
-        'slide' => [
-            'description' => 'Размер изображения слайда',
-            'width' => 848,
-            'height' => 367
-        ],
-        'banner' => [
-            'description' => 'Размер изображения слайда',
-            'width' => 262,
-            'height' => 495
-        ],
-        'scheme' => [
-            'description' => 'Размер изображения схемы',
-            'width' => 640,
-            'height' => 480
-        ]
     ],
 
     /**
