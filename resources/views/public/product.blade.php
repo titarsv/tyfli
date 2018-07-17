@@ -134,6 +134,10 @@
                                                 <li class="size-tabl__table-cell">26</li>
                                                 <li class="size-tabl__table-cell">40</li>
                                             </ul>
+                                            <ul class="size-tabl__table-row">
+                                                <li class="size-tabl__table-cell">26,5</li>
+                                                <li class="size-tabl__table-cell">41</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 @endif
