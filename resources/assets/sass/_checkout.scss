@@ -145,3 +145,46 @@
         top: 0;
     }
 }
+
+.delivery-popup{
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.delivery-popup-item{
+    padding: 5px 0;
+    border-bottom: 1px solid #5F98B9;
+    margin-bottom: 10px;
+}
+
+.delivery-popup-text{
+    font-size: 12px;
+    line-height: 20px;
+    color: #9B9B9B;
+    font-family: "HelveticaNeueLight";
+    margin-top: 5px;
+}
+
+.delivery-popup-price{
+    color: #5F98B9;
+    font-family: "HelveticaNeue";
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.delivery-popup-btn{
+    background-color: #5F98B9;
+    color: #fff;
+    font-size: 16px;
+    line-height: 30px;
+    padding: 0 10px;
+    border: 0;
+    margin-top: 10px;
+    &:hover{
+        background-color: darken(#5F98B9, 10%);
+    }
+}
+
+.mfp-close:active{
+    top: inherit !important;
+}
