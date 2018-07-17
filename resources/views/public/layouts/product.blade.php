@@ -58,12 +58,16 @@
                     @endif
                 </a>
                 <div class="one-click-btn-wrp">
-                    <a class="hover-pro-card-btn js-toggle-one-click-btn">
-                        <div>
-                            <p>Купить в 1 клик</p>
-                            <p><img src="/images/homepage-icons/cart icon.svg" alt=""></p>
-                        </div>
-                    </a>
+                    {{--<a class="hover-pro-card-btn js-toggle-one-click-btn">--}}
+                        {{--<div>--}}
+                            {{--<p>Купить в 1 клик</p>--}}
+                            {{--<p><img src="/images/homepage-icons/cart icon.svg" alt=""></p>--}}
+                        {{--</div>--}}
+                    {{--</a>--}}
+                    <div class="hover-pro-card-btn-container">
+                        <a class="js-toggle-one-click-btn" data-toggle=".one-click-form"><p class="hover-pro-card-btn">Купить в 1 клик</p></a>
+                        <a href="#"><p class="hover-pro-card-cart-btn"><img src="../../images/homepage-icons/cart icon.svg" alt=""></p></a>
+                    </div>
                     <form action="" class="one-click-form unactive ajax_form"
                           data-error-title="Ошибка отправки!"
                           data-error-message="Попробуйте отправить заявку через некоторое время."
