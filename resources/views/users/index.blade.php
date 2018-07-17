@@ -77,19 +77,59 @@
                                     <span>vasia@gmail.com</span>
                                 </div>
                                 <div class="profile-data-item">
-                                    <h5 class="data-name">Пароль</h5>
-                                    <a href="" class="user-password">
-                                        <p>Сменить пароль</p>
-                                    </a>
+                                    <h5 class="data-name">Дата Рождения</h5>
+                                    <input type="text" name="user-birth" class="birthday-input" disabled placeholder="__/__/____"
+                                    <p>Мы дарим подарки к Вашему празднику</p>
+                                </div>
+                            </div>
+
+                            <!--<form>-->
+                            <!--<div class="profile-data-item">-->
+                            <!--<h5 class="data-name">Пароль</h5>-->
+                            <!--<a href="" class="user-password">-->
+                            <!--<p>Сменить пароль</p>-->
+                            <!--</a>-->
+                            <!--<div class="password-edit unactive">-->
+                            <!--<input type="password" name="" class="profile-edit-data-input unactive" placeholder="Введите пароль">-->
+                            <!--<input type="password" name="" class="profile-edit-data-input unactive" placeholder="Повторите пароль">-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</form>-->
+
+                            <form  class="profile-edit-data-wrp unactive">
+                                <div class="profile-data-item">
+                                    <h5 class="data-name">Имя Фамилия</h5>
+                                    <input type="text" name="" class="profile-edit-data-input">
+                                </div>
+                                <div class="profile-data-item">
+                                    <h5 class="data-name">Телефон</h5>
+                                    <input type="text" class="profile-edit-data-input">
+                                </div>
+                                <div class="profile-data-item">
+                                    <h5 class="data-name">Почта</h5>
+                                    <input type="text" name="" class="profile-edit-data-input">
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Дата Рождения</h5>
                                     <input type="text" name="user-birth" class="birthday-input" placeholder="__/__/____"
                                     <p>Мы дарим подарки к Вашему празднику</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-xs-12 margin">
+                            </form>
+
+                            <form>
+                                <div class="profile-data-item">
+                                    <h5 class="data-name">Пароль</h5>
+                                    <a href="" class="user-password">
+                                        <p>Сменить пароль</p>
+                                    </a>
+                                    <div class="password-edit unactive">
+                                        <input type="password" name="" class="profile-edit-data-input" placeholder="Введите пароль">
+                                        <input type="password" name="" class="profile-edit-data-input" placeholder="Повторите пароль">
+                                        <input type="button" value="Изменить" class="password-btn">
+                                    </div>
+                                </div>
+                            </form>
+
                             <h5 class="title">Управление моими подписками</h5>
                             <div class="profile-subscr-wrp profile-margin">
                                 <div class="profile-subscr-item">
@@ -116,7 +156,7 @@
                         </div>
                         <div class="col-sm-12 col-xs-12 margin">
                             <h5 class="title">Адрес доставки</h5>
-                            <div class="profile-addredd-wrp">
+                            <form class="profile-address-wrp">
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Город</h5>
                                     <fieldset class="city-dropdown">
@@ -160,7 +200,10 @@
                                     <h5 class="data-name">Квартира</h5>
                                     <input type="text" name="" class="profile-data-input">
                                 </div>
-                            </div>
+                                <div class="profile-data-item">
+                                    <button class="profile-address-btn">Изменить</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
