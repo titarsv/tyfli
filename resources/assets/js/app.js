@@ -203,6 +203,18 @@ $(function() {
 
       $('#sorting_select_chosen .chosen-single span').attr('class', sclass);
     });
+
+    $('.edit-profile').click(function() {
+        event.preventDefault();
+        $('.profile-data-wrp').toggleClass('unactive');
+        $('.profile-edit-data-wrp').toggleClass('unactive');
+    });
+
+    $('.user-password').click(function() {
+        event.preventDefault();
+        $(this).toggleClass('unactive');
+        $('.password-edit').toggleClass('unactive');
+    });
 });
 
 require('./custom.js');
