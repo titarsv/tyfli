@@ -3303,6 +3303,10 @@ a:hover {
   display: none;
 }
 
+label:hover {
+  cursor: pointer;
+}
+
 .checkbox-custom + label::before,
 .radio-custom + label::before {
   content: '';
@@ -3313,6 +3317,11 @@ a:hover {
   position: absolute;
   left: -23px;
   bottom: 8px;
+}
+
+.checkbox-custom + label::before:hover,
+.radio-custom + label::before:hover {
+  cursor: pointer;
 }
 
 .checkbox-custom,
@@ -4047,7 +4056,7 @@ a:hover {
   font-weight: bold;
   line-height: 25px;
   text-align: center;
-  width: 100%;
+  /*width: 100%;*/
   border: none;
   outline: none;
 }
@@ -6363,6 +6372,7 @@ i {
 .homepage-product-card-new {
   position: absolute;
   top: 65px;
+  left: 1px;
   color: #5F98B9;
   font-family: Oswald;
   font-size: 12px;
@@ -6587,7 +6597,9 @@ i {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 100%;
+  height: 46px;
+  border: none;
+  width: 57px;
 }
 
 .hover-pro-card-cart-btn img {

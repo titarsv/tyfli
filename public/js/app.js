@@ -16481,13 +16481,21 @@ $(function () {
     $(this).addClass('unactive');
     e.stopPropagation();
   });
-
+  //
+  // var $toggleElemHide = $('.js-toggle-one-click-btn');
+  // $toggleElemHide.click(function(e) {
+  //   e.preventDefault();
+  //   var $toggleTargetHide = $(this).parent().find('form');
+  //   $toggleTargetHide.slideToggle(500);
+  //   $(this).addClass('unactive');
+  //   e.stopPropagation();
+  // });
   var $toggleElemHide = $('.js-toggle-one-click-btn');
   $toggleElemHide.click(function (e) {
     e.preventDefault();
-    var $toggleTargetHide = $(this).parent().find('form');
+    var $toggleTargetHide = $(this).parent().next('form');
     $toggleTargetHide.slideToggle(500);
-    $(this).addClass('unactive');
+    $(this).parent().addClass('unactive').removeClass('hover-pro-card-btn-container');
     e.stopPropagation();
   });
 
