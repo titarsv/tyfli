@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Дата Рождения</h5>
-                                    <input type="text" name="user-birth" class="birthday-input" disabled placeholder="__/__/____"
+                                    <input type="text" name="user-birth" class="birthday-input" disabled placeholder="__/__/____">
                                     <p>Мы дарим подарки к Вашему празднику</p>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Дата Рождения</h5>
-                                    <input type="text" name="user-birth" class="birthday-input" placeholder="__/__/____"
+                                    <input type="text" name="user-birth" class="birthday-input" placeholder="__/__/____">
                                     <p>Мы дарим подарки к Вашему празднику</p>
                                 </div>
                             </form>
