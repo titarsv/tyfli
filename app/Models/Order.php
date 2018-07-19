@@ -90,24 +90,33 @@ class Order extends Model
     public function getDeliveryInfo()
     {
         $delivery_info = json_decode($this->delivery, true);
-        $newpost = new Newpost();
+        //$newpost = new Newpost();
 
         if ($delivery_info['method'] == 'newpost') {
             return [
                 'method'    => 'Новая Почта',
-                'region'    => $newpost->getRegionRef($delivery_info['info']['region'])->name,
-                'city'      => $newpost->getCityRef($delivery_info['info']['city'])->name_ru,
-                'warehouse' => $newpost->getWarehouse($delivery_info['info']['warehouse'])->address_ru,
+//                'region'    => $newpost->getRegionRef($delivery_info['info']['region'])->name,
+//                'city'      => $newpost->getCityRef($delivery_info['info']['city'])->name_ru,
+//                'warehouse' => $newpost->getWarehouse($delivery_info['info']['warehouse'])->address_ru,
             ];
         } elseif ($delivery_info['method'] == 'ukrpost') {
             $delivery_info['info']['method'] = 'Укрпочта';
             return $delivery_info['info'];
         } elseif ($delivery_info['method'] == 'courier') {
-            $delivery_info['info']['method'] = 'Доставка курьером по Харькову';
-            return $delivery_info['info'];
+            return [
+                'method' => 'Доставка курьером по Харькову'
+            ];
         } elseif ($delivery_info['method'] == 'pickup') {
             return [
                 'method' => 'Самовывоз'
+            ];
+        } elseif ($delivery_info['method'] == 'samovivoz_hol_gor') {
+            return [
+                'method' => 'Самовывоз Холодная Гора'
+            ];
+        } elseif ($delivery_info['method'] == 'samovivoz_nauki') {
+            return [
+                'method' => 'Самовывоз проспект Науки'
             ];
         }
 

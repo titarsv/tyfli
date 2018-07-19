@@ -26,8 +26,10 @@ Route::post('/checkout', 'CartController@show');
 Route::get('/thank_you', 'OrdersController@thank_you');
 Route::match(['get', 'post'], '/search', ['as' => 'search', 'uses' => 'ProductsController@search']);
 
-Route::post('/neworder', 'OrdersController@newOrder');
-Route::post('/neworderuser', 'OrdersController@newOrderUser');
+//Route::post('/neworder', 'OrdersController@newOrder');
+//Route::post('/neworderuser', 'OrdersController@newOrderUser');
+
+Route::post('/order/create', 'CheckoutController@createOrder');
 
 Route::get('/product/{alias}', 'ProductsController@show');
 Route::post('/review/add', 'ReviewsController@add');

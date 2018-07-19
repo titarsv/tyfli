@@ -66,14 +66,10 @@ class CheckoutController extends Controller
 	        return response()->json(['error' => 'Вы не авторизованы.']);
         }
 
-        $user_name = $request->first_name;
-        if ($request->last_name)
-            $user_name .= ' ' . $request->last_name;
-
         $delivery_method = $request->delivery;
         $delivery_info = [
             'method'    => $delivery_method,
-            'info'      => $request->$delivery_method
+            'info'      => ''
         ];
 
         $data = [
@@ -82,14 +78,11 @@ class CheckoutController extends Controller
             'total_quantity'    => $cart->total_quantity,
             'total_price'       => $cart->total_price,
             'user_info'         => json_encode([
-                'name'  => $user_name,
-                'email' => $request->email,
-                'phone' => $request->phone,
+                'name'  => $user->first_name.' '.$user->last_name,
+                'email' => $user->email,
+                'phone' => $user->phone,
             ]),
             'delivery'  => json_encode($delivery_info),
-            'company' => $request->company,
-            'nds' => $request->nds,
-            'company_info' => $request->company_info,
             'payment'   => $request->payment,
             'status_id' => 0,
             'created_at' => Carbon::now()
@@ -106,6 +99,7 @@ class CheckoutController extends Controller
 
             if (!is_null($current_order)) {
                 $current_order->update($data);
+                $this->sendOrderMails($current_order_id);
                 if($current_order->payment == 'card')
                     return $this->get_liqpay_data($current_order);
                 else
@@ -116,10 +110,38 @@ class CheckoutController extends Controller
         $order->fill($data)->save();
         Cookie::queue('current_order_id', $order->id);
 
+        $this->sendOrderMails($order->id);
         if($order->payment == 'card')
             return $this->get_liqpay_data($order);
         else
             return response()->json(['success' => 'redirect', 'order_id' => $order->id]);
+    }
+
+    public function sendOrderMails($order_id){
+        $setting = new Settings();
+        $cart = new Cart();
+
+        $order = Order::find($order_id);
+
+        $order->update(['status_id' => 1]);
+
+        $order_user = json_decode($order->user_info, true);
+
+        $cart = $cart->current_cart();
+
+        $cart->current_cart()->delete();
+
+        Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => true], function($msg) use ($setting){
+            $msg->from('info@tyfli.com', 'Интернет-магазин Tyfli.com');
+            $msg->to(get_object_vars($setting->get_setting('notify_emails')));
+            $msg->subject('Новый заказ');
+        });
+
+        Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => false], function($msg) use ($order_user){
+            $msg->from('info@tyfli.com', 'Интернет-магазин Tyfli.com');
+            $msg->to($order_user['email']);
+            $msg->subject('Новый заказ');
+        });
     }
 
     /**
@@ -162,27 +184,27 @@ class CheckoutController extends Controller
 
         if(isset($data['delivery'])) {
             if ($data['delivery'] == 'newpost') {
-                $rules = [
-                    'newpost.region' => 'not_in:0',
-                    'newpost.city' => 'not_in:0',
-                    'newpost.warehouse' => 'not_in:0',
-                ];
-
-                $messages = [
-                    'newpost.region.not_in' => 'Выберите область!',
-                    'newpost.city.not_in' => 'Выберите город!',
-                    'newpost.warehouse.not_in' => 'Выберите отделение Новой Почты!',
-                ];
+//                $rules = [
+//                    'newpost.region' => 'not_in:0',
+//                    'newpost.city' => 'not_in:0',
+//                    'newpost.warehouse' => 'not_in:0',
+//                ];
+//
+//                $messages = [
+//                    'newpost.region.not_in' => 'Выберите область!',
+//                    'newpost.city.not_in' => 'Выберите город!',
+//                    'newpost.warehouse.not_in' => 'Выберите отделение Новой Почты!',
+//                ];
             } elseif ($data['delivery'] == 'courier') {
-                $rules = [
-                    'courier.street' => 'required',
-                    'courier.house' => 'required',
-                ];
-
-                $messages = [
-                    'courier.street.required' => 'Не указана улица!',
-                    'courier.house.required' => 'Не указан номер дома!',
-                ];
+//                $rules = [
+//                    'courier.street' => 'required',
+//                    'courier.house' => 'required',
+//                ];
+//
+//                $messages = [
+//                    'courier.street.required' => 'Не указана улица!',
+//                    'courier.house.required' => 'Не указан номер дома!',
+//                ];
             } elseif ($data['delivery'] == 'ukrpost') {
                 $rules = [
                     'ukrpost.region' => 'required',
@@ -211,7 +233,8 @@ class CheckoutController extends Controller
             ];
         }
 
-        $rules['payment'] = 'required|in:cash,prepayment';
+//        $rules['payment'] = 'required|in:cash,prepayment';
+        $rules['payment'] = 'required|in:privat,nal_delivery,nal_samovivoz,nalogenniy';
         $messages['payment.required'] = 'Не выбран способ оплаты!';
         $messages['payment.in'] = 'Выбран некорректный способ оплаты!';
 

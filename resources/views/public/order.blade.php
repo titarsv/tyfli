@@ -105,12 +105,12 @@
                             <div class="col-sm-7 col-xs-12">
                                 <div class="form-conditions">
                                     <h5>Доставка</h5>
-                                    <span>Доставка Новой почтой к дверям покупателя</span>
+                                    <span id="current-delivery">Доставка на склад новой почты</span>
                                     <a href="" class="form-conditions-btn popup-btn" data-mfp-src="#delivery-popup"><p>Изменить</p></a>
                                 </div>
                                 <div class="form-conditions">
                                     <h5>Оплата</h5>
-                                    <span>На расчетный счет Приват Банка</span>
+                                    <span id="current-pay">На расчетный счет Приват Банка</span>
                                     <a href="" class="form-conditions-btn popup-btn" data-mfp-src="#pay-popup"><p>Изменить</p></a>
                                 </div>
                                 <div class="form-comment">
@@ -166,7 +166,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="delivery-popup-item">
-                                                        <input type="radio" name="delivery" value="" id="delivery2" class="radio">
+                                                        <input type="radio" name="delivery" value="newpost" id="delivery2" class="radio" checked>
                                                         <span class="radio-custom"></span>
                                                         <label for="delivery2">Доставка на склад новой почты</label>
                                                         <p class="delivery-popup-text"> - указана усредненная стоимость доставки, сумма может меняться в зависимости от веса посылки. Доставка осуществляется за счет покупателя.</p>
@@ -174,7 +174,7 @@
                                                     </div>
 
                                                     <div class="delivery-popup-item">
-                                                        <input type="radio" name="delivery" value="" id="delivery3" class="radio">
+                                                        <input type="radio" name="delivery" value="courier" id="delivery3" class="radio">
                                                         <span class="radio-custom"></span>
                                                         <label for="delivery3">Доставка курьером по Харькову</label>
                                                         <p class="delivery-popup-text"> - доставка посылки на указанный Вами, адрес. Данный вид доставки осуществляется только в г. Харькове.</p>
@@ -182,21 +182,21 @@
                                                     </div>
 
                                                     <div class="delivery-popup-item">
-                                                        <input type="radio" name="delivery" value="" id="delivery4" class="radio">
+                                                        <input type="radio" name="delivery" value="samovivoz_hol_gor" id="delivery4" class="radio">
                                                         <span class="radio-custom"></span>
                                                         <label for="delivery4">Самовывоз Холодная Гора</label>
                                                         <p class="delivery-popup-text"> Данная услуга действует только в г. Харькове. По адресу улица Полтавский шлях, 147 ст. метро Холодная гора (Терминал) магазин "TYFLI.COM" (с 9:00 до 21:00)</p>
                                                     </div>
                                                     <div class="delivery-popup-item">
-                                                        <input type="radio" name="delivery" value="" id="delivery5" class="radio">
+                                                        <input type="radio" name="delivery" value="samovivoz_nauki" id="delivery5" class="radio">
                                                         <span class="radio-custom"></span>
                                                         <label for="delivery5">Самовывоз проспект Науки</label>
                                                         <p class="delivery-popup-text"> Данная услуга действует только в г. Харькове. По адресу проспект Науки, 41/43 ст. метро 23 августа магазин "TYFLI.COM" (с 10:00 до 20:00)</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <button class="delivery-popup-btn">Сохранить</button>
-                                                    <button class="delivery-popup-btn">Отменить</button>
+                                                    <button type="button" class="delivery-popup-btn save">Сохранить</button>
+                                                    <button type="button" class="delivery-popup-btn cancel">Отменить</button>
                                                 </div>
                                                 <button title="Close (Esc)" type="button" class="mfp-close"><!-- × --></button>
                                             </div>
@@ -217,28 +217,28 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="delivery-popup-item">
-                                                        <input type="radio" name="pay" value="" id="pay1" class="radio">
+                                                        <input type="radio" name="payment" value="privat" id="pay1" class="radio" checked>
                                                         <span class="radio-custom"></span>
                                                         <label for="pay1">На расчетный счет Приват Банка</label>
                                                         <p class="delivery-popup-text"> Платеж осуществляется на расчетный счет Приват Банка.</p>
                                                     </div>
 
                                                     <div class="delivery-popup-item">
-                                                        <input type="radio" name="pay" value="" id="pay2" class="radio">
+                                                        <input type="radio" name="payment" value="nal_delivery" id="pay2" class="radio">
                                                         <span class="radio-custom"></span>
                                                         <label for="pay2">Наличными курьеру</label>
                                                         <p class="delivery-popup-text"> Данная услуга действует только в г. Харькове.</p>
                                                     </div>
 
                                                     <div class="delivery-popup-item">
-                                                        <input type="radio" name="pay" value="" id="pay3" class="radio">
+                                                        <input type="radio" name="payment" value="nal_samovivoz" id="pay3" class="radio">
                                                         <span class="radio-custom"></span>
                                                         <label for="pay3">Оплата при самовывозе</label>
                                                         <p class="delivery-popup-text"> Данная услуга действует только в г. Харькове.</p>
                                                     </div>
 
                                                     <div class="delivery-popup-item">
-                                                        <input type="radio" name="pay" value="" id="pay4" class="radio">
+                                                        <input type="radio" name="payment" value="nalogenniy" id="pay4" class="radio">
                                                         <span class="radio-custom"></span>
                                                         <label for="pay4">Оплата наложенным платежом</label>
                                                         <p class="delivery-popup-text"> — денежная сумма, которую почта взыскивает по поручению отправителя с адресата при вручении почтового отправления.</p>
@@ -246,8 +246,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <button class="delivery-popup-btn">Сохранить</button>
-                                                    <button class="delivery-popup-btn">Отменить</button>
+                                                    <button type="button" class="delivery-popup-btn save">Сохранить</button>
+                                                    <button type="button" class="delivery-popup-btn cancel">Отменить</button>
                                                 </div>
                                                 <button title="Close (Esc)" type="button" class="mfp-close"><!-- × --></button>
                                             </div>

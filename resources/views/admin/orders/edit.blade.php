@@ -176,6 +176,14 @@
                                             Наличными при самовывозе
                                         @elseif($order->payment == 'prepayment')
                                             Предоплата
+                                        @elseif($order->payment == 'privat')
+                                            На расчетный счет Приват Банка
+                                        @elseif($order->payment == 'nal_delivery')
+                                            Наличными курьеру
+                                        @elseif($order->payment == 'nal_samovivoz')
+                                            Оплата при самовывозе
+                                        @elseif($order->payment == 'nalogenniy')
+                                            Оплата наложенным платежом
                                         @endif
                                     </td>
                                 </tr>
