@@ -16518,6 +16518,7 @@ $(function () {
     $(this).toggleClass('filters-open');
     // $(this).prev('.aside-filter-menu-item-filters').toggleClass('unactive');
     $(this).prev('.aside-filter-menu-item-filters').slideToggle(300);
+    $(this).parent().next('.product-accordion-text').slideToggle(300);
   });
 
   // PRODUCT PAGE ACCORDION
@@ -16583,13 +16584,13 @@ $(function () {
     $('#sorting_select_chosen .chosen-single span').attr('class', sclass);
   });
 
-  $('.edit-profile').click(function () {
+  $('.edit-profile').click(function (event) {
     event.preventDefault();
     $('.profile-data-wrp').toggleClass('unactive');
     $('.profile-edit-data-wrp').toggleClass('unactive');
   });
 
-  $('.user-password').click(function () {
+  $('.user-password').click(function (event) {
     event.preventDefault();
     $(this).toggleClass('unactive');
     $('.password-edit').toggleClass('unactive');
@@ -47248,10 +47249,78 @@ $(function () {
         }
 
         if (validate) {
-            $(this).parents('form').submit();
+            //$(this).parents('form').submit();
+
+            $.ajax({
+                url: '/order/create',
+                type: 'post',
+                data: $(this).parents('form').serialize(),
+                beforeSend: function beforeSend() {
+                    $('.checkout-step__body').addClass('checkout-step__body_loader');
+                    $('.checkout-step__body_second .error-message').fadeOut(300, function () {
+                        $('.checkout-step__body_second .error-message__text').html('');
+                    });
+                    $('select, input').removeClass('input-error');
+                },
+                success: function success(response) {
+                    if (response.error) {
+                        var html = '';
+                        $.each(response.error, function (id, text) {
+                            var error = id.split('.');
+                            $('[name="' + error[0] + '[' + error[1] + ']"').addClass('input-error');
+                            html += text + '<br>';
+                        });
+                    } else if (response.success) {
+                        if (response.success == 'liqpay') {
+                            LiqPayCheckout.init({
+                                data: response.liqpay.data,
+                                signature: response.liqpay.signature,
+                                embedTo: "#liqpay_checkout",
+                                mode: "embed" // embed || popup
+                            }).on("liqpay.callback", function (data) {
+                                console.log(data.status);
+                                console.log(data);
+                                window.location = '/checkout/complete?order_id=' + response.order_id;
+                            }).on("liqpay.ready", function (data) {
+                                $('#liqpay_checkout').css('display', 'block');
+                            }).on("liqpay.close", function (data) {
+                                window.location = '/checkout/complete?order_id=' + response.order_id;
+                            });
+                        } else if (response.success == 'redirect') {
+                            swal('Заказ оформлен!', 'Номер заказа: ' + response.order_id, 'success');
+                            setTimeout(function () {
+                                window.location = '/user/history';
+                            }, 5000);
+                            //window.location = '/checkout/complete?order_id=' + response.order_id;
+                        }
+                    }
+                }
+            });
         } else {
             return false;
         }
+    });
+
+    $('#delivery-popup .save').click(function () {
+        $('#current-delivery').text($('[for="' + $('#delivery-popup [name="delivery"]:checked').attr('id') + '"]').text());
+        $.magnificPopup.close();
+    });
+
+    $('#delivery-popup .cancel').click(function () {
+        $.magnificPopup.close();
+    });
+
+    // $('#delivery-popup [name="delivery"]').change(function(){
+    //     $('#current-delivery').text($('[for="'+$(this).attr('id')+'"]').text());
+    // });
+
+    $('#pay-popup .save').click(function () {
+        $('#current-pay').text($('[for="' + $('#pay-popup [name="payment"]:checked').attr('id') + '"]').text());
+        $.magnificPopup.close();
+    });
+
+    $('#pay-popup .cancel').click(function () {
+        $.magnificPopup.close();
     });
 });
 

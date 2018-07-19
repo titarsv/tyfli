@@ -3414,7 +3414,7 @@ label:hover {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding-right: 56px;
+  padding-right: 40px;
   padding-bottom: 15px;
 }
 
@@ -3448,7 +3448,7 @@ label:hover {
 
 @media only screen and (max-width: 991px) {
   .cart-list-title {
-    padding-right: 120px;
+    padding-right: 58px;
   }
 }
 
@@ -3586,6 +3586,16 @@ label:hover {
   font-size: 14px;
   font-weight: 300;
   line-height: 19px;
+}
+
+.close-prod-item {
+  width: 25px;
+}
+
+@media only screen and (max-width: 767px) {
+  .close-prod-item {
+    width: 50px;
+  }
 }
 
 .contact-subtitle {
@@ -4006,9 +4016,9 @@ label:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .cart-list ul {
@@ -4056,7 +4066,6 @@ label:hover {
   font-weight: bold;
   line-height: 25px;
   text-align: center;
-  /*width: 100%;*/
   border: none;
   outline: none;
 }
@@ -4466,6 +4475,10 @@ label:hover {
   height: initial;
 }
 
+.prod-price {
+  position: relative;
+}
+
 .prod-price p {
   color: #9B9B9B;
   font-family: Oswald;
@@ -4481,6 +4494,24 @@ label:hover {
   font-size: 35px;
   font-weight: 500;
   line-height: 32px;
+}
+
+.prod-price .old-price {
+  right: 61%;
+  bottom: 20px;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 1199px) {
+  .prod-price .old-price {
+    right: 55%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .prod-price .old-price {
+    right: 49%;
+  }
 }
 
 .size-table-popup {
@@ -5045,6 +5076,10 @@ label:hover {
   margin-left: 5px;
 }
 
+.profile-subscr-item label::before {
+  bottom: 12px;
+}
+
 .profile-discount-wrp {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5536,6 +5571,17 @@ input[disabled] {
   margin-right: 10px;
 }
 
+.search-field-wrp button {
+  position: absolute;
+  right: 0;
+  top: -10px;
+  height: 35px;
+  width: 25px;
+  border: none;
+  background: transparent;
+  display: none;
+}
+
 .search-field {
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
@@ -5568,6 +5614,10 @@ input[disabled] {
   color: #000;
   background-color: #fff;
   cursor: auto;
+}
+
+.search-field:focus ~ button {
+  display: block;
 }
 
 .search-field::-webkit-search-decoration,
@@ -6092,8 +6142,14 @@ i {
 .new-for-him {
   background: url(/images/homepage-men-category.jpg?8ad56d97b01ca1a79eb845cdbbe37978) center;
   right: 0;
-  top: -70px;
+  top: -50px;
   background-size: cover;
+}
+
+@media only screen and (max-width: 1199px) {
+  .new-for-him {
+    top: -90px;
+  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -7176,12 +7232,12 @@ i {
 }
 
 .checkout-list-title {
-  padding-right: 200px;
+  padding-right: 100px;
 }
 
 @media only screen and (max-width: 1199px) {
   .checkout-list-title {
-    padding-right: 150px;
+    padding-right: 60px;
   }
 
   .checkout-list-title p {
@@ -7334,7 +7390,11 @@ i {
   font-size: 14px;
   line-height: 20px;
   text-align: justify;
-  margin-left: 20px;
+}
+
+.agreement-container label::before {
+  left: -18px;
+  bottom: 14px;
 }
 
 .agreement-container .checkbox-custom {
@@ -7954,6 +8014,21 @@ i {
   display: block;
 }
 
+.checkout-btn {
+  color: #F5F5F5;
+  font-family: "HelveticaNeue";
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 25px;
+  text-align: center;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 20px 0;
+  background-color: #5F98B9;
+  display: block;
+}
+
 .aside-filter-menu-item-filters .overflow-scroll {
   height: 250px;
   width: 150px;
@@ -7978,21 +8053,6 @@ i {
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
   flex-direction: row;
-}
-
-.checkout-btn {
-  color: #F5F5F5;
-  font-family: "HelveticaNeue";
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 25px;
-  text-align: center;
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 20px 0;
-  background-color: #5F98B9;
-  display: block;
 }
 
 .not-valid + .checkbox-custom {
