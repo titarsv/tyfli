@@ -134,6 +134,11 @@
 //	border: 1px solid #9DACB4;
 //	position: relative;
 //}
+label{
+    &:hover{
+        cursor: pointer;
+    }
+}
 .checkbox-custom + label::before,
 .radio-custom + label::before {
     content:'';
@@ -145,6 +150,9 @@
     position: absolute;
     left: -23px;
     bottom: 8px;
+    &:hover{
+        cursor: pointer;
+    }
 }
 .checkbox-custom,
 .radio-custom,

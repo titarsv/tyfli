@@ -266,7 +266,7 @@
                         </div>
                         <div class="product-accordion-text unactive">
                             <div class="write-review-container">
-                                <span>Расскажите другим об этой модели</span>
+                                <input type="text" placeholder="Расскажите другим об этой модели">
                                 <a href="" class="write-review-btn buy-btn">Написать отзыв</a>
                             </div>
                             @forelse($product->reviews as $review)
