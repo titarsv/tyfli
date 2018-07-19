@@ -301,12 +301,12 @@ class UserController extends Controller
         }
 
         $rules = [
-            'password'  => 'min:6|confirmed',
-            'password_confirmation' => 'min:6'
+            'password'  => 'min:4|confirmed',
+            'password_confirmation' => 'min:4'
         ];
 
         $messages = [
-            'password.min'      => 'Пароль должен быть не менее 6 символов!',
+            'password.min'      => 'Пароль должен быть не менее 4 символов!',
             'password.confirmed' => 'Введенные пароли не совпадают!'
         ];
 
@@ -325,9 +325,36 @@ class UserController extends Controller
 
         $user->push();
 
-        return redirect('/user')
-            ->with('status', 'Ваш пароль успешно изменён!')
-            ->with('process', 'update_password');
+        return response()->json(['success' => true]);
+    }
+
+    public function updateSubscr(Request $request)
+    {
+        $user = Sentinel::check();
+        if ($user) {
+            $user = User::find($user->id);
+        }
+
+        $rules = [
+            'subscr'  => 'required'
+        ];
+
+        $messages = [
+            'subscr.required' => 'Не выбран тип подписки!'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json($validator);
+        }
+
+        if($request->subscr) {
+            $user->user_data->subscribe = $request->subscr;
+        }
+
+        $user->push();
+
+        return response()->json(['success' => true]);
     }
 
     public function get_ip()
@@ -394,11 +421,6 @@ class UserController extends Controller
         return response()->json(['success' => 'Вы успешно подписались на новости!']);
     }
 
-    public function fromCartToOrder($cart_data)
-    {
-
-    }
-
     public function statistic($id)
     {
         $orders = Order::where('user_id', $id)->get();
@@ -418,16 +440,58 @@ class UserController extends Controller
         return view('admin.users.wishlist')->with('wishlist', $wishlist)->with('user', User::find($id));
     }
 
-    public function fuck()
-    {
-       $reviews = User::find(3);
-        return dd($reviews->reviews);
+    /**
+     * Обновление данных пользователя
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function saveUserData(Request $request){
+        $user = Sentinel::check();
+        if ($user) {
+            $user = User::find($user->id);
+        }
+
+        $rules = [
+            'fio' => 'required',
+            'phone'     => 'required|regex:/^[0-9\-! ,\'\"\/+@\.:\(\)]+$/',
+            'email'     => 'required|email|unique:users,email,'.$user->id
+        ];
+
+        $messages = [
+            'fio.required' => 'Не заполнены обязательные поля!',
+            'phone.required'    => 'Не заполнены обязательные поля!',
+            'phone.regex'       => 'Некорректный телефон!',
+            'email.required'    => 'Не заполнены обязательные поля!',
+            'email.email'       => 'Некорректный email-адрес!'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json($validator);
+        }
+
+        $name = explode(' ', $request->fio);
+
+        $user->first_name = htmlspecialchars($name[0]);
+        if(isset($name[1]))
+            $user->last_name = htmlspecialchars($name[1]);
+        $user->email = htmlspecialchars($request->email);
+        $user->user_data->phone = htmlspecialchars($request->phone);
+        $user->user_data->user_birth = htmlspecialchars($request->user_birth);
+
+        $user->push();
+
+        return response()->json(['success' => true]);
     }
 
     /**
-     * Заказ обратного звонка
+     *  Заказ обратного звонка
      *
      * @param Request $request
+     * @param Settings $settings
+     * @return \Illuminate\Http\JsonResponse
      */
     public function callback(Request $request, Settings $settings){
         $rules = [
@@ -588,9 +652,9 @@ class UserController extends Controller
         fclose($fp);
 
         $boundary = "--".md5(uniqid(time())); // генерируем разделитель
-        $headers .= "MIME-Version: 1.0\n";
+        $headers = "MIME-Version: 1.0\n";
         $headers .="Content-Type: multipart/mixed; boundary=\"$boundary\"\n";
-        $multipart .= "--$boundary\n";
+        $multipart = "--$boundary\n";
 
         $kod = 'utf-8';
         $multipart .= "Content-Type: text/html; charset=$kod\n";

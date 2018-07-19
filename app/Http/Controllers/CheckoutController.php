@@ -80,7 +80,7 @@ class CheckoutController extends Controller
             'user_info'         => json_encode([
                 'name'  => $user->first_name.' '.$user->last_name,
                 'email' => $user->email,
-                'phone' => $user->phone,
+                'phone' => $user->user_data->phone,
             ]),
             'delivery'  => json_encode($delivery_info),
             'payment'   => $request->payment,

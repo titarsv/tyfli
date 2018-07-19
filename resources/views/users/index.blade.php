@@ -17,30 +17,24 @@
             <div class="row">
                 <div class="col-md-3 col-sm-4 hidden-xs aside-filter-menu-container">
                     <div class="row">
-                        <div class="col-md-12 site-path-wrp">
-                            <div class="site-path path-underline">
-                                <a href="./index.html" class="site-path-link">Главная</a>
-                                <a href="./profile.html" class="site-path-link-active">Личный кабинет</a>
-                            </div>
-                        </div>
                         <div class="col-md-12">
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title aside-block">
-                                    <a href="./history.html"><p>История покупок</p></a>
+                                    <a href="{{env('APP_URL')}}/user/history"><p>История покупок</p></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title aside-block">
-                                    <a href="./wish-list.html"><p>Список желаний</p></a>
+                                    <a href="{{env('APP_URL')}}/user/wishlist"><p>Список желаний</p></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title aside-block">
-                                    <a href="./profile.html" class="active-aside-link"><p>Личный кабинет</p></a>
+                                    <a href="javascript:void(0);" class="active-aside-link"><p>Личный кабинет</p></a>
                                 </div>
                             </div>
                         </div>
@@ -66,48 +60,35 @@
                             <div class="profile-data-wrp">
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Имя Фамилия</h5>
-                                    <span class="user-name">Василий Поддубный</span>
+                                    <span class="user-name">{{ $user->first_name }} {{ $user->last_name }}</span>
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Телефон</h5>
-                                    <span>380 999 99 99 99</span>
+                                    <span>{{ $user->user_data->phone }}</span>
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Почта</h5>
-                                    <span>vasia@gmail.com</span>
+                                    <span>{{ $user->email }}</span>
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Дата Рождения</h5>
-                                    <input type="text" name="user-birth" class="birthday-input" disabled placeholder="__/__/____">
+                                    <input type="text" value="{{ $user->user_data->user_birth }}" class="birthday-input" disabled placeholder="__/__/____">
                                     <p>Мы дарим подарки к Вашему празднику</p>
                                 </div>
                             </div>
 
-                            <!--<form>-->
-                            <!--<div class="profile-data-item">-->
-                            <!--<h5 class="data-name">Пароль</h5>-->
-                            <!--<a href="" class="user-password">-->
-                            <!--<p>Сменить пароль</p>-->
-                            <!--</a>-->
-                            <!--<div class="password-edit unactive">-->
-                            <!--<input type="password" name="" class="profile-edit-data-input unactive" placeholder="Введите пароль">-->
-                            <!--<input type="password" name="" class="profile-edit-data-input unactive" placeholder="Повторите пароль">-->
-                            <!--</div>-->
-                            <!--</div>-->
-                            <!--</form>-->
-
                             <form  class="profile-edit-data-wrp unactive">
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Имя Фамилия</h5>
-                                    <input type="text" name="" class="profile-edit-data-input">
+                                    <input type="text" name="fio" value="{{ $user->first_name }} {{ $user->last_name }}" class="profile-edit-data-input">
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Телефон</h5>
-                                    <input type="text" class="profile-edit-data-input">
+                                    <input type="text" name="phone" value="{{ $user->user_data->phone }}" class="profile-edit-data-input">
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Почта</h5>
-                                    <input type="text" name="" class="profile-edit-data-input">
+                                    <input type="text" name="email" value="{{ $user->email }}" class="profile-edit-data-input">
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Дата Рождения</h5>
@@ -123,8 +104,8 @@
                                         <p>Сменить пароль</p>
                                     </a>
                                     <div class="password-edit unactive">
-                                        <input type="password" name="" class="profile-edit-data-input" placeholder="Введите пароль">
-                                        <input type="password" name="" class="profile-edit-data-input" placeholder="Повторите пароль">
+                                        <input type="password" name="pass" class="profile-edit-data-input" placeholder="Введите пароль">
+                                        <input type="password" name="repass" class="profile-edit-data-input" placeholder="Повторите пароль">
                                         <input type="button" value="Изменить" class="password-btn">
                                     </div>
                                 </div>
@@ -133,12 +114,12 @@
                             <h5 class="title">Управление моими подписками</h5>
                             <div class="profile-subscr-wrp profile-margin">
                                 <div class="profile-subscr-item">
-                                    <input type="radio" name="subscr-type" value="" id="subscr-email" class="radio">
+                                    <input type="radio" name="subscr-type" value="1" id="subscr-email" class="radio"{{ $user->user_data->subscribe == 1 ? ' checked' : '' }}>
                                     <span class="radio-custom"></span>
                                     <label for="subscr-email">по email</label>
                                 </div>
                                 <div class="profile-subscr-item">
-                                    <input type="radio" name="subscr-type" value="" id="subscr-sms" class="radio">
+                                    <input type="radio" name="subscr-type" value="2" id="subscr-sms" class="radio"{{ $user->user_data->subscribe == 2 ? ' checked' : '' }}>
                                     <span class="radio-custom"></span>
                                     <label for="subscr-sms">по sms</label>
                                 </div>
@@ -147,10 +128,10 @@
                         <div class="col-sm-12 col-xs-12 margin">
                             <h5 class="title">Дисконтная программа</h5>
                             <div class="profile-discount-wrp profile-margin">
-                                <p>Ваша скидка 5%</p>
-                                <span>Общая сумма Ваших покупок больше 2500 грн.<br/>
-                                При покупке на общую сумму свыше 5000 грн сумма скидки станет 7%<br/>
-                                Узнать больше о <a href=""  class="default-link-hover">Бонусной программе</a>
+                                <p>У Вас не скидки</p>
+                                <span>Общая сумма Ваших покупок меньше 2500 грн.<br/>
+                                При покупке на общую сумму свыше 2500 грн сумма скидки станет 5%<br/>
+                                Узнать больше о <a href="#" class="default-link-hover">Бонусной программе</a>
                             </span>
                             </div>
                         </div>

@@ -506,6 +506,24 @@ $(function() {
     $('#pay-popup .cancel').click(function(){
         $.magnificPopup.close();
     });
+    // $(document).on('click', '.edit-profile.active', function () {
+    //     var data = {
+    //         fio: $('[name="fio"]').val(),
+    //         phone: $('[name="phone"]').val(),
+    //         email: $('[name="email"]').val(),
+    //         user_birth: $('[name="user-birth"]').val()
+    //     };
+    //
+    //     $.post('/saveUserData', data, function(response){
+    //         window.location = window.location;
+    //     });
+    // })
+
+    $('[name="subscr-type"]').change(function(){
+        $.post('/user/updateSubscr', {subscr: $('[name="subscr-type"]:checked').val()}, function(response){
+
+        });
+    });
 });
 
 /**

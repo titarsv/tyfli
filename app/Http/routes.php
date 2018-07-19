@@ -37,6 +37,8 @@ Route::post('/review/add-likes', 'ReviewsController@addLikes');
 
 Route::get('/reviews', 'ReviewsController@shopReviews');
 
+Route::post('/saveUserData', 'UserController@saveUserData');
+
 
 /**
  * Authorization routing
@@ -205,7 +207,8 @@ Route::post('cart/get','CartController@getCart');
 Route::group(['prefix' => 'user', 'middleware' => ['user']], function(){
     Route::get('/', 'UserController@show');
     Route::post('/', 'UserController@saveChangedData');
-    Route::put('/', 'UserController@updatePassword');
+    Route::post('/updatePassword', 'UserController@updatePassword');
+    Route::post('/updateSubscr', 'UserController@updateSubscr');
     Route::patch('/', 'UserController@history');
     Route::get('/history', 'UserController@history');
     Route::get('/wishlist', 'UserController@wishList');

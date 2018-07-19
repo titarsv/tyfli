@@ -214,6 +214,19 @@ $(function() {
 
     $('.edit-profile').click(function(event) {
         event.preventDefault();
+        if($(this).hasClass('active')){
+            var data = {
+                fio: $('[name="fio"]').val(),
+                phone: $('[name="phone"]').val(),
+                email: $('[name="email"]').val(),
+                user_birth: $('[name="user-birth"]').val()
+            };
+
+            $.post('/saveUserData', data, function(response){
+                window.location = window.location;
+            });
+        }
+        $(this).toggleClass('active');
         $('.profile-data-wrp').toggleClass('unactive');
         $('.profile-edit-data-wrp').toggleClass('unactive');
     });
@@ -222,6 +235,18 @@ $(function() {
         event.preventDefault();
         $(this).toggleClass('unactive');
         $('.password-edit').toggleClass('unactive');
+    });
+
+    $('.password-btn').click(function(event) {
+        event.preventDefault();
+        var data = {
+            password: $('[name="pass"]').val(),
+            password_confirmation: $('[name="repass"]').val()
+        };
+
+        $.post('/user/updatePassword', data, function(response){
+            $('.password-edit').toggleClass('unactive');
+        });
     });
 });
 
