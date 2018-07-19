@@ -89,33 +89,13 @@ class CheckoutController extends Controller
             'created_at' => Carbon::now()
         ];
 
-        if ($request->cookie('current_order_id') !== null){
-            $current_order_id = $request->cookie('current_order_id');
-        } else {
-            $current_order_id = $request->current_order_id;
-        }
+        $id = $order->insertGetId($data);
 
-        if (isset($current_order_id)) {
-            $current_order = $order->find($current_order_id);
-
-            if (!is_null($current_order)) {
-                $current_order->update($data);
-                $this->sendOrderMails($current_order_id);
-                if($current_order->payment == 'card')
-                    return $this->get_liqpay_data($current_order);
-                else
-                    return response()->json(['success' => 'redirect', 'order_id' => $current_order->id]);
-            }
-        }
-
-        $order->fill($data)->save();
-        Cookie::queue('current_order_id', $order->id);
-
-        $this->sendOrderMails($order->id);
+        $this->sendOrderMails($id);
         if($order->payment == 'card')
             return $this->get_liqpay_data($order);
         else
-            return response()->json(['success' => 'redirect', 'order_id' => $order->id]);
+            return response()->json(['success' => 'redirect', 'order_id' => $id]);
     }
 
     public function sendOrderMails($order_id){
@@ -249,73 +229,6 @@ class CheckoutController extends Controller
             return $errors;
 
         return false;
-    }
-
-    /**
-     * Завершение заказа, удаление корзины, отправка писем с информацией о заказе клиенту и
-     *
-     * @param Request $request
-     * @param Settings $setting
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
-     */
-    public function orderComplete(Request $request, Settings $setting)
-    {
-        if (Cookie::has('current_order_id')) {
-            $order_id = Cookie::get('current_order_id');
-            Cookie::queue(Cookie::forget('current_order_id'));
-        } else {
-            $order_id = $request->order_id;
-        }
-
-        if(is_null($order_id)){
-            return redirect('/checkout');
-        }
-
-        $user = Sentinel::check();
-        $order = Order::find($order_id);
-
-        $modules_settings = Modules::all();
-        foreach ($modules_settings as $module_setting) {
-            if ($module_setting->alias_name == 'latest') {
-                $latest_settings = json_decode($module_setting->settings);
-                $latest_status = $module_setting->status;
-            } elseif ($module_setting->alias_name == 'bestsellers') {
-                $bestseller_settings = json_decode($module_setting->settings);
-                $bestseller_status = $module_setting->status;
-            } elseif ($module_setting->alias_name == 'slideshow') {
-                $slideshow_settings = json_decode($module_setting->settings);
-                $slideshow_status = $module_setting->status;
-            }
-        }
-        $latest_settings = json_decode($module_setting->settings);
-//        $latest_products = Products::orderBy('created_at', 'desc')->where('stock', 1)->take($latest_settings->quantity)->get();
-        $latest_products = Products::orderBy('created_at', 'desc')->where('stock', 1)->whereNotNull('action')->take(12)->get();
-
-        if ($order->status_id){
-            return view('public.thanks', ['order_id' => $order_id, 'user' => $user, 'confirmed' => true, 'latest_products' => $latest_products]);
-        } else {
-            $order->update(['status_id' => 1]);
-        }
-
-        $order_user = json_decode($order->user_info, true);
-
-        $cart = new Cart();
-        $cart->current_cart()->delete();
-
-        Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => true], function($msg) use ($setting){
-            $msg->from('info@globalprom.com.ua', 'Интернет-магазин Globalprom');
-            $msg->to(get_object_vars($setting->get_setting('notify_emails')));
-            $msg->subject('Новый заказ');
-        });
-
-        Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => false], function($msg) use ($order_user){
-            $msg->from('info@globalprom.com.ua', 'Интернет-магазин Globalprom');
-            $msg->to($order_user['email']);
-            $msg->subject('Новый заказ');
-        });
-        
-        return view('public.thanks', ['order_id' => $order_id, 'user' => $user, 'confirmed' => false, 'latest_products' => $latest_products]);
-
     }
 
     /**
