@@ -73,12 +73,10 @@
                             <li><a href="{{env('APP_URL')}}/categories/uhod" class="js-toggle" aria-label="Open Navigation" data-toggle=".care-catalog">Уход</a></li>
                             <li><a href="{{env('APP_URL')}}/brands">Бренды</a></li>
                         </ul>
-                        <div class="search-input">
-                            <input type="text" placeholder="Поиск">
-                        </div>
                         <div class="top-menu-functional">
                             {!! Form::open(['route' => 'search', 'class' => 'search-field-wrp', 'method' => 'get']) !!}
                                 {!! Form::input('search', 'text', null, ['class' => 'search-field'] ) !!}
+                                <button type="submit"></button>
                             {!! Form::close()!!}
                             <div class="enter-links">
                                 @if($user_logged)

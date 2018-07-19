@@ -2,7 +2,7 @@
 .cart-list-title{
     display: flex;
     justify-content: flex-end;
-    padding-right: 56px;
+    padding-right: 40px;
     padding-bottom: 15px;
      p{
         color: #4A4A4A;
@@ -23,7 +23,7 @@
         padding-right: 30px;
     }
     @include bp (md){
-        padding-right: 120px;
+        padding-right: 58px;
     }
 }
 .cart-links{
@@ -128,4 +128,11 @@
     font-size: 14px;
     font-weight: 300;
     line-height: 19px;
+}
+
+.close-prod-item{
+    width: 25px;
+    @include bp (sm){
+        width: 50px;
+    }
 }

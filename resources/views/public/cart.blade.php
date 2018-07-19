@@ -92,7 +92,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="close-prod-item col-xs-2">
+                                <div class="close-prod-item">
                                     <a href="#" class="mc_item_delete" data-prod-id="{{ $code }}">
                                         <img src="/images/homepage-icons/delete (cart) icon.svg" alt="remove">
                                     </a>

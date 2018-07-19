@@ -85,6 +85,9 @@
         line-height: 40px;
         text-align: justify;
         margin-left: 5px;
+        &::before{
+            bottom: 12px;
+        }
     }
 }
 .profile-discount-wrp{

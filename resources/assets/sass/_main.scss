@@ -141,8 +141,11 @@ i{
 .new-for-him{
     background: url('../images/homepage-images/homepage-men-category.jpg') center;
     right: 0; 
-    top: -70px;
+    top: -50px;
     background-size: cover;
+    @include bp(lg){
+        top: -90px;
+    }
     @include bp(md){
         right: 5px;
     }

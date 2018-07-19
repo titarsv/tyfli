@@ -140,21 +140,22 @@
                             <form class="profile-address-wrp">
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Город</h5>
-                                    <fieldset class="city-dropdown">
-                                        <!-- <label for="city">Select city</label> -->
-                                        <select name="city" id="city">
-                                            <option>Киев</option>
-                                            <option selected="selected">Харьков</option>
-                                            <option>Львов</option>
-                                            <option>Донецк</option>
-                                            <option>Луцк</option>
-                                            <option>Одесса</option>
-                                            <option>Черкассы</option>
-                                            <option>Днепропетровск</option>
-                                            <option>Днепр</option>
-                                            <option>Винница</option>
-                                        </select>
-                                    </fieldset>
+                                    <input type="text" name=""  class="profile-data-input">
+                                    {{--<fieldset class="city-dropdown">--}}
+                                        {{--<!-- <label for="city">Select city</label> -->--}}
+                                        {{--<select name="city" id="city">--}}
+                                            {{--<option>Киев</option>--}}
+                                            {{--<option selected="selected">Харьков</option>--}}
+                                            {{--<option>Львов</option>--}}
+                                            {{--<option>Донецк</option>--}}
+                                            {{--<option>Луцк</option>--}}
+                                            {{--<option>Одесса</option>--}}
+                                            {{--<option>Черкассы</option>--}}
+                                            {{--<option>Днепропетровск</option>--}}
+                                            {{--<option>Днепр</option>--}}
+                                            {{--<option>Винница</option>--}}
+                                        {{--</select>--}}
+                                    {{--</fieldset>--}}
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Индекс</h5>
@@ -162,16 +163,17 @@
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Улица</h5>
-                                    <fieldset class="city-dropdown">
-                                        <!-- <label for="city">Select city</label> -->
-                                        <select name="city" id="city">
-                                            <option>Гагарина</option>
-                                            <option selected="selected">Одесская</option>
-                                            <option>Львовкая</option>
-                                            <option>Солнечная</option>
-                                            <option>Горница</option>
-                                        </select>
-                                    </fieldset>
+                                    <input type="text" name=""  class="profile-data-input">
+                                    {{--<fieldset class="city-dropdown">--}}
+                                        {{--<!-- <label for="city">Select city</label> -->--}}
+                                        {{--<select name="city" id="city">--}}
+                                            {{--<option>Гагарина</option>--}}
+                                            {{--<option selected="selected">Одесская</option>--}}
+                                            {{--<option>Львовкая</option>--}}
+                                            {{--<option>Солнечная</option>--}}
+                                            {{--<option>Горница</option>--}}
+                                        {{--</select>--}}
+                                    {{--</fieldset>--}}
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Дом</h5>

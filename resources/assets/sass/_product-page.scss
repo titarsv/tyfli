@@ -123,6 +123,7 @@
     }
 }
 .prod-price{
+    position: relative;
     p{
         color: #9B9B9B;
         font-family: Oswald;
@@ -138,7 +139,19 @@
         font-weight: 500;
         line-height: 32px;
     }
+    .old-price{
+        right: 61%;
+        bottom: 20px;
+        font-size: 18px;
+        @include bp (lg){
+            right: 55%;
+        }
+        @include bp (md){
+            right: 49%;
+        }
+    }
 }
+
 .size-table-popup{
     width: 300px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);

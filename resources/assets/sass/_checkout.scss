@@ -11,9 +11,9 @@
     }
 }
 .checkout-list-title{
-    padding-right: 200px;
+    padding-right: 100px;
     @include bp(lg){
-        padding-right: 150px;
+        padding-right: 60px;
         p{
             width: 60px;
         }
@@ -137,7 +137,11 @@
         font-size: 14px;
         line-height: 20px;
         text-align: justify;
-        margin-left: 20px;
+        &::before{
+            left: -18px;
+            bottom: 14px;
+        }
+
     }
     .checkbox-custom{
         position: absolute;
@@ -145,7 +149,6 @@
         top: 0;
     }
 }
-
 .delivery-popup{
     background: #fff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);

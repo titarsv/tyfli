@@ -149,6 +149,7 @@ $(function() {
     $(this).toggleClass('filters-open');
     // $(this).prev('.aside-filter-menu-item-filters').toggleClass('unactive');
     $(this).prev('.aside-filter-menu-item-filters').slideToggle(300);
+    $(this).parent().next('.product-accordion-text').slideToggle(300);
   });
 
   // PRODUCT PAGE ACCORDION
