@@ -73,8 +73,15 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
 
     Route::get('/settings', 'SettingsController@index');
     Route::post('/settings', 'SettingsController@update');
-
+    Route::get('/delivery-and-payment', 'SettingsController@extraIndex');
+    Route::post('/delivery-and-payment', 'SettingsController@extraUpdate');
+    Route::get('/delivery-and-payment/newpost-update', 'SettingsController@newpostUpdate');
     Route::post('/upload_attribute_image', 'AttributesController@upload_image');
+
+    Route::get('/cacheflush', function() {
+        Cache::flush();
+        return redirect()->back()->with('message-success', 'Кэш успешно очищен!');
+    });
 
     Route::group(['prefix' => 'categories'], function(){
         Route::get('/', 'CategoriesController@index');

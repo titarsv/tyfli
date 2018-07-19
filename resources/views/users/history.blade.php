@@ -57,92 +57,60 @@
                                 <p>Количество</p>
                                 <p>Сумма</p>
                             </div>
-                            <div class="cart-product-item path-underline">
-                                <div class="cart-img-wrp col-xs-2">
-                                    <img src="../../images/product-card/product1.jpg" alt="">
-                                </div>
-                                <div class="cart-prod-description hidden-xs">
-                                    <a href="./product-page.html"><h5 class="default-link-hover">Ботинки на шнуровке Santi</h5></a>
-                                    <p class="hidden-xs">Код товара:<span>105-195 oliv deri</span> </p>
-                                </div>
-                                <div class="cart-list cart-list-margins hidden-xs">
-                                    <ul>
-                                        <li>0%</li>
-                                    </ul>
-                                    <ul>
-                                        <li>36</li>
-                                    </ul>
-                                    <ul>
-                                        <li class="prod-quantity"><span>-</span> 1 <span>+</span></li>
-                                    </ul>
-                                    <div class="popup-price">
-                                        <p><span>2475</span> грн</p>
-                                    </div>
-                                </div>
 
-                                <div class="visible-xs-inline-block col-xs-8">
-                                    <div class="cart-list-margins">
-                                        <a href="./product-page.html"><h5 class="mobile-prod-cart-title default-link-hover">Ботинки на шнуровке Santi</h5></a>
-                                    </div>
-                                    <ul class="mobile-prod-cart">
-                                        <li>
-                                            <p>Цена</p>
-                                            <div class="popup-price">
-                                                <p><span>2475</span> грн</p>
+                            @foreach($orders as $order)
+                                @foreach($order->getProducts() as $product)
+                                    @if(!is_null($product['product']))
+                                        <div class="cart-product-item path-underline">
+                                            <div class="cart-img-wrp col-xs-2">
+                                                <img src="{{ $product['product']->image->url('product_list') }}" alt="{{ $product['product']->name }}">
                                             </div>
-                                        </li>
-                                        <li>
-                                            <p>Размер</p><span>36</span>
-                                        </li>
-                                        <li>
-                                            <p>Цвет</p><span>Черный</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="cart-product-item path-underline">
-                                <div class="cart-img-wrp col-xs-2">
-                                    <img src="../../images/product-card/product1.jpg" alt="">
-                                </div>
-                                <div class="cart-prod-description hidden-xs">
-                                    <a href="./product-page.html"><h5 class="default-link-hover">Ботинки на шнуровке Santi</h5></a>
-                                    <p class="hidden-xs">Код товара:<span>105-195 oliv deri</span> </p>
-                                </div>
-                                <div class="cart-list cart-list-margins hidden-xs">
-                                    <ul>
-                                        <li>0%</li>
-                                    </ul>
-                                    <ul>
-                                        <li>36</li>
-                                    </ul>
-                                    <ul>
-                                        <li class="prod-quantity"><span>-</span> 1 <span>+</span></li>
-                                    </ul>
-                                    <div class="popup-price">
-                                        <p><span>2475</span> грн</p>
-                                    </div>
-                                </div>
+                                            <div class="cart-prod-description hidden-xs">
+                                                <a href="{{env('APP_URL')}}/product/{{ $product['product']->url_alias }}"><h5 class="default-link-hover">{{ $product['product']->name }}</h5></a>
+                                                <p class="hidden-xs">Код товара:<span>{{ $product['product']->articul }}</span> </p>
+                                            </div>
+                                            <div class="cart-list cart-list-margins hidden-xs">
+                                                <ul>
+                                                    <li>0%</li>
+                                                </ul>
+                                                <ul>
+                                                    <li>{{ isset($product['variations']['Размер']) ? $product['variations']['Размер'] : '' }}</li>
+                                                </ul>
+                                                <ul>
+                                                    <li class="prod-quantity">{{ $product['quantity'] }}</li>
+                                                </ul>
+                                                <div class="popup-price">
+                                                    <p><span>{{ $product['price'] }}</span> грн</p>
+                                                </div>
+                                            </div>
 
-                                <div class="visible-xs-inline-block col-xs-8">
-                                    <div class="cart-list-margins">
-                                        <a href="./product-page.html"><h5 class="mobile-prod-cart-title default-link-hover">Ботинки на шнуровке Santi</h5></a>
-                                    </div>
-                                    <ul class="mobile-prod-cart">
-                                        <li>
-                                            <p>Цена</p>
-                                            <div class="popup-price">
-                                                <p><span>2475</span> грн</p>
+                                            <div class="visible-xs-inline-block col-xs-8">
+                                                <div class="cart-list-margins">
+                                                    <a href="{{env('APP_URL')}}/product/{{ $product['product']->url_alias }}"><h5 class="mobile-prod-cart-title default-link-hover">{{ $product['product']->name }}</h5></a>
+                                                </div>
+                                                <ul class="mobile-prod-cart">
+                                                    <li>
+                                                        <p>Цена</p>
+                                                        <div class="popup-price">
+                                                            <p><span>{{ $product['price'] }}</span> грн</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <p>Размер</p><span>{{ isset($product['variations']['Размер']) ? $product['variations']['Размер'] : '' }}</span>
+                                                    </li>
+                                                    <li>
+                                                        <p>Цвет</p><span>{{ isset($product['variations']['Цвет']) ? $product['variations']['Цвет'] : '' }}</span>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <p>Размер</p><span>36</span>
-                                        </li>
-                                        <li>
-                                            <p>Цвет</p><span>Черный</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                        </div>
+                                    @else
+                                        <div class="cart-product-item path-underline">
+                                            <p>Товар более недоступен...</p>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endforeach
                         </div>
                     </div>
                     <div class="col-md-12 hidden-sm hidden-xs no-padding">
@@ -162,16 +130,16 @@
                                 <div class="history-info-box path-underline">
                                     <h5>
                                         <p>Скидка на сайте</p>
-                                        <p>5 <span>%</span></p>
+                                        <p>0 <span>%</span></p>
                                     </h5>
-                                    <span>Общая сумма Ваших покупок больше 2500 грн.<br/>
-                                    При покупке на общую сумму свыше 5000 грн<br/>  сумма скидки станет 7%<br/>
+                                    <span>Общая сумма Ваших покупок {{ $user->ordersTotal() }} грн.<br/>
+                                    При покупке на общую сумму свыше 2500 грн<br/>  сумма скидки станет 5%<br/>
                                     Узнать больше о <a href="">Бонусной программе</a>
                                 </span>
                                 </div>
                                 <div class="cart-receipt-item cart-receipt-price history-info-box">
                                     <h5>Общая сумма покупок</h5>
-                                    <p><span>3925</span> грн</p>
+                                    <p><span>{{ $user->ordersTotal() }}</span> грн</p>
                                 </div>
                             </div>
                         </div>

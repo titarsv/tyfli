@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Log;
 
 class Newpost extends Model
 {
@@ -35,28 +36,45 @@ class Newpost extends Model
     }
 
     /**
+     * Обновление всех данных из API
+     *
+     * @return bool
+     */
+    public function updateAll()
+    {
+        if($this->getRegions(true) && $this->getAllCities(time()) && $this->getAllWarehouses(time())){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Получение списка областей из БД или из API
      *
+     * @param bool $force
      * @return mixed
      */
-    public function getRegions()
+    public function getRegions($force = false)
     {
-        $last_update = config('newpost.regions_last_update');
+        $setting = new Settings;
+        $newpost = $setting->get_setting('newpost_regions_last_update');
+        $update_period = $setting->get_setting('newpost_regions_update_period');
         $time = time();
 
-        if(is_null($last_update) || ($last_update + 2592000) < $time){
+        if(empty($newpost->newpost_regions_last_update) || ($newpost->newpost_regions_last_update + $update_period) < $time || $force){
 
             $parameters = [
                 'modelName' => 'Address',
                 'calledMethod' => 'getAreas',
-                'apiKey' => config('newpost.api_key')
+                'apiKey' => $setting->get_setting('newpost_api_key')
             ];
 
             $result = $this->requestToAPI($parameters);
 
             $regions = [];
-            if($result) {
-                foreach ($result['data'] as $region) {
+            if(!empty($result['success'])) {
+                foreach ($result['success'] as $region) {
                     $regions[] = [
                         'region_id' => $region['Ref'],
                         'name' => $region['Description'],
@@ -66,11 +84,12 @@ class Newpost extends Model
                 DB::table('newpost_regions')->truncate();
                 DB::table('newpost_regions')->insert($regions);
 
-                $config = file_get_contents(base_path('/config/newpost.php'));
-                $config = preg_replace('~\'regions_last_update\' => .*,~', '\'regions_last_update\' => ' . $time . ',', $config);
-                file_put_contents(base_path('/config/newpost.php'), $config);
+                $setting->update_setting('newpost_regions_last_update', $time);
+            } elseif (!empty($result['error'])) {
+                Log::error('Ошибка API Новой Почты:', $result['error']);
             }
         }
+
         return DB::table('newpost_regions')->get();
     }
 
@@ -94,20 +113,23 @@ class Newpost extends Model
      * Получение списка всех городов из API
      *
      * @param $time
+     * @return bool
      */
     public function getAllCities($time)
     {
+
+        $setting = new Settings;
         $parameters = [
             'modelName' => 'Address',
             'calledMethod' => 'getCities',
-            'apiKey' => config('newpost.api_key')
+            'apiKey' => $setting->get_setting('newpost_api_key')
         ];
 
         $result = $this->requestToAPI($parameters);
 
         $cities = [];
-        if($result) {
-            foreach ($result['data'] as $city) {
+        if(!empty($result['success'])) {
+            foreach ($result['success'] as $city) {
                 $cities[] = [
                     'city_id'   => $city['Ref'],
                     'name_ua'   => $city['Description'],
@@ -118,11 +140,12 @@ class Newpost extends Model
             DB::table('newpost_cities')->truncate();
             DB::table('newpost_cities')->insert($cities);
 
-            $config = file_get_contents(base_path('/config/newpost.php'));
-            $config = preg_replace('~\'cities_last_update\' => .*,~', '\'cities_last_update\' => ' . $time . ',', $config);
-            file_put_contents(base_path('/config/newpost.php'), $config);
+            $setting->update_setting('newpost_cities_last_update', $time);
+            return true;
+        } elseif (!empty($result['error'])) {
+            Log::error('Ошибка API Новой Почты:', $result['error']);
         }
-
+        return false;
     }
 
     /**
@@ -168,20 +191,22 @@ class Newpost extends Model
      * Получение списка всех отделений Новой Почты из API
      *
      * @param $time
+     * @return bool
      */
     public function getAllWarehouses($time)
     {
+        $setting = new Settings;
         $parameters = [
             'modelName' => 'Address',
             'calledMethod' => 'getWarehouses',
-            'apiKey' => config('newpost.api_key')
+            'apiKey' => $setting->get_setting('newpost_api_key')
         ];
 
         $result = $this->requestToAPI($parameters);
 
         $warehouses = [];
-        if($result) {
-            foreach ($result['data'] as $warehouse) {
+        if(!empty($result['success'])) {
+            foreach ($result['success'] as $warehouse) {
                 $warehouses[] = [
                     'warehouse_id'  => $warehouse['Ref'],
                     'address_ua'    => $warehouse['Description'],
@@ -194,11 +219,12 @@ class Newpost extends Model
             DB::table('newpost_warehouses')->truncate();
             DB::table('newpost_warehouses')->insert($warehouses);
 
-            $config = file_get_contents(base_path('/config/newpost.php'));
-            $config = preg_replace('~\'warehouses_last_update\' => .*,~', '\'warehouses_last_update\' => ' . $time . ',', $config);
-            file_put_contents(base_path('/config/newpost.php'), $config);
+            $setting->update_setting('newpost_warehouses_last_update', $time);
+            return true;
+        } elseif (!empty($result['error'])) {
+            Log::error('Ошибка API Новой Почты:', $result['error']);
         }
-
+        return false;
     }
 
     /**

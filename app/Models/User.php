@@ -78,4 +78,11 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
         return $this->where('email', $email)->orWhere('phone', $phone)->first();
     }
 
+    public function ordersTotal(){
+        $total = 0;
+        foreach ($this->orders as $order){
+            $total += $order->total_price;
+        }
+        return $total;
+    }
 }

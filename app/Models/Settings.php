@@ -14,6 +14,20 @@ class Settings extends Model
         'autoload'
     ];
 
+    public $extra = [
+        'newpost_api_key',
+        'newpost_regions_update_period',
+        'newpost_regions_last_update',
+        'newpost_cities_update_period',
+        'newpost_cities_last_update',
+        'newpost_warehouses_update_period',
+        'newpost_warehouses_last_update',
+        'liqpay_api_public_key',
+        'liqpay_api_private_key',
+        'liqpay_api_currency',
+        'liqpay_api_sandbox'
+    ];
+
     protected $table = 'settings';
     public $timestamps = false;
 
@@ -141,5 +155,9 @@ class Settings extends Model
         foreach ($settings as $key => $value){
             $this->update_setting($key, $value, $autoload);
         }
+    }
+
+    public function get_extra(){
+        return $this->convert_to_array($this->whereIn('key', $this->extra)->get());
     }
 }

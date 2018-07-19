@@ -46,7 +46,9 @@
         <p data-toggle="collapse" data-target="#settings-collapse" class="nav-collapse"><i class="fa fa-wrench" aria-hidden="true"></i>Настройки</p>
         <ul id="settings-collapse" class="collapse nav nav-pills nav-stacked nav-collapse">
             <li><a href="/admin/settings"><i class="fa fa-circle-thin" aria-hidden="true"></i>Общие настройки магазина</a></li>
+            <li><a href="/admin/delivery-and-payment"><i class="fa fa-circle-thin" aria-hidden="true"></i>Доставка и оплата</a></li>
             <li><a href="/admin/html"><i class="fa fa-circle-thin" aria-hidden="true"></i>HTML-контент</a></li>
+            <li><a href="/admin/cacheflush"><i class="fa fa-circle-thin" aria-hidden="true"></i>Очистить кэш</a></li>
         </ul>
     </li>
 </ul>

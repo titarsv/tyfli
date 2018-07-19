@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Newpost;
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
 use App\Http\Requests;
@@ -69,6 +70,94 @@ class SettingsController extends Controller
         }
 
         $settings->update_settings($request->except('_token'), true);
+
+        return back()->with('message-success', 'Настройки успешно сохранены!');
+    }
+
+    public function extraIndex(Settings $setting)
+    {
+        $update_period = [
+            [
+                'period'    => 'Каждый день',
+                'value'     => 86400
+            ],
+            [
+                'period'    => 'Раз в неделю',
+                'value'     => 604800
+            ],
+            [
+                'period'    => 'Раз в месяц',
+                'value'     => 2592000
+            ],
+            [
+                'period'    => 'Раз в полгода',
+                'value'     => 15552000
+            ],
+        ];
+
+        $currencies = ['USD', 'EUR', 'RUB', 'UAH', 'BYN', 'KZT'];
+
+        return view('admin.extra_settings', [
+            'settings' => $setting->get_extra(),
+            'update_period' => $update_period,
+            'currencies' => $currencies
+        ]);
+    }
+
+    public function newpostUpdate(Newpost $newpost)
+    {
+        $result = $newpost->updateAll();
+
+        if ($result){
+            $message_status = 'message-success';
+            $message_text = 'Данные API Новой Почты успешно обновлены!';
+        } else {
+            $message_status = 'message-error';
+            $message_text = 'При обновлении данных произошла ошибка! Подробности: /storage/logs/laravel.log';
+        }
+        return redirect('/admin/delivery-and-payment')
+            ->with($message_status, $message_text);
+    }
+
+    public function extraUpdate(Request $request, Setting $settings)
+    {
+        $rules = [
+            'newpost_api_key' => 'filled|max:32',
+            'newpost_regions_update_period' => 'filled|not_in:0',
+            'newpost_cities_update_period' => 'filled|not_in:0',
+            'newpost_warehouses_update_period' => 'filled|not_in:0',
+            'liqpay_api_public_key' => 'filled',
+            'liqpay_api_private_key' => 'filled',
+            'liqpay_api_currency' => 'filled|not_in:0'
+        ];
+
+        $messages = [
+            'newpost_api_key.filled' => 'Поле должно быть заполнено!',
+            'newpost_api_key.max' => 'Длина ключа должна быть не более 32 символов!',
+            'newpost_regions_update_period.filled' => 'Выберите период!',
+            'newpost_regions_update_period.not_in' => 'Выберите период!',
+            'newpost_cities_update_period.filled' => 'Выберите период!',
+            'newpost_cities_update_period.not_in' => 'Выберите период!',
+            'newpost_warehouses_update_period.filled' => 'Выберите период!',
+            'newpost_warehouses_update_period.not_in' => 'Выберите период!',
+            'liqpay_api_public_key.filled' => 'Поле должно быть заполнено!',
+            'liqpay_api_private_key.filled' => 'Поле должно быть заполнено!',
+            'liqpay_api_currency.filled' => 'Выберите валюту платежей!',
+            'liqpay_api_currency.not_in' => 'Выберите валюту платежей!',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('message-error', 'Сохранение не удалось! Проверьте форму на ошибки!')
+                ->withErrors($validator);
+        }
+
+        $settings->update_settings($request->except('_token'), false);
+        Cache::flush();
 
         return back()->with('message-success', 'Настройки успешно сохранены!');
     }

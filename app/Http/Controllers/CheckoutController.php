@@ -61,6 +61,7 @@ class CheckoutController extends Controller
         }
 
         $user = Sentinel::check();
+        $user = User::find($user->id);
 
         if (!$user) {
 	        return response()->json(['error' => 'Вы не авторизованы.']);
