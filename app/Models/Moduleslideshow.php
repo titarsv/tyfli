@@ -21,11 +21,7 @@ class Moduleslideshow extends Model
         return $this->hasOne('App\Models\Image', 'id', 'image_id');
     }
 
-    /*
-     *  Методы для контроллера
-     */
-    public function qqq()
-    {
-
+    public function data(){
+        return json_decode($this->slide_data);
     }
 }

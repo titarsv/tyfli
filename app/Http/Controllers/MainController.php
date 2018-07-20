@@ -19,25 +19,10 @@ class MainController extends Controller
 {
     public function index(Attribute $attribute, Categories $categories, Image $image, Modules $modules, Moduleslideshow $slideshow)
     {
-        //$articles = Blog::where('published', 1)->orderBy('updated_at', 'desc')->take(4)->get();
-//        $blog = new Blog();
-//        $articles = $blog->get_newest();
-//        $news = NEWS::where('published', 1)->orderBy('updated_at', 'desc')->take(4)->get();
-//
-//        setlocale(LC_TIME, 'RU');
-
-//        foreach ($articles as $key => $article) {
-//            $articles[$key]->date = iconv("cp1251", "UTF-8", $articles[$key]->updated_at->formatLocalized('%d %b %Y'));
-//        }
-
-//        foreach ($news as $key => $article) {
-//            $news[$key]->date = iconv("cp1251", "UTF-8", $news[$key]->updated_at->formatLocalized('%d %b %Y'));
-//        }
-
 	    $brands = $attribute->where('name', 'Бренд')->first()->values;
         $women_new_prod = $categories->get_products(1, null, [8 => [113]], ['id', 'desc'], 3, []);
         $men_new_prod = $categories->get_products(2, null, [8 => [113]], ['id', 'desc'], 3, []);
-        $big_sizes = $categories->get_products(11, null, [8 => [112]], ['id', 'desc'], 2, []);
+        $big_sizes = $categories->get_products(11, null, [1 => [11]], ['id', 'desc'], 2, []);
         $blog = new News();
         $articles = $blog->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12);
 
@@ -46,13 +31,8 @@ class MainController extends Controller
 	        ->with('men_new_prod', $men_new_prod)
 	        ->with('big_sizes', $big_sizes)
 	        ->with('brands', $brands)
-	        ->with('articles', $articles);
-//            ->with('settings', Settings::find(1))
-//            ->with('actions', Products::orderBy('created_at', 'desc')->where('stock', 1)->whereNotNull('action')->where('action', '!=', '')->take(24)->get())
-//            ->with('articles', $articles)
-//            ->with('slideshow', $slideshow->all())
-//            ->with('news', $news)
-//            ->with('categories', $categories->select('id', 'name', 'url_alias')->where('parent_id', 20)->get());
+	        ->with('articles', $articles)
+            ->with('slideshow', $slideshow->all());
     }
 
     /**

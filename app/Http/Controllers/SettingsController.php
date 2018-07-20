@@ -8,6 +8,7 @@ use Cartalyst\Sentinel\Native\Facades\Sentinel;
 use App\Http\Requests;
 use App\Models\Settings;
 use Validator;
+use Cache;
 
 class SettingsController extends Controller
 {
@@ -119,7 +120,7 @@ class SettingsController extends Controller
             ->with($message_status, $message_text);
     }
 
-    public function extraUpdate(Request $request, Setting $settings)
+    public function extraUpdate(Request $request, Settings $settings)
     {
         $rules = [
             'newpost_api_key' => 'filled|max:32',

@@ -89,7 +89,7 @@
                                             <td class="col-md-2">
                                                 <input type="hidden" id="module-image-{!! $key !!}" name="slide[{!! $key !!}][image_id]" value="{!! $slide->image_id !!}" />
                                                 <div id="module-image-output-{!! $key !!}" class="module-image">
-                                                    <img src="/uploads/{!! $slide->image->href !!}" />
+                                                    <img src="{!! $slide->image->url() !!}" />
                                                     <button type="button" class="btn btn-del" data-delete="{!! $key !!}" data-toggle="tooltip" data-placement="bottom" title="Удалить изображение">X</button>
                                                     <button type="button" data-open="module-image" data-key="{!! $key !!}" class="btn">Выбрать изображение</button>
                                                 </div>
@@ -158,44 +158,6 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            {{--<td class="col-md-3">--}}
-                                                {{--<div>--}}
-                                                    {{--<b>Текст 1</b>--}}
-                                                    {{--<input type="text" name="slide[{!! $key !!}][text][0]" class="form-control" value="{!! json_decode($slide->slide_data)->text[0] !!}" />--}}
-                                                    {{--<span style="color: red">--}}
-                                                        {{--@if($errors->has('slide.' . $key . '.text.0'))--}}
-                                                            {{--{{ $errors->first('slide.' . $key . '.text.0',':message')  }}--}}
-                                                        {{--@endif--}}
-                                                    {{--</span>--}}
-                                                {{--</div>--}}
-                                                {{--<div>--}}
-                                                    {{--<b>Текст 2</b>--}}
-                                                    {{--<input type="text" name="slide[{!! $key !!}][text][1]" class="form-control" value="{!! json_decode($slide->slide_data)->text[1] !!}" />--}}
-                                                    {{--<span style="color: red">--}}
-                                                        {{--@if($errors->has('slide.' . $key . '.text.1'))--}}
-                                                            {{--{{ $errors->first('slide.' . $key . '.text.1',':message')  }}--}}
-                                                        {{--@endif--}}
-                                                    {{--</span>--}}
-                                                {{--</div>--}}
-                                                {{--<div>--}}
-                                                    {{--<b>Текст 3</b>--}}
-                                                    {{--<input type="text" name="slide[{!! $key !!}][text][2]" class="form-control" value="{!! json_decode($slide->slide_data)->text[2] !!}" />--}}
-                                                    {{--<span style="color: red">--}}
-                                                        {{--@if($errors->has('slide.' . $key . '.text.2'))--}}
-                                                            {{--{{ $errors->first('slide.' . $key . '.text.2',':message')  }}--}}
-                                                        {{--@endif--}}
-                                                    {{--</span>--}}
-                                                {{--</div>--}}
-                                                {{--<div>--}}
-                                                    {{--<b>Текст 4</b>--}}
-                                                    {{--<input type="text" name="slide[{!! $key !!}][text][3]" class="form-control" value="{!! json_decode($slide->slide_data)->text[3] !!}" />--}}
-                                                    {{--<span style="color: red">--}}
-                                                        {{--@if($errors->has('slide.' . $key . '.text.3'))--}}
-                                                            {{--{{ $errors->first('slide.' . $key . '.text.3',':message')  }}--}}
-                                                        {{--@endif--}}
-                                                    {{--</span>--}}
-                                                {{--</div>--}}
-                                            {{--</td>--}}
                                             <td class="col-md-1" align="center">
                                                 <button class="btn btn-danger" onclick="$(this).parent().parent().remove();">Удалить</button>
                                                 @if($key == count($slideshow) - 1)

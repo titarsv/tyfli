@@ -169,17 +169,7 @@
                                 </div>
                             </div>
                             @if(($key+1)%3 == 0 && ceil(count($products)/6) == ($key+1)/3)
-                                <div class="col-sm-12 col-xs-12 sales-banner-text-wrp">
-                                    <div class="col-sm-4 col-xs-9 sales-banner-text">
-                                        <h5>Sale 50%</h5>
-                                        <p>Межсезонная распродажа</p>
-                                    </div>
-                                    <div class="col-sm-5 hidden-xs">
-                                        <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[8][value][111]=on" class="sales-banner-btn grid-products-banner">
-                                            <p>Смотреть</p>
-                                        </a>
-                                    </div>
-                                </div>
+                                @include('public.layouts.banner')
                             @endif
                         @empty
                             <div class="col-md-12 margin">
@@ -188,17 +178,7 @@
                         @endforelse
 
                         @if($products->count() < 3)
-                            <div class="col-sm-12 col-xs-12 sales-banner-text-wrp">
-                                <div class="col-sm-4 col-xs-9 sales-banner-text">
-                                    <h5>Sale 50%</h5>
-                                    <p>Межсезонная распродажа</p>
-                                </div>
-                                <div class="col-sm-5 hidden-xs">
-                                    <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[8][value][111]=on" class="sales-banner-btn grid-products-banner">
-                                        <p>Смотреть</p>
-                                    </a>
-                                </div>
-                            </div>
+                            @include('public.layouts.banner')
                         @endif
 
                         @include('public.layouts.pagination', ['paginator' => $paginator])
@@ -224,115 +204,4 @@
             </div>
         </div>
     </main>
-
-    {{--<main class="main-wrapper">--}}
-        {{--<div class="container">--}}
-            {{--<div class="catalog-wrapper">--}}
-                {{--@if($category->parent_id != 0 && !$attributes->isEmpty())--}}
-                    {{--<aside class="sidebar col-md-3">--}}
-                    {{--<form action="#" method="get" id="filters">--}}
-                        {{--<div class="sidebar-inner">--}}
-                            {{--<span class="sidebar-title">Фильтр по товарам</span>--}}
-                            {{--<div class="sidebar-hiiden">--}}
-                                {{--<button class="clear-filters">--}}
-                                    {{--<span>+</span>--}}
-                                    {{--<strong>Сбросить фильтры</strong>--}}
-                                {{--</button>--}}
-                                {{--@if(!$attributes->isEmpty())--}}
-                                    {{--@foreach($attributes as $key => $attribute)--}}
-                                        {{--<div class="filter-block{{ isset($filter[$attribute->id]) ? ' active' : '' }}">--}}
-                                            {{--<div class="filter-title__wrapper">--}}
-                                                {{--<span class="filter-title">{{ $attribute->name }}:</span>--}}
-                                            {{--</div>--}}
-                                            {{--<ul class="filters-list">--}}
-                                                {{--@foreach($attribute->values as $i => $attribute_value)--}}
-                                                    {{--@if(!empty($attribute_value->name))--}}
-                                                        {{--<li class="filter">--}}
-                                                            {{--<input type="checkbox"--}}
-                                                                   {{--name="filter_attributes[{!! $attribute->id !!}][value][{!! $attribute_value->id !!}]"--}}
-                                                                   {{--data-attribute="{{ $attribute->id }}"--}}
-                                                                   {{--data-value="{{ $attribute_value->id }}"--}}
-                                                                   {{--id="product-filter-{!! $key !!}__check-{!! $i !!}"--}}
-                                                                   {{--class="filter-checkbox"--}}
-                                                            {{--@if(isset($filter[$attribute->id]) && in_array($attribute_value->id, $filter[$attribute->id]))--}}
-                                                                   {{--checked--}}
-                                                                    {{--@endif>--}}
-                                                            {{--<label for="product-filter-{!! $key !!}__check-{!! $i !!}">{!! $attribute_value->name !!}</label>--}}
-                                                        {{--</li>--}}
-                                                    {{--@endif--}}
-                                                {{--@endforeach--}}
-                                            {{--</ul>--}}
-                                        {{--</div>--}}
-                                    {{--@endforeach--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                {{--</aside>--}}
-                    {{--<div class="catalog col-md-9">--}}
-                {{--@else--}}
-                    {{--<div class="catalog col-md-12">--}}
-                {{--@endif--}}
-                    {{--<div class="row">--}}
-                        {{--<span class="catalog-title">{!! $category->name or $category['name'] !!}</span>--}}
-                        {{--@if($category->hasChildren() && empty($filter))--}}
-                            {{--<div class="subcategories">--}}
-                                {{--@foreach($category->children()->where('status', 1)->get() as $subcat)--}}
-                                    {{--<div class="item cat-item col-sm-4 col-xs-6">--}}
-                                        {{--<div class="item-inner">--}}
-                                            {{--<div class="item-pic__wrapper">--}}
-                                                {{--@if(!empty($subcat->image))--}}
-                                                {{--<a href="{{env('APP_URL')}}/category/{{ $subcat->url_alias }}">--}}
-                                                    {{--<img class="item-pic" src="{{ $subcat->image->url('product_list') }}" alt="">--}}
-                                                {{--</a>--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                            {{--<div class="item-info__wrapper">--}}
-                                                {{--<a class="item-link" href="{{env('APP_URL')}}/category/{{ $subcat->url_alias }}">{{ $subcat->name }}</a>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--@endforeach--}}
-                            {{--</div>--}}
-                            {{--<div class="clearfix"></div>--}}
-                        {{--@endif--}}
-
-                        {{--<div class="cat-filters">--}}
-                            {{--<form method="get" @if(!empty($category['url_alias']) && $category['url_alias'] == 'new') style="display:none" @endif>--}}
-                            {{--<ul class="cat-view">--}}
-
-                            {{--</ul>--}}
-                            {{--<div class="cat-filter__dropdown-wrapper">--}}
-                                {{--<select name="sorting" class="cat-filter__dropdown" onchange="sortBy(jQuery(this).val())">--}}
-                                    {{--@foreach($sort_array as $sort)--}}
-                                        {{--<option value="{!! $sort['value'] !!}" @if($sort['value'] == $current_sort) selected @endif>{!! $sort['name'] !!}</option>--}}
-                                    {{--@endforeach--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                            {{--</form>--}}
-                        {{--</div>--}}
-                        {{--<div class="catalog-main">--}}
-                            {{--@forelse($products as $product)--}}
-                                {{--@include('public.layouts.product', ['product' => $product])--}}
-                            {{--@empty--}}
-                                {{--<article>--}}
-                                    {{--<span>В этой категории пока нет товаров!</span>--}}
-                                {{--</article>--}}
-                            {{--@endforelse--}}
-                        {{--</div>--}}
-                        {{--<div class="clearfix"></div>--}}
-                    {{--</div>--}}
-                    {{--@include('public.layouts.pagination', ['paginator' => $paginator])--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--@if(!empty($category->description) && $paginator->currentPage() == 1)--}}
-        {{--<div class="catalog-description">--}}
-            {{--<div class="container">--}}
-                {{--{!! $category->description !!}--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--@endif--}}
-    {{--</main>--}}
-
 @endsection

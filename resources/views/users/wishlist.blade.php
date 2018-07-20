@@ -52,17 +52,7 @@
                                 @include('public.layouts.product', ['product' => $product->product, 'slide' => false])
                             </div>
                             @if(($key+1)%3 == 0 && ceil(count($products)/6) == ($key+1)/3)
-                                <div class="col-sm-12 col-xs-12 sales-banner-text-wrp">
-                                    <div class="col-sm-4 col-xs-9 sales-banner-text">
-                                        <h5>Sale 50%</h5>
-                                        <p>Межсезонная распродажа</p>
-                                    </div>
-                                    <div class="col-sm-5 hidden-xs">
-                                        <a href="javascript:void(0);" class="sales-banner-btn grid-products-banner">
-                                            <p>Смотреть</p>
-                                        </a>
-                                    </div>
-                                </div>
+                                @include('public.layouts.banner')
                             @endif
                         @empty
                             <div class="col-md-12 margin">
@@ -71,17 +61,7 @@
                         @endforelse
 
                         @if($products->count() < 3)
-                            <div class="col-sm-12 col-xs-12 sales-banner-text-wrp">
-                                <div class="col-sm-4 col-xs-9 sales-banner-text">
-                                    <h5>Sale 50%</h5>
-                                    <p>Межсезонная распродажа</p>
-                                </div>
-                                <div class="col-sm-5 hidden-xs">
-                                    <a href="javascript:void(0);" class="sales-banner-btn grid-products-banner">
-                                        <p>Смотреть</p>
-                                    </a>
-                                </div>
-                            </div>
+                            @include('public.layouts.banner')
                         @endif
                     </div>
                 </div>

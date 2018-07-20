@@ -6,41 +6,33 @@
 @endsection
 
 @section('content')
-
-    <div class="header-slider-wrp">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="js-slider slick-slider header-slider" data-slick='{"slidesToShow": 1, "dots": true}'>
-                    <div class="slider-item-1">
-                        <div class="row">
-                            <div class="com-md-12 slider-title">
-                                <h2>Extra Бонус</h2>
-                                <h3>к разделу Sale</h3>
-                            </div>
-                            <div class="com-md-12 slider-btn-wrp">
-                                <a href="./products-grid.html" class="slider-btn">
-                                    <p>Смотреть</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-item-2">
-                        <div class="row">
-                            <div class="com-md-12 slider-title">
-                                <h2>Extra Бонус</h2>
-                                <h3>к разделу Sale</h3>
-                            </div>
-                            <div class="com-md-12 slider-btn-wrp">
-                                <a href="./products-grid.html" class="slider-btn">
-                                    <p>Смотреть</p>
-                                </a>
-                            </div>
-                        </div>
+    @if($slideshow->count())
+        <div class="header-slider-wrp">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="js-slider slick-slider header-slider" data-slick='{"slidesToShow": 1, "dots": true}'>
+                        @foreach($slideshow as $slide)
+                            @if($slide->status)
+                                <div class="slider-item-1" style="background-image: url({{ $slide->image->url() }})">
+                                    <div class="row">
+                                        <div class="com-md-12 slider-title">
+                                            <h2>{{ $slide->data()->slide_title }}</h2>
+                                            <h3>{{ $slide->data()->slide_description }}</h3>
+                                        </div>
+                                        <div class="com-md-12 slider-btn-wrp">
+                                            <a href="{{ $slide->link }}" class="slider-btn">
+                                                <p>{{ $slide->data()->button_text }}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <section class="brand-navigation">
         <div class="container-fluid">
@@ -134,17 +126,7 @@
     <section class="sales-banner">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 sales-banner-text-wrp">
-                    <div class="col-sm-4 sales-banner-text">
-                        <h5>Sale 50%</h5>
-                        <p>Межсезонная распродажа</p>
-                    </div>
-                    <div class="col-sm-5 hidden-xs">
-                        <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[8][value][111]=on" class="sales-banner-btn">
-                            <p>Смотреть</p>
-                        </a>
-                    </div>
-                </div>
+                @include('public.layouts.banner')
             </div>
         </div>
     </section>
@@ -269,14 +251,14 @@
                 <div class="col-sm-12">
                     <div class="js-slider slick-slider slider-margins"
                          data-slick='{"slidesToShow": 6,"autoplay":true, "autoplaySpeed": 1000, "arrows": false, "lazyLoad": "ondemand", "responsive":[{"breakpoint":768,"settings":{"slidesToShow": 4, "arrows": false, "autoplay":true, "autoplaySpeed": 1000, "arrows": false, "lazyLoad": "ondemand"}}, {"breakpoint":480,"settings":{"slidesToShow":1, "autoplay":true, "autoplaySpeed": 1000, "arrows": false, "lazyLoad": "ondemand"}}]}'>
-                        <div class="insta-img"><img src="../../images/images-instagram/1.jpg" alt=""></div>
-                        <div class="insta-img"><img src="../../images/images-instagram/2.jpg" alt=""></div>
-                        <div class="insta-img"><img src="../../images/images-instagram/3.jpg" alt=""></div>
-                        <div class="insta-img"><img src="../../images/images-instagram/4.jpg" alt=""></div>
-                        <div class="insta-img"><img src="../../images/images-instagram/5.jpg" alt=""></div>
-                        <div class="insta-img"><img src="../../images/images-instagram/6.jpg" alt=""></div>
-                        <div class="insta-img"><img src="../../images/images-instagram/3.jpg" alt=""></div>
-                        <div class="insta-img"><img src="../../images/images-instagram/4.jpg" alt=""></div>
+                        <div class="insta-img"><img src="/images/images-instagram/1.jpg" alt=""></div>
+                        <div class="insta-img"><img src="/images/images-instagram/2.jpg" alt=""></div>
+                        <div class="insta-img"><img src="/images/images-instagram/3.jpg" alt=""></div>
+                        <div class="insta-img"><img src="/images/images-instagram/4.jpg" alt=""></div>
+                        <div class="insta-img"><img src="/images/images-instagram/5.jpg" alt=""></div>
+                        <div class="insta-img"><img src="/images/images-instagram/6.jpg" alt=""></div>
+                        <div class="insta-img"><img src="/images/images-instagram/3.jpg" alt=""></div>
+                        <div class="insta-img"><img src="/images/images-instagram/4.jpg" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -287,17 +269,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12 hidden-xs home-page-about-us-text">
                     <span>О нас</span>
-                    <p> TYFLI. COM - это онлайн магазин модной женской и мужской обуви от ведущих мировых
-                        производителей.
-                        В нашем ассортименте представлены более 500 наименований обуви, аксессуаров и сопутствующих
-                        товаров от 50 отечественных и зарубежных брендов.</p>
-                    <p>Наш интернет-магазин сотрудничает только с проверенными и зарекомендовавшими себя компаниями,
-                        имеющими многолетний опыт производства качественной обуви. Мы уверены в надежности продаваемой
-                        продукции и тщательно контролируем поставки. Модельный ряд товаров постоянно обновляется в
-                        соответствии с тенденциями моды и запросами наших клиентов</p>
-                    <p>Гибкая система накопительных скидок и индивидуальные предложения для оптовых покупателей
-                        позволили нам завоевать украинский рынок. Сегодня услугами нашего интернет-магазина активно
-                        пользуются жители Киева, Львова, Днепропетровска, Одессы, Харькова и других городов Украины.</p>
+                    {!! $settings->about !!}
                 </div>
                 <div class="col-md-6 col-sm-12 hidden-xs home-page-about-us-text">
                     <p>Почему покупатели выбирают TYFLI.COM</p>

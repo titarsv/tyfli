@@ -102,10 +102,7 @@
                     @endforeach
 
                     <ul class="cart-links hidden-xs">
-                        <li><a href="javascript:void(0);">Новинки</a> </li>
-                        <li><a href="javascript:void(0);">Акции</a></li>
-                        <li><a href="javascript:void(0);">Распродажа</a></li>
-                        <li><a href="javascript:void(0);">Большие размеры</a></li>
+                        @include('public.layouts.links')
                     </ul>
                 </div>
 
@@ -144,10 +141,7 @@
                 </div>
                 <div class="visible-xs-block col-xs-12">
                     <ul class="cart-links">
-                        <li><a href="javascript:void(0);">Новинки</a> </li>
-                        <li><a href="javascript:void(0);">Акции</a></li>
-                        <li><a href="javascript:void(0);">Распродажа</a></li>
-                        <li><a href="javascript:void(0);">Большие размеры</a></li>
+                        @include('public.layouts.links')
                     </ul>
                 </div>
 

@@ -74,7 +74,7 @@ class Newpost extends Model
 
             $regions = [];
             if(!empty($result['success'])) {
-                foreach ($result['success'] as $region) {
+                foreach ($result['data'] as $region) {
                     $regions[] = [
                         'region_id' => $region['Ref'],
                         'name' => $region['Description'],
@@ -129,7 +129,7 @@ class Newpost extends Model
 
         $cities = [];
         if(!empty($result['success'])) {
-            foreach ($result['success'] as $city) {
+            foreach ($result['data'] as $city) {
                 $cities[] = [
                     'city_id'   => $city['Ref'],
                     'name_ua'   => $city['Description'],
@@ -206,7 +206,7 @@ class Newpost extends Model
 
         $warehouses = [];
         if(!empty($result['success'])) {
-            foreach ($result['success'] as $warehouse) {
+            foreach ($result['data'] as $warehouse) {
                 $warehouses[] = [
                     'warehouse_id'  => $warehouse['Ref'],
                     'address_ua'    => $warehouse['Description'],

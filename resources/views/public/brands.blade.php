@@ -10,7 +10,6 @@
 @endsection
 
 @section('content')
-
     <section>
         <div class="container">
             <div class="row">
@@ -30,17 +29,7 @@
                                 <div class="col-md-4 col-xs-6 brand-item">{{ $brand->name }}</div>
                             </a>
                         @endforeach
-                        <div class="col-md-12 sales-banner-text-wrp margin">
-                            <div class="sales-banner-text">
-                                <h5>Sale 50%</h5>
-                                <p>Межсезонная распродажа</p>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="javascript:void(0);" class="sales-banner-btn grid-products-banner">
-                                    <p>Смотреть</p>
-                                </a>
-                            </div>
-                        </div>
+                        @include('public.layouts.banner')
                     </div>
                 </div>
             </div>
