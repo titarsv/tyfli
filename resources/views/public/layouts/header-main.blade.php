@@ -45,7 +45,7 @@
                         <nav class="navigation">
                             <a href="{{env('APP_URL')}}/page/delivery"><p>Доставка и Оплата</p></a>
                             <a href="{{env('APP_URL')}}/page/garantiya-i-vozvrat"><p>Гарантия и Возврат</p></a>
-                            <a href="javascript:void(0);"><p>Вопросы и Ответы</p></a>
+                            <a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>Вопросы и Ответы</p></a>
                             <a href="{{env('APP_URL')}}/reviews"><p>Отзывы</p></a>
                             <a href="{{env('APP_URL')}}/page/contact"><p>Контакты</p></a>
                         </nav>
