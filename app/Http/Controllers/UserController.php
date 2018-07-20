@@ -32,7 +32,6 @@ use Cartalyst\Sentinel\Roles\EloquentRole as Roles;
 
 class UserController extends Controller
 {
-    private $users;
     public $settings;
 
     protected $rules = [
@@ -42,12 +41,6 @@ class UserController extends Controller
         'email.required' => 'Поле должно быть заполнено!',
         'email.unique' => 'Поле должно быть уникальным!'
     ];
-
-    public function __construct()
-    {
-        //
-    }
-
 
     /**
      * Список всех зарегистрированных и незарегистрированных пользователей
@@ -73,11 +66,6 @@ class UserController extends Controller
      */
     public function managers()
     {
-//        $user_role = Sentinel::findRoleBySlug('manager');
-//        $users = $user_role->users()->with('roles')->get();
-//
-//        return view('admin.users.index')->with('users', $users)->with('title', 'Список менеджеров');
-
         $users = User::join('role_users', function ($join) {
             $join->on('users.id', '=', 'role_users.user_id')
                 ->whereIn('role_users.role_id', [2]);
@@ -87,27 +75,6 @@ class UserController extends Controller
             'users' => $users,
             'title' => 'Список менеджеров'
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -134,7 +101,7 @@ class UserController extends Controller
     {
         $user = Sentinel::check();
         $orders = Order::where('user_id',$user->id)->orderBy('created_at','desc')->get();
-//        return dd($orders);
+
         return view('users.history')->with('user', $user)->with('orders', $orders);
     }
     public function wishList()
@@ -161,7 +128,6 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-//        return dd($user);
         return view('admin.users.edit')
             ->with('user', $user)
             ->with('image_size', $image_size);
@@ -227,14 +193,30 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Обновление адреса
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
-    {
-        //
+    public function updateAddress(Request $request){
+        $user = Sentinel::check();
+        if ($user) {
+            $user = User::find($user->id);
+
+            $address = json_encode([
+                'city' => $request->city,
+                'post_code' => $request->post_code,
+                'street' => $request->street,
+                'house' => $request->house,
+                'flat' => $request->flat,
+            ], JSON_UNESCAPED_UNICODE);
+
+            $user->user_data()->update(['address' => $address]);
+
+            return response()->json(['success' => true]);
+        }else{
+            return response()->json(['success' => false]);
+        }
     }
 
     public function changeData()

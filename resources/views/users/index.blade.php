@@ -54,7 +54,7 @@
                         <div class="col-sm-12 col-xs-12 margin">
                             <h5 class="title">Мои данные
                                 <a href="" class="edit-profile">
-                                    <img src="../../images/homepage-icons/edit icon.svg" alt="">
+                                    <img src="/images/homepage-icons/edit icon.svg" alt="">
                                 </a>
                             </h5>
                             <div class="profile-data-wrp">
@@ -137,54 +137,32 @@
                         </div>
                         <div class="col-sm-12 col-xs-12 margin">
                             <h5 class="title">Адрес доставки</h5>
+                            @php
+                                $address = $user->user_data->address();
+                            @endphp
                             <form class="profile-address-wrp">
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Город</h5>
-                                    <input type="text" name=""  class="profile-data-input">
-                                    {{--<fieldset class="city-dropdown">--}}
-                                        {{--<!-- <label for="city">Select city</label> -->--}}
-                                        {{--<select name="city" id="city">--}}
-                                            {{--<option>Киев</option>--}}
-                                            {{--<option selected="selected">Харьков</option>--}}
-                                            {{--<option>Львов</option>--}}
-                                            {{--<option>Донецк</option>--}}
-                                            {{--<option>Луцк</option>--}}
-                                            {{--<option>Одесса</option>--}}
-                                            {{--<option>Черкассы</option>--}}
-                                            {{--<option>Днепропетровск</option>--}}
-                                            {{--<option>Днепр</option>--}}
-                                            {{--<option>Винница</option>--}}
-                                        {{--</select>--}}
-                                    {{--</fieldset>--}}
+                                    <input type="text" name="city" value="{{ isset($address->city) ? $address->city : '' }}" class="profile-data-input">
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Индекс</h5>
-                                    <input type="text" name="" class="profile-data-input">
+                                    <input type="text" name="post_code" value="{{ isset($address->post_code) ? $address->post_code : '' }}" class="profile-data-input">
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Улица</h5>
-                                    <input type="text" name=""  class="profile-data-input">
-                                    {{--<fieldset class="city-dropdown">--}}
-                                        {{--<!-- <label for="city">Select city</label> -->--}}
-                                        {{--<select name="city" id="city">--}}
-                                            {{--<option>Гагарина</option>--}}
-                                            {{--<option selected="selected">Одесская</option>--}}
-                                            {{--<option>Львовкая</option>--}}
-                                            {{--<option>Солнечная</option>--}}
-                                            {{--<option>Горница</option>--}}
-                                        {{--</select>--}}
-                                    {{--</fieldset>--}}
+                                    <input type="text" name="street" value="{{ isset($address->street) ? $address->street : '' }}" class="profile-data-input">
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Дом</h5>
-                                    <input type="text" name=""  class="profile-data-input">
+                                    <input type="text" name="house" value="{{ isset($address->house) ? $address->house : '' }}" class="profile-data-input">
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Квартира</h5>
-                                    <input type="text" name="" class="profile-data-input">
+                                    <input type="text" name="flat" value="{{ isset($address->flat) ? $address->flat : '' }}" class="profile-data-input">
                                 </div>
                                 <div class="profile-data-item">
-                                    <button class="profile-address-btn">Изменить</button>
+                                    <button type="button" class="profile-address-btn">Изменить</button>
                                 </div>
                             </form>
                         </div>
@@ -193,52 +171,4 @@
             </div>
         </div>
     </main>
-
-    {{--<section class="siteSection">--}}
-        {{--<div class="container">--}}
-            {{--<h1>Личные данные</h1>--}}
-        {{--</div>--}}
-        {{--<nav class="user-room__tabs">--}}
-            {{--<ul class="user-room__tabs-list container">--}}
-                {{--<li class="user-room__tabs-item active"><a href="/user">Личные данные</a></li>--}}
-                {{--<li class="user-room__tabs-item"><a href="/user/history">История заказов</a></li>--}}
-            {{--</ul>--}}
-        {{--</nav>--}}
-        {{--<div class="container">--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-lg-6 col-lg-push-3 col-md-8 col-md-push-2 col-sm-10 col-sm-push-1">--}}
-                    {{--<div class="row">--}}
-                        {{--<div class="row user-room__form-row">--}}
-                            {{--<div class="col-sm-6">--}}
-                                {{--<label class="user-room__label" for="name">Ваше имя</label>--}}
-                                {{--<input class="user-room__input" type="text" name="name" value="{{ $user->first_name ? $user->first_name : '' }}" disabled="">--}}
-                            {{--</div>--}}
-                            {{--<div class="col-sm-6">--}}
-                                {{--<label class="user-room__label" for="last-name">Фамилия</label>--}}
-                                {{--<input class="user-room__input" type="text" name="last-name" value="{{ $user->last_name ? $user->last_name : '' }}" disabled="">--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="row user-room__form-row">--}}
-                            {{--<div class="col-sm-6">--}}
-                                {{--<label class="user-room__label" for="phone">Телефон</label>--}}
-                                {{--<input class="user-room__input" type="text" name="phone" value="{!! $user_data->phone ? $user_data->phone : '' !!}" disabled="">--}}
-                            {{--</div>--}}
-                            {{--<div class="col-sm-6">--}}
-                                {{--<label class="user-room__label" for="email">E-mail</label>--}}
-                                {{--<input class="user-room__input" type="text" name="email" value="{{ $user->email ? $user->email : '' }}" disabled="">--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="row user-room__form-row">--}}
-                            {{--<div class="col-sm-6">--}}
-                                {{--<a href="/logout" class="change-data__btn">Выйти</a>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-sm-6">--}}
-                                {{--<a href="/user/change-data" class="change-data__btn">Изменить личные данные</a>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</section>--}}
 @endsection

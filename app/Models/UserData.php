@@ -12,7 +12,7 @@ class UserData extends Model
         'user_id',
         'image_id',
         'phone',
-        'adress',
+        'address',
         'company',
         'other_data',
         'subscribe'
@@ -25,5 +25,10 @@ class UserData extends Model
     public function image()
     {
         return $this->belongsTo('App\Models\Image');
+    }
+
+    public function address()
+    {
+        return json_decode($this->address);
     }
 }

@@ -521,7 +521,29 @@ $(function() {
 
     $('[name="subscr-type"]').change(function(){
         $.post('/user/updateSubscr', {subscr: $('[name="subscr-type"]:checked').val()}, function(response){
+            if(response.success){
+                swal('Сохранено', 'Данные успешно сохранениы!', 'success');
+            }else{
+                swal('Ошибка', 'Не удалось сохранить данные', 'error');
+            }
+        });
+    });
+    $('.profile-address-btn').click(function(e){
+        e.preventDefault();
+        var data = {
+            city: $('[name="city"]').val(),
+            post_code: $('[name="post_code"]').val(),
+            street: $('[name="street"]').val(),
+            house: $('[name="house"]').val(),
+            flat: $('[name="flat"]').val()
+        };
 
+        $.post('/user/updateAddress', data, function(response){
+            if(response.success){
+                swal('Сохранено', 'Данные успешно сохранениы!', 'success');
+            }else{
+                swal('Ошибка', 'Не удалось сохранить данные', 'error');
+            }
         });
     });
 });

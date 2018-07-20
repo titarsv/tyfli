@@ -246,6 +246,11 @@ $(function() {
         };
 
         $.post('/user/updatePassword', data, function(response){
+            if(response.success){
+                swal('Сохранено', 'Данные успешно сохранениы!', 'success');
+            }else{
+                swal('Ошибка', 'Не удалось сохранить данные', 'error');
+            }
             $('.password-edit').toggleClass('unactive');
         });
     });

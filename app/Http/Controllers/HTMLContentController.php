@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\HTMLContent;
-use App\Models\Modules;
-use App\Models\Modulegallery;
-use App\Http\Requests;
 use Validator;
 
 class HTMLContentController extends Controller
@@ -142,30 +139,11 @@ class HTMLContentController extends Controller
             ->with('message-success', 'Страница ' . $content->name . ' успешно удалена.');
     }
 
-    public function show(Modules $modules, Modulegallery $gallery, $alias)
+    public function show($alias)
     {
         $content = HTMLContent::where('url_alias', $alias)->first();
 
-        if($alias == 'gallery'){
-            $all = [];
-            $cats = [];
-            foreach($gallery->all() as $photo){
-                $data = json_decode($photo->slide_data);
-                $name = $data->slide_name;
-                $cat = $data->slide_cat;
-                $all[$name] = $photo->image->url();
-                if(!isset($cats[$cat])){
-                    $cats[$cat] = [];
-                }
-                $cats[$cat][$name] = $photo->image->url();
-            }
-            return view('public.gallery')
-                ->with('all', $all)
-                ->with('cats', $cats)
-                ->with('content', $content);
-        }else{
-            return view('public.html_pages')
-                ->with('content', $content);
-        }
+        return view('public.html_pages')
+            ->with('content', $content);
     }
 }

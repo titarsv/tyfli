@@ -44,10 +44,10 @@
                     <div class="col-md-10 col-sm-10 hidden-xs top-navigation">
                         <nav class="navigation">
                             <a href="{{env('APP_URL')}}/page/delivery"><p>Доставка и Оплата</p></a>
-                            <a href="javascript:void(0);"><p>Гарантия и Возврат</p></a>
+                            <a href="{{env('APP_URL')}}/page/garantiya-i-vozvrat"><p>Гарантия и Возврат</p></a>
                             <a href="javascript:void(0);"><p>Вопросы и Ответы</p></a>
                             <a href="{{env('APP_URL')}}/reviews"><p>Отзывы</p></a>
-                            <a href="{{env('APP_URL')}}/contact"><p>Контакты</p></a>
+                            <a href="{{env('APP_URL')}}/page/contact"><p>Контакты</p></a>
                         </nav>
                         <div class="header-list-wrp">
                             <ul>
