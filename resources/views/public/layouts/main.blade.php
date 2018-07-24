@@ -3,11 +3,12 @@
 @include('public.layouts.header')
 
 <body class="{{ Request::path()=='/' ? ' home' : '' }}">
-    @include('public.layouts.header-main')
-
+@include('public.layouts.header-main')
+<main id="main-container">
     @yield('breadcrumbs')
     @yield('content')
-    @include('public.layouts.footer')
-	@include('public.layouts.footer-scripts')
+</main>
+@include('public.layouts.footer')
+@include('public.layouts.footer-scripts')
 </body>
 </html>
