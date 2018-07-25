@@ -153,11 +153,11 @@ $(function() {
   });
 
   // PRODUCT PAGE ACCORDION
-  $('.product-accordion-item').click(function() {
-    // event.preventDefault();
-    $(this).find('.aside-filter-menu-item-btn-toggle').toggleClass('filters-open');
-    $(this).next('.product-accordion-text').slideToggle(300);
-  });
+  // $('.product-accordion-item').click(function() {
+  //   // event.preventDefault();
+  //   $(this).find('.aside-filter-menu-item-btn-toggle').toggleClass('filters-open');
+  //   $(this).next('.product-accordion-text').slideToggle(300);
+  // });
 
   // INFORMATION ACCORDION
   $('.information-accordion').click(function() {
