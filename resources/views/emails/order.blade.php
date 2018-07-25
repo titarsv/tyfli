@@ -1,6 +1,6 @@
 <div class="header" style="text-align: center;">
-    <img src="{!! url('/images/logo.jpg') !!}" alt="logo"  title="Globalprom" width="224" height="36" />
-    <p style="font-size: 20px;">Новый заказ на сайте Globalprom!</p>
+    <img src="{!! url('/images/logo.png') !!}" alt="logo"  title="Globalprom" width="224" height="36" />
+    <p style="font-size: 20px;">Новый заказ на сайте Tyfli.com!</p>
 </div>
 
 <table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%">
@@ -15,7 +15,7 @@
                 <tr>
                     <td align="center" width="20%" height="150px">
                         <a href="{!! url('/product/' . $item['product']->url_alias) !!}">
-                            <img src="{!! url($item['product']->image->url()) !!}" alt="product-image" width="100px" height="100px" title="{!! $item['product']->name !!}">
+                            <img src="{!! url($item['product']->image->url('product_list')) !!}" alt="product-image" width="100px" height="100px" title="{!! $item['product']->name !!}">
                         </a>
                     </td>
                     <td align="center" width="40%" height="150px">
@@ -43,7 +43,7 @@
     <p><strong>E-mail:</strong> {!! $user['email'] !!}</p>
     <p><strong>Телефон:</strong> {!! $user['phone'] !!}</p>
 @else
-    <p style="font-size: 16px; color: #333;">Уважаемый {!! $user['name'] !!}! Благодарим Вас за заказ в интернет-магазине Globalprom! В ближайшее время с Вами свяжется наш менеджер для уточнения деталей заказа!</p>
+    <p style="font-size: 16px; color: #333;">Уважаемый {!! $user['name'] !!}! Благодарим Вас за заказ в интернет-магазине Tyfli.com! В ближайшее время с Вами свяжется наш менеджер для уточнения деталей заказа!</p>
 @endif
 
 <p style="font-size:16px; color: #333;">Информация о доставке:</p>
@@ -64,4 +64,12 @@
     <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Наличными при доставке</p>
 @elseif($order->payment == 'prepayment')
     <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Предоплата</p>
+@elseif($order->payment == 'privat')
+    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>На расчетный счет Приват Банка</p>
+@elseif($order->payment == 'nal_delivery')
+    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Наличными курьеру</p>
+@elseif($order->payment == 'nal_samovivoz')
+    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Оплата при самовывозе</p>
+@elseif($order->payment == 'nalogenniy')
+    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Оплата наложенным платежом</p>
 @endif

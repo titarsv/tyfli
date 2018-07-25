@@ -1,10 +1,10 @@
 <div class="header" style="text-align: center;">
-    <img src="{!! url('/images/logo.jpg') !!}" alt="logo" title="Globalprom" width="224" height="36" />
+    <img src="{!! url('/images/logo.png') !!}" alt="logo" title="Globalprom" width="224" height="36" />
 
     @if(!empty($email) && isset($comment))
-        <p style="font-size: 20px;">Новое сообщение на сайте Globalprom!</p>
+        <p style="font-size: 20px;">Новое сообщение на сайте Tyfli.com!</p>
     @else
-        <p style="font-size: 20px;">Поступил заказ обратного звонка на сайте Globalprom!</p>
+        <p style="font-size: 20px;">Поступил заказ обратного звонка на сайте Tyfli.com!</p>
     @endif
 
     <p style="font-size: 20px;">Имя:<b>{{ $name }}</b></p>
