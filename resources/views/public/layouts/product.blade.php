@@ -23,7 +23,11 @@
     }
 @endphp
 <div class="homepage-product-card-img-wrp">
-    <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">
+    <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"
+    @if(!empty($colors))
+        style="background-image: url({{ $colors[0]['image'] }});"
+    @endif
+    >
         @if(!empty($colors))
         <div class="slick-slider product-cart-slider-{{ $product->id }}" data-slick='{"arrows":false, "fade":true, "cssEase":"linear"}'>
             @foreach($colors as $color)

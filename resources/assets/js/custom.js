@@ -399,7 +399,7 @@ $(function() {
         $('#filters').submit();
     });
 
-    $('.hover-prod-card').mouseenter(function (e) {
+    $('.hover-prod-card').on('mouseenter, mousemove', function (e) {
         var slider = $(this).find('.slick-slider:not(.slick-initialized)');
 
         if (slider.length) {
