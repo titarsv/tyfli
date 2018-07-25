@@ -110,12 +110,11 @@ $(function() {
     var hash_parts = location.hash.replace('#', '').split('_');
     if(hash_parts.length){
         for(var i=0; i<hash_parts.length; i++){
-            var option = $('.variation-select option[value="'+hash_parts[i]+'"]');
-            option.prop('selected', true);
+            var option = $('.prod-size-item input[value="'+hash_parts[i]+'"]');
+            option.prop('checked', true);
+            option.trigger('change');
         }
-        $('.variation-select').trigger('change');
     }
-
 
     $('.btn_buy').click(function (e) {
         e.preventDefault();

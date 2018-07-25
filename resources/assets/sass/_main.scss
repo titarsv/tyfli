@@ -44,12 +44,10 @@ i{
     }
     .row{
         margin: 0;
-        height: 600px;
+        height: 550px;
+        overflow: hidden;
         @include bp(lg){
-            height: 510px;    
-        }
-        @include bp(md){
-            height: 470px;    
+            height: 430px;
         }
         @include bp(sm){
            height: initial; 
@@ -132,22 +130,27 @@ i{
 .new-for-her{
     background: url('../images/homepage-images/homepage-women-category.jpg') center; 
     z-index: 100; 
-    right: 25px;
+    right: 0;
     background-size: cover;
     @include bp(md){
-        right: 5px;
+        left: 0;
+        position: absolute;
+    }
+    @include bp(sm){
+        position: relative;
     }
 }
 .new-for-him{
     background: url('../images/homepage-images/homepage-men-category.jpg') center;
-    right: 0; 
+    left: 0;
     top: -50px;
     background-size: cover;
-    @include bp(lg){
-        top: -90px;
-    }
     @include bp(md){
-        right: 5px;
+        position: absolute;
+        right: 0;
+    }
+    @include bp(sm){
+        position: relative;
     }
 }
 

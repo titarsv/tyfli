@@ -487,4 +487,16 @@ class Products extends Model
 
         return $variations;
     }
+
+    public function popular(){
+        $popular = $this->where('stock', 1)
+            ->orderBy('rating', 'DESC')
+            ->take(12)
+            ->with('image', 'sizes', 'colors', 'related.colors', 'related.image')
+            ->get();
+
+//        dd($popular);
+
+        return $popular;
+    }
 }

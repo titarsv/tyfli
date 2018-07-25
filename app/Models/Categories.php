@@ -105,7 +105,7 @@ class Categories extends Model
 
         $products->orderBy($orderBy, $route);
         $products->groupBy('products.id');
-        $products->with(['sizes', 'colors']);
+        $products->with('image', 'sizes', 'colors', 'related.colors', 'related.image');
 
         if(!$take){
             return $products->paginate(12);

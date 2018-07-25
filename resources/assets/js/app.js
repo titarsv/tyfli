@@ -65,7 +65,7 @@ $(function() {
     });
   });
 
-  $('.fixed-up-btn').on('click', function() {
+  $('.fixed-up-btn').on('click', function(event) {
       event.preventDefault();
       $('body,html').animate({scrollTop: 0}, 1000);
       return false;

@@ -56,7 +56,11 @@
                             @endif
                         @empty
                             <div class="product-photo">
-                                <img src="/uploads/no_image.jpg" alt="">
+                                @if(empty($product->image))
+                                    <img src="/uploads/no_image.jpg" alt="">
+                                @else
+                                    <img src="{{ $product->image->url('product') }}" alt="">
+                                @endif
                             </div>
                         @endforelse
                     </div>

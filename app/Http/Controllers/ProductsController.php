@@ -463,9 +463,9 @@ class ProductsController extends Controller
      * @param $alias
      * @return mixed
      */
-    public function show($alias, Request $request)
+    public function show($alias, Request $request, Products $products)
     {
-        $product = Products::where('url_alias', $alias)->first();
+        $product = $products->where('url_alias', $alias)->first();
 
         if(empty($product)){
             abort(404);
@@ -534,14 +534,16 @@ class ProductsController extends Controller
 
         $colors = [];
 
-        if(is_object($product->colors()->first())) {
-            $colors[$product->id] = ['color' => $product->colors()->first()->value, 'slug' => $product->url_alias];
+        if($product->colors->count()) {
+            $colors[$product->id] = ['color' => $product->colors->first()->value, 'slug' => $product->url_alias];
             foreach ($product->related as $prod) {
-                if (is_object($prod->colors()->first()))
-                    $colors[$prod->id] = ['color' => $prod->colors()->first()->value, 'slug' => $prod->url_alias];
+                if ($prod->colors->count())
+                    $colors[$prod->id] = ['color' => $prod->colors->first()->value, 'slug' => $prod->url_alias];
             }
             sort($colors);
         }
+
+        $popular = $products->popular();
 
         return response(view('public.product')
             ->with('product', $product)
@@ -554,7 +556,7 @@ class ProductsController extends Controller
             ->with('brand', $product->brand())
             ->with('colors', $colors)
             ->with('sizes', $product->sizes)
-            ->with('popular', Products::where('stock', 1)->orderBy('rating', 'DESC')->take(12)->get())
+            ->with('popular', $popular)
             ->with('variations', $variations_attrs));
     }
 

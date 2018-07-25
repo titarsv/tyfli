@@ -8,7 +8,8 @@
 }
 
 .slider-item-1{
-    background: url('../images/homepage-images/banner-homepage.jpg') center top no-repeat;
+    //background: url('../images/homepage-images/banner-homepage.jpg') center top no-repeat;
+    background-position: center;
     background-size: cover;
     height: 650px;
     @include bp(lg){

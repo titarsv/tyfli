@@ -66,7 +66,7 @@ class MainController extends Controller
             );
         }elseif(in_array(substr($part, -4), ['.jpg', '.png', 'jpeg'])){
             $image = new Image();
-            return redirect($image->first()->url(), 301);
+            return redirect('/uploads/no_image.jpg', 301);
         }
 
         return abort(404);
