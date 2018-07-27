@@ -13,7 +13,7 @@
 
 Route::get('/', ['as'=>'home', 'uses'=>'MainController@index']);
 Route::get('/page/{alias}', 'HTMLContentController@show');
-Route::get('/categories/{alias}/{filters?}', 'CategoriesController@show');
+Route::get('/catalog/{alias}/{filters?}/{page?}', 'CategoriesController@show');
 Route::get('/brands', 'CategoriesController@brands');
 //Route::get('/articles', 'BlogController@showAll');
 //Route::get('/articles/{alias}', 'BlogController@showCat');
@@ -75,6 +75,8 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
     Route::post('/settings', 'SettingsController@update');
     Route::get('/delivery-and-payment', 'SettingsController@extraIndex');
     Route::post('/delivery-and-payment', 'SettingsController@extraUpdate');
+    Route::get('/seo', 'SettingsController@seoSettings');
+    Route::post('/seo', 'SettingsController@seoUpdate');
     Route::get('/delivery-and-payment/newpost-update', 'SettingsController@newpostUpdate');
     Route::post('/upload_attribute_image', 'AttributesController@upload_image');
 

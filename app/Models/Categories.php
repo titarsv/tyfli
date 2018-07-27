@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Products;
+use Illuminate\Pagination\Paginator;
 
 class Categories extends Model
 {
@@ -55,10 +56,14 @@ class Categories extends Model
         return $this->hasMany('App\Models\Categories', 'parent_id', 'id')->with('children');
     }
 
-    public function get_products($category_id, $subcategory_id, $filter, $sort, $take = false, $price = [])
+    public function get_products($category_id, $subcategory_id, $filter, $sort, $take = false, $price = [], $page = 1)
     {
         $orderBy = $sort[0];
         $route = $sort[1];
+
+        Paginator::currentPageResolver(function () use ($page) {
+            return $page;
+        });
 
         $products = Products::select('products.*');
 

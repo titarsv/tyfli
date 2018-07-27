@@ -105,6 +105,42 @@ class SettingsController extends Controller
         ]);
     }
 
+    public function seoSettings()
+    {
+        $settings = $this->settings->get_all();
+
+        $image_sizes = config('image.sizes');
+
+        return view('admin.seo_settings')
+            ->with('user', $this->user)
+            ->with('settings', $settings)
+            ->with('image_sizes', $image_sizes);
+    }
+
+    public function seoUpdate(Request $request, Settings $setting)
+    {
+        $rules = [
+            'meta_title' => 'required',
+            'meta_title' => 'required',
+            'meta_title' => 'required',
+            'meta_title' => 'required',
+        ];
+
+        $messages = [
+            'meta_title.required' => 'Поле должно быть заполнено!',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('message-error', 'Сохранение не удалось! Проверьте форму на ошибки!')
+                ->withErrors($validator);
+        }
+    }
+
     public function newpostUpdate(Newpost $newpost)
     {
         $result = $newpost->updateAll();

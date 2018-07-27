@@ -11,16 +11,16 @@
                             </label>
                             <div class="hidden-menu">
                                 <ul>
-                                    <li class="path-underline"><a href="{{env('APP_URL')}}/categories/dlya-zhenschin">Для женщин</a></li>
-                                    <li class="path-underline"><a href="{{env('APP_URL')}}/categories/dlya-muzhchin">Для мужчин</a></li>
-                                    <li class="path-underline"><a href="{{env('APP_URL')}}/categories/outlet">Outlet</a></li>
-                                    <li class="path-underline"><a href="{{env('APP_URL')}}/categories/uhod">Уход</a></li>
+                                    <li class="path-underline"><a href="{{env('APP_URL')}}/catalog/dlya-zhenschin">Для женщин</a></li>
+                                    <li class="path-underline"><a href="{{env('APP_URL')}}/catalog/dlya-muzhchin">Для мужчин</a></li>
+                                    <li class="path-underline"><a href="{{env('APP_URL')}}/catalog/outlet">Outlet</a></li>
+                                    <li class="path-underline"><a href="{{env('APP_URL')}}/catalog/uhod">Уход</a></li>
                                 </ul>
                                 <ul class="sections-links">
-                                    <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv">Женская обувь</a> </li>
-                                    <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv">Мужская обувь</a></li>
-                                    <li><a href="{{env('APP_URL')}}/categories/zhenskie-aksessuary">Аксессуары</a></li>
-                                    <li><a href="{{env('APP_URL')}}/categories/uhod">Уход</a></li>
+                                    <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv">Женская обувь</a> </li>
+                                    <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv">Мужская обувь</a></li>
+                                    <li><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary">Аксессуары</a></li>
+                                    <li><a href="{{env('APP_URL')}}/catalog/uhod">Уход</a></li>
                                     <li><a href="{{env('APP_URL')}}/brands">Бренды</a></li>
                                 </ul>
                             </div>
@@ -67,10 +67,10 @@
                     <div class="col-md-2 hidden-sm"></div>
                     <div class="col-md-10 col-sm-12 top-menu-container">
                         <ul class="top-menu">
-                            <li><a href="{{env('APP_URL')}}/categories/dlya-zhenschin" class="js-toggle" aria-label="Open Navigation" data-toggle=".women-catalog">Для женщин</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/dlya-muzhchin" class="js-toggle" aria-label="Open Navigation" data-toggle=".man-catalog">Для мужчин</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet" class="js-toggle" aria-label="Open Navigation" data-toggle=".outlet-catalog">Outlet</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/uhod" class="js-toggle" aria-label="Open Navigation" data-toggle=".care-catalog">Уход</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/dlya-zhenschin" class="js-toggle" aria-label="Open Navigation" data-toggle=".women-catalog">Для женщин</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/dlya-muzhchin" class="js-toggle" aria-label="Open Navigation" data-toggle=".man-catalog">Для мужчин</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet" class="js-toggle" aria-label="Open Navigation" data-toggle=".outlet-catalog">Outlet</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/uhod" class="js-toggle" aria-label="Open Navigation" data-toggle=".care-catalog">Уход</a></li>
                             <li><a href="{{env('APP_URL')}}/brands">Бренды</a></li>
                         </ul>
                         <div class="top-menu-functional">
@@ -132,30 +132,30 @@
                     <div class="col-md-5 top-menu-catalog">
                         <ul class="top-menu-catalog-section">
                             <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[8][value][113]=on" class="top-menu-catalog-link">New collection</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[1][value][1]=on">Слиперы</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[1][value][2]=on">Шлепанцы</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[1][value][3]=on">Балетки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[1][value][4]=on">Ботильоны</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[1][value][5]=on">Ботинки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[1][value][6]=on">Ботфорты</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[1][value][7]=on">Босоножки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[1][value][8]=on">Кеды</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv?filter_attributes[8][value][111]=on" class="top-menu-catalog-sale">Распродажа</a></li>
-                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv" class="top-menu-catalog-link">Смотреть все</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[8][value][113]=on" class="top-menu-catalog-link">New collection</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[1][value][1]=on">Слиперы</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[1][value][2]=on">Шлепанцы</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[1][value][3]=on">Балетки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[1][value][4]=on">Ботильоны</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[1][value][5]=on">Ботинки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[1][value][6]=on">Ботфорты</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[1][value][7]=on">Босоножки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[1][value][8]=on">Кеды</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv?filter_attributes[8][value][111]=on" class="top-menu-catalog-sale">Распродажа</a></li>
+                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv" class="top-menu-catalog-link">Смотреть все</a></li>
                         </ul>
                         <ul class="top-menu-catalog-section">
                             <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskie-aksessuary?filter_attributes[1][value][11]=on">Сумки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskie-aksessuary?filter_attributes[1][value][12]=on">Рюкзаки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskie-aksessuary?filter_attributes[1][value][13]=on">Клатчи</a></li>
-                            <li  class="margin-catalog-link"><a href="{{env('APP_URL')}}/categories/zhenskie-aksessuary?filter_attributes[8][value][113]=on">New collection</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/zhenskie-aksessuary?filter_attributes[8][value][111]=on" class="top-menu-catalog-link">Распродажа</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary?filter_attributes[1][value][11]=on">Сумки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary?filter_attributes[1][value][12]=on">Рюкзаки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary?filter_attributes[1][value][13]=on">Клатчи</a></li>
+                            <li  class="margin-catalog-link"><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary?filter_attributes[8][value][113]=on">New collection</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary?filter_attributes[8][value][111]=on" class="top-menu-catalog-link">Распродажа</a></li>
                         </ul>
                         <ul class="top-menu-catalog-section">
                             <li><h5 class="top-menu-catalog-title"></h5></li>
-                            <li><a href="{{env('APP_URL')}}/categories/dlya-zhenschin?filter_attributes[8][value][112]=on">Большие размеры</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/dlya-zhenschin?filter_attributes[8][value][114]=on" class="js-hover-toggle" aria-label="Open Navigation" data-toggle="img-1">Bestsellers</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/dlya-zhenschin?filter_attributes[8][value][112]=on">Большие размеры</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/dlya-zhenschin?filter_attributes[8][value][114]=on" class="js-hover-toggle" aria-label="Open Navigation" data-toggle="img-1">Bestsellers</a></li>
                         </ul>
                     </div>
                     <div class="col-md-5">
@@ -174,30 +174,30 @@
                     <div class="col-md-5 top-menu-catalog">
                         <ul class="top-menu-catalog-section">
                             <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[8][value][113]=on" class="top-menu-catalog-link">New collection</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[1][value][1]=on">Слиперы</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[1][value][2]=on">Шлепанцы</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[1][value][3]=on">Балетки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[1][value][4]=on">Ботильоны</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[1][value][5]=on">Ботинки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[1][value][6]=on">Ботфорты</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[1][value][7]=on">Босоножки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[1][value][8]=on">Кеды</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv?filter_attributes[8][value][111]=on" class="top-menu-catalog-sale">Распродажа</a></li>
-                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv" class="top-menu-catalog-link">Смотреть все</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[8][value][113]=on" class="top-menu-catalog-link">New collection</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[1][value][1]=on">Слиперы</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[1][value][2]=on">Шлепанцы</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[1][value][3]=on">Балетки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[1][value][4]=on">Ботильоны</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[1][value][5]=on">Ботинки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[1][value][6]=on">Ботфорты</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[1][value][7]=on">Босоножки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[1][value][8]=on">Кеды</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv?filter_attributes[8][value][111]=on" class="top-menu-catalog-sale">Распродажа</a></li>
+                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv" class="top-menu-catalog-link">Смотреть все</a></li>
                         </ul>
                         <ul class="top-menu-catalog-section">
                             <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskie-aksessuary?filter_attributes[1][value][11]=on">Сумки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskie-aksessuary?filter_attributes[1][value][12]=on">Рюкзаки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskie-aksessuary?filter_attributes[1][value][13]=on">Клатчи</a></li>
-                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/categories/muzhskie-aksessuary?filter_attributes[8][value][113]=on">New collection</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/muzhskie-aksessuary?filter_attributes[8][value][111]=on" class="top-menu-catalog-link">Распродажа</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskie-aksessuary?filter_attributes[1][value][11]=on">Сумки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskie-aksessuary?filter_attributes[1][value][12]=on">Рюкзаки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskie-aksessuary?filter_attributes[1][value][13]=on">Клатчи</a></li>
+                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/catalog/muzhskie-aksessuary?filter_attributes[8][value][113]=on">New collection</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/muzhskie-aksessuary?filter_attributes[8][value][111]=on" class="top-menu-catalog-link">Распродажа</a></li>
                         </ul>
                         <ul class="top-menu-catalog-section">
                             <li><h5 class="top-menu-catalog-title"></h5></li>
-                            <li><a href="{{env('APP_URL')}}/categories/dlya-muzhchin?filter_attributes[8][value][112]=on">Большие размеры</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/dlya-muzhchin?filter_attributes[8][value][114]=on" class="js-hover-toggle" aria-label="Open Navigation" data-toggle="img-1">Bestsellers</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/dlya-muzhchin?filter_attributes[8][value][112]=on">Большие размеры</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/dlya-muzhchin?filter_attributes[8][value][114]=on" class="js-hover-toggle" aria-label="Open Navigation" data-toggle="img-1">Bestsellers</a></li>
                         </ul>
                     </div>
                     <div class="col-md-5">
@@ -216,23 +216,23 @@
                     <div class="col-md-5 top-menu-catalog">
                         <ul class="top-menu-catalog-section">
                             <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-obuv?filter_attributes[1][value][1]=on">Слиперы</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-obuv?filter_attributes[1][value][2]=on">Шлепанцы</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-obuv?filter_attributes[1][value][3]=on">Балетки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-obuv?filter_attributes[1][value][4]=on">Ботильоны</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-obuv?filter_attributes[1][value][5]=on">Ботинки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-obuv?filter_attributes[1][value][6]=on">Ботфорты</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-obuv?filter_attributes[1][value][7]=on">Босоножки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-obuv?filter_attributes[1][value][8]=on">Кеды</a></li>
-                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/categories/outlet-obuv" class="top-menu-catalog-link">Смотреть все</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-obuv?filter_attributes[1][value][1]=on">Слиперы</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-obuv?filter_attributes[1][value][2]=on">Шлепанцы</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-obuv?filter_attributes[1][value][3]=on">Балетки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-obuv?filter_attributes[1][value][4]=on">Ботильоны</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-obuv?filter_attributes[1][value][5]=on">Ботинки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-obuv?filter_attributes[1][value][6]=on">Ботфорты</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-obuv?filter_attributes[1][value][7]=on">Босоножки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-obuv?filter_attributes[1][value][8]=on">Кеды</a></li>
+                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/catalog/outlet-obuv" class="top-menu-catalog-link">Смотреть все</a></li>
                         </ul>
                         <ul class="top-menu-catalog-section">
                             <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-aksessuary?filter_attributes[1][value][11]=on">Сумки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-aksessuary?filter_attributes[1][value][12]=on">Рюкзаки</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-aksessuary?filter_attributes[1][value][13]=on">Клатчи</a></li>
-                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/categories/outlet-aksessuary?filter_attributes[8][value][113]=on">New collection</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/outlet-aksessuary?filter_attributes[8][value][111]=on" class="top-menu-catalog-link">Распродажа</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-aksessuary?filter_attributes[1][value][11]=on">Сумки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-aksessuary?filter_attributes[1][value][12]=on">Рюкзаки</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-aksessuary?filter_attributes[1][value][13]=on">Клатчи</a></li>
+                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/catalog/outlet-aksessuary?filter_attributes[8][value][113]=on">New collection</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/outlet-aksessuary?filter_attributes[8][value][111]=on" class="top-menu-catalog-link">Распродажа</a></li>
                         </ul>
                     </div>
                 </div>
@@ -253,11 +253,11 @@
                     <div class="col-md-5 top-menu-catalog">
                         <ul class="top-menu-catalog-section">
                             <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Вид товара</h5></li>
-                            <li><a href="{{env('APP_URL')}}/categories/uhod?filter_attributes[1][value][107]=on">Аэрозоль для обуви</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/uhod?filter_attributes[1][value][108]=on">Крем для обуви</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/uhod?filter_attributes[1][value][109]=on">Щетка</a></li>
-                            <li><a href="{{env('APP_URL')}}/categories/uhod?filter_attributes[1][value][110]=on">Дезодорант</a></li>
-                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/categories/uhod" class="top-menu-catalog-link">Смотреть все</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/uhod?filter_attributes[1][value][107]=on">Аэрозоль для обуви</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/uhod?filter_attributes[1][value][108]=on">Крем для обуви</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/uhod?filter_attributes[1][value][109]=on">Щетка</a></li>
+                            <li><a href="{{env('APP_URL')}}/catalog/uhod?filter_attributes[1][value][110]=on">Дезодорант</a></li>
+                            <li class="margin-catalog-link"><a href="{{env('APP_URL')}}/catalog/uhod" class="top-menu-catalog-link">Смотреть все</a></li>
                         </ul>
                     </div>
                 </div>

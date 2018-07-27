@@ -49,7 +49,7 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
                     $alias = $category['url_alias'];
                 }
             }
-            $breadcrumbs->push($name, url('/categories/' . $alias));
+            $breadcrumbs->push($name, url('/catalog/' . $alias));
         }
     }elseif(is_object($category)){
         foreach (array_reverse($category->get_parent_categories()) as $category) {
@@ -62,7 +62,7 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
                     $alias = $category['url_alias'];
                 }
             }
-            $breadcrumbs->push($name, url('/categories/' . $alias));
+            $breadcrumbs->push($name, url('/catalog/' . $alias));
         }
     }else{
         if (!empty($category)) {
@@ -74,7 +74,7 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
                 $alias = $category['url_alias'];
             }
         }
-        $breadcrumbs->push($name, url('/categories/' . $alias));
+        $breadcrumbs->push($name, url('/catalog/' . $alias));
     }
 });
 

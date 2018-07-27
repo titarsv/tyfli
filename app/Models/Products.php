@@ -178,13 +178,13 @@ class Products extends Model
         foreach ($product->get_attributes as $attribute) {
             $attribute_info = Attribute::find($attribute->attribute_id);
 
-            if($attribute_info->enable_image_overlay) {
-                $image = AttributeValues::find($attribute->attribute_value_id);
-
-                $overlay[$attribute->attribute_id]['images'][] = $image->image_href;
-                $overlay[$attribute->attribute_id]['settings'] = unserialize($attribute_info->image_overlay_settings);
-
-            }
+//            if($attribute_info->enable_image_overlay) {
+//                $image = AttributeValues::find($attribute->attribute_value_id);
+//
+//                $overlay[$attribute->attribute_id]['images'][] = $image->image_href;
+//                $overlay[$attribute->attribute_id]['settings'] = unserialize($attribute_info->image_overlay_settings);
+//
+//            }
         }
 
         if (!empty($overlay)) {

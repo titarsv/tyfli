@@ -396,7 +396,10 @@ $(function() {
     });
 
     $('#filters input').change(function(){
-        $('#filters').submit();
+        var url = $(this).data('url')
+        if(typeof url !== 'undefined' && location.pathname != url){
+            location = url;
+        }
     });
 
     $('.hover-prod-card').on('mouseenter, mousemove', function (e) {

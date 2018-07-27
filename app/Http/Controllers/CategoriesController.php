@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Models\Settings;
 use App\Models\Image;
+use App\Models\Filter;
 use App\Models\Products;
 use App\Http\Requests;
 use Validator;
@@ -168,9 +169,14 @@ class CategoriesController extends Controller
      * @param string $filters
      * @return mixed
      */
-    public function show(Request $request, $alias = null, $filters = '')
+    public function show(Request $request, Filter $filter_cls, $alias = null, $filters = '', $page = 'page1')
     {
         $categories = new Categories;
+
+        if(strpos($filters, 'page') === 0 && $page == 'page1'){
+            $page = $filters;
+            $filters = '';
+        }
 
         if($request->page == 1){
             $except = ['page'];
@@ -182,6 +188,8 @@ class CategoriesController extends Controller
                 'CategoriesController@show', ['request' => $request->except($except), 'alias' => $alias, 'filters' => $filters], 301
             );
         }
+
+        $request->page = (int) str_replace('page', '', $page);
 
         $sort_array = [
             [
@@ -212,8 +220,6 @@ class CategoriesController extends Controller
             $take = $request->limit;
         }
 
-        $filter = $this->getFilter($filters);
-
         $current_sort = $request->sort ? explode('-', $request->sort) : ['price', 'asc'];
 		if(count($current_sort) == 1)
             $current_sort[1] = 'ASC';
@@ -227,6 +233,11 @@ class CategoriesController extends Controller
             abort(404);
 
         $category_id = $category->id;
+        $filter_cls->setCategory($category_id)->setRequest($request->toArray())->setFilterPath($filters);
+        $filter = $filter_cls->getFilter();
+//        $price = $filter_cls->getPrice();
+//        dd($price);
+
         $min_price = $categories->min_price($category_id);
         $max_price = $categories->max_price($category_id);
 
@@ -240,7 +251,16 @@ class CategoriesController extends Controller
             $price = explode('-', $request->price);
         }
 
-        $products = $categories->get_products($category_id, $subcategory_id, $filter, $current_sort, $take, $price);
+        if(!empty($filters) && strpos($filters, 'price-') !== false){
+            $filter_parts = explode('_', $filters);
+            foreach($filter_parts as $part){
+                if(strpos($part, 'price-') !== false){
+                    $price = explode('-', str_replace('price-', '', $part));
+                }
+            }
+        }
+
+        $products = $categories->get_products($category_id, $subcategory_id, $filter, $current_sort, $take, $price, $request->page);
 
         $product_attributes = [];
         $product_attributes_values = [];
@@ -254,7 +274,7 @@ class CategoriesController extends Controller
 
         $product_attributes_values = array_unique($product_attributes_values);
 
-        $product_attributes = $categories->find($category_id)->attributes;
+        $product_attributes = $categories->find($category_id)->attributes()->with('values')->get();
 
         $attrs = [];
 
@@ -271,7 +291,8 @@ class CategoriesController extends Controller
                     $values[$val->id] = [
                         'name' => $val->name,
                         'value' => $val->value,
-                        'checked' => true
+                        'checked' => true,
+                        'url' => $this->getFilterUrl($alias, $filter, $val, $product_attributes, $price)
                     ];
                 }
             }else{
@@ -283,7 +304,8 @@ class CategoriesController extends Controller
                             'name' => $attribute_value->name,
                             'value' => $attribute_value->value,
                             'checked' => false,
-                            'count' => $count
+                            'count' => $count,
+                            'url' => $this->getFilterUrl($alias, $filter, $attribute_value, $product_attributes, $price)
                         ];
                     }
                 }
@@ -292,6 +314,7 @@ class CategoriesController extends Controller
             if(count($values)){
                 $attrs[$attribute->id] = [
                     'name' => $attribute->name.(!empty($attribute->unit) ? ', '.$attribute->unit : ''),
+                    'slug' => $attribute->slug,
                     'values' => $values
                 ];
             }
@@ -337,6 +360,58 @@ class CategoriesController extends Controller
             ->with('category_id', $category_id);
     }
 
+    /**
+     * Генерация ЧПУ URL для фильтров
+     *
+     * @param $alias
+     * @param $filter
+     * @param $attribute_value
+     * @param $product_attributes
+     * @return string
+     */
+    protected function getFilterUrl($alias, $filter, $attribute_value, $product_attributes, $price){
+        $url = '/'.$alias;
+        $search = '';
+        if(isset($filter[$attribute_value->attribute_id]) && in_array($attribute_value->id, $filter[$attribute_value->attribute_id])){
+            unset($filter[$attribute_value->attribute_id][array_search($attribute_value->id,$filter[$attribute_value->attribute_id])]);
+        }else{
+            $filter[$attribute_value->attribute_id][] = $attribute_value->id;
+        }
+
+        asort($filter);
+
+        foreach ($filter as $attr_id => $values){
+            if(!empty($values)){
+                asort($values);
+                $attr = $product_attributes->find($attr_id);
+                if(!empty($search)){
+                    $search .= '_';
+                }
+                $search .= str_replace(array('#', '-', '_', '?'), '', $attr->slug);
+                foreach ($values as $value_id){
+                    $value = $attr->values->find($value_id);
+                    $search .= '-'.str_replace(array('#', '-', '_', '?'), '', $value->value);
+                }
+            }
+        }
+
+        if(!empty($search)){
+            $url .= '/'.$search;
+        }
+
+        return $url;
+    }
+
+    /**
+     * Генерация ценовых диапазонов
+     *
+     * @param $min_price
+     * @param $max_price
+     * @param $price
+     * @param $category_id
+     * @param $attr_filter
+     * @return array
+     */
     protected function getPriceRanges($min_price, $max_price, $price, $category_id, $attr_filter){
         $values = [];
         $categories = new Categories;
@@ -367,7 +442,8 @@ class CategoriesController extends Controller
                 if($fprice == $price){
                     $values[$id] = [
                         'name' => $size,
-                        'checked' => true
+                        'checked' => true,
+                        'url' => ''
                     ];
                 }
             }else{
@@ -376,7 +452,8 @@ class CategoriesController extends Controller
                     $values[$id] = [
                         'name' => $size,
                         'checked' => false,
-                        'count' => $count
+                        'count' => $count,
+                        'url' => ''
                     ];
                 }
             }
@@ -385,6 +462,19 @@ class CategoriesController extends Controller
         return $values;
     }
 
+    /**
+     * Генерация ЧПУ URL для фильтра по цене
+     */
+    protected function getPriceFilterUrl(){
+
+    }
+
+    /**
+     * Получение структурированного фиьтра
+     *
+     * @param $filters
+     * @return array
+     */
     protected function getFilter($filters){
         $filter = [];
         $attr = new Attribute();
@@ -405,9 +495,38 @@ class CategoriesController extends Controller
             }
         }elseif(!empty($filters)){
             $filter = $this->prepared_filters($filters);
+            $filter = $this->parseValuesIds($filter);
         }
 
         return $filter;
+    }
+
+    /**
+     * Получение ID фильтров по их слагу
+     *
+     * @param $filter
+     * @return array
+     */
+    protected function parseValuesIds($filter){
+        $new_filter = [];
+        $attr = new Attribute();
+        foreach ($filter as $attr_slug => $values){
+            if($attr_slug != 'price') {
+                $attribute = $attr->where('slug', $attr_slug)->first();
+                if ($attribute !== null) {
+                    foreach ($values as $value_slug) {
+                        if ($attribute->name == 'Цвет') {
+                            $value_slug = '#' . $value_slug;
+                        }
+                        $val = $attribute->values()->where('value', $value_slug)->first();
+                        if ($val !== null) {
+                            $new_filter[$attribute->id][] = $val->id;
+                        }
+                    }
+                }
+            }
+        }
+        return $new_filter;
     }
 
     protected function getFiltersForRange($attribute_value, $all_values){

@@ -74,7 +74,7 @@ class XMLSitemap extends Command
         }
         foreach (Category::where('status', 1)->get() as $result) {
             $row  = $xmlbase->addChild("url");
-            $row->addChild("loc",$site_url.'/categories/'.$result->url_alias);
+            $row->addChild("loc",$site_url.'/catalog/'.$result->url_alias);
             $row->addChild("lastmod",$result->created_at->format("Y-m-d\TH:i:sP"));
             $row->addChild("changefreq","monthly");
             $row->addChild("priority","0.9");

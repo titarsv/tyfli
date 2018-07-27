@@ -36,6 +36,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 text-right control-label">Слаг</label>
+                                <div class="form-element col-sm-10">
+                                    <input type="text" data-translit="input" class="form-control" name="slug" value="{!! old('slug') !!}" />
+                                    @if($errors->has('slug'))
+                                        <p class="warning" role="alert">{!! $errors->first('slug',':message') !!}</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                         @if($errors->has('values'))
                             <p class="warning" role="alert">{!! $errors->first('values',':message') !!}</p>
                         @endif

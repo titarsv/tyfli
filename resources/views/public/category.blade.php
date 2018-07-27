@@ -91,8 +91,10 @@
                                                                            name="filter_attributes[{!! $key !!}][value][{!! $i !!}]"
                                                                            data-attribute="{{ $key }}"
                                                                            data-value="{{ $i }}"
+                                                                           data-url="/catalog{{ $attribute_value['url'] }}"
                                                                            id="product-filter-{!! $key !!}__check-{!! $i !!}"
                                                                            class="checkbox"
+                                                                           value=""
                                                                            @if(isset($filter[$key]) && in_array($i, $filter[$key]))
                                                                            checked
                                                                            @endif>
@@ -115,6 +117,7 @@
                                                                            name="filter_attributes[{!! $key !!}][value][{!! $i !!}]"
                                                                            data-attribute="{{ $key }}"
                                                                            data-value="{{ $i }}"
+                                                                           data-url="/catalog{{ $attribute_value['url'] }}"
                                                                            id="product-filter-{!! $key !!}__check-{!! $i !!}"
                                                                            class="checkbox"
                                                                            @if(isset($filter[$key]) && in_array($i, $filter[$key]))
@@ -191,10 +194,10 @@
                         <div class="visible-xs-inline-block col-xs-12">
                             <p class="sections-links-title">Разделы</p>
                             <ul class="sections-links">
-                                <li><a href="{{env('APP_URL')}}/categories/zhenskaya-obuv">Женская обувь</a> </li>
-                                <li><a href="{{env('APP_URL')}}/categories/muzhskaya-obuv">Мужская обувь</a></li>
-                                <li><a href="{{env('APP_URL')}}/categories/zhenskie-aksessuary">Аксессуары</a></li>
-                                <li><a href="{{env('APP_URL')}}/categories/uhod">Уход</a></li>
+                                <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv">Женская обувь</a> </li>
+                                <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv">Мужская обувь</a></li>
+                                <li><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary">Аксессуары</a></li>
+                                <li><a href="{{env('APP_URL')}}/catalog/uhod">Уход</a></li>
                                 <li><a href="{{env('APP_URL')}}/brands">Бренды</a></li>
                             </ul>
                         </div>

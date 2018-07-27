@@ -9,8 +9,9 @@ class Attribute extends Model
 {
     protected $fillable = [
         'name',
-        'enable_image_overlay',
-        'image_overlay_settings'
+        'slug'
+//        'enable_image_overlay',
+//        'image_overlay_settings'
     ];
 
     use SoftDeletes;

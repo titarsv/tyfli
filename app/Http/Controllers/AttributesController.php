@@ -15,7 +15,7 @@ class AttributesController extends Controller
     private $rules = [
         'name' => 'required',
         'values' => 'required',
-        'max_quantity' => 'required_if:enable_image_overlay,1|numeric'
+//        'max_quantity' => 'required_if:enable_image_overlay,1|numeric'
     ];
 
     private $messages = [
@@ -92,7 +92,7 @@ class AttributesController extends Controller
                 ->withErrors($validator);
         }
 
-        $attributes->fill($request->only(['name']));
+        $attributes->fill($request->only(['name', 'slug']));
         //$overlay_settings = null;
 
 //        if($request->enable_image_overlay){
@@ -134,20 +134,20 @@ class AttributesController extends Controller
     public function edit($id)
     {
         $attribute = Attribute::find($id);
-        $empty_settings = [
-            'coordinates'   => '',
-            'image_percent' => 0,
-            'offset_x'  => 0,
-            'offset_y'  => 0,
-            'max_quantity' => 1
-        ];
+//        $empty_settings = [
+//            'coordinates'   => '',
+//            'image_percent' => 0,
+//            'offset_x'  => 0,
+//            'offset_y'  => 0,
+//            'max_quantity' => 1
+//        ];
 
-        $overlay_settings = $attribute->image_overlay_settings ? unserialize($attribute->image_overlay_settings) : $empty_settings;
+//        $overlay_settings = $attribute->image_overlay_settings ? unserialize($attribute->image_overlay_settings) : $empty_settings;
 
         return view('admin.attributes.edit')
-            ->with('attribute', $attribute)
+            ->with('attribute', $attribute);
             //->with('overlay_position', $this->overlay_position)
-            ->with('overlay_settings', $overlay_settings);
+//            ->with('overlay_settings', $overlay_settings);
     }
 
     /**
@@ -174,7 +174,7 @@ class AttributesController extends Controller
         }
 
         $attribute = Attribute::find($id);
-        $attribute->fill($request->only(['name']));
+        $attribute->fill($request->only(['name', 'slug']));
 //        $overlay_settings = null;
 
 //        if($request->enable_image_overlay){

@@ -47,7 +47,7 @@
                          data-slick='{"slidesToShow": 6, "responsive":[{"breakpoint":1200,"settings":{"slidesToShow": 4}},{"breakpoint":768,"settings":{"slidesToShow": 3, "arrows": false}},{"breakpoint":480,"settings":{"slidesToShow": 2, "arrows": false}}]}'>
                         @foreach($brands as $brand)
                             <div class="slider-brand-item">
-                                <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[6][value][{{ $brand->id }}]=on">
+                                <a href="{{env('APP_URL')}}/catalog/tovary?filter_attributes[6][value][{{ $brand->id }}]=on">
                                     <p>{{ $brand->name }}</p>
                                 </a>
                             </div>
@@ -65,7 +65,7 @@
     <section class="main-content">
         <div class="container-fluid">
             <div class="row main-content-wrp">
-                <a href="{{env('APP_URL')}}/categories/dlya-zhenschin?filter_attributes[8][value][113]=on">
+                <a href="{{env('APP_URL')}}/catalog/dlya-zhenschin?filter_attributes[8][value][113]=on">
                     <div class="col-md-6 col-sm-5 col-xs-12">
                         <div class="new-post new-for-her">
                             <div>
@@ -95,7 +95,7 @@
         <div class="container-fluid">
             <div class="row main-content-wrp">
                 <div class="col-md-6 col-md-push-6 col-sm-5 col-sm-push-7 col-xs-12">
-                    <a href="{{env('APP_URL')}}/categories/dlya-muzhchin?filter_attributes[8][value][113]=on">
+                    <a href="{{env('APP_URL')}}/catalog/dlya-muzhchin?filter_attributes[8][value][113]=on">
                         <div class="new-post new-for-him">
                             <div>
                                 <h4>Новинки для него</h4>
@@ -134,7 +134,7 @@
         <div class="container">
             <div class="row bag-category-section">
                 <div class="col-md-8 col-sm-12 col-xs-12 bag-category-section-img">
-                    <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[1][value][11]=on">
+                    <a href="{{env('APP_URL')}}/catalog/tovary?filter_attributes[1][value][11]=on">
                         <div class="bag-category-img">
                             <div>
                                 <h4>Новинки сумки</h4>
@@ -150,7 +150,7 @@
                             <p>Обувь</p>
                             <span>БОЛЬШИХ размеров</span>
                         </div>
-                        <a href="{{env('APP_URL')}}/categories/tovary?filter_attributes[8][value][112]=on"
+                        <a href="{{env('APP_URL')}}/catalog/tovary?filter_attributes[8][value][112]=on"
                            class="sales-banner-btn bag-category-banner-btn">
                             <p>Смотреть</p>
                         </a>

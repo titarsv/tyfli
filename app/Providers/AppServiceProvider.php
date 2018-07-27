@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Review;
 use App\Models\Order;
 use App\Models\PersonalSale;
+use App\Models\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -131,6 +132,10 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('admin.layouts.sidebar', function($view) {
             $view->with('new_reviews', Review::where('new', 1)->get());
+        });
+
+        view()->composer('public.layouts.pagination', function($view) {
+            $view->with('cp', new Paginator());
         });
 
     }

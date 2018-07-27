@@ -18,7 +18,7 @@
                     <li><a href="{{env('APP_URL')}}/news"><p>Новости и Акции</p> </a></li>
                     <li><a href="{{env('APP_URL')}}/news"><p>Статьи</p></a></li>
                     <li><a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>Вопросы и ответы</p></a></li>
-                    <li><a href="{{env('APP_URL')}}/categories/uhod"><p>Уход за обувью</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/catalog/uhod"><p>Уход за обувью</p></a></li>
                     <li><a href="{{env('APP_URL')}}/page/bonusnyya-programma"><p>Бонусныя программа</p></a></li>
                     <li><a href="{{env('APP_URL')}}/page/otkrytye-vakansii"><p>Открытые вакансии</p></a></li>
                     <li><a href="{{env('APP_URL')}}/page/drop-shipping"><p>Drop Shipping</p></a></li>

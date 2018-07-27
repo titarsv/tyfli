@@ -26,7 +26,7 @@
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading text-right">
-                <a href="/admin/categories/create" class="btn">Добавить новую</a>
+                <a href="/admin/catalog/create" class="btn">Добавить новую</a>
             </div>
             <div class="table table-responsive">
                 <table class="table table-hover">
@@ -54,7 +54,7 @@
                                     </span>
                                 </td>
                                 <td class="actions" align="center">
-                                    <a class="btn btn-primary" href="/admin/categories/edit/{!! $category->id !!}">
+                                    <a class="btn btn-primary" href="/admin/catalog/edit/{!! $category->id !!}">
                                         <i class="glyphicon glyphicon-edit"></i>
                                     </a>
                                     <button type="button" class="btn btn-danger" onclick="confirmCategoriesDelete('{!! $category->id !!}', '{!! $category->name !!}')">

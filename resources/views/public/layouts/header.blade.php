@@ -86,7 +86,7 @@
     <script type="application/ld+json">
     {
         "@context": "http://schema.org",
-        "@type": "HardwareStore",
+        "@type": "Store",
         "name": "GlobalProm",
         "address": {
             "@type": "PostalAddress",
@@ -95,7 +95,7 @@
             "addressRegion": "Харьковская",
             "postalCode": "61023"
         },
-        "image": "http://globalprom.com.ua/images/logo.jpg",
+        "logo": "http://globalprom.com.ua/images/logo.jpg",
         "telePhone": "050-697-21-61",
         "faxNumber": "057-751-70-59",
         "url": "globalprom.com.ua",
