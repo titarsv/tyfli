@@ -80,6 +80,12 @@ $(function() {
     e.stopPropagation();
     hideOnClickOutside($(this).data('toggle'));
   });
+  $('.header').on('mouseleave', function(){
+      $('.top-menu-catalog-wrp').removeClass('is-open');
+  });
+  $('.top-navigation-wrp').on('mouseenter', function(){
+      $('.top-menu-catalog-wrp').removeClass('is-open');
+  });
   // $('.top-menu-catalog-wrp').mouseout(function (e) {
   //   $(this).removeClass('is-open');
   // });

@@ -6,7 +6,7 @@
         @else
             {!! $category->meta_title or $category['meta_title'] !!}
         @endif
-        @if($paginator->currentPage() > 1) Страница № {!! $paginator->currentPage() !!}@endif
+        @if(!empty($products) && $products->currentPage() > 1) Страница № {!! $products->currentPage() !!}@endif
     </title>
 
     @if(empty($category->meta_description))
@@ -22,11 +22,11 @@
     @if(!empty($category->robots))
         <meta name="robots" content="{!! $category->robots !!}">
     @endif
-    @if($paginator->currentPage() > 1)
-        <link rel="prev" href="{!! $paginator->previousPageUrl() !!}">
+    @if(!empty($products) && $products->currentPage() > 1)
+        <link rel="prev" href="{!! $products->previousPageUrl() !!}">
     @endif
-    @if($paginator->currentPage() < $paginator->lastPage())
-        <link rel="next" href="{!! $paginator->nextPageUrl() !!}">
+    @if(!empty($products) && $products->currentPage() < $products->lastPage())
+        <link rel="next" href="{!! $products->nextPageUrl() !!}">
     @endif
 @endsection
 
@@ -57,6 +57,7 @@
                                                            value="{{ $i }}"
                                                            data-attribute="price"
                                                            data-value="{{ $i }}"
+                                                           data-url="/catalog{{ $attribute_value['url'] }}"
                                                            id="product-filter-price__check-{!! str_replace(['<', '>', '-'], '', $i) !!}"
                                                            @if($attribute_value['checked'])
                                                            checked
@@ -95,7 +96,7 @@
                                                                            id="product-filter-{!! $key !!}__check-{!! $i !!}"
                                                                            class="checkbox"
                                                                            value=""
-                                                                           @if(isset($filter[$key]) && in_array($i, $filter[$key]))
+                                                                           @if($attribute_value['checked'])
                                                                            checked
                                                                            @endif>
                                                                     <label for="product-filter-{!! $key !!}__check-{!! $i !!}" class="color-sample" style="background-color: {!! $attribute_value['value'] !!}"></label>
@@ -120,7 +121,7 @@
                                                                            data-url="/catalog{{ $attribute_value['url'] }}"
                                                                            id="product-filter-{!! $key !!}__check-{!! $i !!}"
                                                                            class="checkbox"
-                                                                           @if(isset($filter[$key]) && in_array($i, $filter[$key]))
+                                                                           @if($attribute_value['checked'])
                                                                            checked
                                                                            @endif>
                                                                     <span class="checkbox-custom"></span>
@@ -165,26 +166,33 @@
                                 </div>
                             </div>
                         </div>
-                        @forelse($products as $key => $product)
-                            <div class="col-lg-4 col-xs-6">
-                                <div class="grid-product-card card-margin">
-                                    @include('public.layouts.product', ['product' => $product, 'slide' => false])
-                                </div>
-                            </div>
-                            @if(($key+1)%3 == 0 && ceil(count($products)/6) == ($key+1)/3)
-                                @include('public.layouts.banner')
-                            @endif
-                        @empty
+
+                        @if(empty($products))
                             <div class="col-md-12 margin">
                                 <span>Нет таких товаров...</span>
                             </div>
-                        @endforelse
+                        @else
+                            @forelse($products as $key => $product)
+                                <div class="col-lg-4 col-xs-6">
+                                    <div class="grid-product-card card-margin">
+                                        @include('public.layouts.product', ['product' => $product, 'slide' => false])
+                                    </div>
+                                </div>
+                                @if(($key+1)%3 == 0 && ceil(count($products)/6) == ($key+1)/3)
+                                    @include('public.layouts.banner')
+                                @endif
+                            @empty
+                                <div class="col-md-12 margin">
+                                    <span>Нет таких товаров...</span>
+                                </div>
+                            @endforelse
 
-                        @if($products->count() < 3)
-                            @include('public.layouts.banner')
+                            @if($products->count() < 3)
+                                @include('public.layouts.banner')
+                            @endif
+
+                            @include('public.layouts.pagination', ['paginator' => $products])
                         @endif
-
-                        @include('public.layouts.pagination', ['paginator' => $paginator])
 
                         <div class="col-sm-12 hidden-xs home-page-about-us-text">
                             <span>О нас</span>

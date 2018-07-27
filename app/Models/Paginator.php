@@ -8,8 +8,8 @@ class Paginator
         $parts = explode('?', $url);
         $search = str_replace('page='.$page, '', $parts[1]);
         if($page > 1)
-            return $parts[0].'/page'.$page.(empty($search) ? '' : '?'.$search);
+            return preg_replace('/\/page\d+/i', '', $parts[0]).'/page'.$page.(empty($search) ? '' : '?'.$search);
         else
-            return $parts[0].(empty($search) ? '' : '?'.$search);
+            return  preg_replace('/\/page\d+/i', '', $parts[0]).(empty($search) ? '' : '?'.$search);
     }
 }

@@ -98,7 +98,7 @@
                 <input type="hidden" name="product_articul" value="{{ $product->articul }}" data-title="Артикул товара">
                 <input type="text" name="name" id="" class="one-click-form-input hover-one-click-form-input" placeholder="имя" data-title="Имя">
                 <input type="text" name="phone" id="" class="one-click-form-input hover-one-click-form-input" placeholder="тел." data-validate-required="Обязательное поле" data-validate-uaphone="Неправильный номер" data-title="Телефон">
-                <input type="button" value="Отправить" class="send-btn one-click-form-btn hover-one-click-form-btn">
+                <input type="submit" value="Отправить" class="send-btn one-click-form-btn hover-one-click-form-btn">
             </form>
         </div>
         <div class="homepage-product-card-text-wrp">

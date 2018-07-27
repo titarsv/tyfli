@@ -2,29 +2,50 @@
 
 namespace App\Models;
 
-//use Illuminate\Database\Eloquent\Model;
-use App\Models\Attribute;
-use App\Models\Categories;
-
 class Filter
 {
+	// Текущая категория
     protected $category = null;
+    // Коллекция фильтров доступных в текущей категории
     protected $product_attributes = null;
+    // Необработанная строка фильтров
     protected $path = '';
-    protected $params = [];
+    // Массив атрибутов для фильтрации товаров
     protected $filtered = [];
+    // Выбранный диапазон цен
     protected $price = [];
+    // Минимальная цена в текущей категории
     protected $min_price = 0;
+	// Максимальная цена в текущей категории
     protected $max_price = 0;
+    // Коллекция отфильтрованных товаров
+    protected $products = null;
+    // Фильтры для отображения
+	protected $attributes = [];
+	// Диапазоны цен доступные для фильтрации
+	protected $price_ranges = [];
+
+	function __construct($category = null){
+		if(!empty($category)){
+			$this->setCategory($category);
+		}
+	}
 
     /**
      * Установка текущей категории
      *
-     * @param $cat_id
+     * @param $cat
      * @return $this
      */
-    public function setCategory($cat_id){
-        $this->category = Categories::find($cat_id);
+    public function setCategory($cat){
+    	if(is_int($cat)){
+		    $this->category = Categories::find($cat);
+	    }elseif(is_string($cat)){
+		    $this->category = Categories::where('url_alias', $cat);
+	    }elseif(is_object($cat) && $cat instanceof Categories){
+		    $this->category = $cat;
+	    }
+
         $this->setProductAttributes();
         $this->setPrice();
         return $this;
@@ -51,6 +72,7 @@ class Filter
     public function setFilterPath($path){
         $this->path = $path;
         $this->setFiltered();
+	    $this->setPrice();
         return $this;
     }
 
@@ -76,7 +98,7 @@ class Filter
      * Подгрузка атрибутов категории из БД
      */
     protected function setProductAttributes(){
-        if(empty($this->category)) {
+        if(!empty($this->category)) {
             $this->product_attributes = $this->category->attributes()->with('values')->get();
         }
     }
@@ -100,8 +122,8 @@ class Filter
                 $price = explode('-', $this->params['price']);
             }
 
-            if(!empty($filters) && strpos($filters, 'price-') !== false){
-                $filter_parts = explode('_', $filters);
+            if(!empty($this->path) && strpos($this->path, 'price-') !== false){
+                $filter_parts = explode('_', $this->path);
                 foreach($filter_parts as $part){
                     if(strpos($part, 'price-') !== false){
                         $price = explode('-', str_replace('price-', '', $part));
@@ -110,18 +132,67 @@ class Filter
             }
 
             $this->price = $price;
+	        $this->setPriceRanges();
         }
 
         return $this;
     }
 
+	/**
+	 * Получение коллекции отфильтрованных товаров
+	 *
+	 * @param array $current_sort
+	 * @param int $take
+	 * @param int $page
+	 *
+	 * @return null
+	 */
+    public function getProducts($current_sort = ['price', 'asc'], $take = 18, $page = 1){
+	    $categories = new Categories();
+	    if(empty($this->products) && !empty($this->category))
+		    $this->products = $categories->get_products($this->category->id, null, $this->filtered, $current_sort, $take, $this->price, $page)->appends(['page' => $page]);
+
+	    return $this->products;
+    }
+
+	/**
+	 * Получение фильтров для вывода
+	 *
+	 * @return array
+	 */
     public function getFilterAttributes(){
+    	if(empty($this->attributes))
+	        $this->setFilterAttributes();
+
+    	return $this->attributes;
+    }
+
+	/**
+	 * Получение ценовых диапазонов
+	 *
+	 * @return Filter|array
+	 */
+    public function getPriceRanges(){
+    	if(empty($this->price_ranges)){
+		    $this->setPriceRanges();
+	    }
+
+	    return $this->price_ranges;
+    }
+
+	/**
+	 * Настройка фильтров для вывода
+	 *
+	 * @return $this|array
+	 */
+	protected function setFilterAttributes(){
         if(empty($this->category)){
             return [];
         }else{
+	        $categories = new Categories();
             $filter = $this->filtered;
             $category_id = $this->category->id;
-            $alias = $this->category->url_alias;
+	        $current_price_range = $this->getCurrentPriceRange();
         }
 
         $attrs = [];
@@ -130,7 +201,7 @@ class Filter
             $values = [];
 
             if($attribute->filter_type == 'range_list'){
-                $values = $this->getFilterRanges($attribute, $filter, $category_id, $price);
+                $values = $this->getFilterRanges($attribute);
             }elseif(isset($filter[$attribute->id])){
                 foreach ($filter[$attribute->id] as $val_id){
                     $val = $attribute->values->first(function ($value, $key)  use ($val_id) {
@@ -140,20 +211,20 @@ class Filter
                         'name' => $val->name,
                         'value' => $val->value,
                         'checked' => true,
-                        'url' => $this->getFilterUrl($alias, $filter, $val, $this->product_attributes, $price)
+                        'url' => $this->getFilterUrl($val, $current_price_range)
                     ];
                 }
             }else{
                 foreach($attribute->values as $i => $attribute_value){
                     $attr_filter = $filter + [$attribute->id => [$attribute_value->id]];
-                    $count = $categories->get_products_count($category_id, $attr_filter, $price);
+                    $count = $categories->get_products_count($category_id, $attr_filter, $this->price);
                     if($count){
                         $values[$attribute_value->id] = [
                             'name' => $attribute_value->name,
                             'value' => $attribute_value->value,
                             'checked' => false,
                             'count' => $count,
-                            'url' => $this->getFilterUrl($alias, $filter, $attribute_value, $this->product_attributes, $price)
+                            'url' => $this->getFilterUrl($attribute_value, $current_price_range)
                         ];
                     }
                 }
@@ -167,28 +238,31 @@ class Filter
                 ];
             }
         }
+	    $this->attributes = $attrs;
 
-        return $attrs;
+        return $this;
     }
 
     /**
      * Генерация ЧПУ URL для фильтров
      *
-     * @param $alias
-     * @param $filter
      * @param $attribute_value
-     * @param $product_attributes
-     * @param $price
      * @return string
      */
-    protected function getFilterUrl($alias, $filter, $attribute_value, $product_attributes, $price){
+    protected function getFilterUrl($attribute_value, $current_price_range){
+	    $alias = $this->category->url_alias;
+	    $filter = $this->filtered;
+	    $product_attributes = $this->product_attributes;
+
         $url = '/'.$alias;
         $search = '';
-        if(isset($filter[$attribute_value->attribute_id]) && in_array($attribute_value->id, $filter[$attribute_value->attribute_id])){
-            unset($filter[$attribute_value->attribute_id][array_search($attribute_value->id,$filter[$attribute_value->attribute_id])]);
-        }else{
-            $filter[$attribute_value->attribute_id][] = $attribute_value->id;
-        }
+	    if(!empty($attribute_value)) {
+		    if ( isset( $filter[ $attribute_value->attribute_id ] ) && in_array( $attribute_value->id, $filter[ $attribute_value->attribute_id ] ) ) {
+			    unset( $filter[ $attribute_value->attribute_id ][ array_search( $attribute_value->id, $filter[ $attribute_value->attribute_id ] ) ] );
+		    } else {
+			    $filter[ $attribute_value->attribute_id ][] = $attribute_value->id;
+		    }
+	    }
 
         asort($filter);
 
@@ -207,6 +281,13 @@ class Filter
             }
         }
 
+	    if(!empty($current_price_range)){
+		    if(!empty($search)){
+			    $search .= '_';
+		    }
+		    $search .= 'price-'.$current_price_range['slug'];
+        }
+
         if(!empty($search)){
             $url .= '/'.$search;
         }
@@ -214,17 +295,22 @@ class Filter
         return $url;
     }
 
-    /**
-     * Генерация ценовых диапазонов
-     *
-     * @param $min_price
-     * @param $max_price
-     * @param $price
-     * @param $category_id
-     * @param $attr_filter
-     * @return array
-     */
-    protected function getPriceRanges($min_price, $max_price, $price, $category_id, $attr_filter){
+	/**
+	 * Генерация ценовых диапазонов
+	 *
+	 * @return $this
+	 */
+    protected function setPriceRanges(){
+    	if(empty($this->category)){
+		    return $this;
+	    }
+
+	    $min_price = $this->min_price;
+	    $max_price = $this->max_price;
+	    $price = $this->price;
+	    $category_id = $this->category->id;
+	    $attr_filter = $this->filtered;
+
         $values = [];
         $categories = new Categories;
 
@@ -255,7 +341,8 @@ class Filter
                     $values[$id] = [
                         'name' => $size,
                         'checked' => true,
-                        'url' => ''
+	                    'slug' => $id,
+                        'url' => $this->getFilterUrl(null, null)
                     ];
                 }
             }else{
@@ -265,20 +352,16 @@ class Filter
                         'name' => $size,
                         'checked' => false,
                         'count' => $count,
-                        'url' => ''
+                        'slug' => $id,
+                        'url' => $this->getFilterUrl(null, ['slug' => $id])
                     ];
                 }
             }
         }
 
-        return $values;
-    }
+        $this->price_ranges = $values;
 
-    /**
-     * Генерация ЧПУ URL для фильтра по цене
-     */
-    protected function getPriceFilterUrl(){
-
+        return $this;
     }
 
     /**
@@ -342,6 +425,14 @@ class Filter
         return $new_filter;
     }
 
+	/**
+	 * Получение фильтра для диапазона цен
+	 *
+	 * @param $attribute_value
+	 * @param $all_values
+	 *
+	 * @return array
+	 */
     protected function getFiltersForRange($attribute_value, $all_values){
         $filters = [];
 
@@ -372,7 +463,17 @@ class Filter
         return $filters;
     }
 
-    protected function getFilterRanges($attribute, $filter, $category_id, $price){
+	/**
+	 * Получение ценовых диапазонов
+	 *
+	 * @param $attribute
+	 *
+	 * @return array
+	 */
+    protected function getFilterRanges($attribute){
+	    $filter = $this->filtered;
+	    $price = $this->price;
+	    $category_id = $this->category->id;
         $values = [];
 
         $min = $attribute->values->min('value');
@@ -445,5 +546,22 @@ class Filter
         }
 
         return $filters;
+    }
+
+	/**
+	 * Получение выбранного ценового интервала
+	 *
+	 * @return mixed|null
+	 */
+    public function getCurrentPriceRange(){
+    	if(!empty($this->price_ranges)){
+    		foreach ($this->price_ranges as $range){
+    			if($range['checked']){
+    				return $range;
+			    }
+		    }
+	    }
+
+	    return null;
     }
 }
