@@ -106,7 +106,9 @@
                 <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><h2>{{ $product->name }}</h2></a>
                 <p>Код товара: <span>{{ $product->articul }}</span></p>
                 @if($brand)
-                    <p>Бренд: <span>{{ $brand }}</span></p>
+                    <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
+                        <p>Бренд: <span>{{ $brand->name }}</span></p>
+                    </a>
                 @else
                     <p>&nbsp;</p>
                 @endif
@@ -141,7 +143,9 @@
         <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><h2>{{ $product->name }}</h2></a>
         <p>Код товара: <span>{{ $product->articul }}</span></p>
         @if($brand)
-            <p>Бренд: <span>{{ $brand }}</span></p>
+            <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
+                <p>Бренд: <span>{{ $brand->name }}</span></p>
+            </a>
         @else
             <p>&nbsp;</p>
         @endif

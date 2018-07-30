@@ -16,6 +16,7 @@ use App\Models\Review;
 use App\Models\Order;
 use App\Models\PersonalSale;
 use App\Models\Paginator;
+use App\Models\Modules;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -136,6 +137,12 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('public.layouts.pagination', function($view) {
             $view->with('cp', new Paginator());
+        });
+
+        view()->composer('public.layouts.header-main', function($view) {
+            $module = Modules::where('alias_name', 'menu')->first();
+            $menu = json_decode($module->settings);
+            $view->with('menu', $menu);
         });
 
     }

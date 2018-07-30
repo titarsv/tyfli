@@ -73,7 +73,7 @@ class Products extends Model
     public function brand(){
         $attr = $this->attributes()->join('attributes', 'product_attributes.attribute_id', '=', 'attributes.id')->where('attributes.name', 'Бренд')->first();
         if(is_object($attr))
-            return $attr->value->name;
+            return $attr->value;
         else
             return false;
     }

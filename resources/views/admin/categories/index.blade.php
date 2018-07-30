@@ -54,7 +54,7 @@
                                     </span>
                                 </td>
                                 <td class="actions" align="center">
-                                    <a class="btn btn-primary" href="/admin/catalog/edit/{!! $category->id !!}">
+                                    <a class="btn btn-primary" href="/admin/categories/edit/{!! $category->id !!}">
                                         <i class="glyphicon glyphicon-edit"></i>
                                     </a>
                                     <button type="button" class="btn btn-danger" onclick="confirmCategoriesDelete('{!! $category->id !!}', '{!! $category->name !!}')">
