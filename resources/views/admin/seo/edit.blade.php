@@ -27,6 +27,17 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <div class="row">
+                                <label class="col-sm-2 text-right control-label">Url</label>
+                                <div class="form-element col-sm-10">
+                                    <input type="text" class="form-control" name="url" value="{!! old('url') ? old('url') : $seo->url !!}" />
+                                    @if($errors->has('url'))
+                                        <p class="warning" role="alert">{!! $errors->first('url',':message') !!}</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <label class="col-sm-2 text-right control-label">Название</label>
                                 <div class="form-element col-sm-10">
                                     <input type="text" data-translit="input" class="form-control" name="name" value="{!! old('name') ? old('name') : $seo->name !!}" />
@@ -82,11 +93,22 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-sm-2 text-right control-label">Url</label>
+                                <label class="col-sm-2 text-right">Canonical</label>
                                 <div class="form-element col-sm-10">
-                                    <input type="text" class="form-control" name="url" value="{!! old('url') ? old('url') : $seo->url !!}" />
-                                    @if($errors->has('url'))
-                                        <p class="warning" role="alert">{!! $errors->first('url',':message') !!}</p>
+                                    <input type="text" class="form-control" name="canonical" value="{!! old('canonical') ? old('canonical') : $seo->canonical !!}" />
+                                    @if($errors->has('canonical'))
+                                        <p class="warning" role="alert">{!! $errors->first('canonical',':message') !!}</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 text-right">Robots</label>
+                                <div class="form-element col-sm-10">
+                                    <input type="text" class="form-control" name="robots" value="{!! old('robots') ? old('robots') : $seo->robots !!}" />
+                                    @if($errors->has('robots'))
+                                        <p class="warning" role="alert">{!! $errors->first('robots',':message') !!}</p>
                                     @endif
                                 </div>
                             </div>

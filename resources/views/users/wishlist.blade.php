@@ -36,7 +36,7 @@
                 <div class="col-md-9 col-sm-8 col-xs-12 products-grid-container">
                     <div class="row">
                         <div class="col-md-12 hidden-xs margin">
-                            <h5 class="title">Список желаний</h5>
+                            <h1 class="title">Список желаний</h1>
                         </div>
                         <div class="visible-xs-inline-block col-xs-12">
                             <div>

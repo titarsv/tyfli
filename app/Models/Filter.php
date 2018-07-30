@@ -284,13 +284,15 @@ class Filter
             if(!empty($values)){
                 asort($values);
                 $attr = $product_attributes->find($attr_id);
-                if(!empty($search)){
-                    $search .= '_';
-                }
-                $search .= str_replace(array('#', '-', '_', '?'), '', $attr->slug);
-                foreach ($values as $value_id){
-                    $value = $attr->values->find($value_id);
-                    $search .= '-'.str_replace(array('#', '-', '_', '?'), '', $value->value);
+                if(!empty($attr)){
+                    if(!empty($search)){
+                        $search .= '_';
+                    }
+                    $search .= str_replace(array('#', '-', '_', '?'), '', $attr->slug);
+                    foreach ($values as $value_id){
+                        $value = $attr->values->find($value_id);
+                        $search .= '-'.str_replace(array('#', '-', '_', '?'), '', $value->value);
+                    }
                 }
             }
         }

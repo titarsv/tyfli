@@ -34,7 +34,7 @@
 
                 <div class="visible-xs-block col-xs-12">
                     <div>
-                        <select name="site-section-select" id="" class="site-section-select">
+                        <select name="site-section-select" id="redirect_select" class="site-section-select">
                             <option value="{{env('APP_URL')}}/login">Вход</option>
                             <option selected="selected" value="{{env('APP_URL')}}/registration">Регистрация</option>
                         </select>

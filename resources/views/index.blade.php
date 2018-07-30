@@ -47,7 +47,7 @@
                          data-slick='{"slidesToShow": 6, "responsive":[{"breakpoint":1200,"settings":{"slidesToShow": 4}},{"breakpoint":768,"settings":{"slidesToShow": 3, "arrows": false}},{"breakpoint":480,"settings":{"slidesToShow": 2, "arrows": false}}]}'>
                         @foreach($brands as $brand)
                             <div class="slider-brand-item">
-                                <a href="{{env('APP_URL')}}/catalog/tovary?filter_attributes[6][value][{{ $brand->id }}]=on">
+                                <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
                                     <p>{{ $brand->name }}</p>
                                 </a>
                             </div>
@@ -65,7 +65,7 @@
     <section class="main-content">
         <div class="container-fluid">
             <div class="row main-content-wrp">
-                <a href="{{env('APP_URL')}}/catalog/dlya-zhenschin?filter_attributes[8][value][113]=on">
+                <a href="{{env('APP_URL')}}/catalog/dlya-zhenschin/specpredlozhenija-newcollection">
                     <div class="col-md-6 col-sm-5 col-xs-12">
                         <div class="new-post new-for-her">
                             <div>
@@ -95,7 +95,7 @@
         <div class="container-fluid">
             <div class="row main-content-wrp">
                 <div class="col-md-6 col-md-push-6 col-sm-5 col-sm-push-7 col-xs-12">
-                    <a href="{{env('APP_URL')}}/catalog/dlya-muzhchin?filter_attributes[8][value][113]=on">
+                    <a href="{{env('APP_URL')}}/catalog/dlya-muzhchin/specpredlozhenija-newcollectionn">
                         <div class="new-post new-for-him">
                             <div>
                                 <h4>Новинки для него</h4>
@@ -134,7 +134,7 @@
         <div class="container">
             <div class="row bag-category-section">
                 <div class="col-md-8 col-sm-12 col-xs-12 bag-category-section-img">
-                    <a href="{{env('APP_URL')}}/catalog/tovary?filter_attributes[1][value][11]=on">
+                    <a href="{{env('APP_URL')}}/catalog/tovary/tip-sumki_specpredlozhenija-newcollection">
                         <div class="bag-category-img">
                             <div>
                                 <h4>Новинки сумки</h4>
@@ -150,7 +150,7 @@
                             <p>Обувь</p>
                             <span>БОЛЬШИХ размеров</span>
                         </div>
-                        <a href="{{env('APP_URL')}}/catalog/tovary?filter_attributes[8][value][112]=on"
+                        <a href="{{env('APP_URL')}}/catalog/tovary/specpredlozhenija-bolshierazmery"
                            class="sales-banner-btn bag-category-banner-btn">
                             <p>Смотреть</p>
                         </a>
@@ -170,7 +170,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 col-xs-12 inform-card">
-                    <a href="{{env('APP_URL')}}/delivery">
+                    <a href="{{env('APP_URL')}}/page/delivery">
                         <h5>Доставка</h5>
                         <p>Харьков самовывоз из магазинов. В остальные города доставка осуществляется курьерской
                             компанией "Новая почта" по тарифам перевозчика. </p>
@@ -284,60 +284,4 @@
             </div>
         </div>
     </section>
-
-    {{--<section class="section-1">--}}
-    {{--<div class="container">--}}
-    {{--<div class="main-slider">--}}
-    {{--@foreach($slideshow as $slide)--}}
-    {{--<div class="main-slide">--}}
-    {{--<div class="col-sm-6 main-slider__pic-wrapper">--}}
-    {{--<img class="main-slider__pic" src="/assets/images/{!! $slide->image->href !!}" alt="">--}}
-    {{--</div>--}}
-    {{--<div class="col-sm-6 main-slider__info">--}}
-    {{--<div class="main-slider__info-inner">--}}
-    {{--<div class="main-slider__title">{!! json_decode($slide->slide_data)->slide_title !!}</div>--}}
-    {{--<span class="main-slider__subtitle">{!! json_decode($slide->slide_data)->slide_description !!}</span>--}}
-    {{--@if($slide->enable_link)--}}
-    {{--<a class="main-slider__btn" href="{!! $slide->link !!}">{!! json_decode($slide->slide_data)->button_text !!}</a>--}}
-    {{--@else--}}
-    {{--<button class="main-slider__btn popup_btn" data-mfp-src="{!! $slide->link !!}">{!! json_decode($slide->slide_data)->button_text !!}</button>--}}
-    {{--@endif--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--@endforeach--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</section>--}}
-    {{--@if($actions && $actions->count() > 0)--}}
-    {{--<section class="section-2">--}}
-    {{--<div class="section-title"><span>Акции</span></div>--}}
-    {{--<div class="container">--}}
-    {{--<div class="actions-slider">--}}
-    {{--@forelse($actions as $product)--}}
-    {{--<div class="item col-sm-4">--}}
-    {{--<div class="item-inner action">--}}
-    {{--<span class="item-label">Акция <i>%</i></span>--}}
-    {{--<div class="item-pic__wrapper">--}}
-    {{--<a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><img class="item-pic" src="{{ $product->image == null ? '/assets/images/no_image.jpg' : $product->image->url('product_list') }}" alt=""></a>--}}
-    {{--</div>--}}
-    {{--<div class="item-info__wrapper">--}}
-    {{--<a class="item-link" href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">{{ $product->name }}</a>--}}
-    {{--@if(!empty($product->old_price))--}}
-    {{--<div class="item-price-old">{{ round($product->old_price, 2) }} грн</div>--}}
-    {{--@else--}}
-    {{--<div class="item-price-old" style="text-decoration: none;">&nbsp;</div>--}}
-    {{--@endif--}}
-    {{--<div class="item-price">{{ round($product->price, 2) }} грн</div>--}}
-    {{--<a class="item-btn" href="/product/{{ $product->url_alias }}">Подробнее</a>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--@empty--}}
-
-    {{--@endforelse--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</section>--}}
-    {{--@endif--}}
 @endsection

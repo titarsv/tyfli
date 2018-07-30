@@ -149,13 +149,13 @@
                 <div class="col-md-9 col-sm-8 col-xs-12 products-grid-container">
                     <div class="row">
                         <div class="col-md-12 margin">
-                            <h5 class="title">
+                            <h1 class="title">
                                 @if(!empty($seo))
                                     {!! $seo->name !!}
                                 @else
                                     {!! $category->name or $category['name'] !!}
                                 @endif
-                            </h5>
+                            </h1>
                         </div>
                         <div class="visible-xs-inline-block col-xs-12 no-padding">
                             <div class="product-filters-wrp">

@@ -577,6 +577,12 @@ $(function() {
         }
     });
 
+    $('#redirect_select').change(function(){
+        if(window.location.href != $(this).val()){
+            window.location = $(this).val();
+        }
+    });
+
 });
 
 /**

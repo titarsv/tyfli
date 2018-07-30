@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-6 col-sm-8 col-xs-12 review-scroll-container jScrollPane">
                     <div class="col-sm-12 margin">
-                        <h5 class="title">Отзывы</h5>
+                        <h1 class="title">Отзывы</h1>
                     </div>
                     <div class="col-md-12 col-xs-12">
                         @foreach($reviews as $review)

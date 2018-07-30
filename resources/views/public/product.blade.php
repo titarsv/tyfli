@@ -31,14 +31,12 @@
             <div class="row">
                 <div class="visible-xs-inline-block col-xs-12">
                     <div class="product-card-text">
-                        <h2 class="title">{{ $product->name }}</h2>
+                        <h1 class="title">{{ $product->name }}</h1>
                         <p>Код товара: <span>{{ $product->articul }}</span></p>
                         @if(!empty($brand))
                             <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
                                 <p>Бренд: <span>{{ $brand->name }}</span></p>
                             </a>
-                        @else
-                            <p>&nbsp;</p>
                         @endif
                     </div>
                     <div class="homepage-product-card-price">
@@ -75,9 +73,11 @@
                         <div class="product-card-text hidden-xs">
                             <h2 class="title">{{ $product->name }}</h2>
                             <p>Код товара: <span>{{ $product->articul }}</span></p>
-                            <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
-                                <p>Бренд: <span>{{ $brand->name }}</span></p>
-                            </a>
+                            @if($brand)
+                                <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
+                                    <p>Бренд: <span>{{ $brand->name }}</span></p>
+                                </a>
+                            @endif
                         </div>
                         @if(count($colors) > 1)
                             <div class="prod-color-wrp">

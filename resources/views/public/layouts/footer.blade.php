@@ -27,7 +27,7 @@
             <div class="col-sm-2 col-xs-12">
                 <h5 class="footer-links-title"><a href="{{env('APP_URL')}}/contact"><p>Контакты</p></a></h5>
                 <ul class="footer-links">
-                    <li><a href="{{env('APP_URL')}}/contact"><p>Контакты</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/page/contact"><p>Контакты</p></a></li>
                     <li><a href="{{env('APP_URL')}}/reviews"><p>Отзывы</p></a></li>
                 </ul>
                 <ul class="footer-address-list">

@@ -39,7 +39,7 @@
                 <div class="col-md-6 col-sm-8 col-xs-12 profile-grid-container">
                     <div class="row">
                         <div class="col-md-12 hidden-xs margin">
-                            <h5 class="title">История покупок</h5>
+                            <h1 class="title">История покупок</h1>
                         </div>
                         <div class="visible-xs-block col-xs-12">
                             <div>

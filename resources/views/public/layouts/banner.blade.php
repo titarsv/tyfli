@@ -4,7 +4,7 @@
         <p>Межсезонная распродажа</p>
     </div>
     <div class="col-sm-5 hidden-xs">
-        <a href="{{env('APP_URL')}}/catalog/tovary?filter_attributes[8][value][111]=on" class="sales-banner-btn grid-products-banner">
+        <a href="{{env('APP_URL')}}/catalog/tovary/specpredlozhenija-rasprodazha" class="sales-banner-btn grid-products-banner">
             <p>Смотреть</p>
         </a>
     </div>

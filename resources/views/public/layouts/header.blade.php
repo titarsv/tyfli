@@ -4,7 +4,14 @@
     @if(!empty($seo))
         <title>{!! $seo->meta_title !!}</title>
         <meta name="description" content="{!! $seo->meta_description !!}">
-        <meta name="keywords" content="{!! $category->meta_keywords or '' !!}">
+        <meta name="keywords" content="{!! $seo->meta_keywords or '' !!}">
+
+        @if(!empty($seo->canonical))
+            <meta name="canonical" content="{!! $seo->canonical !!}">
+        @endif
+        @if(!empty($seo->robots))
+            <meta name="robots" content="{!! $seo->robots !!}">
+        @endif
     @else
         @yield('meta')
     @endif

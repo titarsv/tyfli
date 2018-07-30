@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row cart-main-content">
                 <div class="visible-xs-block col-xs-12">
-                    <h5 class="title">Корзина</h5>
+                    <h1 class="title">Корзина</h1>
                 </div>
                 <div class="col-md-8 col-sm-12 col-xs-12">
                     <div class="cart-list-title path-underline hidden-xs">

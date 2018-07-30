@@ -126,7 +126,7 @@
                 <div class="col-md-9 col-sm-8">
                     <div class="row">
                         <div class="col-md-12 hidden-xs margin">
-                            <h5 class="title">Статьи</h5>
+                            <h1 class="title">Статьи</h1>
                         </div>
                         <div class="visible-xs-inline-block col-xs-12">
                             <div>

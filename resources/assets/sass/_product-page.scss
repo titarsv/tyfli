@@ -271,6 +271,14 @@
     font-size: 14px;
     line-height: 24px;
     text-align: justify;
+    ul{
+        list-style: disc;
+        padding-left: 30px;
+    }
+    ol{
+        padding-left: 30px;
+        list-style: decimal;
+    }
 }
 .prod-characteristics{
     margin: 15px 0;
