@@ -203,17 +203,31 @@ class Filter
             if($attribute->filter_type == 'range_list'){
                 $values = $this->getFilterRanges($attribute);
             }elseif(isset($filter[$attribute->id])){
-                foreach ($filter[$attribute->id] as $val_id){
-                    $val = $attribute->values->first(function ($value, $key)  use ($val_id) {
-                        return $value->id == $val_id;
-                    });
-                    $values[$val->id] = [
-                        'name' => $val->name,
-                        'value' => $val->value,
-                        'checked' => true,
-                        'url' => $this->getFilterUrl($val, $current_price_range)
-                    ];
+                foreach($attribute->values as $i => $attribute_value){
+                    $attr_filter = $filter;
+                    $attr_filter[$attribute->id] = [$attribute_value->id];
+                    $count = $categories->get_products_count($category_id, $attr_filter, $this->price);
+                    if($count){
+                        $values[$attribute_value->id] = [
+                            'name' => $attribute_value->name,
+                            'value' => $attribute_value->value,
+                            'checked' => in_array($attribute_value->id, $filter[$attribute->id]),
+                            'count' => $count,
+                            'url' => $this->getFilterUrl($attribute_value, $current_price_range)
+                        ];
+                    }
                 }
+//                foreach ($filter[$attribute->id] as $val_id){
+//                    $val = $attribute->values->first(function ($value, $key)  use ($val_id) {
+//                        return $value->id == $val_id;
+//                    });
+//                    $values[$val->id] = [
+//                        'name' => $val->name,
+//                        'value' => $val->value,
+//                        'checked' => true,
+//                        'url' => $this->getFilterUrl($val, $current_price_range)
+//                    ];
+//                }
             }else{
                 foreach($attribute->values as $i => $attribute_value){
                     $attr_filter = $filter + [$attribute->id => [$attribute_value->id]];
