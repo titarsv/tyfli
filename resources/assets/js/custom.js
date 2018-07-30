@@ -548,6 +548,35 @@ $(function() {
             }
         });
     });
+
+    $('.sign-up-form').submit(function (e) {
+        if($('#email').val() == '' || $('#first_name').val() == '' || $('#phone').val() == '' || $('#password').val() == '' || $('#passwordr').val() == ''){
+            e.preventDefault();
+        }
+    });
+
+    $('.sign-up-form input').on('keyup', function(){
+        if($('#email').val() != '' && $('#first_name').val() != '' && $('#phone').val() != '' && $('#password').val() != '' && $('#passwordr').val() != ''){
+            $('.registr-btn').css('background-color', '#5F98B9');
+        }else{
+            $('.registr-btn').css('background-color', '#9DACB4');
+        }
+    });
+
+    $('.sign-in-form').submit(function (e) {
+        if($('#email').val() == '' || $('#pass').val() == ''){
+            e.preventDefault();
+        }
+    });
+
+    $('.sign-in-form input').on('keyup', function(){
+        if($('#email').val() != '' && $('#pass').val() != ''){
+            $('.registr-btn').css('background-color', '#5F98B9');
+        }else{
+            $('.registr-btn').css('background-color', '#9DACB4');
+        }
+    });
+
 });
 
 /**

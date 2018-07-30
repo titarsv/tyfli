@@ -63,15 +63,15 @@
                     <p>или</p>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
-                    <form class="sign-up-form" method="post">
+                    <form class="sign-up-form sign-in-form" method="post">
                         {!! csrf_field() !!}
                         <div class="sign-up-form-item">
                             <p>Почта</p>
-                            <input type="text" name="email">
+                            <input type="text" name="email" id="email">
                         </div>
                         <div class="sign-up-form-item">
                             <p>Пароль</p>
-                            <input type="password" name="password">
+                            <input type="password" name="password" id="pass">
                         </div>
                         <button type="submit" class="registr-btn">Войти</button>
                     </form>

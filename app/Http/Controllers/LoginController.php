@@ -185,15 +185,18 @@ class LoginController extends Controller
                 $userRole = Sentinel::findRoleBySlug('user');
                 $userRole->users()->attach($user);
 
-                $data = $user_data->where('user_id', $user->id)->first();
-                $data->phone = $request->phone;
-                $data->save();
+                $user->user_data->subscribe = $request->subscribe;
+                $user->user_data->phone = htmlspecialchars($request->phone);
+                $user->push();
+
+//                $data = $user_data->where('user_id', $user->id)->first();
+//                $data->phone = $request->phone;
+//                $data->save();
 
                 $credentials['email'] = $request->email;
                 $auth = Sentinel::authenticateAndRemember($credentials);
                 $user_id = $user_exists->id;
                 if($auth){
-
                     CartController::cartToUser($user_id);
                     return redirect('/user')
                         ->with('status', 'Вы успешно зарегистрированы! Добро пожаловать в личный кабинет');
@@ -231,6 +234,7 @@ class LoginController extends Controller
             'user_id'   => $user->id,
             'image_id'  => 1,
             'phone'     => $request->phone,
+            'subscribe' => $request->subscribe,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

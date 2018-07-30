@@ -68,11 +68,10 @@
                             {!! $errors->first() !!}
                         </span>
                     @endif
-                    <form action="" class="sign-up-form">
+                    <form action="" class="sign-up-form" method="post">
                         {!! csrf_field() !!}
-                        <input type="hidden" name="_method" value="PUT">
                         <div class="sign-up-form-item">
-                            <p>Почта</p>
+                            <p>Почта *</p>
                             <input type="text"
                                    name="email"
                                    id="email"
@@ -80,7 +79,7 @@
                                    value="{!! old('email') !!}" placeholder="E-mail">
                         </div>
                         <div class="sign-up-form-item">
-                            <p>Имя</p>
+                            <p>Имя *</p>
                             <input type="text"
                                    name="first_name"
                                    id="name"
@@ -96,7 +95,7 @@
                                    value="{!! old('last_name') !!}"placeholder="Ваша фамилия">
                         </div>
                         <div class="sign-up-form-item">
-                            <p>Телефон</p>
+                            <p>Телефон *</p>
                             <input type="text"
                                    name="phone"
                                    id="phone"
@@ -104,20 +103,20 @@
                                    value="{!! old('phone') !!}" placeholder="Телефон">
                         </div>
                         <div class="sign-up-form-item">
-                            <p>Пароль</p>
+                            <p>Пароль *</p>
                             <input type="password"
                                    name="password"
                                    id="password"
                                    class="form_input @if($errors->has('password')) input_error @endif" placeholder="Придумайте пароль">
                         </div>
                         <div class="sign-up-form-item">
-                            <p>Повторите пароль</p>
+                            <p>Повторите пароль *</p>
                             <input type="password"
                                    name="password_confirmation"
                                    id="passwordr" class="form_input @if($errors->has('password_confirmation')) input_error @endif" placeholder="Подтвердите пароль">
                         </div>
                         <div class="sign-up-form-item">
-                            <input type="checkbox" name="sign-up-get-info" value="" id="sign-up-get-info" class="checkbox">
+                            <input type="checkbox" name="subscribe" value="1" id="sign-up-get-info" class="checkbox">
                             <span class="checkbox-custom"></span>
                             <label for="sign-up-get-info">Я хочу получать информацию об акциях и новинках по почте (смс)</label>
                         </div>
