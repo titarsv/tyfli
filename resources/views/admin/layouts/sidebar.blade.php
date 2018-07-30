@@ -51,4 +51,7 @@
             <li><a href="/admin/cacheflush"><i class="fa fa-circle-thin" aria-hidden="true"></i>Очистить кэш</a></li>
         </ul>
     </li>
+    <li role="presentation">
+        <a href="/admin/seo/list"><i class="fa fa-wrench" aria-hidden="true"></i>SEO</a>
+    </li>
 </ul>

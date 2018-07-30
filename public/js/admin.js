@@ -775,6 +775,13 @@ function confirmAttributesDelete(id, name)
     $('#attributes-delete-modal').modal();
 }
 
+function confirmSeoDelete(id, name)
+{
+    $('#seo-delete-modal #confirm').attr('href', '/admin/seo/delete/' + id);
+    $('#seo-delete-modal #category-name').html(name);
+    $('#seo-delete-modal').modal();
+}
+
 function filterProducts(button)
 {
     var buttons = $('.sort-buttons');

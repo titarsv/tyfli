@@ -1,11 +1,11 @@
 @include('admin.layouts.header')
 @extends('admin.layouts.main')
 @section('title')
-    Категории
+    SEO
 @endsection
 @section('content')
 
-    <h1>Список категорий</h1>
+    <h1>SEO записи</h1>
 
     @if (session('message-success'))
         <div class="alert alert-success">
@@ -26,57 +26,48 @@
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading text-right">
-                <a href="/admin/categories/create" class="btn">Добавить новую</a>
+                <a href="/admin/seo/create" class="btn">Добавить новую</a>
             </div>
             <div class="table table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr class="success">
-                            <td>Название категории</td>
+                            <td>Название записи</td>
                             <td>Описание</td>
-                            <td>Порядок сортировки</td>
-                            <td>Статус</td>
                             <td align="center">Действия</td>
                         </tr>
                     </thead>
                     <tbody>
-
-                        @forelse($categories as $category)
+                        @forelse($seo as $item)
                             <tr>
-                                <td>{{ $category->meta_title }}</td>
+                                <td>{{ $item->name }}</td>
                                 <td class="description">
-                                    <p>{{ $category->description }}</p>
-                                </td>
-                                <td>{{ $category->sort_order }}</td>
-                                <td class="status">
-                                    <span class="{!! $category->status ? 'on' : 'off' !!}">
-                                        <span class="runner"></span>
-                                    </span>
+                                    <p>{{ $item->description }}</p>
                                 </td>
                                 <td class="actions" align="center">
-                                    <a class="btn btn-primary" href="/admin/categories/edit/{!! $category->id !!}">
+                                    <a class="btn btn-primary" href="/admin/seo/edit/{!! $item->id !!}">
                                         <i class="glyphicon glyphicon-edit"></i>
                                     </a>
-                                    <button type="button" class="btn btn-danger" onclick="confirmCategoriesDelete('{!! $category->id !!}', '{!! $category->name !!}')">
+                                    <button type="button" class="btn btn-danger" onclick="confirmSeoDelete('{!! $item->id !!}', '{!! $item->name !!}')">
                                         <i class="glyphicon glyphicon-trash"></i>
                                     </button>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" align="center">Нет добавленных категорий!</td>
+                                <td colspan="6" align="center">Нет СЕО записей!</td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
             <div class="panel-footer text-right">
-                {{ $categories->links() }}
+                {{ $seo->links() }}
             </div>
         </div>
     </div>
 
-    <div id="categories-delete-modal" class="modal fade" role="dialog">
+    <div id="seo-delete-modal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -84,7 +75,7 @@
                     <h4 class="modal-title">Подтверждение удаления</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Удалить категорию <span id="category-name"></span>?</p>
+                    <p>Удалить запись <span id="category-name"></span>?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>

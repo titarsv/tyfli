@@ -1,7 +1,13 @@
 <head>
     <meta charset="utf-8">
 
-    @yield('meta')
+    @if(!empty($seo))
+        <title>{!! $seo->meta_title !!}</title>
+        <meta name="description" content="{!! $seo->meta_description !!}">
+        <meta name="keywords" content="{!! $category->meta_keywords or '' !!}">
+    @else
+        @yield('meta')
+    @endif
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

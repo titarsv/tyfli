@@ -149,7 +149,13 @@
                 <div class="col-md-9 col-sm-8 col-xs-12 products-grid-container">
                     <div class="row">
                         <div class="col-md-12 margin">
-                            <h5 class="title">{!! $category->name or $category['name'] !!}</h5>
+                            <h5 class="title">
+                                @if(!empty($seo))
+                                    {!! $seo->name !!}
+                                @else
+                                    {!! $category->name or $category['name'] !!}
+                                @endif
+                            </h5>
                         </div>
                         <div class="visible-xs-inline-block col-xs-12 no-padding">
                             <div class="product-filters-wrp">
@@ -195,8 +201,12 @@
                         @endif
 
                         <div class="col-sm-12 hidden-xs home-page-about-us-text">
-                            <span>О нас</span>
-                            {!! $settings->about !!}
+                            @if(!empty($seo))
+                                {!! $seo->description !!}
+                            @else
+                                <span>О нас</span>
+                                {!! $settings->about !!}
+                            @endif
                         </div>
 
                         <div class="visible-xs-inline-block col-xs-12">

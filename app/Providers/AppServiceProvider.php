@@ -17,6 +17,8 @@ use App\Models\Order;
 use App\Models\PersonalSale;
 use App\Models\Paginator;
 use App\Models\Modules;
+use App\Models\Seo;
+use Illuminate\Http\Request;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
      */
     private $user;
     private $roles_array = array();
-    public function boot(Categories $categories)
+    public function boot(Categories $categories, Request $request)
     {
         $user = Sentinel::getUser();
         if(!is_null($user)) {
@@ -143,6 +145,13 @@ class AppServiceProvider extends ServiceProvider
             $module = Modules::where('alias_name', 'menu')->first();
             $menu = json_decode($module->settings);
             $view->with('menu', $menu);
+        });
+
+        view()->composer([
+            'public.layouts.header',
+            'public.category',
+            ], function($view) use ($request) {
+            $view->with('seo', Seo::where('url', $request->path())->orWhere('url', '/'.$request->path())->orWhere('url', env('APP_URL').'/'.$request->path())->first());
         });
 
     }

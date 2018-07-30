@@ -201,6 +201,15 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
         Route::post('/update_sizes', 'ImagesController@updateImageSize');
         Route::post('/remove_images', 'ImagesController@removeImages');
     });
+
+    Route::group(['prefix' => 'seo'], function(){
+        Route::get('/list', 'SeoController@index');
+        Route::get('/create', 'SeoController@create');
+        Route::post('/create', 'SeoController@store');
+        Route::get('/delete/{id}', 'SeoController@destroy');
+        Route::get('/edit/{id}', 'SeoController@edit');
+        Route::post('/edit/{id}', 'SeoController@update');
+    });
 });
 Route::post('wishlist/update','WishListController@update');
 Route::post('wishlist/del','WishListController@delWishlist');
