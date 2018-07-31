@@ -7,6 +7,12 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+if ( $_SERVER['REQUEST_URI'] != strtolower( $_SERVER['REQUEST_URI']) ) {
+    header('Location: http://'.$_SERVER['HTTP_HOST'] .
+        strtolower($_SERVER['REQUEST_URI']), true, 301);
+    exit();
+}
+
 define('LARAVEL_START', microtime(true));
 
 /*

@@ -137,7 +137,11 @@ class AppServiceProvider extends ServiceProvider
             $view->with('new_reviews', Review::where('new', 1)->get());
         });
 
-        view()->composer('public.layouts.pagination', function($view) {
+        view()->composer([
+            'public.layouts.pagination',
+            'public.layouts.header',
+            'public.category'
+            ], function($view) {
             $view->with('cp', new Paginator());
         });
 
@@ -151,7 +155,8 @@ class AppServiceProvider extends ServiceProvider
             'public.layouts.header',
             'public.category',
             ], function($view) use ($request) {
-            $view->with('seo', Seo::where('url', $request->path())->orWhere('url', '/'.$request->path())->orWhere('url', env('APP_URL').'/'.$request->path())->first());
+            $path = preg_replace('/\/page\d+/i', '', $request->path());
+            $view->with('seo', Seo::where('url', $path)->orWhere('url', '/'.$path)->orWhere('url', env('APP_URL').'/'.$path)->first());
         });
 
     }

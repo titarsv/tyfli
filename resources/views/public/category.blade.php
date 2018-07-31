@@ -1,21 +1,19 @@
-@extends('public.layouts.main')
+@extends('public.layouts.main', ['pagination' => $products])
 @section('meta')
     <title>
-        @if(empty($category->meta_title) && empty($category['meta_title']))
-            {!! $category->name !!}} купить по выгодной цене
+        @if(empty($category->meta_title)))
+            {!! $category->name !!}}
         @else
-            {!! $category->meta_title or $category['meta_title'] !!}
+            {!! $category->meta_title !!}
         @endif
-        @if(!empty($products) && $products->currentPage() > 1) Страница № {!! $products->currentPage() !!}@endif
+        @if(!empty($products) && $products->currentPage() > 1) - Страница {!! $products->currentPage() !!}@endif
     </title>
 
-    @if(empty($category->meta_description))
-        <meta name="description" content="Купить {!! $category->name !!}} в Харькове">
-    @else
+    @if(empty($products) || $products->currentPage() == 1)
         <meta name="description" content="{!! $category->meta_description or '' !!}">
+        <meta name="keywords" content="{!! $category->meta_keywords or '' !!}">
     @endif
 
-    <meta name="keywords" content="{!! $category->meta_keywords or '' !!}">
     @if(!empty($category->canonical) && empty($_GET['page']))
         <meta name="canonical" content="{!! $category->canonical !!}">
     @endif
@@ -23,10 +21,10 @@
         <meta name="robots" content="{!! $category->robots !!}">
     @endif
     @if(!empty($products) && $products->currentPage() > 1)
-        <link rel="prev" href="{!! $products->previousPageUrl() !!}">
+        <link rel="prev" href="{!! $cp->url($products->url($products->currentPage() - 1), $products->currentPage() - 1) !!}">
     @endif
     @if(!empty($products) && $products->currentPage() < $products->lastPage())
-        <link rel="next" href="{!! $products->nextPageUrl() !!}">
+        <link rel="next" href="{!! $cp->url($products->url($products->currentPage() + 1), $products->currentPage() + 1) !!}">
     @endif
 @endsection
 
@@ -201,11 +199,13 @@
                         @endif
 
                         <div class="col-sm-12 hidden-xs home-page-about-us-text">
-                            @if(!empty($seo))
-                                {!! $seo->description !!}
-                            @else
-                                <span>О нас</span>
-                                {!! $settings->about !!}
+                            @if($products->currentPage() == 1)
+                                @if(!empty($seo))
+                                    {!! $seo->description !!}
+                                @else
+                                    <span>О нас</span>
+                                    {!! $settings->about !!}
+                                @endif
                             @endif
                         </div>
 

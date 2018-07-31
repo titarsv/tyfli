@@ -1,16 +1,25 @@
 <head>
     <meta charset="utf-8">
-
     @if(!empty($seo))
-        <title>{!! $seo->meta_title !!}</title>
-        <meta name="description" content="{!! $seo->meta_description !!}">
-        <meta name="keywords" content="{!! $seo->meta_keywords or '' !!}">
+        <title>{!! $seo->meta_title !!} @if(!empty($pagination) && $pagination->currentPage() > 1) - Страница {!! $pagination->currentPage() !!}@endif</title>
+
+        @if(empty($pagination) || $pagination->currentPage() == 1)
+            <meta name="description" content="{!! $seo->meta_description !!}">
+            <meta name="keywords" content="{!! $seo->meta_keywords or '' !!}">
+        @endif
 
         @if(!empty($seo->canonical))
             <meta name="canonical" content="{!! $seo->canonical !!}">
         @endif
         @if(!empty($seo->robots))
             <meta name="robots" content="{!! $seo->robots !!}">
+        @endif
+
+        @if(!empty($pagination) && $pagination->currentPage() > 1)
+            <link rel="prev" href="{!! $cp->url($pagination->url($pagination->currentPage() - 1), $pagination->currentPage() - 1) !!}">
+        @endif
+        @if(!empty($pagination) && $pagination->currentPage() < $pagination->lastPage())
+            <link rel="next" href="{!! $cp->url($pagination->url($pagination->currentPage() + 1), $pagination->currentPage() + 1) !!}">
         @endif
     @else
         @yield('meta')
