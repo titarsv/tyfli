@@ -1,4 +1,4 @@
-@extends('public.layouts.main')
+@extends('public.layouts.main', ['root_category' => $root_category])
 @section('meta')
     <title>
         @if(empty($product->meta_title))

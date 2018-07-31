@@ -1,4 +1,4 @@
-@extends('public.layouts.main', ['pagination' => $products])
+@extends('public.layouts.main', ['pagination' => $products, 'root_category' => $category->get_root_category()])
 @section('meta')
     <title>
         @if(empty($category->meta_title)))

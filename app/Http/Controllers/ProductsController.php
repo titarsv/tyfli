@@ -545,8 +545,14 @@ class ProductsController extends Controller
 
         $popular = $products->popular();
 
+        if(!empty($product->categories()->first()))
+            $root_category = $product->categories()->first()->get_root_category();
+        else
+            $root_category = false;
+
         return response(view('public.product')
             ->with('product', $product)
+            ->with('root_category', $root_category)
             ->with('max_price', $max_price)
             ->with('gallery', $gallery)
 //            ->with('reviews', $product_reviews)

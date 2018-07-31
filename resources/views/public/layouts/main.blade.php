@@ -3,7 +3,7 @@
 @include('public.layouts.header')
 
 <body class="{{ Request::path()=='/' ? ' home' : '' }}">
-@include('public.layouts.header-main')
+@include('public.layouts.header-main', ['root_category' => isset($root_category) ? $root_category : false])
 <main id="main-container">
     @yield('breadcrumbs')
     @yield('content')

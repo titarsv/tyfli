@@ -42,11 +42,6 @@ class Categories extends Model
         return $this->belongsToMany('App\Models\Products', 'product_categories', 'category_id', 'product_id');
     }
 
-//    public function products()
-//    {
-//        return $this->hasMany('App\Models\Products', 'product_category_id', 'id');
-//    }
-
     public function attributes()
     {
         return $this->belongsToMany('App\Models\Attribute', 'category_attributes', 'category_id', 'attribute_id');
@@ -333,7 +328,10 @@ class Categories extends Model
     public function get_root_category(){
         $categories = $this->get_parent_categories($this->id);
 
-        return end($categories);
+        if(count($categories) > 1)
+            return $categories[count($categories) - 2];
+        else
+            return $this;
     }
 
     public function all_categories_with_parent_name(){

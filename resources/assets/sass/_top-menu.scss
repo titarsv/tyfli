@@ -374,6 +374,12 @@
     a:hover{
         color: #5F98B9;
     }
+    li.active{
+        border-bottom: 3px solid #5f98b9;
+        a{
+            color: #5f98b9;
+        }
+    }
 }
 .top-menu-functional{
     display: flex;

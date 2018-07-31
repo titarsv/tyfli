@@ -32,7 +32,9 @@
                                 <div class="logo-img">
                                     <img src="/images/logo.png" alt="">
                                 </div>
+                                @if(Request::path()=='/')
                                 <h2>доступно и модно</h2>
+                                @endif
                             </div>
                         </a>
                     </div>
@@ -67,11 +69,11 @@
                     <div class="col-md-2 hidden-sm"></div>
                     <div class="col-md-10 col-sm-12 top-menu-container">
                         <ul class="top-menu">
-                            <li><a href="{{env('APP_URL')}}/catalog/dlya-zhenschin" class="js-toggle" aria-label="Open Navigation" data-toggle=".women-catalog">Для женщин</a></li>
-                            <li><a href="{{env('APP_URL')}}/catalog/dlya-muzhchin" class="js-toggle" aria-label="Open Navigation" data-toggle=".man-catalog">Для мужчин</a></li>
-                            <li><a href="{{env('APP_URL')}}/catalog/outlet" class="js-toggle" aria-label="Open Navigation" data-toggle=".outlet-catalog">Outlet</a></li>
-                            <li><a href="{{env('APP_URL')}}/catalog/uhod" class="js-toggle" aria-label="Open Navigation" data-toggle=".care-catalog">Уход</a></li>
-                            <li><a href="{{env('APP_URL')}}/brands">Бренды</a></li>
+                            <li{{ !empty($root_category) && $root_category->url_alias == 'dlya-zhenschin' ? ' class=active' : '' }}><a href="{{env('APP_URL')}}/catalog/dlya-zhenschin" class="js-toggle" aria-label="Open Navigation" data-toggle=".women-catalog">Для женщин</a></li>
+                            <li{{ !empty($root_category) && $root_category->url_alias == 'dlya-muzhchin' ? ' class=active' : '' }}><a href="{{env('APP_URL')}}/catalog/dlya-muzhchin" class="js-toggle" aria-label="Open Navigation" data-toggle=".man-catalog">Для мужчин</a></li>
+                            <li{{ !empty($root_category) && $root_category->url_alias == 'outlet' ? ' class=active' : '' }}><a href="{{env('APP_URL')}}/catalog/outlet" class="js-toggle" aria-label="Open Navigation" data-toggle=".outlet-catalog">Outlet</a></li>
+                            <li{{ !empty($root_category) && $root_category->url_alias == 'uhod' ? ' class=active' : '' }}><a href="{{env('APP_URL')}}/catalog/uhod" class="js-toggle" aria-label="Open Navigation" data-toggle=".care-catalog">Уход</a></li>
+                            <li{{ Request::path() == 'brands' ? ' class=active' : '' }}><a href="{{env('APP_URL')}}/brands">Бренды</a></li>
                         </ul>
                         <div class="top-menu-functional">
                             {!! Form::open(['route' => 'search', 'class' => 'search-field-wrp', 'method' => 'get']) !!}
@@ -108,7 +110,11 @@
                                 @endif
                             </div>
                             <a href="{{env('APP_URL')}}/user/wishlist">
-                                <i class="fill-wish-heart">&#xE807</i>
+                                @if(!empty($wishlist) && !empty($wishlist->count()))
+                                    <i class="fill-wish-heart">&#xE807</i>
+                                @else
+                                    <i class="fill-wish-heart">&#xE801</i>
+                                @endif
                             </a>
                             <a href="{{env('APP_URL')}}/cart">
                                 <i>&#xE808</i>

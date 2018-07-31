@@ -69,9 +69,7 @@ class AppServiceProvider extends ServiceProvider
 
             view()->composer([
                 'public.layouts.header-main',
-                'public.layouts.header-middle',
                 'public.layouts.product',
-                'public.layouts.product_small',
                 'public.product',
                 'public.layouts.cart',
                 'public.category',
@@ -81,6 +79,10 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('user_id', $this->user->id)
                     ->with('user_logged', true)
                     ->with('user_roles', $this->roles_array);
+            });
+
+            view()->composer('public.layouts.header-main', function($view) {
+                $view->with('wishlist', $this->user->wishlist);
             });
 
         } else {
@@ -100,6 +102,7 @@ class AppServiceProvider extends ServiceProvider
                     'public.product',
                     'public.layouts.cart',
                     'public.category',
+                    'public.layouts.header-main'
                 ], function ($view) {
                 $view->with('user_id', 0)->with('user_wishlist',[]);
             });
