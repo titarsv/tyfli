@@ -40,7 +40,6 @@
                     <tbody>
                     @foreach($new as $review)
                         <tr class="info">
-                            <?php dd($review->user); ?>
                             <td>
                                 @if(!empty($review->user))
                                     {{ $review->user->first_name }} {{ $review->user->last_name }}
@@ -48,7 +47,7 @@
                                     {{ $review->author }}
                                 @endif
                             </td>
-                            <td>{!! $review->product->name !!}</td>
+                            <td>{!! $review->product->name or '' !!}</td>
                             <td>
                                 {!! $review->grade !!}
                             </td>

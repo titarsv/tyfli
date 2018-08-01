@@ -145,13 +145,13 @@ class ReviewsController extends Controller
         $review->new = 1;
         $review->save();
 
-        $emails = $setting->get_setting('notify_emails');
-
-        Mail::send('emails.review', ['emails', $emails], function($msg) use ($emails){
-            $msg->from('shop@ua-tuning.com', 'Интернет-магазин Ua-tuning');
-            $msg->to($emails);
-            $msg->subject('Новый отзыв на сайте!');
-        });
+//        $emails = $setting->get_setting('notify_emails');
+//
+//        Mail::send('emails.review', ['emails', $emails], function($msg) use ($emails){
+//            $msg->from('shop@tyfli.com', 'Интернет-магазин Tyfli.com');
+//            $msg->to($emails);
+//            $msg->subject('Новый отзыв на сайте!');
+//        });
 
         return response()->json(['success' => 'Ваш отзыв успешно добавлен! Он появится на сайте после проверки администратором!', 'type' => $request->type]);
     }

@@ -45,7 +45,7 @@
                                     <div class="aside-filter-menu-item-title">
                                         <p>Цена</p>
                                     </div>
-                                    <div class="aside-filter-menu-item-filters unactive">
+                                    <div class="aside-filter-menu-item-filters">
                                         <div>
                                             @foreach($price as $i => $attribute_value)
                                                 <div>
@@ -66,7 +66,7 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                    <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                    <div class="aside-filter-menu-item-btn-toggle">
                                         <div></div>
                                         <div></div>
                                     </div>
@@ -104,7 +104,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="aside-filter-menu-item-filters{{ isset($filter[$key]) ? '' : ' unactive' }}">
+                                                <div class="aside-filter-menu-item-filters{{ $attribute['name'] == 'Тип' ? '' : ' unactive' }}">
                                                     @php
                                                         $attr_values = $attribute['values'];
                                                     @endphp
@@ -132,7 +132,7 @@
                                                         <a href="#" class="show-more-filters">Показать Больше</a>
                                                     @endif
                                                 </div>
-                                                <div class="aside-filter-menu-item-btn-toggle filters-open">
+                                                <div class="aside-filter-menu-item-btn-toggle{{ $attribute['name'] == 'Тип' ? '' : ' filters-open' }}">
                                                     <div></div>
                                                     <div></div>
                                                 </div>

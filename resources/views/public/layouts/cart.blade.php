@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="cart-list cart-list-margins hidden-xs">
                                     <ul>
-                                        <li>0%</li>
+                                        <li>{{ $product['sale_percent'] }}%</li>
                                     </ul>
                                     <ul>
                                         <li>{{ isset($product['variations']['Размер']) ? $product['variations']['Размер'] : '' }}</li>

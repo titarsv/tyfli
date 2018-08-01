@@ -127,12 +127,16 @@
                                 <div class="history-info-box path-underline">
                                     <h5>
                                         <p>Скидка на сайте</p>
-                                        <p>0 <span>%</span></p>
+                                        <p>{{ $user->sale() }} <span>%</span></p>
                                     </h5>
                                     <span>Общая сумма Ваших покупок {{ $user->ordersTotal() }} грн.<br/>
-                                    При покупке на общую сумму свыше 2500 грн<br/>  сумма скидки станет 5%<br/>
-                                    Узнать больше о <a href="">Бонусной программе</a>
-                                </span>
+                                        @if(!empty($user->nextSale()))
+                                            @php
+                                                $next_sale = $user->nextSale();
+                                            @endphp
+                                            При покупке на общую сумму свыше {{ $next_sale[0] }} грн сумма скидки станет {{ $next_sale[1] }}%<br/>
+                                        @endif
+                                        Узнать больше о <a href="{{env('APP_URL')}}/page/bonusnyya-programma" class="default-link-hover">Бонусной программе</a></span>
                                 </div>
                                 <div class="cart-receipt-item cart-receipt-price history-info-box">
                                     <h5>Общая сумма покупок</h5>
@@ -142,7 +146,7 @@
                         </div>
                         <div class="col-md-12 no-padding">
                             <div class="cart-receipt-btn">
-                                <a href="" class="popup-btn process">
+                                <a href="{{env('APP_URL')}}/" class="popup-btn process">
                                     <p>Продолжить покупки</p>
                                 </a>
                             </div>

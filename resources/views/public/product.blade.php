@@ -273,10 +273,21 @@
                             </div>
                         </div>
                         <div class="product-accordion-text unactive">
-                            <div class="write-review-container">
-                                <input type="text" placeholder="Расскажите другим об этой модели">
-                                <a href="" class="write-review-btn buy-btn">Написать отзыв</a>
+                            @if(!empty($user))
+                            <form action="" class="write-review-container review-form">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="name" value="{{ $user->first_name  }}">
+                                <input type="hidden" name="email" value="{{ $user->email }}">
+                                <input type="hidden" name="grade" value="5">
+                                <input type="text" name="review" placeholder="Расскажите другим об этой модели">
+                                <button type="submit" class="write-review-btn buy-btn">Написать отзыв</button>
+                            </form>
+                            @else
+                            <div class="write-review-container review-form">
+                                <input type="text" name="review" placeholder="Расскажите другим об этой модели" disabled>
+                                <a href="{{env('APP_URL')}}/login" class="write-review-btn buy-btn">Написать отзыв</a>
                             </div>
+                            @endif
                             @forelse($product->reviews as $review)
                                 <div class="review-container">
                                     <div class="review stars">

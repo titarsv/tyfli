@@ -176,11 +176,16 @@ $(function() {
                     $.each(response.error, function(i, value){
                         html += value + '<br>';
                     });
-                    $('#error-' + response.type + ' > div').html(html);
-                    $('#error-' + response.type).fadeIn(300);
+                    // $('#error-' + response.type + ' > div').html(html);
+                    // $('#error-' + response.type).fadeIn(300);
+
+                    swal('Ошибка', html, 'error');
+
                 } else if(response.success) {
-                    $('#error-' + response.type + ' > div').html(response.success);
-                    $('#error-' + response.type).fadeIn(300);
+                    // $('#error-' + response.type + ' > div').html(response.success);
+                    // $('#error-' + response.type).fadeIn(300);
+
+                    swal('Ваш отзыв успешно добавлен!', 'Он появится на сайте после модерации.', 'success');
 
                     setTimeout(function(){
                         $this.slideUp('slow');
