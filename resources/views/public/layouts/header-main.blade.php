@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-md-10 col-sm-10 hidden-xs top-navigation">
                         <nav class="navigation">
-                            <a href="{{env('APP_URL')}}/page/delivery"><p>Доставка и Оплата</p></a>
+                            <a href="{{env('APP_URL')}}/page/delivery"><p>Оплата и Доставка</p></a>
                             <a href="{{env('APP_URL')}}/page/garantiya-i-vozvrat"><p>Гарантия и Возврат</p></a>
                             <a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>Вопросы и Ответы</p></a>
                             <a href="{{env('APP_URL')}}/reviews"><p>Отзывы</p></a>

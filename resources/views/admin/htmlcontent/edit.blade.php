@@ -54,6 +54,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 text-right">Родительская страница</label>
+                                <div class="form-element col-sm-10">
+                                    <select name="parent_id" class="form-control">
+                                        <option value="0">Не выбрано</option>
+                                        @foreach($pages as $p)
+                                            <option value="{!! $p->id !!}"
+                                                    @if ($p->id == old('parent_id'))
+                                                    selected
+                                                    @elseif ($p->id == $content->parent_id)
+                                                    selected
+                                                    @endif
+                                            >{!! $p->name !!}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

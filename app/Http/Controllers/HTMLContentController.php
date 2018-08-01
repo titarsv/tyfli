@@ -44,9 +44,10 @@ class HTMLContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(HTMLContent $content)
     {
-        return view('admin.htmlcontent.create');
+        return view('admin.htmlcontent.create')
+            ->with('pages', $content->all());
     }
 
     /**
@@ -86,6 +87,7 @@ class HTMLContentController extends Controller
     public function edit($id, HTMLContent $content)
     {
         return view('admin.htmlcontent.edit')
+            ->with('pages', $content->all())
             ->with('content', $content->find($id));
     }
 
