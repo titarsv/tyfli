@@ -193,7 +193,7 @@
                             <input type="hidden" name="product_name" value="{{ $product->name }}" data-title="Название товара">
                             <input type="hidden" name="product_id" value="{{ $product->id }}" data-title="ID товара">
                             <input type="hidden" name="product_articul" value="{{ $product->articul }}" data-title="Артикул товара">
-                            <input type="text" name="name" class="one-click-form-input" placeholder="имя" data-title="Имя"><input type="text" name="phone" class="one-click-form-input" placeholder="тел." data-validate-required="Обязательное поле" data-validate-uaphone="Неправильный номер" data-title="Телефон"><input type="button" value="Отправить" class="send-btn one-click-form-btn">
+                            <input type="text" name="name" class="one-click-form-input" placeholder="имя" data-title="Имя"><input type="text" name="phone" class="one-click-form-input" placeholder="тел." data-validate-required="Обязательное поле" data-validate-uaphone="Неправильный номер" data-title="Телефон"><input type="submit" value="Отправить" class="send-btn one-click-form-btn">
                         </form>
                     </div>
                     <div class="prod-description visible-xs-block">
@@ -338,7 +338,7 @@
                             <input type="hidden" name="product_id" value="{{ $product->id }}" data-title="ID товара">
                             <input type="hidden" name="product_articul" value="{{ $product->articul }}" data-title="Артикул товара">
                             <input type="email" name="email" class="email-input" placeholder="Ваша почта" data-title="Почта" data-validate-required="Обязательное поле" data-validate-email="Неправильный email">
-                            <input type="button" value="Отправить" class="send-btn inform-sale-form-btn">
+                            <input type="submit" value="Отправить" class="send-btn inform-sale-form-btn">
                         </form>
                     </div>
                 </div>
