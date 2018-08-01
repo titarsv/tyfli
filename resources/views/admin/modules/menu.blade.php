@@ -107,12 +107,19 @@
                     '                            <div class="col-sm-3 form-element">' +
                     '                                <input class="form-control" type="text" name="menu['+id+']['+i+'][name]" placeholder="Название*" value="">' +
                     '                            </div>' +
-                    '                            <div class="col-sm-3 form-element">' +
+                    '                            <div class="col-sm-5 form-element">' +
                     '                                <input class="form-control" type="text" name="menu['+id+']['+i+'][href]" placeholder="Ссылка*" value="">' +
                     '                            </div>' +
                     '                            <div class="col-sm-3 form-element">' +
                     '                                <input class="form-control" type="text" name="menu['+id+']['+i+'][class]" placeholder="Клас" value="">' +
                     '                            </div>' +
+                    '                            <div class="col-sm-1 form-element">' +
+                    '                                 <div class="menu-image">' +
+                    '                                   <i class="add-image" data-open="menu">+</i>' +
+                    '                                   <input name="menu['+id+']['+i+'][image]" value="" type="hidden">' +
+                    '                                   <img src="/uploads/no_image.jpg">' +
+                    '                                 </div>' +
+                    '                            </div>'+
                     '                        </div>');
             });
         });

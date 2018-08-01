@@ -140,7 +140,7 @@
                             @if(isset($menu->{'zhenskaya-obuv'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
                                 @foreach($menu->{'zhenskaya-obuv'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="/images/homepage-images/homepage-article-2.jpg">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="{{ $item->image or '' }}">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -148,7 +148,7 @@
                             @if(isset($menu->{'zhenskie-aksessuary'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
                                 @foreach($menu->{'zhenskie-aksessuary'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="/images/homepage-images/homepage-article-1.jpg">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="{{ $item->image or '' }}">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -156,7 +156,7 @@
                             @if(isset($menu->{'dlya-zhenschin'}))
                                 <li><h5 class="top-menu-catalog-title"></h5></li>
                                 @foreach($menu->{'dlya-zhenschin'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="{{ $item->image or '' }}">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -179,7 +179,7 @@
                             @if(isset($menu->{'muzhskaya-obuv'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
                                 @foreach($menu->{'muzhskaya-obuv'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="/images/homepage-images/homepage-article-2.jpg">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="{{ $item->image or '' }}">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -187,7 +187,7 @@
                             @if(isset($menu->{'muzhskie-aksessuary'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
                                 @foreach($menu->{'muzhskie-aksessuary'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="/images/homepage-images/homepage-article-1.jpg">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="{{ $item->image or '' }}">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -195,7 +195,7 @@
                             @if(isset($menu->{'dlya-muzhchin'}))
                                 <li><h5 class="top-menu-catalog-title"></h5></li>
                                 @foreach($menu->{'dlya-muzhchin'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="{{ $item->image or '' }}">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -218,7 +218,7 @@
                             @if(isset($menu->{'outlet-obuv'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
                                 @foreach($menu->{'outlet-obuv'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="{{ $item->image or '' }}">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -226,7 +226,7 @@
                             @if(isset($menu->{'outlet-aksessuary'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
                                 @foreach($menu->{'outlet-aksessuary'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="{{ $item->image or '' }}">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -251,7 +251,7 @@
                             @if(isset($menu->{'uhod'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Вид товара</h5></li>
                                 @foreach($menu->{'uhod'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="{{ $item->image or '' }}">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
