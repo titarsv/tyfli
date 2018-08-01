@@ -9,15 +9,17 @@
     .mfp-close, .mfp-close:active {
         right: 40px;
         top: 40px !important;
-        height: 40px;
-        width: 40px;
+        //height: 40px;
+        //width: 40px;
+        padding: 20px 40px;
         background: url('../images/homepage-icons/close popup icon.svg') center no-repeat;
-        background-size: contain;
+        background-size: auto;
         @include bp(sm){
             right: 20px;
             top: 20px !important;
-            height: 20px;
-            width: 20px;
+            //height: 20px;
+            //width: 20px;
+            padding: 15px 20px;
         }
     }
 }

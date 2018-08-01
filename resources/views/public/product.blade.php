@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-6 col-xs-12">
-                    <div class="js-slider slick-slider product-img-slider" data-slick='{"slidesToShow": 2, "lazyLoad": "ondemand", "vertical": true, "dots": false, "arrows": true, "verticalSwiping": true, "responsive":[{"breakpoint":768,"settings":{"slidesToShow": 1, "vertical": false, "arrows": false, "dots": true, "verticalSwiping": false, "lazyLoad": "ondemand"}}]}'>
+                    <div class="js-slider slick-slider product-img-slider" data-slick='{"slidesToShow": {{ !empty($gallery) && count($gallery)> 1 ? '2' : '1' }}, "lazyLoad": "ondemand", "vertical": true, "dots": false, "arrows": true, "verticalSwiping": true, "responsive":[{"breakpoint":768,"settings":{"slidesToShow": 1, "vertical": false, "arrows": false, "dots": true, "verticalSwiping": false, "lazyLoad": "ondemand"}}]}'>
                         @forelse($gallery as $image)
                             @if(is_object($image))
                                 <div class="product-photo">
@@ -218,7 +218,7 @@
                                 <li><a href="#deliv-abroad" data-toggle="tab">За пределы Украины</a></li>
                             </ul>
                             <div class="tabs tab-content jScrollPane">
-                                <div class="tab-pane active" id="deliv-ukr">
+                                <div class="tab-pane product-tab active" id="deliv-ukr">
                                     <h5>Доставка по Украине</h5>
                                     <p>  Мы осуществляем доставку по Украине самым распространённым на сегодняшний день экспресс - перевозчиком «Новая Почта». Оплата возможна как наложенным платежом, так и по полной оплате на карту.
                                         Отправки заказов осуществляются в течении 1-3 суток с момента заказа, получить более подробную информацию можно позвонив по одному из трех наших телефонов.
@@ -227,7 +227,7 @@
                                         Средняя стоимость доставки составляет от пятидесяти гривен.
                                         Расходы связанные с  доставкой, обменом или возвратом товара несет покупатель.</p>
                                 </div>
-                                <div class="tab-pane" id="deliv-kh">
+                                <div class="tab-pane product-tab" id="deliv-kh">
                                     <h5>Доставка по Харькову</h5>
                                     <p>Мы осуществляем доставку по Украине самым распространённым на сегодняшний день экспресс - перевозчиком «Новая Почта». Оплата возможна как наложенным платежом, так и по полной оплате на карту.
                                         Отправки заказов осуществляются в течении 1-3 суток с момента заказа, получить более подробную информацию можно позвонив по одному из трех наших телефонов.
@@ -236,7 +236,7 @@
                                         Средняя стоимость доставки составляет от пятидесяти гривен.
                                         Расходы связанные с  доставкой, обменом или возвратом товара несет покупатель.</p>
                                 </div>
-                                <div class="tab-pane" id="deliv-abroad">
+                                <div class="tab-pane product-tab" id="deliv-abroad">
                                     <h5>Доставка за пределы Украины</h5>
                                     <p>Мы осуществляем доставку по Украине самым распространённым на сегодняшний день экспресс - перевозчиком «Новая Почта». Оплата возможна как наложенным платежом, так и по полной оплате на карту.
                                         Отправки заказов осуществляются в течении 1-3 суток с момента заказа, получить более подробную информацию можно позвонив по одному из трех наших телефонов.

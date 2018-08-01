@@ -74,11 +74,27 @@
     font-size: 14px;
     font-weight: 300;
     line-height: 20px;
-    display: block;
-    width: 100%;
     border: none;
-    resize: none;
+    width: 100%;
     background: transparent;
+    position: relative;
+    resize: none;
+    &::placeholder{
+        color: #4A4A4A;
+        font-family: Oswald;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 20px;
+    }
+    &:focus::after{
+        content: '';
+        width: 5px;
+        height: 5px;
+        background: #FBFBFB;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
 }
 .response-form-input{
     color: #4A4A4A;

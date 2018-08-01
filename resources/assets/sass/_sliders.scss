@@ -166,13 +166,6 @@
 }
 .article-slider-item{
     margin: 10px 0;
-    padding: 0 20px;
-    @include bp (sm){
-        padding: 0 50px;
-    }
-    @include bp (xs){
-        padding: 0 30px;
-    }
 }
 .article-slider-item-img{
     margin-bottom: 20px;
