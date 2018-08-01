@@ -59,7 +59,7 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Ответ</label>
                                 <div class="form-element col-sm-10">
-                                    <textarea name="answer" class="form-control" rows="6"></textarea>
+                                    <textarea name="answer" class="form-control" rows="6">{!! $review->answer !!}</textarea>
                                 </div>
                             </div>
                         </div>
