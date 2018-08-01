@@ -17,11 +17,11 @@
                                     <li class="path-underline"><a href="{{env('APP_URL')}}/catalog/uhod">Уход</a></li>
                                 </ul>
                                 <ul class="sections-links">
-                                    <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv">Женская обувь</a> </li>
-                                    <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv">Мужская обувь</a></li>
-                                    <li><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary">Аксессуары</a></li>
-                                    <li><a href="{{env('APP_URL')}}/catalog/uhod">Уход</a></li>
-                                    <li><a href="{{env('APP_URL')}}/brands">Бренды</a></li>
+                                    <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv">Оплата и доставка</a> </li>
+                                    <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv">Гарантия и Возврат</a></li>
+                                    <li><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary">Вопросы и Ответы</a></li>
+                                    <li><a href="{{env('APP_URL')}}/catalog/uhod">Отзывы</a></li>
+                                    <li><a href="{{env('APP_URL')}}/brands">Контакты</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-md-10 col-sm-10 hidden-xs top-navigation">
                         <nav class="navigation">
-                            <a href="{{env('APP_URL')}}/page/delivery"><p>Доставка и Оплата</p></a>
+                            <a href="{{env('APP_URL')}}/page/delivery"><p>Оплата и доставка</p></a>
                             <a href="{{env('APP_URL')}}/page/garantiya-i-vozvrat"><p>Гарантия и Возврат</p></a>
                             <a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>Вопросы и Ответы</p></a>
                             <a href="{{env('APP_URL')}}/reviews"><p>Отзывы</p></a>
@@ -140,15 +140,15 @@
                             @if(isset($menu->{'zhenskaya-obuv'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
                                 @foreach($menu->{'zhenskaya-obuv'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="/images/homepage-images/homepage-article-2.jpg">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
-                        <ul class="top-menu-catalog-section">
+                        <ul class="top-menu-catalog-section".catalog-img>
                             @if(isset($menu->{'zhenskie-aksessuary'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
                                 @foreach($menu->{'zhenskie-aksessuary'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="/images/homepage-images/homepage-article-1.jpg">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -179,7 +179,7 @@
                             @if(isset($menu->{'muzhskaya-obuv'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-3">Обувь</h5></li>
                                 @foreach($menu->{'muzhskaya-obuv'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="/images/homepage-images/homepage-article-2.jpg">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>
@@ -187,7 +187,7 @@
                             @if(isset($menu->{'muzhskie-aksessuary'}))
                                 <li><h5 class="top-menu-catalog-title js-hover-toggle" data-toggle="img-2">Аксессуары</h5></li>
                                 @foreach($menu->{'muzhskie-aksessuary'} as $item)
-                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}">{{ $item->name}}</a></li>
+                                    <li><a href="{{env('APP_URL')}}{{ $item->href }}" class="{{ $item->class }}" data-src="/images/homepage-images/homepage-article-1.jpg">{{ $item->name}}</a></li>
                                 @endforeach
                             @endif
                         </ul>

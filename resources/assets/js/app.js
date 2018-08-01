@@ -260,6 +260,12 @@ $(function() {
             $('.password-edit').toggleClass('unactive');
         });
     });
+
+    $('.top-menu-catalog-section li a').hover(function(){
+        var newSrc = $(this).data('src');
+        $(this).parents('.top-menu-catalog-container').find('.top-menu-catalog-img img').attr('src', newSrc);
+        // $('.top-menu-catalog-img img').attr('src', newSrc);
+    })
 });
 
 require('./custom.js');

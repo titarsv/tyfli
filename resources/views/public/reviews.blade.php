@@ -101,7 +101,7 @@
                                     <input type="radio" name="stars" value="5" id="5-star" class="radio" data-title="Оценка">
                                     <label for="5-star" class="radio-stars"></label>
                                 </div>
-                                <p class="response-form-text margin">Вам понравилось обслуживание? Сообщите нам, что вы думаете</p>
+                                <textarea type="text" class="response-form-text margin" placeholder="Вам понравилось обслуживание? Сообщите нам, что вы думаете"></textarea>
                             </div>
                             <div class="col-md-12 margin">
                                 <div class="profile-data-item response-input-wrp">

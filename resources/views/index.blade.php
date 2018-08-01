@@ -10,19 +10,21 @@
         <div class="header-slider-wrp">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="js-slider slick-slider header-slider" data-slick='{"slidesToShow": 1, "dots": true}'>
+                    <div class="js-slider slick-slider header-slider" data-slick='{"slidesToShow": 1, "dots": true, "responsive": [{"breakpoint":768,"settings":{"slidesToShow": 1, "dots": false}}]}'>
                         @foreach($slideshow as $slide)
                             @if($slide->status)
-                                <div class="slider-item-1" style="background-image: url({{ $slide->image->url() }})">
-                                    <div class="row">
-                                        <div class="com-md-12 slider-title">
-                                            <h2>{{ $slide->data()->slide_title }}</h2>
-                                            <h3>{{ $slide->data()->slide_description }}</h3>
-                                        </div>
-                                        <div class="com-md-12 slider-btn-wrp">
-                                            <a href="{{ $slide->link }}" class="slider-btn">
-                                                <p>{{ $slide->data()->button_text }}</p>
-                                            </a>
+                                <div>
+                                    <div class="slider-item-1" style="background-image: url({{ $slide->image->url() }})">
+                                        <div class="row">
+                                            <div class="com-md-12 slider-title">
+                                                <h2>{{ $slide->data()->slide_title }}</h2>
+                                                <h3>{{ $slide->data()->slide_description }}</h3>
+                                            </div>
+                                            <div class="com-md-12 slider-btn-wrp">
+                                                <a href="{{ $slide->link }}" class="slider-btn">
+                                                    <p>{{ $slide->data()->button_text }}</p>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
