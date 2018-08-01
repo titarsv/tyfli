@@ -28,7 +28,8 @@ class LoginController extends Controller
     {
         if (Sentinel::check()) {
             $user_id = Sentinel::check()->id;
-            CartController::cartToUser($user_id);
+            $cart = CartController::cartToUser($user_id);
+            $cart->full_cart_update();
             if (Sentinel::inRole('admin') or Sentinel::inRole('manager')) {
                 return redirect('/admin');
             } elseif (Sentinel::inRole('user')) {

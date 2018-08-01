@@ -128,11 +128,22 @@
                         <div class="col-sm-12 col-xs-12 margin">
                             <h5 class="title">Дисконтная программа</h5>
                             <div class="profile-discount-wrp profile-margin">
-                                <p>У Вас не скидки</p>
-                                <span>Общая сумма Ваших покупок меньше 2500 грн.<br/>
-                                При покупке на общую сумму свыше 2500 грн сумма скидки станет 5%<br/>
-                                Узнать больше о <a href="#" class="default-link-hover">Бонусной программе</a>
-                            </span>
+                                @if(key($user->sales) > $user->ordersTotal())
+                                    <p>У Вас нет скидки</p>
+                                    <span>Общая сумма Ваших покупок меньше {{ key($user->sales) }} грн.<br/>
+                                    При покупке на общую сумму свыше {{ key($user->sales) }} грн сумма скидки станет {{ $user->sales[key($user->sales)] }}%<br/>
+                                    Узнать больше о <a href="/page/bonusnyya-programma" class="default-link-hover">Бонусной программе</a></span>
+                                @else
+                                    <p>Ваша скидка составляет {{ $user->sale() }}%</p>
+                                    <span>Общая сумма Ваших покупок {{ $user->ordersTotal() }} грн.<br/>
+                                    @if(!empty($user->nextSale()))
+                                        @php
+                                            $next_sale = $user->nextSale();
+                                        @endphp
+                                        При покупке на общую сумму свыше {{ $next_sale[0] }} грн сумма скидки станет {{ $next_sale[1] }}%<br/>
+                                    @endif
+                                    Узнать больше о <a href="{{env('APP_URL')}}/page/bonusnyya-programma" class="default-link-hover">Бонусной программе</a></span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-12 col-xs-12 margin">

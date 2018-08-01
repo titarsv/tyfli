@@ -9,14 +9,12 @@ use Cartalyst\Sentinel\Native\Facades\Sentinel;
 //class User extends Authenticatable
 class User extends \Cartalyst\Sentinel\Users\EloquentUser
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-//    protected $fillable = [
-//        'first_name', 'last_name', 'email', 'password',
-//    ];
+    public $sales = [
+        1000 => 3,
+        2500 => 5,
+        5000 => 7,
+        7000 => 10
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -78,11 +76,46 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
         return $this->where('email', $email)->orWhere('phone', $phone)->first();
     }
 
+    /**
+     * Сумма покупок
+     *
+     * @return int
+     */
     public function ordersTotal(){
         $total = 0;
-        foreach ($this->orders as $order){
+        foreach ($this->orders()->where('status_id', 6)->get() as $order){
             $total += $order->total_price;
         }
         return $total;
+    }
+
+    /**
+     * Размер скидки
+     *
+     * @return int
+     */
+    public function sale(){
+        $sale = 0;
+        $total = $this->ordersTotal();
+
+        foreach ($this->sales as $t => $s) {
+            if ($total >= $t) {
+                $sale = $s;
+            }
+        }
+
+        return $sale;
+    }
+
+    public function nextSale(){
+        $current_sale = $this->sale();
+
+        foreach ($this->sales as $t => $s) {
+            if($s > $current_sale){
+                return [$t, $s];
+            }
+        }
+
+        return false;
     }
 }

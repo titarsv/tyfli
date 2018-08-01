@@ -17,6 +17,7 @@ class Cart extends Model
         'products',
         'total_quantity',
         'total_price',
+        'total_sale',
         'user_data',
         'cart_data'
     ];
@@ -62,7 +63,8 @@ class Cart extends Model
             'session_id' => Session::getId(),
             'products' => null,
             'total_quantity' => 0,
-            'total_price' => 0
+            'total_price' => 0,
+            'total_sale' => 0
         ]);
 
         return $this->where('id', $id)->first();
@@ -76,14 +78,35 @@ class Cart extends Model
 
         $total_quantity = 0;
         $total_price = 0;
+        $total_sale = 0;
 
         foreach ($products as $product_id => $data) {
             $total_quantity += $data['quantity'];
             $total_price += (float)$data['price'] * (int)$data['quantity'];
+            $total_sale += (float)$data['sale'] * (int)$data['quantity'];
         }
 
-        $this->update(['total_quantity' => $total_quantity, 'total_price' => $total_price]);
+        $this->update(['total_quantity' => $total_quantity, 'total_price' => $total_price, 'total_sale' => $total_sale]);
 
+    }
+
+    public function full_cart_update(){
+        $products = json_decode($this->products, true);
+        if(is_null($products))
+            $products = [];
+//        dd($products);
+        foreach ($products as $id => $data){
+            $ids = explode('_', $id);
+            $product_id = (int)$ids[0];
+            $variation = isset($ids[1]) ? (int)$ids[1] : 0;
+            $price = $this->get_product_price($product_id, $variation);
+            $products[$id]['price'] = $price['price'];
+            $products[$id]['sale'] = $price['sale'];
+            $products[$id]['sale_percent'] = $price['sale_percent'];
+        }
+
+        $this->update(['products' => json_encode($products)]);
+        $this->update_cart();
     }
 
     /**
@@ -117,7 +140,9 @@ class Cart extends Model
                     'product'   => Products::where('id', $ids[0])->with('attributes.value')->first(),
                     'quantity'  => $data['quantity'],
                     'variations'  => $variation_attrs,
-                    'price'  => $data['price']
+                    'price'  => $data['price'],
+                    'sale' => $data['sale'],
+                    'sale_percent' => $data['sale_percent']
                 ];
             }
         }
@@ -163,7 +188,10 @@ class Cart extends Model
             if(!empty($variation)){
                 $products[$product_code]['variation'] = $variation;
             }
-            $products[$product_code]['price'] = $this->get_product_price($product_id, $variation);
+            $price = $this->get_product_price($product_id, $variation);
+            $products[$product_code]['price'] = $price['price'];
+            $products[$product_code]['sale'] = $price['sale'];
+            $products[$product_code]['sale_percent'] = $price['sale_percent'];
         }
 
         $this->update(['products' => json_encode($products)]);
@@ -256,15 +284,39 @@ class Cart extends Model
         $product = Products::find($product_id);
         $price = $product->price;
 
-//        if(!empty($variations)){
-//            $price += $product->attributes()->whereIn('attribute_value_id', array_values($variations))->where('price', '>', 0)->get()->sum('price');
-//        }
-
         $variation = $product->variations()->where('id', $variation)->first();
         if(!empty($variation)){
             $price = $variation->price;
         }
 
-        return $price;
+        return $this->get_sale_price($product, $price);
+    }
+
+    /**
+     * Стоимость с учётом скидки
+     *
+     * @param $product
+     * @param $price
+     * @return array
+     */
+    public function get_sale_price($product, $price){
+        $s = 0;
+        $sale = 0;
+        if(empty($product->old_price)){
+            $user = Sentinel::check();
+            if(!empty($user)){
+                $user = User::find($user->id);
+
+                if($user) {
+                    $s = $user->sale();
+                    if(!empty($s)){
+                        $sale = $price * $s / 100;
+                        $price = $price - $sale;
+                    }
+                }
+            }
+        }
+
+        return ['price' => $price, 'sale' => $sale, 'sale_percent' => $s];
     }
 }
