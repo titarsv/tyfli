@@ -14,6 +14,12 @@ class News extends Model
 
     protected $table = 'news';
 
+    public $categories = [
+        1 => 'Новости и акции',
+        2 => 'Статьи',
+        3 => 'Уход за обувью'
+    ];
+
     public $fillable = [
         'user_id',
         'url_alias',
@@ -22,6 +28,7 @@ class News extends Model
         'text',
         'published',
         'image_id',
+        'category',
         'meta_title',
         'meta_keywords',
         'meta_description',

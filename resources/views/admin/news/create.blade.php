@@ -45,22 +45,30 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-sm-2 text-right">Подзаголовок</label>
+                                <label class="col-sm-2 text-right control-label">Текст новости</label>
                                 <div class="form-element col-sm-10">
-                                    <input type="text" class="form-control" name="subtitle" value="{!! old('subtitle') !!}" />
-                                    @if($errors->has('subtitle'))
-                                        <p class="warning" role="alert">{!! $errors->first('subtitle',':message') !!}</p>
+                                    <textarea id="text-area" name="text" class="form-control" rows="6">{!! old('text') !!}</textarea>
+                                    @if($errors->has('text'))
+                                        <p class="warning" role="alert">{!! $errors->first('text',':message') !!}</p>
                                     @endif
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-sm-2 text-right control-label">Текст новости</label>
+                                <label class="col-sm-2 text-right">Категория</label>
                                 <div class="form-element col-sm-10">
-                                    <textarea id="text-area" name="text" class="form-control" rows="6">{!! old('text') !!}</textarea>
-                                    @if($errors->has('text'))
-                                        <p class="warning" role="alert">{!! $errors->first('text',':message') !!}</p>
+                                    <select name="category" class="form-control">
+                                        @foreach($article->categories as $cat)
+                                            <option value="{!! $cat !!}"
+                                                    @if ($cat == old('category'))
+                                                    selected
+                                                    @endif
+                                            >{!! $cat !!}</option>
+                                        @endforeach
+                                    </select>
+                                    @if($errors->has('category'))
+                                        <p class="warning" role="alert">{!! $errors->first('category',':message') !!}</p>
                                     @endif
                                 </div>
                             </div>

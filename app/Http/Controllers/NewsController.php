@@ -54,7 +54,7 @@ class NewsController extends Controller
         return view('admin.news.index')->with('articles', $articles);
     }
 
-    public function create()
+    public function create(News $articles)
     {
         $settings = $this->settings->find(1);
 
@@ -63,6 +63,7 @@ class NewsController extends Controller
             'height' => $settings->blog_image_height
         ];
         return view('admin.news.create')
+            ->with('article', $articles)
             ->with('image_size', $image_size);
     }
 

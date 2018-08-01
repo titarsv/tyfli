@@ -119,7 +119,7 @@ var imagesLoaderEvents;
         //     $(selector).append(element);
         // }
         for(var i in this.collection){
-            console.log(this.collection[i]);
+            // console.log(this.collection[i]);
             var element = this.collection[i].render();
             $(selector).append(element);
         }
