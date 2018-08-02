@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\HTMLContent;
 use Validator;
+use App\Models\News;
 
 class HTMLContentController extends Controller
 {
@@ -145,7 +146,17 @@ class HTMLContentController extends Controller
     {
         $content = HTMLContent::where('url_alias', $alias)->first();
 
-        return view('public.html_pages')
-            ->with('content', $content);
+        $blog = new News();
+
+        $news = $blog->where('published', 1)->where('category', 'Новости и акции')->orderBy('updated_at', 'desc')->paginate(12);
+        $articles = $blog->where('published', 1)->where('category', 'Статьи')->orderBy('updated_at', 'desc')->paginate(12);
+        $handling = $blog->where('published', 1)->where('category', 'Уход за обувью')->orderBy('updated_at', 'desc')->paginate(12);
+
+//        return view('public.html_pages')
+        return view('public.page')
+            ->with('content', $content)
+            ->with('news', $news)
+            ->with('articles', $articles)
+            ->with('handling', $handling);
     }
 }

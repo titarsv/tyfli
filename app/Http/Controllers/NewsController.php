@@ -195,36 +195,75 @@ class NewsController extends Controller
 //        setlocale(LC_TIME, 'RU');
 //        $article->date = iconv("cp1251", "UTF-8", $article->updated_at->formatLocalized('%d %b %Y'));
 
+        $news = $blog->where('published', 1)->where('category', 'Новости и акции')->orderBy('updated_at', 'desc')->paginate(12);
+        $articles = $blog->where('published', 1)->where('category', 'Статьи')->orderBy('updated_at', 'desc')->paginate(12);
+        $handling = $blog->where('published', 1)->where('category', 'Уход за обувью')->orderBy('updated_at', 'desc')->paginate(12);
+
         return view('public.news_item')
             ->with('article', $article)
             ->with('next', $article->next())
-            ->with('prev', $article->prev());
+            ->with('prev', $article->prev())
+            ->with('news', $news)
+            ->with('articles', $articles)
+            ->with('handling', $handling);
     }
 
-    public function showAll(Request $request, News $blog)
+    public function news(Request $request, News $blog)
     {
-        $articles = $blog->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+        $news = $blog->where('published', 1)->where('category', 'Новости и акции')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+        $articles = $blog->where('published', 1)->where('category', 'Статьи')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+        $handling = $blog->where('published', 1)->where('category', 'Уход за обувью')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+
+        return view('public.news')
+            ->with('title', 'Новости и акции')
+            ->with('slug', 'news')
+            ->with('items', $news)
+            ->with('news', $news)
+            ->with('articles', $articles)
+            ->with('handling', $handling);
+    }
+
+    public function articles(Request $request, News $blog)
+    {
+        $news = $blog->where('published', 1)->where('category', 'Новости и акции')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+        $articles = $blog->where('published', 1)->where('category', 'Статьи')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+        $handling = $blog->where('published', 1)->where('category', 'Уход за обувью')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+
+        return view('public.news')
+            ->with('title', 'Статьи')
+            ->with('slug', 'articles')
+            ->with('items', $articles)
+            ->with('news', $news)
+            ->with('articles', $articles)
+            ->with('handling', $handling);
+    }
+
+    public function handling(Request $request, News $blog)
+    {
+        $news = $blog->where('published', 1)->where('category', 'Новости и акции')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+        $articles = $blog->where('published', 1)->where('category', 'Статьи')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+        $handling = $blog->where('published', 1)->where('category', 'Уход за обувью')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
+
+        return view('public.news')
+            ->with('title', 'Уход за обувью')
+            ->with('slug', 'handling')
+            ->with('items', $handling)
+            ->with('news', $news)
+            ->with('articles', $articles)
+            ->with('handling', $handling);
+    }
+
+//    public function showCat($category, News $blog)
+//    {
+//        $articles = $blog->where('published', 1)->where('category', $category)->orderBy('updated_at', 'desc')->paginate(6);
 //        setlocale(LC_TIME, 'RU');
 //
 //        foreach ($articles as $key => $article) {
 //            $articles[$key]->date = iconv("cp1251", "UTF-8", $articles[$key]->updated_at->formatLocalized('%d %b %Y'));
 //        }
-
-        return view('public.news')
-            ->with('articles', $articles);
-    }
-
-    public function showCat($category, News $blog)
-    {
-        $articles = $blog->where('published', 1)->where('category', $category)->orderBy('updated_at', 'desc')->paginate(6);
-        setlocale(LC_TIME, 'RU');
-
-        foreach ($articles as $key => $article) {
-            $articles[$key]->date = iconv("cp1251", "UTF-8", $articles[$key]->updated_at->formatLocalized('%d %b %Y'));
-        }
-
-        return view('public.news')
-            ->with('category', $category)
-            ->with('articles', $articles);
-    }
+//
+//        return view('public.news')
+//            ->with('category', $category)
+//            ->with('articles', $articles);
+//    }
 }

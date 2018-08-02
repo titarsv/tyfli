@@ -103,7 +103,7 @@
         </div>
         <div class="homepage-product-card-text-wrp">
             <div class="homepage-product-card-text">
-                <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><h2>{{ $product->name }}</h2></a>
+                <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><span>{{ $product->name }}</span></a>
                 <p>Код товара: <span>{{ $product->articul }}</span></p>
                 @if($brand)
                     <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
@@ -140,7 +140,7 @@
 
 <div class="homepage-product-card-text-wrp">
     <div class="homepage-product-card-text">
-        <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><h2>{{ $product->name }}</h2></a>
+        <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><span>{{ $product->name }}</span></a>
         <p>Код товара: <span>{{ $product->articul }}</span></p>
         @if($brand)
             <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">

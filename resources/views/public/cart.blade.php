@@ -114,7 +114,16 @@
                                     @foreach ($cart->get_products() as $code => $product)
                                         @if(is_object($product['product']))
                                             <div class="cart-receipt-item">
-                                                <h5>Ботинки на шнуровке Santi</h5>
+                                                <h5>
+                                                    {{ $product['product']->name }}
+                                                    @if(!empty($product['variations']))
+                                                        (
+                                                        @foreach($product['variations'] as $name => $val)
+                                                            {{ $name }}: {{ $val }};
+                                                        @endforeach
+                                                        )
+                                                    @endif
+                                                </h5>
                                                 <p><span>{{ number_format( round($product['price'] * $product['quantity'], 2), 0, ',', ' ' ) }}</span> грн</p>
                                             </div>
                                         @endif

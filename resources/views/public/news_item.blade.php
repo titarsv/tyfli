@@ -31,15 +31,10 @@
                                     </div>
                                 </div>
                                 <div class="information-accordion-links unactive">
-                                    <h5>Повседневная обувь</h5>
-                                    <a href="javascript:void(0);"><p>Осень - не повод для грусти</p> </a>
-                                    <a href="javascript:void(0);"><p>Модная мужская обувь 2018</p> </a>
-                                    <a href="javascript:void(0);"><p>Модные женские туфли в сезоне 2018</p></a>
-                                    <a href="javascript:void(0);"><p>Туфли - справочник по женской моде.</p></a>
-                                    <a href="javascript:void(0);"><p>Какая женская обувь в моде летом 2017 года?</p></a>
-                                    <a href="javascript:void(0);"><p>Какая обувь будет модной весной и летом в 2017 году</p></a>
-                                    <a href="javascript:void(0);"><p>Осень - не повод для грусти</p></a>
-                                    <a href="javascript:void(0);"><p>Модная мужская обувь 2018</p></a>
+                                    {{--<h5>Повседневная обувь</h5>--}}
+                                    @foreach($news as $item)
+                                        <a href="{{env('APP_URL')}}/news/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="information-accordion-wrp path-underline">
@@ -53,37 +48,10 @@
                                     </div>
                                 </div>
                                 <div class="information-accordion-links unactive">
-                                    <h5>Повседневная обувь</h5>
-                                    <a href="javascript:void(0);"><p>Осень - не повод для грусти</p> </a>
-                                    <a href="javascript:void(0);"><p>Модная мужская обувь 2018</p> </a>
-                                    <a href="javascript:void(0);"><p>Модные женские туфли в сезоне 2018</p></a>
-                                    <a href="javascript:void(0);"><p>Туфли - справочник по женской моде.</p></a>
-                                    <a href="javascript:void(0);"><p>Какая женская обувь в моде летом 2017 года?</p></a>
-                                    <a href="javascript:void(0);"><p>Какая обувь будет модной весной и летом в 2017 году</p></a>
-                                    <a href="javascript:void(0);"><p>Осень - не повод для грусти</p></a>
-                                    <a href="javascript:void(0);"><p>Модная мужская обувь 2018</p></a>
-                                </div>
-                            </div>
-                            <div class="information-accordion-wrp path-underline">
-                                <div class="information-accordion">
-                                    <div class="aside-filter-menu-item-title">
-                                        <p>Вопросы и ответы</p>
-                                    </div>
-                                    <div class="aside-filter-menu-item-btn-toggle filters-open">
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                </div>
-                                <div class="information-accordion-links unactive">
-                                    <h5>Повседневная обувь</h5>
-                                    <a href="javascript:void(0);"><p>Осень - не повод для грусти</p> </a>
-                                    <a href="javascript:void(0);"><p>Модная мужская обувь 2018</p> </a>
-                                    <a href="javascript:void(0);"><p>Модные женские туфли в сезоне 2018</p></a>
-                                    <a href="javascript:void(0);"><p>Туфли - справочник по женской моде.</p></a>
-                                    <a href="javascript:void(0);"><p>Какая женская обувь в моде летом 2017 года?</p></a>
-                                    <a href="javascript:void(0);"><p>Какая обувь будет модной весной и летом в 2017 году</p></a>
-                                    <a href="javascript:void(0);"><p>Осень - не повод для грусти</p></a>
-                                    <a href="javascript:void(0);"><p>Модная мужская обувь 2018</p></a>
+                                    {{--<h5>Повседневная обувь</h5>--}}
+                                    @foreach($articles as $item)
+                                        <a href="{{env('APP_URL')}}/articles/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="information-accordion-wrp path-underline">
@@ -97,30 +65,30 @@
                                     </div>
                                 </div>
                                 <div class="information-accordion-links unactive">
-                                    <h5>Повседневная обувь</h5>
-                                    <a href="javascript:void(0);"><p>Осень - не повод для грусти</p> </a>
-                                    <a href="javascript:void(0);"><p>Модная мужская обувь 2018</p> </a>
-                                    <a href="javascript:void(0);"><p>Модные женские туфли в сезоне 2018</p></a>
-                                    <a href="javascript:void(0);"><p>Туфли - справочник по женской моде.</p></a>
-                                    <a href="javascript:void(0);"><p>Какая женская обувь в моде летом 2017 года?</p></a>
-                                    <a href="javascript:void(0);"><p>Какая обувь будет модной весной и летом в 2017 году</p></a>
-                                    <a href="javascript:void(0);"><p>Осень - не повод для грусти</p></a>
-                                    <a href="javascript:void(0);"><p>Модная мужская обувь 2018</p></a>
+                                    {{--<h5>Повседневная обувь</h5>--}}
+                                    @foreach($handling as $item)
+                                        <a href="{{env('APP_URL')}}/handling/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item path-underline">
                                 <div class="aside-filter-menu-item-title">
-                                    <a href="javascript:void(0);"><p>Бонусная программа</p></a>
+                                    <a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>Вопросы и ответы</p></a>
+                                </div>
+                            </div>
+                            <div class="aside-filter-menu-item path-underline">
+                                <div class="aside-filter-menu-item-title">
+                                    <a href="{{env('APP_URL')}}/page/bonusnyya-programma"><p>Бонусная программа</p></a>
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title">
-                                    <a href="javascript:void(0);"><p>Открытые вакансии</p></a>
+                                    <a href="{{env('APP_URL')}}/page/otkrytye-vakansii"><p>Открытые вакансии</p></a>
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title">
-                                    <a href="javascript:void(0);"><p>Drop shipping</p></a>
+                                    <a href="{{env('APP_URL')}}/page/drop-shipping"><p>Drop shipping</p></a>
                                 </div>
                             </div>
                         </div>
@@ -135,13 +103,13 @@
                         <div class="visible-xs-inline-block col-xs-12">
                             <div>
                                 <select name="" id=""  class="chosen-select site-section-select">
-                                    <option value=""><a href="">Новости и Акции</a></option>
-                                    <option selected="selected" value=""><a href="">Статьи</a></option>
-                                    <option value=""><a href="">Вопросы и ответы</a></option>
-                                    <option value=""><a href="">Уход за обувью</a></option>
-                                    <option value=""><a href="">Бонусная программа</a></option>
-                                    <option value=""><a href="">Открытые вакансии</a></option>
-                                    <option value=""><a href="">Drop Shipping</a></option>
+                                    <option value="{{env('APP_URL')}}/news">Новости и Акции</option>
+                                    <option value="{{env('APP_URL')}}/articles">Статьи</option>
+                                    <option value="{{env('APP_URL')}}/page/voprosy--otvety">Вопросы и ответы</option>
+                                    <option value="{{env('APP_URL')}}/handling">Уход за обувью</option>
+                                    <option value="{{env('APP_URL')}}/page/bonusnyya-programma">Бонусная программа</option>
+                                    <option value="{{env('APP_URL')}}/page/otkrytye-vakansii">Открытые вакансии</option>
+                                    <option value="{{env('APP_URL')}}/page/drop-shipping">Drop Shipping</option>
                                 </select>
                             </div>
                         </div>

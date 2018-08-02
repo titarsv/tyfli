@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-2 col-xs-12">
-                <h5 class="footer-links-title"><a href=""><p>Помощь</p></a> </h5>
+                <h5 class="footer-links-title"><a href="javascript:void(0);"><p>Помощь</p></a> </h5>
                 <ul class="footer-links">
                     <li><a href="{{env('APP_URL')}}/page/delivery"><p>Оплата и Доставка</p> </a></li>
                     <li><a href="{{env('APP_URL')}}/page/garantiya-i-vozvrat"><p>Гарантия и Возврат</p></a></li>
@@ -13,19 +13,19 @@
                 </ul>
             </div>
             <div class="col-sm-2 col-xs-12">
-                <h5 class="footer-links-title"><a href=""><p>Информация</p> </a></h5>
+                <h5 class="footer-links-title"><a href="javascript:void(0);"><p>Информация</p> </a></h5>
                 <ul class="footer-links">
                     <li><a href="{{env('APP_URL')}}/news"><p>Новости и Акции</p> </a></li>
-                    <li><a href="{{env('APP_URL')}}/news"><p>Статьи</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/articles"><p>Статьи</p></a></li>
                     <li><a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>Вопросы и ответы</p></a></li>
-                    <li><a href="{{env('APP_URL')}}/catalog/uhod"><p>Уход за обувью</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/handling"><p>Уход за обувью</p></a></li>
                     <li><a href="{{env('APP_URL')}}/page/bonusnyya-programma"><p>Бонусныя программа</p></a></li>
                     <li><a href="{{env('APP_URL')}}/page/otkrytye-vakansii"><p>Открытые вакансии</p></a></li>
                     <li><a href="{{env('APP_URL')}}/page/drop-shipping"><p>Drop Shipping</p></a></li>
                 </ul>
             </div>
             <div class="col-sm-2 col-xs-12">
-                <h5 class="footer-links-title"><a href="{{env('APP_URL')}}/contact"><p>Контакты</p></a></h5>
+                <h5 class="footer-links-title"><a href="{{env('APP_URL')}}/page/contact"><p>Контакты</p></a></h5>
                 <ul class="footer-links">
                     <li><a href="{{env('APP_URL')}}/page/contact"><p>Контакты</p></a></li>
                     <li><a href="{{env('APP_URL')}}/reviews"><p>Отзывы</p></a></li>
