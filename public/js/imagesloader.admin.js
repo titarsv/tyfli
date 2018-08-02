@@ -12,6 +12,7 @@ $(document).ready(function(){
          */
         if (!events.libraryOpened) {
             events.callEvent('imageLoaderOpened', {button: button});
+            $('.add-image').removeClass('active');
             $(this).addClass('active');
         } else {
             if ($(this).hasClass('active')) {
@@ -19,6 +20,7 @@ $(document).ready(function(){
                 events.callEvent('imageLoaderClosed', {button: button});
             } else {
                 $(buttonOpen).removeClass('active');
+                $('.add-image').removeClass('active');
                 $(this).addClass('active');
             }
 
@@ -101,6 +103,16 @@ $(document).ready(function(){
                 img_output.find('img').remove();
                 img_output.prepend('<img src="/uploads/'+file.href+'">');
 
+            } else if ($(value).hasClass('active') && $(value).attr('data-open') == 'menu') {
+                var ig = data.ig;
+                var file = {
+                    id: ig.collection[ig.collection.length - 1].get('id'),
+                    href: ig.collection[ig.collection.length - 1].get('href')
+                };
+
+                $('.add-image.active').parent().find('input').val('/uploads/'+file.href);
+                $('.add-image.active').parent().find('img').attr('src', '/uploads/'+file.href);
+                $('.add-image.active').replaceWith('<i class="remove-image">-</i>');
             }
 
             $('.btn-del').show();
@@ -112,5 +124,12 @@ $(document).ready(function(){
 
     $('.gallery-container').on('click', '.remove-gallery-image', function(){
         $(this).parent().parent().remove();
+    });
+
+    $(document).on('click', '.menu-image .remove-image', function(e){
+        e.preventDefault();
+        $(this).parent().find('img').attr('src', '/uploads/no_image.jpg');
+        $(this).parent().prepend('<i class="add-image" data-open="menu">+</i>');
+        $(this).remove();
     });
 });

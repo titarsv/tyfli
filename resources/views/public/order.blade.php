@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <section>
+    <section id="order_checkout_content">
         <div class="container">
             <div class="row cart-main-content">
                 <div class="col-md-10 col-sm-12">
@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="cart-list cart-list-margins hidden-xs">
                                     <ul>
-                                        <li>0%</li>
+                                        <li>{{ $product['sale_percent'] }}%</li>
                                     </ul>
                                     <ul>
                                         <li>{{ isset($product['variations']['Размер']) ? $product['variations']['Размер'] : '' }}</li>
@@ -125,10 +125,16 @@
                                             <h5>Общая сумма заказа</h5>
                                             <p><span>{{ $cart->total_price ? number_format( round($cart->total_price, 2), 0, ',', ' ' ) : '0' }}</span> грн</p>
                                         </div>
-                                        <div class="cart-receipt-item">
-                                            <h5>Сумма доставки</h5>
-                                            <p><span>0</span> грн</p>
-                                        </div>
+                                        @if(!empty($cart->total_sale))
+                                            <div class="cart-receipt-item">
+                                                <h5>Скидка</h5>
+                                                <p><span>{{ $cart->total_sale ? number_format( round($cart->total_sale, 2), 0, ',', ' ' ) : '0' }}</span> грн</p>
+                                            </div>
+                                        @endif
+                                        {{--<div class="cart-receipt-item">--}}
+                                            {{--<h5>Сумма доставки</h5>--}}
+                                            {{--<p><span>0</span> грн</p>--}}
+                                        {{--</div>--}}
                                     </div>
                                     <div class="cart-receipt-item cart-receipt-price">
                                         <h5>Итого</h5>

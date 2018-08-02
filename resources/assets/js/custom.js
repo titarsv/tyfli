@@ -235,7 +235,7 @@ $(function() {
     /**
      * Удаление товара из корзины
      */
-    $('#order-popup, #order_cart_content').on('click', '.mc_item_delete', function(){
+    $('#order-popup, #order_cart_content, #order_checkout_content').on('click', '.mc_item_delete', function(){
         var $this = $(this);
         update_cart({
             action: 'remove',
@@ -256,7 +256,7 @@ $(function() {
     /**
      * Обновление колличества товара в корзине
      */
-    $('#order-popup, #order_cart_content').on('input change', '.count_field', function(){
+    $('#order-popup, #order_cart_content, #order_checkout_content').on('input change', '.count_field', function(){
         var $this = $(this);
         update_cart({
             action: 'update',
@@ -268,7 +268,7 @@ $(function() {
     /**
      * Кнопка уменьшения колличества товара в корзине
      */
-    $('#order-popup, #order_cart_content').on('click', '.cart_minus', function () {
+    $('#order-popup, #order_cart_content, #order_checkout_content').on('click', '.cart_minus', function () {
         var $input = $(this).parent().find('input');
         var count = parseInt($input.val()) - 1;
         count = count < 1 ? 1 : count;
@@ -280,7 +280,7 @@ $(function() {
     /**
      * Кнопка увеличения колличества товара в корзине
      */
-    $('#order-popup, #order_cart_content').on('click', '.cart_plus', function () {
+    $('#order-popup, #order_cart_content, #order_checkout_content').on('click', '.cart_plus', function () {
         var $input = $(this).parent().find('input');
         $input.val(parseInt($input.val()) + 1);
         $input.change();
@@ -599,6 +599,122 @@ function update_cart(data){
         var order_cart_content = $('#order_cart_content');
         if(order_cart_content.length > 0){
             order_cart_content.load("/cart #order_cart_content");
+        }
+        var order_checkout_content = $('#order_checkout_content');
+        if(order_checkout_content.length > 0){
+            order_checkout_content.load("/checkout #order_checkout_content", function(){
+                $('.popup-btn').each(function(index, obj) {
+                    let $this = $(obj);
+
+                    let settings = {};
+
+                    settings.type = 'inline';
+                    if ($this.data('type') !== '') {
+                        settings.type = $this.data('type');
+                    }
+
+                    if (settings.type == 'inline') {
+                        let slider = $($this.data('mfp-src')).find('.slick-slider');
+
+                        if (slider.length) {
+                            settings.callbacks = {
+                                open: function() {
+                                    slider.slick();
+                                }
+                            };
+                        }
+                    }
+
+                    $this.magnificPopup(settings);
+                });
+
+                $('#checkout-btn').click(function (e) {
+                    e.preventDefault();
+                    var validate = true;
+                    if($('#safe-agreement').prop('checked') == false){
+                        $('#safe-agreement').addClass('not-valid');
+                        validate = false;
+                    }else{
+                        $('#safe-agreement').removeClass('not-valid');
+                    }
+                    if($('#public-agreement').prop('checked') == false){
+                        $('#public-agreement').addClass('not-valid');
+                        validate = false;
+                    }else{
+                        $('#public-agreement').removeClass('not-valid');
+                    }
+
+                    if(validate){
+                        //$(this).parents('form').submit();
+
+                        $.ajax({
+                            url: '/order/create',
+                            type: 'post',
+                            data: $(this).parents('form').serialize(),
+                            beforeSend: function(){
+                                $('.checkout-step__body').addClass('checkout-step__body_loader');
+                                $('.checkout-step__body_second .error-message').fadeOut(300, function(){
+                                    $('.checkout-step__body_second .error-message__text').html('');
+                                });
+                                $('select, input').removeClass('input-error');
+                            },
+                            success: function(response) {
+                                if (response.error) {
+                                    var html = '';
+                                    $.each(response.error, function (id, text){
+                                        var error = id.split('.');
+                                        $('[name="' + error[0] + '[' + error[1] + ']"').addClass('input-error');
+                                        html += text + '<br>';
+                                    });
+                                } else if (response.success) {
+                                    if (response.success == 'liqpay') {
+                                        LiqPayCheckout.init({
+                                            data: response.liqpay.data,
+                                            signature:  response.liqpay.signature,
+                                            embedTo: "#liqpay_checkout",
+                                            mode: "embed" // embed || popup
+                                        }).on("liqpay.callback", function(data){
+                                            console.log(data.status);
+                                            console.log(data);
+                                            window.location = '/checkout/complete?order_id=' + response.order_id;
+                                        }).on("liqpay.ready", function(data){
+                                            $('#liqpay_checkout').css('display', 'block');
+                                        }).on("liqpay.close", function(data){
+                                            window.location = '/checkout/complete?order_id=' + response.order_id;
+                                        });
+                                    } else if (response.success == 'redirect') {
+                                        swal('Заказ оформлен!', 'Номер заказа: '+response.order_id, 'success');
+                                        setTimeout(function(){
+                                            window.location = '/user/history';
+                                        }, 5000);
+                                        //window.location = '/checkout/complete?order_id=' + response.order_id;
+                                    }
+                                }
+                            }
+                        })
+                    }else{
+                        return false;
+                    }
+                });
+
+                $('#delivery-popup .save').click(function(){
+                    $('#current-delivery').text($('[for="'+$('#delivery-popup [name="delivery"]:checked').attr('id')+'"]').text());
+                    $.magnificPopup.close();
+                });
+
+                $('#delivery-popup .cancel').click(function(){
+                    $.magnificPopup.close();
+                });
+
+                $('#pay-popup .save').click(function(){
+                    $('#current-pay').text($('[for="'+$('#pay-popup [name="payment"]:checked').attr('id')+'"]').text());
+                    $.magnificPopup.close();
+                });
+
+                $('#pay-popup .cancel').click(function(){
+                    $.magnificPopup.close();
+                });
+            });
         }
         //$('.cart_scroll_wrapper').jScrollPane();
         update_cart_quantity();
