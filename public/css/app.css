@@ -3420,7 +3420,7 @@ label:hover {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding-right: 40px;
+  padding-right: 74px;
   padding-bottom: 15px;
 }
 
@@ -3430,13 +3430,13 @@ label:hover {
   font-size: 14px;
   font-weight: 300;
   line-height: 16px;
-  width: 70px;
+  width: 65px;
   text-align: center;
 }
 
 @media only screen and (max-width: 1199px) {
   .cart-list-title p {
-    width: 60px;
+    width: 64px;
   }
 }
 
@@ -3448,14 +3448,19 @@ label:hover {
 
 @media only screen and (max-width: 1199px) {
   .cart-list-title {
-    padding-right: 30px;
+    padding-right: 64px;
   }
 }
 
 @media only screen and (max-width: 991px) {
   .cart-list-title {
-    padding-right: 58px;
+    padding-right: 100px;
   }
+}
+
+.popup-price {
+  width: 60px;
+  text-align: center;
 }
 
 .cart-links {
@@ -5991,6 +5996,42 @@ input[disabled] {
   visibility: visible;
   opacity: 1;
   display: block;
+}
+
+h2 {
+  color: #4A4A4A;
+  font-family: Oswald;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  min-height: 40px;
+}
+
+h4 {
+  color: #4A4A4A;
+  font-family: Oswald;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  min-height: 40px;
+}
+
+ol {
+  color: #000;
+  font-family: "HelveticaNeue";
+  font-size: 14px;
+  line-height: 20px;
+}
+
+ul {
+  color: #000;
+  font-family: "HelveticaNeue";
+  font-size: 14px;
+  line-height: 20px;
+}
+
+ul.list {
+  list-style: square;
 }
 
 i {
