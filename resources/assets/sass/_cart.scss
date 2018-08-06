@@ -2,7 +2,8 @@
 .cart-list-title{
     display: flex;
     justify-content: flex-end;
-    padding-right: 40px;
+    //padding-right: 40px;
+    padding-right: 74px;
     padding-bottom: 15px;
      p{
         color: #4A4A4A;
@@ -10,21 +11,26 @@
         font-size: 14px;
         font-weight: 300;
         line-height: 16px;
-        width: 70px;
+         width: 65px;
         text-align: center;
         @include bp (lg){
-            width: 60px;
+            width: 64px;
         }
         @include bp (md){
             width: 65px;
         }
     }
     @include bp (lg){
-        padding-right: 30px;
+        padding-right: 64px;
     }
     @include bp (md){
-        padding-right: 58px;
+        padding-right: 100px;
     }
+}
+
+.popup-price{
+    width: 60px;
+    text-align: center;
 }
 .cart-links{
     display: flex;
