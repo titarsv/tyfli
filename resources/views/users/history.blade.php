@@ -71,7 +71,7 @@
                                             </div>
                                             <div class="cart-list cart-list-margins hidden-xs">
                                                 <ul>
-                                                    <li>0%</li>
+                                                    <li>{{ $product['sale_percent'] or 0 }}%</li>
                                                 </ul>
                                                 <ul>
                                                     <li>{{ isset($product['variations']['Размер']) ? $product['variations']['Размер'] : '' }}</li>
@@ -146,9 +146,25 @@
                         </div>
                         <div class="col-md-12 no-padding">
                             <div class="cart-receipt-btn">
-                                <a href="{{env('APP_URL')}}/" class="popup-btn process">
-                                    <p>Продолжить покупки</p>
-                                </a>
+                                @if(empty($orders))
+                                    <a href="{{env('APP_URL')}}/" class="process" style="color: #F5F5F5; font-family: 'HelveticaNeue'; font-size: 18px; font-weight: bold; line-height: 25px; text-align: center; border: none; outline: none;">
+                                        <p>Продолжить покупки</p>
+                                    </a>
+                                @else
+                                    @php
+                                        $href = '/';
+                                        $products = $orders->first()->getProducts();
+                                        if(!empty($products)){
+                                            $categories = $products[0]['product']->categories;
+                                            if(!empty($categories)){
+                                                $href = '/catalog/'.$categories->first()->get_root_category()->url_alias;
+                                            }
+                                        }
+                                    @endphp
+                                    <a href="{{env('APP_URL')}}{{ $href }}" class="process" style="color: #F5F5F5; font-family: 'HelveticaNeue'; font-size: 18px; font-weight: bold; line-height: 25px; text-align: center; border: none; outline: none;">
+                                        <p>Продолжить покупки</p>
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>

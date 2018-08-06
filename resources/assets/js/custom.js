@@ -145,7 +145,7 @@ $(function() {
         if(variation.length){
             data['variation'] = variation.val();
         }
-
+console.log(data);
         $("#order-popup").load("/cart/update", data, function(cart){
             $.magnificPopup.open({
                 items: {

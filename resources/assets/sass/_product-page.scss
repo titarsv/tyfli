@@ -42,6 +42,7 @@
     line-height: 24px;
     padding: 10px;
     background-color: #FBFBFB;
+    border: 1px solid #fff;
 }
 .disabled{
     color: #9B9B9B;
@@ -52,6 +53,7 @@
 }
 .radio:checked + .prod-size{
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    border: 1px solid #5f98b9;
 }
 .size-link{
     color: #5F98B9;
@@ -61,6 +63,7 @@
     line-height: 19px;
 }
 .product-card-text{
+    margin-bottom: 15px;
     h2{
         color: #4A4A4A;
         font-family: Oswald;

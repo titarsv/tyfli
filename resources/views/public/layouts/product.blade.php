@@ -85,7 +85,7 @@
         <div class="one-click-btn-wrp">
             <div class="hover-pro-card-btn-container">
                 <a class="js-toggle-one-click-btn" data-toggle=".one-click-form"><p class="hover-pro-card-btn">Купить в 1 клик</p></a>
-                <button class="hover-pro-card-cart-btn"><img src="/images/homepage-icons/cart icon.svg" alt="cart icon"></button>
+                <button class="hover-pro-card-cart-btn btn_buy" data-prod-id="{{ $product->id }}"><img src="/images/homepage-icons/cart icon.svg" alt="cart icon"></button>
             </div>
             <form action="" class="one-click-form unactive ajax_form"
                   data-error-title="Ошибка отправки!"
@@ -116,7 +116,7 @@
             <div class="color-and-price-wrp">
                 <div class="homepage-product-card-color">
                     @foreach($colors as $key => $item)
-                        <a href="{{env('APP_URL')}}/product/{{ $item['slug'] }}" data-id="{{ $key }}" class="color-sample" style="background-color: {{ $item['color']->value }}"></a>
+                        <a href="{{env('APP_URL')}}/product/{{ $item['slug'] }}" data-id="{{ $key }}" title="{{ $item['color']->name }}" class="color-sample" style="background-color: {{ $item['color']->value }}"></a>
                     @endforeach
                 </div>
                 <div class="homepage-product-card-price">
@@ -153,7 +153,7 @@
     <div class="color-and-price-wrp">
         <div class="homepage-product-card-color">
             @foreach($colors as $key => $item)
-                <a href="{{env('APP_URL')}}/product/{{ $item['slug'] }}" data-id="{{ $key }}" class="color-sample" style="background-color: {{ $item['color']->value }}"></a>
+                <a href="{{env('APP_URL')}}/product/{{ $item['slug'] }}" title="{{ $item['color']->name }}" data-id="{{ $key }}" class="color-sample" style="background-color: {{ $item['color']->value }}"></a>
             @endforeach
         </div>
         <div class="homepage-product-card-price">

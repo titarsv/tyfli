@@ -97,7 +97,7 @@
                                                                            @if($attribute_value['checked'])
                                                                            checked
                                                                            @endif>
-                                                                    <label for="product-filter-{!! $key !!}__check-{!! $i !!}" class="color-sample" style="background-color: {!! $attribute_value['value'] !!}"></label>
+                                                                    <label title="{{ $attribute_value['name'] }}" for="product-filter-{!! $key !!}__check-{!! $i !!}" class="color-sample" style="background-color: {!! $attribute_value['value'] !!}"></label>
                                                                 </div>
                                                             @endif
                                                         @endforeach

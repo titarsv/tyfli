@@ -52,9 +52,9 @@ class MainController extends Controller
             return redirect()->action(
                 'CategoriesController@show', ['alias' => $part], 301
             );
-        }elseif(count($parts) > 2 && $products->where('url_alias', $part)->count()){
+        }elseif(count($parts) > 2 && $products->where('url_alias', str_replace('-detail', '', $part))->count()){
             return redirect()->action(
-                'ProductsController@show', ['alias' => $part], 301
+                'ProductsController@show', ['alias' => str_replace('-detail', '', $part)], 301
             );
         }elseif(count($parts) == 2 && $news->where('url_alias', $part)->count()){
             return redirect()->action(

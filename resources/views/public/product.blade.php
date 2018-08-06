@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="visible-xs-inline-block col-xs-12">
                     <div class="product-card-text">
-                        <h2 class="title">{{ $product->name }}</h2>
+                        <h1 class="title">{{ $product->name }}</h1>
                         <p>Код товара: <span>{{ $product->articul }}</span></p>
                         @if(!empty($brand))
                             <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
@@ -71,7 +71,7 @@
                 <div class="col-md-5 col-sm-6 col-xs-12">
                     <form action="" class="product-form">
                         <div class="product-card-text hidden-xs">
-                            <h1 class="title">{{ $product->name }}</h1>
+                            <h2 class="title">{{ $product->name }}</h2>
                             <p>Код товара: <span>{{ $product->articul }}</span></p>
                             @if($brand)
                                 <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
