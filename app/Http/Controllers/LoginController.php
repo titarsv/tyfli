@@ -136,7 +136,7 @@ class LoginController extends Controller
     {
         $rules = [
             'first_name' => 'required',
-            'phone'     => 'required|regex:/^[0-9\-! ,\'\"\/+@\.:\(\)]+$/',
+            'phone'     => 'required',
             'email'     =>'required|email',
             'password'  => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6'

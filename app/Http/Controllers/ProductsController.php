@@ -573,13 +573,16 @@ class ProductsController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function search(Products $products, Request $request)
+    public function search(Products $products, Request $request, $page = 'page1')
     {
         $search_text = $request->input('text');
 
-        $id = $request->get('page', 1);
-
-        $data = $products->search($search_text, $id, 8);
+        //$id = $request->get('page', 1);
+		
+		 // Установка текущей страницы пагинации
+        $request->page = (int) str_replace('page', '', $page);
+		
+        $data = $products->search($search_text, str_replace('page', '', $page), 18);
         
         if(method_exists($data, 'total')) {
             $paginator = $data->appends(['text' => $search_text]);

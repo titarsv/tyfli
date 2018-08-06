@@ -15,6 +15,7 @@ use App\Models\Products;
 use App\Http\Requests;
 use Validator;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
+use Illuminate\Support\Facades\Cache;
 
 
 class CategoriesController extends Controller
@@ -195,10 +196,15 @@ class CategoriesController extends Controller
         // Установка параметров фильтрации
         $filter->setCategory($category)->setRequest($request->toArray())->setFilterPath($filters);
 
+        $hash = md5($alias.serialize($request->toArray()).serialize($filters));
+        $attributes = Cache::remember('attributes_'.$hash, 480, function () use ($filter) {
+            return $filter->getFilterAttributes();
+        });
+
         return view('public.category')
             ->with('category', $category)
             ->with('products', $filter->getProducts(['price', 'asc'], 18, $request->page))
-            ->with('attributes', $filter->getFilterAttributes())
+            ->with('attributes', $attributes)
             ->with('price', $filter->getPriceRanges());
     }
 

@@ -31,11 +31,11 @@ return array(
             'width' => 456,
             'height' => 456
         ],
-        'article' => [
-            'description' => 'Размер изображения блога',
-            'width' => 555,
-            'height' => 370
-        ],
+//        'article' => [
+//            'description' => 'Размер изображения блога',
+//            'width' => 555,
+//            'height' => 370
+//        ],
     ],
 
     /**

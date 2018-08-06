@@ -41,7 +41,7 @@
     @if(!empty($product->label) && $product->label != 'z' && isset($labels[$product->label]))
         <p class="homepage-product-card-new">{{ $labels[$product->label] }}</p>
     @elseif(!empty($product->old_price))
-        <p class="homepage-product-card-new product-discount">-{{ ceil(($product->old_price / $product->price - 1) * 100) }}%</p>
+        <p class="homepage-product-card-new product-discount">-{{ ceil((($product->old_price - $product->price)/ $product->old_price) * 100) }}%</p>
     @else
         <p class="homepage-product-card-new" style="visibility: hidden;"></p>
     @endif
@@ -51,7 +51,7 @@
     </div>
 </div>
 
-@if(!$slide)
+@if(!isset($slide) || !$slide)
 <div class="hover-prod-card hidden-sm hidden-xs">
     <div>
         <div class="homepage-product-card-img-wrp">
@@ -73,7 +73,7 @@
             @if(!empty($product->label) && $product->label != 'z' && isset($labels[$product->label]))
                 <p class="homepage-product-card-new">{{ $labels[$product->label] }}</p>
             @elseif(!empty($product->old_price))
-                <p class="homepage-product-card-new product-discount">-{{ ceil(($product->old_price / $product->price - 1) * 100) }}%</p>
+                <p class="homepage-product-card-new product-discount">-{{ ceil((($product->old_price - $product->price)/ $product->old_price) * 100) }}%</p>
             @else
                 <p class="homepage-product-card-new" style="visibility: hidden;"></p>
             @endif

@@ -120,6 +120,10 @@ $(function() {
         e.preventDefault();
         e.stopPropagation();
         var $this = $(this);
+		if($('.variation-radio').length && $('.variation-radio:checked').length == 0){
+			swal('Ошибка', 'Выберите размер', 'error');
+			return false;
+		}
         var qty = $('.result-price .count_field').val();
         var data = {
             action: 'add',

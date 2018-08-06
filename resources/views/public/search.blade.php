@@ -15,17 +15,18 @@
             <div class="container">
                 <h1>Поиск: {{ $search_text }}</h1>
                 <div class="row">
-                    <div class="col-sm-12">
-                        <section class="cards">
-                            @forelse($products as $product)
-                                @include('public.layouts.product', $product)
-                            @empty
-                                <article class="order">
-                                    <h5 class="order__title">В этой категории пока нет товаров!</h5>
-                                </article>
-                            @endforelse
-
-                        </section>
+                    <div class="col-sm-12 products-grid-container">
+						@forelse($products as $product)
+							<div class="col-lg-4 col-xs-6">
+								<div class="grid-product-card card-margin">
+									@include('public.layouts.product', ['product' => $product, 'slide' => false])
+								</div>
+							</div>
+						@empty
+							<article class="order">
+								<h5 class="order__title">В этой категории пока нет товаров!</h5>
+							</article>
+						@endforelse
                     </div>
 
                     <div class="col-sm-12">
