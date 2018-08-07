@@ -594,6 +594,18 @@ console.log(data);
     });
 
     $('#phone').mask('+38 (999) 999-99-99');
+
+    $('.filter-menu').click(function () {
+        $('.aside-filter-menu-container').addClass('active');
+    });
+
+    $('#close_filter').click(function () {
+        $('.aside-filter-menu-container').removeClass('active');
+    });
+
+    $('#sorting-select').change(function () {
+        console.log($(this).val());
+    });
 });
 
 /**

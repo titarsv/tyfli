@@ -203,7 +203,7 @@ class CategoriesController extends Controller
 
         return view('public.category')
             ->with('category', $category)
-            ->with('products', $filter->getProducts(['price', 'asc'], 18, $request->page))
+            ->with('products', $filter->getProducts(['price', isset($request->order) ? $request->order : 'asc'], 18, $request->page))
             ->with('attributes', $attributes)
             ->with('price', $filter->getPriceRanges());
     }
