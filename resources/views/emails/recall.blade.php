@@ -1,5 +1,5 @@
 <div class="header" style="text-align: center;">
-    <img src="{!! url('/images/logo.png') !!}" alt="logo" title="Globalprom" width="224" height="36" />
+    <img src="{!! url('/images/logo.png') !!}" alt="logo" title="Tyfli.com" width="228" height="60" />
 
     @if(!empty($email) && isset($comment))
         <p style="font-size: 20px;">Новое сообщение на сайте Tyfli.com!</p>
