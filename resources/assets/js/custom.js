@@ -2,6 +2,7 @@
 // Depends
 var $ = require('jquery');
 var swal = require('sweetalert2');
+require('../../../node_modules/jquery.maskedinput/src/jquery.maskedinput');
 
 // Are you ready?
 $(function() {
@@ -592,6 +593,7 @@ console.log(data);
         }
     });
 
+    $('#phone').mask('+38 (999) 999-99-99');
 });
 
 /**

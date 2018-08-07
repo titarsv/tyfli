@@ -97,6 +97,9 @@
         font-weight: 500;
         line-height: 19px;
         min-height: 40px;
+        @include bp(xs){
+            min-height: 57px;
+        }
     }
     h2:hover{
         color: #5F98B9;

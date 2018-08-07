@@ -44,9 +44,9 @@
                     <div class="row">
                         <div class="visible-xs-block col-xs-12">
                             <div>
-                                <select name="site-section-select" id="" class="chosen-select site-section-select">
-                                    <option value="">История покупок</option>
-                                    <option value="">Список желаний</option>
+                                <select name="site-section-select" id="redirect_select" class="chosen-select site-section-select">
+                                    <option value="{{env('APP_URL')}}/user/history">История покупок</option>
+                                    <option value="{{env('APP_URL')}}/user/wishlist">Список желаний</option>
                                     <option selected="selected" value="">Личный кабинет</option>
                                 </select>
                             </div>
@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Телефон</h5>
-                                    <input type="text" name="phone" value="{{ $user->user_data->phone }}" class="profile-edit-data-input">
+                                    <input type="text" name="phone" value="{{ $user->user_data->phone }}" id="phone" class="profile-edit-data-input">
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Почта</h5>

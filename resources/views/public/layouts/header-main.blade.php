@@ -17,11 +17,11 @@
                                     <li class="path-underline"><a href="{{env('APP_URL')}}/catalog/uhod">Уход</a></li>
                                 </ul>
                                 <ul class="sections-links">
-                                    <li><a href="{{env('APP_URL')}}/catalog/zhenskaya-obuv">Оплата и доставка</a> </li>
-                                    <li><a href="{{env('APP_URL')}}/catalog/muzhskaya-obuv">Гарантия и Возврат</a></li>
-                                    <li><a href="{{env('APP_URL')}}/catalog/zhenskie-aksessuary">Вопросы и Ответы</a></li>
-                                    <li><a href="{{env('APP_URL')}}/catalog/uhod">Отзывы</a></li>
-                                    <li><a href="{{env('APP_URL')}}/brands">Контакты</a></li>
+                                    <li><a href="{{env('APP_URL')}}/page/delivery">Оплата и доставка</a> </li>
+                                    <li><a href="{{env('APP_URL')}}/page/garantiya-i-vozvrat">Гарантия и Возврат</a></li>
+                                    <li><a href="{{env('APP_URL')}}/page/voprosy--otvety">Вопросы и Ответы</a></li>
+                                    <li><a href="{{env('APP_URL')}}/reviews">Отзывы</a></li>
+                                    <li><a href="{{env('APP_URL')}}/page/contact">Контакты</a></li>
                                 </ul>
                             </div>
                         </div>
