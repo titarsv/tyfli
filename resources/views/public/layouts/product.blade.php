@@ -3,7 +3,11 @@
     $brand = $product->brand();
     //$colors = $product->colors;
     $sizes = $product->sizes;
-    $in_wish = $product->in_wish();
+    if($product->wishlist !== null){
+        $in_wish = $product->wishlist->count();
+    }else{
+        $in_wish = $product->in_wish();
+    }
 
     $colors = [];
     if($product->colors->count()) {

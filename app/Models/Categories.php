@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Products;
 use Illuminate\Pagination\Paginator;
+use Cartalyst\Sentinel\Native\Facades\Sentinel;
 
 class Categories extends Model
 {
@@ -87,7 +88,6 @@ class Categories extends Model
             foreach ($filter as $key => $attribute) {
 
                 $products->join('product_attributes AS attr' . $key, 'products.id', '=', 'attr' . $key . '.product_id');
-//                $products->where('stock', 1);
                 $products->where('attr' . $key . '.attribute_id', $key);
                 $products->where(function($query) use($attribute, $key){
 
@@ -107,6 +107,13 @@ class Categories extends Model
         $products->groupBy('products.id');
         $products->with('image', 'sizes', 'colors', 'related.colors', 'related.image');
 
+        $user = Sentinel::check();
+        if(!empty($user)){
+            $products->with(['wishlist' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }]);
+        }
+
         if(!$take){
             return $products->paginate(12);
         } else {
@@ -116,11 +123,11 @@ class Categories extends Model
 
     }
 
-    public function get_products_count($category_id, $filter, $price = [])
+    public function get_products_count($category_id, $filter, $price = [], $limit = 0)
     {
         $hash = md5($category_id.serialize($filter).serialize($price));
 
-        $count = Cache::remember($hash, 480, function () use (&$category_id, $filter, $price) {
+        $count = Cache::remember($hash, 480, function () use (&$category_id, $filter, $price, $limit) {
             $products = Products::select('products.*');
 
             $products->where('stock', 1);
@@ -142,7 +149,6 @@ class Categories extends Model
                 foreach ($filter as $key => $attribute) {
 
                     $products->join('product_attributes AS attr' . $key, 'products.id', '=', 'attr' . $key . '.product_id');
-                    $products->where('stock', 1);
                     $products->where('attr' . $key . '.attribute_id', $key);
                     $products->where(function($query) use($attribute, $key){
 
@@ -160,7 +166,11 @@ class Categories extends Model
 
             $products->groupBy('products.id');
 
-            return $products->get()->count();
+            if(!empty($limit)){
+                $products->limit($limit);
+            }
+
+            return $products->count();
         });
 
         return $count;
@@ -168,17 +178,23 @@ class Categories extends Model
 
     public function get_children_categories($cat_id){
 
-        $categories = Cache::remember('children_categories_'.$cat_id, 60, function () use (&$cat_id) {
-            $children_categories = $this->select('id')->where('parent_id', $cat_id)->get()->toArray();
-            $categories = [];
-            if(count($children_categories)) {
-                foreach ($children_categories as $cat) {
-                    $categories[] = $cat['id'];
-                    $categories = array_merge ($categories, $this->get_children_categories($cat['id']));
+        if(isset($this->{'children_categories_'.$cat_id})){
+            $categories = $this->{'children_categories_'.$cat_id};
+        }else{
+            $categories = Cache::remember('children_categories_'.$cat_id, 60, function () use (&$cat_id) {
+                $children_categories = $this->select('id')->where('parent_id', $cat_id)->get()->toArray();
+                $categories = [];
+                if(count($children_categories)) {
+                    foreach ($children_categories as $cat) {
+                        $categories[] = $cat['id'];
+                        $categories = array_merge ($categories, $this->get_children_categories($cat['id']));
+                    }
                 }
-            }
-            return $categories;
-        });
+                return $categories;
+            });
+
+            $this->{'children_categories_'.$cat_id} = $categories;
+        }
 
         return $categories;
     }
@@ -190,20 +206,27 @@ class Categories extends Model
      * @return int
      */
     public function min_price($category_id){
-        $price = Cache::remember('min_price_'.$category_id, 60, function () use (&$category_id) {
-            $product = Products::select('products.price');
-            $categories = array_merge([$category_id], $this->get_children_categories($category_id));
-            $product->join('product_categories AS cat', 'products.id', '=', 'cat.product_id');
-            $product->whereIn('cat.category_id', $categories);
-            $result = $product->orderBy('products.price', 'asc')
-                     ->first();
 
-            if(is_null($result)){
-                return 0;
-            }else{
-                return $result->price;
-            }
-        });
+        if(isset($this->{'min_price_'.$category_id})){
+            $price = $this->{'min_price_'.$category_id};
+        }else{
+            $price = Cache::remember('min_price_'.$category_id, 60, function () use (&$category_id) {
+                $product = Products::select('products.price');
+                $categories = array_merge([$category_id], $this->get_children_categories($category_id));
+                $product->join('product_categories AS cat', 'products.id', '=', 'cat.product_id');
+                $product->whereIn('cat.category_id', $categories);
+                $result = $product->orderBy('products.price', 'asc')
+                    ->first();
+
+                if(is_null($result)){
+                    return 0;
+                }else{
+                    return $result->price;
+                }
+            });
+
+            $this->{'min_price_'.$category_id} = $price;
+        }
 
         return $price;
     }
@@ -215,20 +238,27 @@ class Categories extends Model
      * @return int
      */
     public function max_price($category_id){
-        $price = Cache::remember('max_price_'.$category_id, 60, function () use (&$category_id) {
-            $product = Products::select('products.price');
-            $categories = array_merge([$category_id], $this->get_children_categories($category_id));
-            $product->join('product_categories AS cat', 'products.id', '=', 'cat.product_id');
-            $product->whereIn('cat.category_id', $categories);
-            $result = $product->orderBy('products.price', 'desc')
-                ->first();
 
-            if(is_null($result)){
-                return 0;
-            }else{
-                return $result->price;
-            }
-        });
+        if(isset($this->{'max_price_'.$category_id})){
+            $price = $this->{'max_price_'.$category_id};
+        }else{
+            $price = Cache::remember('max_price_'.$category_id, 60, function () use (&$category_id) {
+                $product = Products::select('products.price');
+                $categories = array_merge([$category_id], $this->get_children_categories($category_id));
+                $product->join('product_categories AS cat', 'products.id', '=', 'cat.product_id');
+                $product->whereIn('cat.category_id', $categories);
+                $result = $product->orderBy('products.price', 'desc')
+                    ->first();
+
+                if(is_null($result)){
+                    return 0;
+                }else{
+                    return $result->price;
+                }
+            });
+
+            $this->{'max_price_'.$category_id} = $price;
+        }
 
         return $price;
     }

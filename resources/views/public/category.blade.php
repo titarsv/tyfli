@@ -161,8 +161,8 @@
                                 <div class="row">
                                     <fieldset class="col-xs-8 sorting-dropdown chosen-select-prod-grid">
                                         <select name="sorting-select" class="chosen-select" id="sorting-select" data-chosen-settings='{"disable_search_threshold":10, "width":"100%"}'>
-                                            <option value="asc" selected="selected">От дешевых к дорогим</option>
-                                            <option value="desc">От дорогих к дешевым</option>
+                                            <option value="asc"{{ isset($_GET['order']) && $_GET['order'] == 'asc' ? ' selected="selected"' : '' }}>От дешевых к дорогим</option>
+                                            <option value="desc"{{ isset($_GET['order']) && $_GET['order'] == 'desc' ? ' selected="selected"' : '' }}>От дорогих к дешевым</option>
                                         </select>
                                     </fieldset>
                                     <div class="col-xs-4 filter-menu">

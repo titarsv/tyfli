@@ -603,8 +603,27 @@ console.log(data);
         $('.aside-filter-menu-container').removeClass('active');
     });
 
+    // Сортировка
     $('#sorting-select').change(function () {
-        console.log($(this).val());
+        var s = window.location.search.replace('?', '').split('&');
+        var search = {};
+        if(s.length){
+            for(i=0; i<s.length; i++){
+                var p = s[i].split('=');
+                if(p[0] != '')
+                    search[p[0]] = p[1];
+            }
+        }
+
+        search['order'] = $(this).val();
+        s = '?';
+        for (var key in search) {
+            s += key + '=' + search[key];
+        }
+
+        if(location.href != location.origin + location.pathname + s){
+            window.location = location.origin + location.pathname + s;
+        }
     });
 });
 
