@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use App\Models\Products;
-use App\Models\Category;
+use App\Models\Categories;
 use App\Models\News;
 use App\Models\HTMLContent;
 
@@ -44,7 +44,7 @@ class XMLSitemap extends Command
     {
         //тут тело как-раз нашей функции
         //$site_url = env('APP_URL');//уберите лишние пробелы
-        $site_url = 'http://globalprom.com.ua';//уберите лишние пробелы
+        $site_url = 'https://tyfli.com';//уберите лишние пробелы
         $base = '<?xml version="1.0" encoding="UTF-8"?>
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             </urlset>';
@@ -72,20 +72,20 @@ class XMLSitemap extends Command
             $row->addChild("changefreq","monthly");
             $row->addChild("priority","0.8");
         }
-        foreach (Category::where('status', 1)->get() as $result) {
+        foreach (Categories::where('status', 1)->get() as $result) {
             $row  = $xmlbase->addChild("url");
             $row->addChild("loc",$site_url.'/catalog/'.$result->url_alias);
             $row->addChild("lastmod",$result->created_at->format("Y-m-d\TH:i:sP"));
             $row->addChild("changefreq","monthly");
             $row->addChild("priority","0.9");
         }
-        foreach (News::where('published', 1)->get() as $result) {
-            $row  = $xmlbase->addChild("url");
-            $row->addChild("loc",$site_url.'/news/'.$result->url_alias);
-            $row->addChild("lastmod",$result->created_at->format("Y-m-d\TH:i:sP"));
-            $row->addChild("changefreq","monthly");
-            $row->addChild("priority","0.8");
-        }
+//        foreach (News::where('published', 1)->get() as $result) {
+//            $row  = $xmlbase->addChild("url");
+//            $row->addChild("loc",$site_url.'/news/'.$result->url_alias);
+//            $row->addChild("lastmod",$result->created_at->format("Y-m-d\TH:i:sP"));
+//            $row->addChild("changefreq","monthly");
+//            $row->addChild("priority","0.8");
+//        }
         foreach (HTMLContent::where('status', 1)->get() as $result) {
             $row  = $xmlbase->addChild("url");
             $row->addChild("loc",$site_url.'/page/'.$result->url_alias);
