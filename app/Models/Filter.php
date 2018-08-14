@@ -209,8 +209,8 @@ class Filter
                 foreach($attribute->values as $i => $attribute_value){
                     $attr_filter = $filter;
                     $attr_filter[$attribute->id] = [$attribute_value->id];
-                    //$count = $categories->get_products_count($category_id, $attr_filter, $this->price, 1);
-                    //if($count){
+                    $count = $categories->get_products_count($category_id, $attr_filter, $this->price, 1);
+                    if($count){
                         $values[$attribute_value->id] = [
                             'name' => $attribute_value->name,
                             'value' => $attribute_value->value,
@@ -218,7 +218,7 @@ class Filter
                             //'count' => $count,
                             'url' => $this->getFilterUrl($attribute_value, $current_price_range)
                         ];
-                    //}
+                    }
                 }
 //                foreach ($filter[$attribute->id] as $val_id){
 //                    $val = $attribute->values->first(function ($value, $key)  use ($val_id) {
