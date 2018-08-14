@@ -93,7 +93,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6 no-padding">
-                    <a href="javascript:void(0);" class="popup-btn continue">
+                    <a href="{{env('APP_URL')}}/catalog/tovary" class="popup-btn continue">
                         <p>Продолжить покупки</p>
                     </a>
                 </div>

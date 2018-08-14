@@ -28,6 +28,11 @@
                                     <a href="javascript:void(0);" class="active-aside-link"><p>Регистрация</p></a>
                                 </div>
                             </div>
+                            <div class="aside-filter-menu-item">
+                                <div class="aside-filter-menu-item-title aside-block">
+                                    <a href="{{env('APP_URL')}}/forgotten"><p>Забыли пароль</p></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -37,6 +42,7 @@
                         <select name="site-section-select" id="redirect_select" class="site-section-select">
                             <option value="{{env('APP_URL')}}/login">Вход</option>
                             <option selected="selected" value="{{env('APP_URL')}}/registration">Регистрация</option>
+                            <option value="{{env('APP_URL')}}/forgotten">Забыли пароль</option>
                         </select>
                     </div>
                 </div>

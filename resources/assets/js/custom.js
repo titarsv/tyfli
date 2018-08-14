@@ -2,6 +2,7 @@
 // Depends
 var $ = require('jquery');
 var swal = require('sweetalert2');
+require('../../../node_modules/jquery.maskedinput/src/jquery.maskedinput');
 
 // Are you ready?
 $(function() {
@@ -120,6 +121,10 @@ $(function() {
         e.preventDefault();
         e.stopPropagation();
         var $this = $(this);
+		if($('.variation-radio').length && $('.variation-radio:checked').length == 0){
+			swal('Ошибка', 'Выберите размер', 'error');
+			return false;
+		}
         var qty = $('.result-price .count_field').val();
         var data = {
             action: 'add',
@@ -141,7 +146,7 @@ $(function() {
         if(variation.length){
             data['variation'] = variation.val();
         }
-
+console.log(data);
         $("#order-popup").load("/cart/update", data, function(cart){
             $.magnificPopup.open({
                 items: {
@@ -588,6 +593,38 @@ $(function() {
         }
     });
 
+    $('#phone').mask('+38 (999) 999-99-99');
+
+    $('.filter-menu').click(function () {
+        $('.aside-filter-menu-container').addClass('active');
+    });
+
+    $('#close_filter').click(function () {
+        $('.aside-filter-menu-container').removeClass('active');
+    });
+
+    // Сортировка
+    $('#sorting-select').change(function () {
+        var s = window.location.search.replace('?', '').split('&');
+        var search = {};
+        if(s.length){
+            for(i=0; i<s.length; i++){
+                var p = s[i].split('=');
+                if(p[0] != '')
+                    search[p[0]] = p[1];
+            }
+        }
+
+        search['order'] = $(this).val();
+        s = '?';
+        for (var key in search) {
+            s += key + '=' + search[key];
+        }
+
+        if(location.href != location.origin + location.pathname + s){
+            window.location = location.origin + location.pathname + s;
+        }
+    });
 });
 
 /**

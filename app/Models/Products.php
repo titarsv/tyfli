@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Gallery;
+use Illuminate\Pagination\Paginator;
 
 class Products extends Model
 {
@@ -156,8 +157,12 @@ class Products extends Model
      * @param int $count Колличество на странице
      * @return LengthAwarePaginator
      */
-    public function search($text = '', $page = 1, $count = 8)
+    public function search($text = '', $page = 1, $count = 18)
     {
+		Paginator::currentPageResolver(function () use ($page) {
+            return $page;
+        });
+		
         //$all_products = $this->where('name', 'like', '%'.$text.'%');
 
         //$paginate = 1;

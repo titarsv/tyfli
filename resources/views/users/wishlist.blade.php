@@ -40,10 +40,10 @@
                         </div>
                         <div class="visible-xs-inline-block col-xs-12">
                             <div>
-                                <select name="site-section-select" id="" class="site-section-select">
-                                    <option value="">История покупок</option>
+                                <select name="site-section-select" id="redirect_select" class="chosen-select site-section-select">
+                                    <option value="{{env('APP_URL')}}/user/history">История покупок</option>
                                     <option selected="selected" value="">Список желаний</option>
-                                    <option value="">Личный кабинет</option>
+                                    <option value="{{env('APP_URL')}}/user">Личный кабинет</option>
                                 </select>
                             </div>
                         </div>

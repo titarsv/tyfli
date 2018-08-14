@@ -136,7 +136,7 @@ class LoginController extends Controller
     {
         $rules = [
             'first_name' => 'required',
-            'phone'     => 'required|regex:/^[0-9\-! ,\'\"\/+@\.:\(\)]+$/',
+            'phone'     => 'required',
             'email'     =>'required|email',
             'password'  => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6'
@@ -281,7 +281,7 @@ class LoginController extends Controller
             ($reminder = Reminder::exists($user)) || ($reminder = Reminder::create($user));
 
             Mail::send('emails.reminder', ['user' => $user, 'reminder' => $reminder], function($msg) use ($user, $request){
-                $msg->from('parfumhouse@gmail.com', 'Parfum House');
+                $msg->from('site@tyfli.com', 'Tyfli.com');
                 $msg->to($request->email);
                 $msg->subject('Восстановление пароля');
             });

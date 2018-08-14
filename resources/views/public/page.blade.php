@@ -166,7 +166,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-8 col-xs-12">
-                    <div class="row">
+                    <div class="row static_page">
                         <div class="col-sm-12 col-xs-12 margin">
                             <h5 class="title">{{ $content->name }}</h5>
                         </div>

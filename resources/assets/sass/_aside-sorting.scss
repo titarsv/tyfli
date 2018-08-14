@@ -3,10 +3,37 @@
 }
 .aside-filter-menu-container{
     padding: 0;
+    @include bp(sm){
+        &.active{
+            display: block !important;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            padding: 20px;
+            height: 100vh;
+            overflow: auto;
+        }
+    }
 }
-// .site-path-wrp{
-//     padding: 0;
-// }
+#close_filter {
+    display: none;
+    @include bp(sm){
+        top: 8px !important;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        cursor: pointer;
+        z-index: 1;
+        position: absolute;
+        display: block;
+        border: none;
+        right: 10px;
+        background: url('../images/homepage-icons/close popup icon.svg') center no-repeat;
+        background-size: auto;
+    }
+}
 .site-path{
     padding: 10px 0;
     display: flex;

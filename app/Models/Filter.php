@@ -26,6 +26,7 @@ class Filter
 	protected $price_ranges = [];
 
 	function __construct($category = null){
+        $this->categories = new Categories();
 		if(!empty($category)){
 			$this->setCategory($category);
 		}
@@ -109,7 +110,7 @@ class Filter
      * @return $this
      */
     protected function setPrice(){
-        $categories = new Categories();
+        $categories = $this->categories;
         if(!empty($this->category)){
             $this->min_price = $categories->min_price($this->category->id);
             $this->max_price = $categories->max_price($this->category->id);
@@ -148,9 +149,8 @@ class Filter
 	 * @return null
 	 */
     public function getProducts($current_sort = ['price', 'asc'], $take = 18, $page = 1){
-	    $categories = new Categories();
 	    if(empty($this->products) && !empty($this->category))
-		    $this->products = $categories->get_products($this->category->id, null, $this->filtered, $current_sort, $take, $this->price, $page)->appends(['page' => $page]);
+		    $this->products = $this->categories->get_products($this->category->id, null, $this->filtered, $current_sort, $take, $this->price, $page)->appends(['page' => $page]);
 
 	    return $this->products;
     }
@@ -189,7 +189,7 @@ class Filter
         if(empty($this->category)){
             return [];
         }else{
-	        $categories = new Categories();
+	        $categories = $this->categories;
             $filter = $this->filtered;
             $category_id = $this->category->id;
 	        $current_price_range = $this->getCurrentPriceRange();
@@ -200,19 +200,22 @@ class Filter
         foreach($this->product_attributes as $key => $attribute){
             $values = [];
 
+            // Ценовой фильтр
             if($attribute->filter_type == 'range_list'){
                 $values = $this->getFilterRanges($attribute);
+
+            // Выбранные атрибуты
             }elseif(isset($filter[$attribute->id])){
                 foreach($attribute->values as $i => $attribute_value){
                     $attr_filter = $filter;
                     $attr_filter[$attribute->id] = [$attribute_value->id];
-                    $count = $categories->get_products_count($category_id, $attr_filter, $this->price);
+                    $count = $categories->get_products_count($category_id, $attr_filter, $this->price, 1);
                     if($count){
                         $values[$attribute_value->id] = [
                             'name' => $attribute_value->name,
                             'value' => $attribute_value->value,
                             'checked' => in_array($attribute_value->id, $filter[$attribute->id]),
-                            'count' => $count,
+                            //'count' => $count,
                             'url' => $this->getFilterUrl($attribute_value, $current_price_range)
                         ];
                     }
@@ -228,10 +231,12 @@ class Filter
 //                        'url' => $this->getFilterUrl($val, $current_price_range)
 //                    ];
 //                }
+
+            // Не выбранные атрибуты
             }else{
                 foreach($attribute->values as $i => $attribute_value){
                     $attr_filter = $filter + [$attribute->id => [$attribute_value->id]];
-                    $count = $categories->get_products_count($category_id, $attr_filter, $this->price);
+                    $count = $categories->get_products_count($category_id, $attr_filter, $this->price, 1);
                     if($count){
                         $values[$attribute_value->id] = [
                             'name' => $attribute_value->name,
@@ -328,7 +333,7 @@ class Filter
 	    $attr_filter = $this->filtered;
 
         $values = [];
-        $categories = new Categories;
+        $categories = $this->categories;
 
         $step = ($max_price - $min_price) / 6;
         $round = 8;
@@ -362,7 +367,7 @@ class Filter
                     ];
                 }
             }else{
-                $count = $categories->get_products_count($category_id, $attr_filter, $fprice);
+                $count = $categories->get_products_count($category_id, $attr_filter, $fprice, 1);
                 if($count){
                     $values[$id] = [
                         'name' => $size,
@@ -505,7 +510,7 @@ class Filter
 
         $step = round($step, $round+1);
 
-        $categories = new Categories;
+        $categories = $this->categories;
 
         for($i=1; $i<7; $i++){
             if($i == 1){
@@ -528,7 +533,7 @@ class Filter
                 }
             }elseif(!empty($f)){
                 $attr_filter = $filter + [$attribute->id => $f];
-                $count = $categories->get_products_count($category_id, $attr_filter, $price);
+                $count = $categories->get_products_count($category_id, $attr_filter, $price, 1);
                 if($count){
                     $values[$id] = [
                         'name' => $size,

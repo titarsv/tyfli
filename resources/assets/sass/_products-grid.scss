@@ -221,8 +221,14 @@
 .page-list{
     display: flex;
     justify-content: center;
+    @include bp(xs){
+        flex-wrap: wrap;
+    }
     li{
         margin: 0 5px;
+        @include bp(xs){
+            margin-bottom: 10px;
+        }
     }
     p{
         color: #000;

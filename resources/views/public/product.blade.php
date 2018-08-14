@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="visible-xs-inline-block col-xs-12">
                     <div class="product-card-text">
-                        <h2 class="title">{{ $product->name }}</h2>
+                        <h1 class="title">{{ $product->name }}</h1>
                         <p>Код товара: <span>{{ $product->articul }}</span></p>
                         @if(!empty($brand))
                             <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
@@ -71,7 +71,7 @@
                 <div class="col-md-5 col-sm-6 col-xs-12">
                     <form action="" class="product-form">
                         <div class="product-card-text hidden-xs">
-                            <h1 class="title">{{ $product->name }}</h1>
+                            <h2 class="title">{{ $product->name }}</h2>
                             <p>Код товара: <span>{{ $product->articul }}</span></p>
                             @if($brand)
                                 <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
@@ -112,41 +112,93 @@
                                             <h5>Таблица размеров</h5>
                                             <img src="/images/homepage-icons/close popup icon.svg" class="size-tabl-popup-close js-toggle" data-toggle=".size-table" alt="">
                                         </div>
-                                        <h6>Женская обувь</h6>
-                                        <div class="size-tabl__table">
-                                            <ul class="size-tabl__table-head">
-                                                <li class="size-tabl__table-cell">Длина стопы, см</li>
-                                                <li class="size-tabl__table-cell">Украина</li>
-                                            </ul>
-                                            <ul class="size-tabl__table-row">
-                                                <li class="size-tabl__table-cell">21,5</li>
-                                                <li class="size-tabl__table-cell">35</li>
-                                            </ul>
-                                            <ul class="size-tabl__table-row">
-                                                <li class="size-tabl__table-cell">22,5</li>
-                                                <li class="size-tabl__table-cell">36</li>
-                                            </ul>
-                                            <ul class="size-tabl__table-row">
-                                                <li class="size-tabl__table-cell">23,5</li>
-                                                <li class="size-tabl__table-cell">37</li>
-                                            </ul>
-                                            <ul class="size-tabl__table-row">
-                                                <li class="size-tabl__table-cell">24,5</li>
-                                                <li class="size-tabl__table-cell">38</li>
-                                            </ul>
-                                            <ul class="size-tabl__table-row">
-                                                <li class="size-tabl__table-cell">25,5</li>
-                                                <li class="size-tabl__table-cell">39</li>
-                                            </ul>
-                                            <ul class="size-tabl__table-row">
-                                                <li class="size-tabl__table-cell">26</li>
-                                                <li class="size-tabl__table-cell">40</li>
-                                            </ul>
-                                            <ul class="size-tabl__table-row">
-                                                <li class="size-tabl__table-cell">26,5</li>
-                                                <li class="size-tabl__table-cell">41</li>
-                                            </ul>
-                                        </div>
+                                        @php
+                                            $categories = $product->categories;
+                                            $table = 'womens';
+                                            if(!empty($categories) && $categories->first()->get_root_category()->name == 'Для мужчин'){
+                                                $table = 'mens';
+                                            }
+                                        @endphp
+                                        @if($table == 'womens')
+                                            <h6>Женская обувь</h6>
+                                            <div class="size-tabl__table">
+                                                <ul class="size-tabl__table-head">
+                                                    <li class="size-tabl__table-cell">Длина стопы, см</li>
+                                                    <li class="size-tabl__table-cell">Украина</li>
+                                                </ul>
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">21,5</li>
+                                                    <li class="size-tabl__table-cell">35</li>
+                                                </ul>
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">22,5</li>
+                                                    <li class="size-tabl__table-cell">36</li>
+                                                </ul>
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">23,5</li>
+                                                    <li class="size-tabl__table-cell">37</li>
+                                                </ul>
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">24,5</li>
+                                                    <li class="size-tabl__table-cell">38</li>
+                                                </ul>
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">25,5</li>
+                                                    <li class="size-tabl__table-cell">39</li>
+                                                </ul>
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">26</li>
+                                                    <li class="size-tabl__table-cell">40</li>
+                                                </ul>
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">26,5</li>
+                                                    <li class="size-tabl__table-cell">41</li>
+                                                </ul>
+                                            </div>
+                                        @else
+                                            <h6>Мужская обувь</h6>
+                                            <div class="size-tabl__table">
+                                                <ul class="size-tabl__table-head">
+                                                    <li class="size-tabl__table-cell">Длина стопы, см</li>
+                                                    <li class="size-tabl__table-cell">Украина</li>
+                                                </ul>
+
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">25</li>
+                                                    <li class="size-tabl__table-cell">39</li>
+                                                </ul>
+
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">26</li>
+                                                    <li class="size-tabl__table-cell">40</li>
+                                                </ul>
+
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">27</li>
+                                                    <li class="size-tabl__table-cell">41</li>
+                                                </ul>
+
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">28</li>
+                                                    <li class="size-tabl__table-cell">42</li>
+                                                </ul>
+
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">29</li>
+                                                    <li class="size-tabl__table-cell">43</li>
+                                                </ul>
+
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">30</li>
+                                                    <li class="size-tabl__table-cell">44</li>
+                                                </ul>
+
+                                                <ul class="size-tabl__table-row">
+                                                    <li class="size-tabl__table-cell">31</li>
+                                                    <li class="size-tabl__table-cell">45</li>
+                                                </ul>
+                                            </div>
+                                        @endif
                                     </div>
                                 @endif
                             </div>

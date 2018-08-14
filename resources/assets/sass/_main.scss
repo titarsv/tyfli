@@ -336,15 +336,57 @@ i{
     }
 }
 .home-page-about-us-text{
-    span{
-        color: #4A4A4A;
-    }
     color: #9B9B9B;
     font-family: "HelveticaNeue";
     font-size: 12px;
     line-height: 16px;
     margin-bottom: 25px;
+    h2{
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #9B9B9B;
+        min-height: auto;
+    }
+    h3{
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #9B9B9B;
+    }
+    h4{
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #9B9B9B;
+        min-height: auto;
+    }
+    span{
+        color: #4A4A4A;
+    }
+    ul{
+        list-style: disc;
+        padding-left: 30px;
+        color: #9b9b9b;
+    }
+    ol{
+        padding-left: 30px;
+        list-style: decimal;
+        color: #9b9b9b;
+    }
 }
 .home-page-about-us-text:last-child{
     margin-top: 15px;
+}
+.static_page{
+    &, p, ol, ul{
+        font-family: HelveticaNeue;
+        font-size: 14px;
+        line-height: 22px;
+        color: #444;
+    }
+    h2, h3, h4, h5, h6{
+        font-family: HelveticaNeue;
+        color: #444;
+    }
 }
