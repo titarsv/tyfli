@@ -62,36 +62,36 @@ class AdminController extends Controller
             'total_sales'  => array_sum($total_sales)
         ];
 
-        $users = $session->getUserActivity();
-
-        $online_users = [];
-
-        foreach ($users as $user) {
-            $url = 'http://ipinfo.io/' . $user->ip_address . '/json';
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            $ipinfo = curl_exec($ch);
-
-            if (!is_null($user->user_id)) {
-                $user_info = Sentinel::findById($user->user_id);
-            } else {
-                $user_info = null;
-            }
-
-            if ($user->user_agent) {
-                $browser = $session->getBrowser($user->user_agent);
-            } else {
-                $browser = null;
-            }
-
-            $online_users[] = [
-                'ipinfo' => json_decode($ipinfo),
-                'userinfo' => $user_info,
-                'browserinfo' => $browser
-            ];
-
-        }
+//        $users = $session->getUserActivity();
+//
+//        $online_users = [];
+//
+//        foreach ($users as $user) {
+//            $url = 'http://ipinfo.io/' . $user->ip_address . '/json';
+//            $ch = curl_init();
+//            curl_setopt($ch, CURLOPT_URL, $url);
+//            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//            $ipinfo = curl_exec($ch);
+//
+//            if (!is_null($user->user_id)) {
+//                $user_info = Sentinel::findById($user->user_id);
+//            } else {
+//                $user_info = null;
+//            }
+//
+//            if ($user->user_agent) {
+//                $browser = $session->getBrowser($user->user_agent);
+//            } else {
+//                $browser = null;
+//            }
+//
+//            $online_users[] = [
+//                'ipinfo' => json_decode($ipinfo),
+//                'userinfo' => $user_info,
+//                'browserinfo' => $browser
+//            ];
+//
+//        }
 
         return view('admin.dashboard', [
             'orders' => $order_stat,

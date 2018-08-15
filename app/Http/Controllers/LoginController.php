@@ -29,7 +29,9 @@ class LoginController extends Controller
         if (Sentinel::check()) {
             $user_id = Sentinel::check()->id;
             $cart = CartController::cartToUser($user_id);
-            $cart->full_cart_update();
+            if(is_object($cart)) {
+                $cart->full_cart_update();
+            }
             if (Sentinel::inRole('admin') or Sentinel::inRole('manager')) {
                 return redirect('/admin');
             } elseif (Sentinel::inRole('user')) {
@@ -281,7 +283,7 @@ class LoginController extends Controller
             ($reminder = Reminder::exists($user)) || ($reminder = Reminder::create($user));
 
             Mail::send('emails.reminder', ['user' => $user, 'reminder' => $reminder], function($msg) use ($user, $request){
-                $msg->from('site@tyfli.com', 'Tyfli.com');
+                $msg->from('admin@tyfli.com', 'Tyfli.com');
                 $msg->to($request->email);
                 $msg->subject('Восстановление пароля');
             });
