@@ -1,6 +1,6 @@
 <div class="header" style="text-align: center;">
     <img src="{!! url('/images/logo.png') !!}" alt="logo" title="Tyfli.com" width="228" height="60" />
-    <p style="font-size: 20px;">Новый заказ на сайте Tyfli.com!</p>
+    <p style="font-size: 20px;">Новый заказ № {{ $order->id }} на сайте Tyfli.com!</p>
 </div>
 
 <table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%">
@@ -19,7 +19,16 @@
                         </a>
                     </td>
                     <td align="center" width="40%" height="150px">
-                        <a href="{!! url('/product/' . $item['product']->url_alias) !!}" style="color: #333;" onmouseover="this.style.color='#333'">{!! $item['product']->name !!}</a>
+                        <a href="{!! url('/product/' . $item['product']->url_alias) !!}" style="color: #333;" onmouseover="this.style.color='#333'">
+                            {!! $item['product']->name !!}
+                            @if(!empty($item['variations']))
+                                (
+                                @foreach($item['variations'] as $name => $val)
+                                    {{ $name }}: {{ $val }};
+                                @endforeach
+                                )
+                            @endif
+                        </a>
                     </td>
                     <td align="center" width="20%" height="150px">
                         {!! $item['quantity'] !!}
@@ -53,7 +62,7 @@
     @if($key == 'region') <p><strong>Область: </strong>{!! $value !!}</p> @endif
     @if($key == 'city') <p><strong>Город: </strong>{!! $value !!}</p> @endif
     @if($key == 'warehouse') <p><strong>Отделение Новой Почты: </strong>{!! $value !!}</p> @endif
-    @if($key == 'index') <p><strong>Почтовый индекс: </strong>{!! $value !!}</p> @endif
+    @if($key == 'index' || $key == 'post_code') <p><strong>Почтовый индекс: </strong>{!! $value !!}</p> @endif
     @if($key == 'street') <p><strong>Улица: </strong>{!! $value !!}</p> @endif
     @if($key == 'house') <p><strong>Дом: </strong>{!! $value !!}</p> @endif
     @if($key == 'apart') <p><strong>Квартира: </strong>{!! $value !!}</p> @endif

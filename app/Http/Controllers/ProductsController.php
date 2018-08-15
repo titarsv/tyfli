@@ -83,7 +83,7 @@ class ProductsController extends Controller
                 return $query->where('stock', $stock);
             })
             ->orderBy('created_at', 'DESC')
-            ->paginate(1000);
+            ->paginate(100);
 			
 		if(!empty($category_id)){
             $products->appends(['category' => $category_id]);
@@ -231,17 +231,13 @@ class ProductsController extends Controller
 
         $product_table_fill = $request->only([
             'name',
-//            'excerpt',
             'description',
-//            'options',
             'image_id',
             'price',
             'old_price',
             'articul',
             'stock',
-//            'action',
             'label',
-//            'video',
             'meta_title',
             'meta_description',
             'meta_keywords',
@@ -259,14 +255,6 @@ class ProductsController extends Controller
             $product->gallery->images = json_encode($request->gallery);
         }
 
-//        if(is_null($product->photos)){
-//            $gallery = new Gallery();
-//            $product_table_fill['photos_id'] = $gallery->add_gallery($request->photos);
-//        }else{
-//            $product->photos->images = json_encode($request->photos);
-//        }
-
-//        $product->set_products()->sync($request->sets);
         if(!empty($request->related)) {
             foreach (Products::whereIn('id', $request->related)->get() as $prod) {
                 $r = [$product->id];
@@ -291,7 +279,6 @@ class ProductsController extends Controller
                     'product_id' => $product->id,
                     'attribute_id' => $attribute['id'],
                     'attribute_value_id' => $attribute['value'],
-//                    'price' => $attribute['price']
                 ];
             }
 
@@ -530,6 +517,11 @@ class ProductsController extends Controller
                     $variations_attrs[$attr->id]['values'][$value->id] =  ['name' => $value->name, 'stock' => $variation->stock];
                 }
             }
+
+        }
+
+        if(!empty($variations_attrs['7'])){
+            ksort($variations_attrs['7']['values']);
         }
 
         $colors = [];
@@ -710,7 +702,7 @@ class ProductsController extends Controller
 
                             // Подгружаем файлы
                             if(isset($field['options']['load']) && !empty($val)) {
-                                $url = "http://globalprom.com.ua/image/$val";
+                                $url = $val;
                                 $table = $field['options']['load'][0];
                                 $replaced = $field['options']['load'][1];
                                 if($table == 'images'){
@@ -733,6 +725,9 @@ class ProductsController extends Controller
                             }
                         }
                     }
+
+                    $row_data = $this->addSizesVariations($row_data);
+
                     $prepared_data[] = $row_data;
                 }
 
@@ -742,8 +737,12 @@ class ProductsController extends Controller
                     foreach ($prepared_data as $product) {
                         if ($update)
                             $products->update_product($product['tables']);
-                        else
-                            $products->insert_product($product['tables']);
+                        else{
+                            $id = $products->insert_product($product['tables']);
+                            if(!empty($product['tables']['variations']) && $id != 'already_exist'){
+                                $this->updateVariations($products->find($id), $product['tables']['variations']);
+                            }
+                        }
 
                         if (isset($product['errors']))
                             $errors[] = $product;
@@ -758,6 +757,25 @@ class ProductsController extends Controller
 
         return view('admin.products.upload')
             ->with('errors', $errors);
+    }
+
+    public function addSizesVariations($data){
+        if(isset($data['tables']['product_attributes'])){
+            $price = $data['tables']['products']['price'];
+            $variations = [];
+            foreach ($data['tables']['product_attributes'] as $attr){
+                if($attr['attribute_id'] == 7){
+                    $variations[] = [
+                        'id' => [$attr['attribute_value_id']],
+                        'price' => $price,
+                        'stock' => 1
+                    ];
+                }
+            }
+            $data['tables']['variations'] = $variations;
+        }
+
+        return $data;
     }
 
     /**
@@ -871,6 +889,7 @@ class ProductsController extends Controller
      */
     public function replace_inserted_data($data, $table, $find, $replaced){
         $model_name = 'App\Models\\'.str_replace(' ', '', ucwords(str_replace('_', ' ', preg_replace('/s$/', '', $table))));
+
         if(!class_exists($model_name))
             $model_name = 'App\Models\\'.str_replace(' ', '', ucwords(str_replace('_', ' ', $table)));
         if(!class_exists($model_name) || $data == '')

@@ -2,7 +2,7 @@
     $labels = $product->labels();
     $brand = $product->brand();
     //$colors = $product->colors;
-    $sizes = $product->sizes;
+    $sizes = $product->sizes->sortBy('attribute_value_id')->values()->all();
     if($product->wishlist !== null){
         $in_wish = $product->wishlist->count();
     }else{

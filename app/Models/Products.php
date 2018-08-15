@@ -229,11 +229,6 @@ class Products extends Model
 				$result_data['products']['gallery_id'] = $gallery->add_gallery($result_data['galleries']);
 			}
 
-//            if(!empty($result_data['photos'])){
-//                $gallery = new Gallery();
-//                $result_data['products']['photos_id'] = $gallery->add_gallery($result_data['photos']);
-//            }
-
             $id = $this->insertGetId($result_data['products']);
             $product = $this->find($id);
             if(!empty($result_data['product_attributes']))
@@ -242,7 +237,6 @@ class Products extends Model
             if(!empty($result_data['categories']))
                 $product->categories()->attach($result_data['categories']);
 
-            //$product->create_product_thumnail($id);
             return $id;
         } else {
             return 'already_exist';
@@ -292,9 +286,6 @@ class Products extends Model
     {
         $fills = [
             'products' => array_merge(array('id'), $this->fillable),
-//            'photos' => [
-//                'images'
-//            ],
             'galleries' => [
                 'images'
             ],
@@ -315,8 +306,6 @@ class Products extends Model
 
         $result_data = [];
         foreach ($fills as $table => $table_fills) {
-//            if(!isset($result_data[$table]))
-//                $result_data[$table] = [];
 
             if($table == 'product_categories'){
                 if (!isset($data[$table]) && isset($data['categories']))
@@ -326,20 +315,6 @@ class Products extends Model
                         $result_data['categories'][] = $category['category_id'];
                     }
                 }
-//            }elseif($table == 'photos'){
-//                if (is_array($data[$table]) && isset($data[$table][0]) && !is_array($data[$table][0]))
-//                    $result_data[$table] = $data[$table];
-//                elseif(is_array($data[$table])) {
-//                    foreach ($data[$table] as $id => $image) {
-//                        if (empty($result_data['products']['image_id'])) {
-//                            $result_data['products']['image_id'] = $image['images'];
-//                            if (count($data[$table]) > 4) {
-//                                continue;
-//                            }
-//                        }
-//                        $result_data[$table][] = $image['images'];
-//                    }
-//                }
             }elseif($table == 'galleries'){
                 if (is_array($data[$table]) && isset($data[$table][0]) && !is_array($data[$table][0]))
                     $result_data[$table] = $data[$table];
@@ -372,6 +347,9 @@ class Products extends Model
 
         if(empty($result_data['products']['meta_title']))
             $result_data['products']['meta_title'] = $result_data['products']['name'];
+
+        if(empty($result_data['products']['robots']))
+            $result_data['products']['robots'] = '';
 
         if(!empty($result_data['products']['old_price'])){
             $result_data['products']['old_price'] = (float)$result_data['products']['old_price'];
@@ -408,7 +386,9 @@ class Products extends Model
      * @return string
      */
     public function generate_alias($product){
-        $url_alias = str_replace(['(', ')', '"', ' ', '/', '\\'], ['', '', '', '_', '_', '_'], mb_strtolower($this->rus2lat($product['name']))) . '_' . rand(1, 100);
+        $url_alias = str_replace(['(', ')', '"', ' ', '/', '\\'], ['', '', '', '_', '_', '_'], mb_strtolower($this->rus2lat($product['name'])));
+        if($this->isset_product_with_url_alias($url_alias))
+            $url_alias = str_replace(['(', ')', '"', ' ', '/', '\\'], ['', '', '', '_', '_', '_'], mb_strtolower($this->rus2lat($product['name']))) . '_' . rand(1, 100);
 
         return $url_alias;
     }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\UserData;
 
 class Order extends Model
 {
@@ -103,9 +104,17 @@ class Order extends Model
             $delivery_info['info']['method'] = 'Укрпочта';
             return $delivery_info['info'];
         } elseif ($delivery_info['method'] == 'courier') {
-            return [
+            $result = [
                 'method' => 'Доставка курьером по Харькову'
             ];
+            $data = UserData::where('user_id', $this->user_id)->first();
+            if(!empty($data)){
+                $address = $data->address();
+                foreach ($address as $key => $val){
+                    $result[$key] = $val;
+                }
+            }
+            return $result;
         } elseif ($delivery_info['method'] == 'pickup') {
             return [
                 'method' => 'Самовывоз'

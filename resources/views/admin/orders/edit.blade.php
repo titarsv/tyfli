@@ -114,7 +114,10 @@
                                     </td>
                                 </tr>
                                 </thead>
-                                @foreach($order->getDeliveryInfo() as $key => $value)
+                                @php
+                                    $delivery_info = $order->getDeliveryInfo();
+                                @endphp
+                                @foreach($delivery_info as $key => $value)
                                     @if($key == 'method')
                                         <tr>
                                             <td>Способ доставки</td>
@@ -139,7 +142,7 @@
                                             <td>{!! $value !!}</td>
                                         </tr>
                                     @endif
-                                    @if($key == 'index')
+                                    @if($key == 'index' || $key == 'post_code')
                                         <tr>
                                             <td>Почтовый индекс</td>
                                             <td>{!! $value !!}</td>

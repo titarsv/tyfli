@@ -67,7 +67,7 @@
                                 <td>{!! $product->name !!}</td>
                                 @if(!empty($product->image))
                                     <td align="center">
-                                        <img src="/uploads/{!! $product->image->href!!}"
+                                        <img src="{!! $product->image->url('product_list')!!}"
                                              alt="{!! $product->image->title !!}"
                                              class="img-thumbnail">
                                     </td>
@@ -133,6 +133,9 @@
     <script>
         $(document).ready(function(){
             navigateProductFilter();
+            $('#current-cat').click(function () {
+                $('.btn-group').toggleClass('open');
+            });
         });
     </script>
 @endsection

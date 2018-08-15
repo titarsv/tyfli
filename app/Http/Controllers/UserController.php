@@ -26,7 +26,7 @@ use App\Models\Categories;
 use App\Models\Cart;
 use App\Models\ProductsCart;
 use Breadcrumbs;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 use Cartalyst\Sentinel\Roles\EloquentRole as Roles;
 
@@ -495,7 +495,7 @@ class UserController extends Controller
         $emails = $settings->get_setting('notify_emails');
 
         Mail::send('emails.callback', ['name' => $request->name, 'phone' => $request->phone], function($msg) use ($emails){
-            $msg->from('ua-tuning@ua-tuning.com.ua', 'UA Tuning');
+            $msg->from('admin@tyfli.com', 'Интернет-магазин Tyfli.com');
             $msg->to($emails);
             $msg->subject('Перезвоните мне!');
         });
@@ -507,7 +507,7 @@ class UserController extends Controller
         $domain = $_SERVER['HTTP_HOST'];
         $_SESSION['http_host'] = $domain;
 
-        $sendTo = 'zakaz@globalprom.com.ua';
+        $sendTo = 'titarsv@gmail.com';
         $from = "info@$domain";
         $title = '';
 
@@ -545,12 +545,6 @@ class UserController extends Controller
             $data = json_decode($_POST['data']);
             $session_data = ['sourse' => 'Поисковая система', 'term' => 'Ключ', 'campaign' => 'Кампания'];
 
-//            if (!isset($data->phone) || empty($data->phone->val)) {
-//                header("HTTP/1.0 404 Not Found");
-//                echo '{"status":"error", "message":"Не заполнено поле телефон"}';
-//                die();
-//            }
-
             foreach ($data as $key => $params) {
                 if (!empty($params->title) && !empty($params->val)) {
                     $val = $this->prepare_data($params->val, $key);
@@ -558,12 +552,6 @@ class UserController extends Controller
                     if (isset($session_data[$key]))
                         unset($session_data[$key]);
                 }
-                if(empty($params->val)){
-                    $stat[$key] = 'Лось!';
-                }else{
-                    $stat[$key] = $this->prepare_data($params->val, $key);
-                }
-
             }
 
             foreach ($session_data as $key => $title) {
@@ -583,26 +571,37 @@ class UserController extends Controller
 
             }
 
-            if(!empty($path)){
-                if ($this->send_mail($sendTo, $subject, $msg, $path)) {
-                    header("HTTP/1.0 200 OK");
-                    echo '{"status":"success"}';
-                } else {
-                    header("HTTP/1.0 404 Not Found");
-                    echo '{"status":"error"}';
-                }
-            }else{
-                if (mail($sendTo, $subject, $msg, $headers)) {
-                    header("HTTP/1.0 200 OK");
-                    echo '{"status":"success"}';
-                } else {
-                    header("HTTP/1.0 404 Not Found");
-                    echo '{"status":"error"}';
-                }
-            }
+            $setting = new Settings();
+
+            Mail::send('emails.sendmail', ['html' => $msg], function($msg) use ($setting){
+                $msg->from('admin@tyfli.com', 'Интернет-магазин Tyfli.com');
+                $msg->to(get_object_vars($setting->get_setting('notify_emails')));
+                $msg->subject('Перезвоните мне!');
+            });
+
+            header("HTTP/1.0 200 OK");
+            echo '{"status":"success"}';
+
+//            if(!empty($path)){
+//                if ($this->send_mail($sendTo, $subject, $msg, $path)) {
+//                    header("HTTP/1.0 200 OK");
+//                    echo '{"status":"success"}';
+//                } else {
+//                    header("HTTP/1.0 404 Not Found");
+//                    echo '{"status":"error"}';
+//                }
+//            }else{
+//                if (mail($sendTo, $subject, $msg, $headers)) {
+//                    header("HTTP/1.0 200 OK");
+//                    echo '{"status":"success"}';
+//                } else {
+//                    header("HTTP/1.0 404 Not Found");
+//                    echo '{"status":"error"}';
+//                }
+//            }
         } else {
             header("HTTP/1.0 404 Not Found");
-            echo '{"status":"error2"}';
+            echo '{"status":"error"}';
         }
 
         if(!empty($files)){
