@@ -264,7 +264,7 @@
                             </div>
                         </div>
                         <div class="product-accordion-text unactive">
-                            <ul class="tabs-menu nav nav-tabs margin">
+                            <ul class="tabs-menu product-accordion-tabs nav nav-tabs margin">
                                 <li class="active"><a href="#deliv-ukr" data-toggle="tab">Украина</a></li>
                                 <li><a href="#deliv-kh" data-toggle="tab">Харьков</a> </li>
                                 <li><a href="#deliv-abroad" data-toggle="tab">За пределы Украины</a></li>
@@ -379,7 +379,7 @@
                         </div>
                     </div>
                     <div class="product-social-links">
-                        <div>
+                        <div class="product-social-links-icons">
                             <a href="https://www.instagram.com">
                                 <i>&#xE804</i>
                             </a>

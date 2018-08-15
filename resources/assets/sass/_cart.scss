@@ -3,7 +3,7 @@
     display: flex;
     justify-content: flex-end;
     //padding-right: 40px;
-    padding-right: 74px;
+    padding-right: 57px;
     padding-bottom: 15px;
      p{
         color: #4A4A4A;
@@ -21,10 +21,10 @@
         }
     }
     @include bp (lg){
-        padding-right: 64px;
+        padding-right: 30px;
     }
     @include bp (md){
-        padding-right: 100px;
+        padding-right: 60px;
     }
 }
 

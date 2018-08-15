@@ -268,6 +268,12 @@ $(function() {
             // $('.top-menu-catalog-img img').attr('src', newSrc);
         }
     })
+    $(window).change( function(){
+        if($('window').width() <= 768) {
+            $('.tabs.tab-content').removeClass('jScrollPane');
+        };
+    });
+
 });
 
 require('./custom.js');

@@ -11,12 +11,15 @@
     }
 }
 .checkout-list-title{
-    padding-right: 100px;
+    padding-right: 112px;
     @include bp(lg){
-        padding-right: 60px;
+        padding-right: 88px;
         p{
             width: 60px;
         }
+    }
+    @include bp (md){
+        padding-right: 76px;
     }
 }
 .order-form{
@@ -143,7 +146,7 @@
         text-align: justify;
         &::before{
             left: -18px;
-            top: 3px;
+            top: 4px;
         }
 
     }
