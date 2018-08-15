@@ -286,6 +286,11 @@
         padding-left: 30px;
         list-style: decimal;
     }
+  p:first-child{
+    span{
+      font-weight: 300 !important;
+    }
+  }
 }
 .prod-characteristics{
     margin: 15px 0;

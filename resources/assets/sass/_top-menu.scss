@@ -310,6 +310,10 @@
             display: block;
         }
     }
+    @include bp (sm){
+        top: -17px;
+    }
+
 }
 .search-field::-webkit-search-decoration,
 .search-field::-webkit-search-cancel-button {
