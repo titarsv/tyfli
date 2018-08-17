@@ -50,7 +50,7 @@
                                 <div class="information-accordion-links unactive">
                                     {{--<h5>Повседневная обувь</h5>--}}
                                     @foreach($articles as $item)
-                                        <a href="{{env('APP_URL')}}/articles/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
+                                        <a href="{{env('APP_URL')}}/article/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
                                     @endforeach
                                 </div>
                             </div>

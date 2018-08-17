@@ -22,6 +22,52 @@
         </div>
     @endif
 
+    <form action="products" method="post" id="settings-form">
+        {!! csrf_field() !!}
+        <div class="settings row">
+            <div class="col-sm-4">
+                <div class="row">
+                    <label for="sort-by" class="col-sm-5">Сортировать по:</label>
+                    <div class="form-element col-sm-7">
+                        <select name="sort" id="sort-by" class="form-control">
+                            @foreach($array_sort as $sort => $value)
+                                @if($current_sort['value'] == $sort)
+                                    <option value="{!! $sort !!}" selected>{!! $value['name'] !!}</option>
+                                @else
+                                    <option value="{!! $sort !!}">{!! $value['name'] !!}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <label for="search" class="col-sm-2">Поиск:</label>
+                    <div class="form-element col-sm-10">
+                        <input type="text" id="search" name="search" placeholder="Введите текст..." class="form-control" value="{{ $current_search or '' }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <label for="show" class="col-sm-4">Отображать:</label>
+                    <div class="form-element col-sm-8">
+                        <select name="show" id="show" class="form-control">
+                            @foreach($array_show as $show)
+                                @if($current_show == $show)
+                                    <option value="{!! $show !!}" selected>{!! $show !!}</option>
+                                @else
+                                    <option value="{!! $show !!}">{!! $show !!}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -135,6 +181,9 @@
             navigateProductFilter();
             $('#current-cat').click(function () {
                 $('.btn-group').toggleClass('open');
+            });
+            $('#sort-by, #show').change(function(){
+                $('form#settings-form').submit();
             });
         });
     </script>

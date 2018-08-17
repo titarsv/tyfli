@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Settings;
 use App\Models\Image;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 
 
 class NewsController extends Controller
@@ -50,7 +51,7 @@ class NewsController extends Controller
 
     public function index()
     {
-        $articles = $this->articles->orderBy('id', 'Desc')->paginate(10);
+        $articles = $this->articles->orderBy('id', 'desc')->paginate(10);
         return view('admin.news.index')->with('articles', $articles);
     }
 
@@ -208,45 +209,63 @@ class NewsController extends Controller
             ->with('handling', $handling);
     }
 
-    public function news(Request $request, News $blog)
+    public function news(Request $request, News $blog, $page = 'page1')
     {
+        $page = (int) str_replace('page', '', $page);
+
+        Paginator::currentPageResolver(function () use ($page) {
+            return $page;
+        });
+
         $news = $blog->where('published', 1)->where('category', 'Новости и акции')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
         $articles = $blog->where('published', 1)->where('category', 'Статьи')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
         $handling = $blog->where('published', 1)->where('category', 'Уход за обувью')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
 
         return view('public.news')
             ->with('title', 'Новости и акции')
-            ->with('slug', 'news')
+            ->with('slug', 'news_item')
             ->with('items', $news)
             ->with('news', $news)
             ->with('articles', $articles)
             ->with('handling', $handling);
     }
 
-    public function articles(Request $request, News $blog)
+    public function articles(Request $request, News $blog, $page = 'page1')
     {
+        $page = (int) str_replace('page', '', $page);
+
+        Paginator::currentPageResolver(function () use ($page) {
+            return $page;
+        });
+
         $news = $blog->where('published', 1)->where('category', 'Новости и акции')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
         $articles = $blog->where('published', 1)->where('category', 'Статьи')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
         $handling = $blog->where('published', 1)->where('category', 'Уход за обувью')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
 
         return view('public.news')
             ->with('title', 'Статьи')
-            ->with('slug', 'articles')
+            ->with('slug', 'article')
             ->with('items', $articles)
             ->with('news', $news)
             ->with('articles', $articles)
             ->with('handling', $handling);
     }
 
-    public function handling(Request $request, News $blog)
+    public function handling(Request $request, News $blog, $page = 'page1')
     {
+        $page = (int) str_replace('page', '', $page);
+
+        Paginator::currentPageResolver(function () use ($page) {
+            return $page;
+        });
+
         $news = $blog->where('published', 1)->where('category', 'Новости и акции')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
         $articles = $blog->where('published', 1)->where('category', 'Статьи')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
         $handling = $blog->where('published', 1)->where('category', 'Уход за обувью')->orderBy('updated_at', 'desc')->paginate(12)->appends($request->except(['page']));
 
         return view('public.news')
             ->with('title', 'Уход за обувью')
-            ->with('slug', 'handling')
+            ->with('slug', 'handling_item')
             ->with('items', $handling)
             ->with('news', $news)
             ->with('articles', $articles)

@@ -6,6 +6,7 @@ use App\Models\Settings;
 use App\Models\Products;
 use App\Models\Modules;
 use App\Models\Moduleslideshow;
+use App\Models\Modulebanners;
 use App\Models\Categories;
 use App\Models\Blog;
 use App\Models\News;
@@ -17,7 +18,7 @@ use App\Models\Attribute;
 
 class MainController extends Controller
 {
-    public function index(Attribute $attribute, Categories $categories, Image $image, Modules $modules, Moduleslideshow $slideshow)
+    public function index(Attribute $attribute, Categories $categories, Image $image, Modules $modules, Moduleslideshow $slideshow, Modulebanners $banners)
     {
 	    $brands = $attribute->where('name', 'Бренд')->first()->values;
         $women_new_prod = $categories->get_products(1, null, [8 => [113]], ['id', 'desc'], 3, []);
@@ -32,7 +33,8 @@ class MainController extends Controller
 	        ->with('big_sizes', $big_sizes)
 	        ->with('brands', $brands)
 	        ->with('articles', $articles)
-            ->with('slideshow', $slideshow->all());
+            ->with('slideshow', $slideshow->all())
+            ->with('banners', $banners->all());
     }
 
     /**

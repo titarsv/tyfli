@@ -18,12 +18,12 @@ Route::get('/brands', 'CategoriesController@brands');
 //Route::get('/articles', 'BlogController@showAll');
 //Route::get('/articles/{alias}', 'BlogController@showCat');
 //Route::get('/article/{alias}', 'BlogController@show');
-Route::get('/news', 'NewsController@news');
-Route::get('/news/{alias}', 'NewsController@show');
-Route::get('/articles', 'NewsController@articles');
-Route::get('/articles/{alias}', 'NewsController@show');
-Route::get('/handling', 'NewsController@handling');
-Route::get('/handling/{alias}', 'NewsController@show');
+Route::get('/news/{page?}', 'NewsController@news');
+Route::get('/news_item/{alias}', 'NewsController@show');
+Route::get('/articles/{page?}', 'NewsController@articles');
+Route::get('/article/{alias}', 'NewsController@show');
+Route::get('/handling/{page?}', 'NewsController@handling');
+Route::get('/handling_item/{alias}', 'NewsController@show');
 Route::get('/cart', 'CartController@cart');
 Route::get('/checkout', 'CartController@show');
 Route::post('/checkout', 'CartController@show');
@@ -108,7 +108,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
     });
 
     Route::group(['prefix' => 'products'], function(){
-        Route::get('/', 'ProductsController@index');
+        Route::any('/', 'ProductsController@index');
         Route::get('/create', 'ProductsController@create');
         Route::post('/create', 'ProductsController@store');
         Route::get('/delete/{id}', 'ProductsController@destroy');

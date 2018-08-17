@@ -152,36 +152,37 @@
                                 <label class="col-sm-2 text-right">Дополнительные</label>
                                 <div class="form-element col-sm-10">
                                     @if(old('other_phones'))
-                                        {{--@foreach(old('other_phones') as $key => $phone)--}}
-                                            {{--<div class="input-group">--}}
-                                                {{--<input type="text" name="other_phones[]" class="form-control" value="{!! $phone !!}" />--}}
-                                                {{--<span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="Удалить" onclick="$(this).parent().remove();">--}}
-                                                    {{--<i class="glyphicon glyphicon-trash"></i>--}}
-                                                {{--</span>--}}
-                                            {{--</div>--}}
-                                            {{--@if($errors->has('other_phones.' . $key))--}}
-                                                {{--<p class="warning" role="alert">{!! $errors->first('other_phones.' . $key,':message') !!}</p>--}}
-                                            {{--@endif--}}
-                                        {{--@endforeach@foreach(old('other_phones') as $key => $phone)--}}
-                                            {{--<div class="input-group">--}}
-                                                {{--<input type="text" name="other_phones[]" class="form-control" value="{!! $phone !!}" />--}}
-                                                {{--<span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="Удалить" onclick="$(this).parent().remove();">--}}
-                                                    {{--<i class="glyphicon glyphicon-trash"></i>--}}
-                                                {{--</span>--}}
-                                            {{--</div>--}}
-                                            {{--@if($errors->has('other_phones.' . $key))--}}
-                                                {{--<p class="warning" role="alert">{!! $errors->first('other_phones.' . $key,':message') !!}</p>--}}
-                                            {{--@endif--}}
-                                        {{--@endforeach--}}
+                                        @foreach(old('other_phones') as $key => $phone)
+                                            <div class="input-group">
+                                                <input type="text" name="other_phones[]" class="form-control" value="{!! $phone !!}" />
+                                                <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="Удалить" onclick="$(this).parent().remove();">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </span>
+                                            </div>
+                                            @if($errors->has('other_phones.' . $key))
+                                                <p class="warning" role="alert">{!! $errors->first('other_phones.' . $key,':message') !!}</p>
+                                            @endif
+                                        @endforeach
+                                        @foreach(old('other_phones') as $key => $phone)
+                                            <div class="input-group">
+                                                <input type="text" name="other_phones[]" class="form-control" value="{!! $phone !!}" />
+                                                <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="Удалить" onclick="$(this).parent().remove();">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </span>
+                                            </div>
+                                            @if($errors->has('other_phones.' . $key))
+                                                <p class="warning" role="alert">{!! $errors->first('other_phones.' . $key,':message') !!}</p>
+                                            @endif
+                                        @endforeach
                                     @elseif($settings->other_phones !== null)
-                                        {{--@foreach(json_decode($settings->other_phones) as $phone)--}}
-                                            {{--<div class="input-group">--}}
-                                                {{--<input type="text" name="other_phones[]" class="form-control" value="{!! $phone !!}" />--}}
-                                                {{--<span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="Удалить" onclick="$(this).parent().remove();">--}}
-                                                    {{--<i class="glyphicon glyphicon-trash"></i>--}}
-                                                {{--</span>--}}
-                                            {{--</div>--}}
-                                        {{--@endforeach--}}
+                                        @foreach($settings->other_phones as $phone)
+                                            <div class="input-group">
+                                                <input type="text" name="other_phones[]" class="form-control" value="{!! $phone !!}" />
+                                                <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="Удалить" onclick="$(this).parent().remove();">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </span>
+                                            </div>
+                                        @endforeach
                                     @endif
                                     <button type="button" class="btn" id="button-add-telephone">Добавить</button>
                                 </div>

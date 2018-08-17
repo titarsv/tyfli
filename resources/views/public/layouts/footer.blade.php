@@ -38,11 +38,16 @@
             </div>
             <div class="col-sm-2 col-xs-12 footer-phones-list-wrp">
                 <p>Бесплатно по Украине</p>
-                <a>0 800 222 22 22</a>
+                <a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $settings->main_phone_1) }}">{{ $settings->main_phone_1 }}</a>
                 <ul>
-                    <li><a href="">098 067 99 94</a></li>
-                    <li><a href="">093 717 99 94</a></li>
-                    <li><a href="">050 242 99 94</a></li>
+                    @if(!empty($settings->main_phone_2))
+                    <li><a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $settings->main_phone_2) }}">{{ $settings->main_phone_2 }}</a></li>
+                    @endif
+                    @if(!empty($settings->other_phones))
+                        @foreach($settings->other_phones as $phone)
+                            <li><a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $phone) }}">{{ $phone }}</a></li>
+                        @endforeach
+                    @endif
                 </ul>
                 <p>Поддержка покупателей</p>
                 <a>с 10:00 - 19:00</a>

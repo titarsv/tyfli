@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Object_;
 use Validator;
 
+use Illuminate\Support\Facades\Cookie;
 use App\Http\Requests;
 use App\Models\Categories;
 use App\Models\Settings;
@@ -21,6 +22,7 @@ use App\Models\ModuleRecommended;
 use Excel;
 use App\Models\Gallery;
 use App\Http\Controllers\ImagesController;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductsController extends Controller
 {
@@ -57,6 +59,31 @@ class ProductsController extends Controller
         'url_alias.unique' => 'Значение должно быть уникальным для каждого товара!',
     ];
 
+    public $sort = [
+        'date_added' => [
+            'name'  => 'Дата добавления',
+            'dest'  => 'DESC',
+            'sort'  => 'id'
+        ],
+        'date_modified' => [
+            'name'  => 'Дата изменения',
+            'dest'  => 'DESC',
+            'sort'  => 'updated_at'
+        ],
+        'name_asc' => [
+            'name'  => 'Имя (А-Я)',
+            'dest'  => 'ASC',
+            'sort'  => 'name'
+        ],
+        'name_desc' => [
+            'name'  => 'Имя (Я-А)',
+            'dest'  => 'DESC',
+            'sort'  => 'name'
+        ]
+    ];
+
+    public $show = [15,30,45,60];
+
     /**
      * Display a listing of the resource.
      *
@@ -67,6 +94,30 @@ class ProductsController extends Controller
 
         $category_id = false;
         $stock = false;
+        $current_sort = false;
+
+        if(empty($request->sort)){
+            $request->sort = 'date_added';
+        }
+
+        if($request->sort) {
+            $current_sort = $this->sort[$request->sort];
+            $current_sort['value'] = $request->sort;
+        }
+
+        if($request->show) {
+            if ($request->cookie('show_list') == null || $request->cookie('show_list') !== $request->show) {
+                Cookie::queue('show_list', $request->show);
+            }
+            $current_show = $request->show;
+        } else {
+            if ($request->cookie('show_list') == null) {
+                Cookie::queue('show_list', 60);
+                $current_show = 60;
+            } else {
+                $current_show = $request->cookie('show_list');
+            }
+        }
 
         if (isset($request->category)) {
             $category_id = $request->category;
@@ -75,24 +126,57 @@ class ProductsController extends Controller
             $stock = $request->stock;
         }
 
-        $products = Products::select('products.*')->when($category_id, function($query) use ($category_id){
-                //return $query->where('product_category_id', $category_id);
-                return $query->join('product_categories', 'products.id', '=', 'product_categories.product_id')->where('product_categories.category_id', $category_id);
+        if ($request->search) {
+            $products = new Products();
+            $search_text = $request->search;
+            $per_page = $current_show;
+
+            //$products = $products->search($search_text);
+            $products = $products->where('name', 'like', '%'.$search_text.'%')->orWhere('articul', 'like', '%'.$search_text.'%')->get();
+
+            // Пагинация
+            $paginator_options = [
+                'path'=>url($request->url()),
+                'query' => [
+                    'sort' => $request->sort,
+                    'search' => $request->search
+                ]
+            ];
+
+
+
+            if(empty($per_page))
+                $per_page = config('view.product_quantity');
+            $current_page = $request->page ? $request->page : 1;
+            $current_page_products = $products->slice(($current_page - 1) * $per_page, $per_page)->all();
+            $products = new LengthAwarePaginator($current_page_products, count($products), $per_page, $current_page, $paginator_options);
+            $current_search = $request->search;
+        } else {
+            $products = Products::when($category_id, function($query) use ($category_id){
+                return $query->where('product_category_id', $category_id);
             })
             ->when(($stock !== false), function($query) use ($stock){
                 return $query->where('stock', $stock);
             })
-            ->orderBy('created_at', 'DESC')
-            ->paginate(100);
-			
-		if(!empty($category_id)){
-            $products->appends(['category' => $category_id]);
+            ->when($current_sort, function($query) use ($current_sort){
+                return $query->orderBy($current_sort['sort'], $current_sort['dest']);
+            })
+            ->paginate($current_show);
+            $current_search = false;
         }
 
-        return view('admin.products.index')
-            ->with('products', $products)
-            ->with('categories', $categories->all());
+
+        return view('admin.products.index', [
+            'products' => $products,
+            'categories' => Categories::all(),
+            'array_sort' => $this->sort,
+            'current_sort' => $current_sort,
+            'array_show' => $this->show,
+            'current_show' => $current_show,
+            'current_search' => $current_search
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -1,7 +1,7 @@
 @extends('public.layouts.main')
 @section('meta')
-    <title>Новости</title>
-    <meta name="description" content="{!! $settings->meta_description !!}">
+    <title>Брендовая обувь от интерент магазина - tyfli.com</title>
+    <meta name="description" content="Брендовая обувь, купить брендовую обувь в интернет магазине - tyfli.com . У нас самый большой выбор женской и мужской обуви разных брендов высокого качества."/>
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
 @endsection
 
@@ -16,7 +16,7 @@
                 <div class="col-md-3 no-padding hidden-xs">
                     <div class="path-underline"></div>
                     <div class="brand-link-wrp">
-                        <a href="javascript:void(0);" class="brand-link">Drop Shipping</a>
+                        <a href="/page/drop-shipping" class="brand-link">Drop Shipping</a>
                     </div>
                 </div>
                 <div class="col-md-9">

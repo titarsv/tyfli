@@ -176,6 +176,27 @@
                                     <h5 class="data-name">Квартира</h5>
                                     <input type="text" name="flat" value="{{ isset($address->flat) ? $address->flat : '' }}" class="profile-data-input">
                                 </div>
+                                <h5 class="title">Отделение Новой Почты</h5>
+                                <div class="profile-data-item">
+                                    <h5 class="data-name">Область</h5>
+                                    <select name="region" id="region" onchange="newpostUpdate('region', jQuery(this).val());">
+                                        @foreach($regions as $region)
+                                            <option value="{{ $region->id }}"{{ isset($address->region) && $address->region == $region->id ? ' selected' : '' }}>{{ $region->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="profile-data-item">
+                                    <h5 class="data-name">Населённый пункт</h5>
+                                    <select name="city" id="city" onchange="newpostUpdate('city', jQuery(this).val());">
+                                        <option value="">Выберите область</option>
+                                    </select>
+                                </div>
+                                <div class="profile-data-item">
+                                    <h5 class="data-name">Отделение</h5>
+                                    <select name="department" id="department">
+                                        <option value="">Выберите населённый пункт</option>
+                                    </select>
+                                </div>
                                 <div class="profile-data-item">
                                     <button type="button" class="profile-address-btn">Изменить</button>
                                 </div>

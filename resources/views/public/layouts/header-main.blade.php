@@ -40,7 +40,7 @@
                     </div>
                     <div class="visible-xs-inline-block col-xs-5">
                         <div class="header-list-wrp">
-                            <a href="tel:08002222222">0 800 222 22 22</a>
+                            <a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $settings->main_phone_1) }}">{{ $settings->main_phone_1 }}</a>
                         </div>
                     </div>
                     <div class="col-md-10 col-sm-10 hidden-xs top-navigation">

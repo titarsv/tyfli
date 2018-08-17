@@ -27,6 +27,7 @@ use App\Models\Cart;
 use App\Models\ProductsCart;
 use Breadcrumbs;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Newpost;
 
 use Cartalyst\Sentinel\Roles\EloquentRole as Roles;
 
@@ -92,10 +93,14 @@ class UserController extends Controller
 
         $wish_list = Wishlist::where('user_id',$user->id)->get();
 
+        $newpost = new Newpost();
+        $regions = $newpost->getRegions();
+
         return view('users.index')->with('user', $user)
             ->with('orders', $orders)
             ->with('user_data', $user->user_data)
-            ->with('wish_list', $wish_list);
+            ->with('wish_list', $wish_list)
+            ->with('regions', $regions);
     }
     public function history()
     {
@@ -176,10 +181,6 @@ class UserController extends Controller
            $role = Sentinel::findRoleBySlug($request->role);
            $role->users()->attach($user);
         }
-
-        /*
-         *  надо поменять сентинел на что то другое!
-         */
 
         $user_role = Sentinel::findRoleBySlug('user');
         $unreg_user_role = Sentinel::findRoleBySlug('unregister_user');

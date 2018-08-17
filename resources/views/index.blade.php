@@ -14,7 +14,7 @@
                         @foreach($slideshow as $slide)
                             @if($slide->status)
                                 <div>
-                                    <div class="slider-item-1" style="background-image: url({{ $slide->image->url() }})">
+                                    <div class="slider-item-1" style="background-image: url('{{ $slide->image->url() }}')">
                                         <div class="row">
                                             <div class="com-md-12 slider-title">
                                                 <h2>{{ $slide->data()->slide_title }}</h2>
@@ -67,12 +67,16 @@
     <section class="main-content">
         <div class="container-fluid">
             <div class="row main-content-wrp">
-                <a href="{{env('APP_URL')}}/catalog/dlya-zhenschin/specpredlozhenija-newcollection">
+                <a href="{{ $banners[0]->link }}">
                     <div class="col-md-6 col-sm-5 col-xs-12">
-                        <div class="new-post new-for-her">
+                        <div class="new-post new-for-her"
+                            @if(!empty($banners[0]->image))
+                                style="background-image: url('{{ $banners[0]->image->url() }}');"
+                            @endif
+                        >
                             <div>
-                                <h4>Новинки для нее</h4>
-                                <p>Смотреть</p>
+                                <h4>{{ json_decode($banners[0]->slide_data)->slide_title }}</h4>
+                                <p>{{ json_decode($banners[0]->slide_data)->button_text }}</p>
                             </div>
                         </div>
                     </div>
@@ -97,16 +101,19 @@
         <div class="container-fluid">
             <div class="row main-content-wrp">
                 <div class="col-md-6 col-md-push-6 col-sm-5 col-sm-push-7 col-xs-12">
-                    <a href="{{env('APP_URL')}}/catalog/dlya-muzhchin/specpredlozhenija-newcollectionn">
-                        <div class="new-post new-for-him">
+                    <a href="{{ $banners[1]->link }}">
+                        <div class="new-post new-for-him"
+                             @if(!empty($banners[1]->image))
+                             style="background-image: url('{{ $banners[1]->image->url() }}');"
+                                @endif
+                        >
                             <div>
-                                <h4>Новинки для него</h4>
-                                <p>Смотреть</p>
+                                <h4>{{ json_decode($banners[1]->slide_data)->slide_title }}</h4>
+                                <p>{{ json_decode($banners[1]->slide_data)->button_text }}</p>
                             </div>
                         </div>
                     </a>
                 </div>
-
                 <div class="col-md-6 col-md-pull-6 col-sm-7 col-sm-pull-5 col-xs-12">
                     <div class="slick-prod-wrap">
                         <div class="slick-slider slick-prod popular-slider"
@@ -136,11 +143,15 @@
         <div class="container">
             <div class="row bag-category-section">
                 <div class="col-md-8 col-sm-12 col-xs-12 bag-category-section-img">
-                    <a href="{{env('APP_URL')}}/catalog/tovary/tip-sumki_specpredlozhenija-newcollection">
-                        <div class="bag-category-img">
+                    <a href="{{ $banners[2]->link }}">
+                        <div class="bag-category-img"
+                             @if(!empty($banners[2]->image))
+                             style="background-image: url('{{ $banners[2]->image->url() }}');"
+                                @endif
+                        >
                             <div>
-                                <h4>Новинки сумки</h4>
-                                <p>Смотреть</p>
+                                <h4>{{ json_decode($banners[2]->slide_data)->slide_title }}</h4>
+                                <p>{{ json_decode($banners[2]->slide_data)->button_text }}</p>
                             </div>
                         </div>
                     </a>
