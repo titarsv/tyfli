@@ -85,10 +85,10 @@
                                     <td>Почта</td>
                                     <td>{!! $order->user->email !!}</td>
                                 </tr>
-                                <tr>
-                                    <td>Заказы покупателя</td>
-                                    <td><a href="/admin/users/stat/{!! $order->user_id !!}" >Все заказы</a></td>
-                                </tr>
+                                {{--<tr>--}}
+                                    {{--<td>Заказы покупателя</td>--}}
+                                    {{--<td><a href="/admin/users/stat/{!! $order->user_id !!}" >Все заказы</a></td>--}}
+                                {{--</tr>--}}
                                 <tr>
                                     <td>Сумма заказа</td>
                                     <td>{!! round($order->total_price, 2) !!} грн</td>

@@ -148,13 +148,6 @@
                         </div>
                         <div class="col-sm-12 col-xs-12 margin">
                             <h5 class="title">Адрес доставки</h5>
-                            @php
-                                if(is_object($user->user_data)){
-                                    $address = $user->user_data->address();
-                                }else{
-                                    $address = null;
-                                }
-                            @endphp
                             <form class="profile-address-wrp">
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Город</h5>
@@ -176,25 +169,34 @@
                                     <h5 class="data-name">Квартира</h5>
                                     <input type="text" name="flat" value="{{ isset($address->flat) ? $address->flat : '' }}" class="profile-data-input">
                                 </div>
+                                <br>
                                 <h5 class="title">Отделение Новой Почты</h5>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Область</h5>
-                                    <select name="region" id="region" onchange="newpostUpdate('region', jQuery(this).val());">
+                                    <select name="npregion" id="region" onchange="newpostUpdate('region', jQuery(this).val());">
                                         @foreach($regions as $region)
-                                            <option value="{{ $region->id }}"{{ isset($address->region) && $address->region == $region->id ? ' selected' : '' }}>{{ $region->name }}</option>
+                                            <option value="{{ $region->id }}"{{ isset($address->npregion) && $address->npregion == $region->id ? ' selected' : '' }}>{{ $region->name_ru }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Населённый пункт</h5>
-                                    <select name="city" id="city" onchange="newpostUpdate('city', jQuery(this).val());">
-                                        <option value="">Выберите область</option>
+                                    <select name="npcity" id="checkout-step__city" onchange="newpostUpdate('city', jQuery(this).val());" disabled="disabled">
+                                        @forelse($cities as $city)
+                                            <option value="{{ $city->id }}"{{ isset($address->npcity) && $address->npcity == $city->id ? ' selected' : '' }}>{{ $city->name_ru }}</option>
+                                        @empty
+                                            <option value="">Выберите область</option>
+                                        @endforelse
                                     </select>
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Отделение</h5>
-                                    <select name="department" id="department">
-                                        <option value="">Выберите населённый пункт</option>
+                                    <select name="npdepartment" id="checkout-step__warehouse" disabled="disabled">
+                                        @forelse($departments as $department)
+                                            <option value="{{ $department->id }}"{{ isset($address->npdepartment) && $address->npdepartment == $department->id ? ' selected' : '' }}>{{ $department->address_ru }}</option>
+                                        @empty
+                                            <option value="">Выберите населённый пункт</option>
+                                        @endforelse
                                     </select>
                                 </div>
                                 <div class="profile-data-item">

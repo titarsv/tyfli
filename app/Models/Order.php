@@ -91,15 +91,22 @@ class Order extends Model
     public function getDeliveryInfo()
     {
         $delivery_info = json_decode($this->delivery, true);
-        //$newpost = new Newpost();
-
         if ($delivery_info['method'] == 'newpost') {
-            return [
-                'method'    => 'Новая Почта',
-//                'region'    => $newpost->getRegionRef($delivery_info['info']['region'])->name,
-//                'city'      => $newpost->getCityRef($delivery_info['info']['city'])->name_ru,
-//                'warehouse' => $newpost->getWarehouse($delivery_info['info']['warehouse'])->address_ru,
+            $newpost = new Newpost();
+            $result = [
+                'method'    => 'Новая Почта'
             ];
+            $data = UserData::where('user_id', $this->user_id)->first();
+            if(!empty($data)){
+                $address = $data->address();
+                if(!empty($address->npregion))
+                    $result['region'] = $newpost->getRegionRef($address->npregion)->name_ru;
+                if(!empty($address->npcity))
+                    $result['city'] = $newpost->getCityRef($address->npcity)->name_ru;
+                if(!empty($address->npdepartment))
+                    $result['warehouse'] = $newpost->getWarehouse($address->npdepartment)->address_ru;
+            }
+            return $result;
         } elseif ($delivery_info['method'] == 'ukrpost') {
             $delivery_info['info']['method'] = 'Укрпочта';
             return $delivery_info['info'];

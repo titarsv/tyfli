@@ -118,13 +118,17 @@
     }
 }
 .profile-address-wrp{
-    input{
+    input, select{
         padding: 10px;
         border: 1px solid #DDDDDD;
         outline: none;
         color: #444444;
         font-family: "HelveticaNeue";
         font-size: 18px; 
+    }
+    select{
+        width: 500px;
+        max-width: 100%;
     }
 }
 .profile-edit-data-input{

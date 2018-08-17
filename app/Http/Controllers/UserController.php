@@ -96,10 +96,27 @@ class UserController extends Controller
         $newpost = new Newpost();
         $regions = $newpost->getRegions();
 
+        $address = $user->user_data->address();
+        $cities = [];
+        $departments = [];
+        if(!empty($address)){
+            if(!empty($address->npregion)){
+                $region = $newpost->getRegionRef($address->npregion);
+                $cities = $newpost->getCities($region->region_id);
+            }
+            if(!empty($address->npcity)){
+                $city = $newpost->getCityRef($address->npregion);
+                $departments = $newpost->getWarehouses($city->city_id);
+            }
+        }
+
         return view('users.index')->with('user', $user)
             ->with('orders', $orders)
             ->with('user_data', $user->user_data)
             ->with('wish_list', $wish_list)
+            ->with('address', $address)
+            ->with('cities', $cities)
+            ->with('departments', $departments)
             ->with('regions', $regions);
     }
     public function history()
@@ -210,6 +227,9 @@ class UserController extends Controller
                 'street' => $request->street,
                 'house' => $request->house,
                 'flat' => $request->flat,
+                'npregion' => $request->npregion,
+                'npcity' => $request->npcity,
+                'npdepartment' => $request->npdepartment,
             ], JSON_UNESCAPED_UNICODE);
 
             $user->user_data()->update(['address' => $address]);

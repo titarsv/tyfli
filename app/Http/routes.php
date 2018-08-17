@@ -229,9 +229,9 @@ Route::post('cart/get','CartController@getCart');
 Route::group(['prefix' => 'user', 'middleware' => ['user']], function(){
     Route::get('/', 'UserController@show');
     Route::post('/', 'UserController@saveChangedData');
-    Route::post('/updatePassword', 'UserController@updatePassword');
-    Route::post('/updateSubscr', 'UserController@updateSubscr');
-    Route::post('/updateAddress', 'UserController@updateAddress');
+    Route::post('/updatepassword', 'UserController@updatePassword');
+    Route::post('/updatesubscr', 'UserController@updateSubscr');
+    Route::post('/updateaddress', 'UserController@updateAddress');
     Route::patch('/', 'UserController@history');
     Route::get('/history', 'UserController@history');
     Route::get('/wishlist', 'UserController@wishList');

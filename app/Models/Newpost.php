@@ -57,38 +57,39 @@ class Newpost extends Model
      */
     public function getRegions($force = false)
     {
-        $setting = new Settings;
-        $newpost = $setting->get_setting('newpost_regions_last_update');
-        $update_period = $setting->get_setting('newpost_regions_update_period');
-        $time = time();
+        // TODO забить русские наименования областей массивом и включить обновление
+//        $setting = new Settings;
+//        $newpost = $setting->get_setting('newpost_regions_last_update');
+//        $update_period = $setting->get_setting('newpost_regions_update_period');
+//        $time = time();
 
-        if(empty($newpost->newpost_regions_last_update) || ($newpost->newpost_regions_last_update + $update_period) < $time || $force){
-
-            $parameters = [
-                'modelName' => 'Address',
-                'calledMethod' => 'getAreas',
-                'apiKey' => $setting->get_setting('newpost_api_key')
-            ];
-
-            $result = $this->requestToAPI($parameters);
-
-            $regions = [];
-            if(!empty($result['success'])) {
-                foreach ($result['data'] as $region) {
-                    $regions[] = [
-                        'region_id' => $region['Ref'],
-                        'name' => $region['Description'],
-                        'region_center' => $region['AreasCenter']
-                    ];
-                }
-                DB::table('newpost_regions')->truncate();
-                DB::table('newpost_regions')->insert($regions);
-
-                $setting->update_setting('newpost_regions_last_update', $time);
-            } elseif (!empty($result['error'])) {
-                Log::error('Ошибка API Новой Почты:', $result['error']);
-            }
-        }
+//        if(empty($newpost->newpost_regions_last_update) || ($newpost->newpost_regions_last_update + $update_period) < $time || $force){
+//
+//            $parameters = [
+//                'modelName' => 'Address',
+//                'calledMethod' => 'getAreas',
+//                'apiKey' => $setting->get_setting('newpost_api_key')
+//            ];
+//
+//            $result = $this->requestToAPI($parameters);
+//
+//            $regions = [];
+//            if(!empty($result['success'])) {
+//                foreach ($result['data'] as $region) {
+//                    $regions[] = [
+//                        'region_id' => $region['Ref'],
+//                        'name' => $region['Description'],
+//                        'region_center' => $region['AreasCenter']
+//                    ];
+//                }
+//                DB::table('newpost_regions')->truncate();
+//                DB::table('newpost_regions')->insert($regions);
+//
+//                $setting->update_setting('newpost_regions_last_update', $time);
+//            } elseif (!empty($result['error'])) {
+//                Log::error('Ошибка API Новой Почты:', $result['error']);
+//            }
+//        }
 
         return DB::table('newpost_regions')->get();
     }
@@ -117,7 +118,6 @@ class Newpost extends Model
      */
     public function getAllCities($time)
     {
-
         $setting = new Settings;
         $parameters = [
             'modelName' => 'Address',
@@ -156,7 +156,11 @@ class Newpost extends Model
      */
     public function getCities($region_id)
     {
-        $last_update = config('newpost.cities_last_update');
+        $setting = new Settings;
+        $last_update =  $setting->get_setting('newpost_cities_last_update');
+        if(empty($last_update)){
+            $last_update = config('newpost.cities_last_update');
+        }
         $time = time();
 
         if(is_null($last_update) || ($last_update + 2592000) < $time){
@@ -235,7 +239,11 @@ class Newpost extends Model
      */
     public function getWarehouses($city_id)
     {
-        $last_update = config('newpost.warehouses_last_update');
+        $setting = new Settings;
+        $last_update =  $setting->get_setting('newpost_warehouses_last_update');
+        if(empty($last_update)){
+            $last_update = config('newpost.warehouses_last_update');
+        }
         $time = time();
 
         if(is_null($last_update) || ($last_update + 604800) < $time){

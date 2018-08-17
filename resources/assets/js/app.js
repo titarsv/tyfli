@@ -251,7 +251,7 @@ $(function() {
             password_confirmation: $('[name="repass"]').val()
         };
 
-        $.post('/user/updatePassword', data, function(response){
+        $.post('/user/updatepassword', data, function(response){
             if(response.success){
                 swal('Сохранено', 'Данные успешно сохранениы!', 'success');
             }else{

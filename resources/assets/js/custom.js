@@ -532,7 +532,7 @@ $(function() {
     // })
 
     $('[name="subscr-type"]').change(function(){
-        $.post('/user/updateSubscr', {subscr: $('[name="subscr-type"]:checked').val()}, function(response){
+        $.post('/user/updatesubscr', {subscr: $('[name="subscr-type"]:checked').val()}, function(response){
             if(response.success){
                 swal('Сохранено', 'Данные успешно сохранениы!', 'success');
             }else{
@@ -547,10 +547,13 @@ $(function() {
             post_code: $('[name="post_code"]').val(),
             street: $('[name="street"]').val(),
             house: $('[name="house"]').val(),
-            flat: $('[name="flat"]').val()
+            flat: $('[name="flat"]').val(),
+            npregion: $('[name="npregion"]').val(),
+            npcity: $('[name="npcity"]').val(),
+            npdepartment: $('[name="npdepartment"]').val()
         };
 
-        $.post('/user/updateAddress', data, function(response){
+        $.post('/user/updateaddress', data, function(response){
             if(response.success){
                 swal('Сохранено', 'Данные успешно сохранениы!', 'success');
             }else{
@@ -798,6 +801,8 @@ window.newpostUpdate = function(id, value) {
         var path = 'checkout/cities';
         var selector = jQuery('#checkout-step__city');
     }
+    selector.find('option').text('Обновляются данные, ожидайте...');
+    selector.attr('disabled', 'disabled');
 
     jQuery.ajax({
         url: path,
@@ -805,19 +810,13 @@ window.newpostUpdate = function(id, value) {
         type: 'post',
         dataType: 'json',
         beforeSend: function() {
-            jQuery('.checkout-step__body_second .error-message').fadeOut(300);
-            jQuery('.checkout-step__body').addClass('checkout-step__body_loader');
-            jQuery('.checkout-step__body_second .error-message__text').html('');
-            jQuery('#checkout-step__warehouse').html('<option value="0">Сначала выберите город!</option>');
-            jQuery('#checkout-step__warehouse').trigger('refresh');
+
         },
         success: function(response){
             if (response.error) {
-                jQuery('.checkout-step__body_second .error-message__text').html(response.error);
-                jQuery('.checkout-step__body').removeClass('checkout-step__body_loader');
-                jQuery('.checkout-step__body_second .error-message').fadeIn(300);
+
             } else if (response.success) {
-                var html = '<option value="0">Выберите город</option>';
+                var html = '<option value="0">Сделайте выбор</option>';
                 jQuery.each(response.success, function(i, resp){
                     if (id == 'city') {
                         var info = resp.address_ru;
@@ -827,8 +826,7 @@ window.newpostUpdate = function(id, value) {
                     html += '<option value="' + resp.id + '">' + info + '</option>';
                 });
                 selector.html(html);
-                selector.trigger('update.fs');
-                jQuery('.checkout-step__body').removeClass('checkout-step__body_loader');
+                selector.prop('disabled', false);
             }
         }
     })
