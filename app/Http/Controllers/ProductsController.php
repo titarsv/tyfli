@@ -737,12 +737,22 @@ class ProductsController extends Controller
                             foreach ($vals as $result){
                                 $new_row = [];
 
-                                // Доподнительное поле
+                                // Дополнительное поле
                                 if(isset($field['options']['relations'])){
                                     $relation = preg_replace('/^([^{]+)\{([^}]+)\}/u', '$2', $result);
                                     if($relation != $result) {
                                         $new_row = array_merge($new_row, [$field['options']['relations'] => preg_replace('/^([^{]+)\{([^}]+)\}/u', '$2', $result)]);
                                         $result = trim(preg_replace('/^([^{]+)\{([^}]+)\}/u', '$1', $result));
+                                    }
+                                }
+
+                                if(isset($field['options']['with_stock'])){
+                                    if(strpos($result, ' * ') !== false){
+                                        $params = explode(' * ', $result);
+                                        if(count($params) == 2){
+                                            $field['options']['with_stock'] = trim($params[0]);
+                                            $result = trim($params[1]);
+                                        }
                                     }
                                 }
 
@@ -753,7 +763,7 @@ class ProductsController extends Controller
 
                                 // Подгружаем файлы
                                 if(isset($field['options']['load']) && !empty($result)) {
-                                    $url = "http://globalprom.com.ua/image/$result";
+                                    $url = $result;
                                     $table = $field['options']['load'][0];
                                     $replaced = $field['options']['load'][1];
                                     if($table == 'images'){
@@ -773,6 +783,11 @@ class ProductsController extends Controller
                                 // Заполняем связанное поле
                                 if(isset($field['options']['attached_fields'])){
                                     $new_row = array_merge($new_row, $field['options']['attached_fields']);
+                                }
+
+                                // Заполняем остатки
+                                if(isset($field['options']['with_stock'])){
+                                    $new_row['with_stock'] = $field['options']['with_stock'];
                                 }
 
                                 // Добавляем данные в общий поток
@@ -815,6 +830,12 @@ class ProductsController extends Controller
                     $prepared_data[] = $row_data;
                 }
 
+                if($request->update){
+                    $errors = $this->updatePricesAndStock($prepared_data);
+                    return view('admin.products.upload')
+                        ->with('errors', $errors);
+                }
+
                 $errors = $this->validate_prepared_data($prepared_data);
 
                 if(empty($errors)) {
@@ -843,23 +864,93 @@ class ProductsController extends Controller
             ->with('errors', $errors);
     }
 
+    /**
+     * Добавление размеров в вариации
+     *
+     * @param $data
+     * @return mixed
+     */
     public function addSizesVariations($data){
         if(isset($data['tables']['product_attributes'])){
             $price = $data['tables']['products']['price'];
             $variations = [];
-            foreach ($data['tables']['product_attributes'] as $attr){
+            foreach ($data['tables']['product_attributes'] as $key => $attr){
                 if($attr['attribute_id'] == 7){
                     $variations[] = [
                         'id' => [$attr['attribute_value_id']],
                         'price' => $price,
-                        'stock' => 1
+                        'stock' => isset($attr['with_stock']) ? $attr['with_stock'] : 1
                     ];
+                    if(isset($data['tables']['product_attributes'][$key]['with_stock'])){
+                        unset($data['tables']['product_attributes'][$key]['with_stock']);
+                    }
                 }
             }
             $data['tables']['variations'] = $variations;
         }
 
         return $data;
+    }
+
+
+    public function updatePricesAndStock($data){
+        $errors = [];
+        foreach($data as $key => $row){
+            if(empty($row['tables']['products']['articul'])){
+                $errors[] = [
+                    'id' => $key+1,
+                    'errors' => ['Не указан артикул товара']
+                ];
+                break;
+            }
+            $product = Products::where('articul', $row['tables']['products']['articul'])->first();
+            if(empty($product)){
+                $errors[] = [
+                    'id' => $key+1,
+                    'errors' => ['Не удалось найти товар с артикулом: '.$row['tables']['products']['articul']]
+                ];
+                break;
+            }
+            $old_price = $product->price;
+            if($old_price == $row['tables']['products']['price']){
+                $old_price = $product->old_price;
+            }elseif($old_price < $row['tables']['products']['price']){
+                $old_price = 0;
+            }
+
+            $product->fill([
+                'price' => $row['tables']['products']['price'],
+                'old_price' => $old_price
+            ]);
+
+            $product->push();
+
+            if (!empty($row['tables']['product_attributes'])) {
+                $ids = [];
+                foreach ($row['tables']['product_attributes'] as $attribute) {
+                    $product_attributes[] = [
+                        'product_id' => $product->id,
+                        'attribute_id' => $attribute['attribute_id'],
+                        'attribute_value_id' => $attribute['attribute_value_id'],
+                    ];
+                    if(!in_array($attribute['attribute_id'], $ids)){
+                        $ids[] = $attribute['attribute_id'];
+                    }
+                }
+
+                $product->attributes()->whereIn('attribute_id', $ids)->delete();
+                $product->attributes()->createMany($product_attributes);
+            }
+
+            if(isset($row['tables']['variations'])){
+                foreach ($row['tables']['variations'] as $key => $variation) {
+                    $row['tables']['variations'][$key]['price'] = $row['tables']['products']['price'];
+                }
+                $this->updateVariations($product, $row['tables']['variations']);
+            }
+        }
+
+        return $errors;
     }
 
     /**
@@ -946,6 +1037,8 @@ class ProductsController extends Controller
                     $options['attached_fields'][$attached_field[0]] = $attached_field[1];
                 }elseif($params[$i] == 'unique'){
                     $options['unique'] = true;
+                }elseif($params[$i] == 'with_stock'){
+                    $options['with_stock'] = 1;
                 }elseif(strpos($params[$i], 'replace') === 0){
                     if(!isset($options['attached_fields']))
                         $options['attached_fields'] = [];
