@@ -201,9 +201,15 @@ class CategoriesController extends Controller
             return $filter->getFilterAttributes();
         });
 
+        $orders = [
+            'date-desc' => ['id', 'desc'],
+            'price-asc' => ['price', 'asc'],
+            'price-desc' => ['price', 'desc'],
+        ];
+
         return view('public.category')
             ->with('category', $category)
-            ->with('products', $filter->getProducts(['price', isset($request->order) ? $request->order : 'asc'], 18, $request->page))
+            ->with('products', $filter->getProducts(isset($orders[$request->order]) ? $orders[$request->order] : ['id', 'desc'], 18, $request->page))
             ->with('attributes', $attributes)
             ->with('price', $filter->getPriceRanges());
     }

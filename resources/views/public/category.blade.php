@@ -147,7 +147,7 @@
                 </div>
                 <div class="col-md-9 col-sm-8 col-xs-12 products-grid-container">
                     <div class="row">
-                        <div class="col-md-12 margin">
+                        <div class="col-md-12 margin" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                             <h1 class="title">
                                 @if(!empty($seo))
                                     {!! $seo->name !!}
@@ -155,14 +155,22 @@
                                     {!! $category->name or $category['name'] !!}
                                 @endif
                             </h1>
+                            <fieldset class="col-xs-8 sorting-dropdown chosen-select-prod-grid hidden-xs" style="max-width: 254px;">
+                                <select name="sorting-select" class="chosen-select" id="sorting-select" data-chosen-settings='{"disable_search_threshold":10, "width":"100%"}'>
+                                    <option value="date-desc"{{ isset($_GET['order']) && $_GET['order'] == 'date-desc' ? ' selected="selected"' : '' }}>От новых к старым</option>
+                                    <option value="price-asc"{{ isset($_GET['order']) && $_GET['order'] == 'price-asc' ? ' selected="selected"' : '' }}>От дешевых к дорогим</option>
+                                    <option value="price-desc"{{ isset($_GET['order']) && $_GET['order'] == 'price-desc' ? ' selected="selected"' : '' }}>От дорогих к дешевым</option>
+                                </select>
+                            </fieldset>
                         </div>
                         <div class="visible-xs-inline-block col-xs-12 no-padding">
                             <div class="product-filters-wrp">
                                 <div class="row">
                                     <fieldset class="col-xs-8 sorting-dropdown chosen-select-prod-grid">
                                         <select name="sorting-select" class="chosen-select" id="sorting-select" data-chosen-settings='{"disable_search_threshold":10, "width":"100%"}'>
-                                            <option value="asc"{{ isset($_GET['order']) && $_GET['order'] == 'asc' ? ' selected="selected"' : '' }}>От дешевых к дорогим</option>
-                                            <option value="desc"{{ isset($_GET['order']) && $_GET['order'] == 'desc' ? ' selected="selected"' : '' }}>От дорогих к дешевым</option>
+                                            <option value="date-desc"{{ isset($_GET['order']) && $_GET['order'] == 'date-desc' ? ' selected="selected"' : '' }}>От новых к старым</option>
+                                            <option value="price-asc"{{ isset($_GET['order']) && $_GET['order'] == 'price-asc' ? ' selected="selected"' : '' }}>От дешевых к дорогим</option>
+                                            <option value="price-desc"{{ isset($_GET['order']) && $_GET['order'] == 'price-desc' ? ' selected="selected"' : '' }}>От дорогих к дешевым</option>
                                         </select>
                                     </fieldset>
                                     <div class="col-xs-4 filter-menu">
