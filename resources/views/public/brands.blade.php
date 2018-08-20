@@ -26,7 +26,13 @@
                         </div>
                         @foreach($brands as $brand)
                             <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
-                                <div class="col-md-4 col-xs-6 brand-item">{{ $brand->name }}</div>
+                                <div class="col-md-4 col-xs-6 brand-item">
+                                    @if(is_file(public_path().'/images/brands/'.$brand->value.'.png'))
+                                        <img src="/images/brands/{{ $brand->value }}.png" alt="{{ $brand->name }}">
+                                    @else
+                                        {{ $brand->name }}
+                                    @endif
+                                </div>
                             </a>
                         @endforeach
                         @include('public.layouts.banner')
