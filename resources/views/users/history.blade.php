@@ -153,11 +153,13 @@
                                 @else
                                     @php
                                         $href = '/';
-                                        $products = $orders->first()->getProducts();
-                                        if(!empty($products)){
-                                            $categories = $products[0]['product']->categories;
-                                            if(!empty($categories)){
-                                                $href = '/catalog/'.$categories->first()->get_root_category()->url_alias;
+                                        if(!empty($orders->first())){
+                                          $products = $orders->first()->getProducts();
+                                            if(!empty($products)){
+                                                $categories = $products[0]['product']->categories;
+                                                if(!empty($categories)){
+                                                    $href = '/catalog/'.$categories->first()->get_root_category()->url_alias;
+                                                }
                                             }
                                         }
                                     @endphp

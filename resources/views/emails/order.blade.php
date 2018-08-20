@@ -15,7 +15,7 @@
                 <tr>
                     <td align="center" width="20%" height="150px">
                         <a href="{!! url('/product/' . $item['product']->url_alias) !!}">
-                            <img src="{!! url($item['product']->image->url('product_list')) !!}" alt="product-image" width="100px" height="100px" title="{!! $item['product']->name !!}">
+                            <img src="{!! url($item['product']->image->url('product_list')) !!}" alt="product-image" width="100px" height="100px" style="object-fit: contain;" title="{!! $item['product']->name !!}">
                         </a>
                     </td>
                     <td align="center" width="40%" height="150px">

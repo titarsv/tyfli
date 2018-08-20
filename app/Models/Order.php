@@ -96,16 +96,26 @@ class Order extends Model
             $result = [
                 'method'    => 'Новая Почта'
             ];
-            $data = UserData::where('user_id', $this->user_id)->first();
-            if(!empty($data)){
-                $address = $data->address();
-                if(!empty($address->npregion))
-                    $result['region'] = $newpost->getRegionRef($address->npregion)->name_ru;
-                if(!empty($address->npcity))
-                    $result['city'] = $newpost->getCityRef($address->npcity)->name_ru;
-                if(!empty($address->npdepartment))
-                    $result['warehouse'] = $newpost->getWarehouse($address->npdepartment)->address_ru;
+
+            if(is_array($delivery_info['info']) && !empty($delivery_info['info']['npregion'])){
+                $result['region'] = $newpost->getRegionRef($delivery_info['info']['npregion'])->name_ru;
+                if(!empty($delivery_info['info']['npcity']))
+                    $result['city'] = $newpost->getCityRef($delivery_info['info']['npcity'])->name_ru;
+                if(!empty($delivery_info['info']['npdepartment']))
+                    $result['warehouse'] = $newpost->getWarehouse($delivery_info['info']['npdepartment'])->address_ru;
+            }else{
+                $data = UserData::where('user_id', $this->user_id)->first();
+                if(!empty($data)){
+                    $address = $data->address();
+                    if(!empty($address->npregion))
+                        $result['region'] = $newpost->getRegionRef($address->npregion)->name_ru;
+                    if(!empty($address->npcity))
+                        $result['city'] = $newpost->getCityRef($address->npcity)->name_ru;
+                    if(!empty($address->npdepartment))
+                        $result['warehouse'] = $newpost->getWarehouse($address->npdepartment)->address_ru;
+                }
             }
+
             return $result;
         } elseif ($delivery_info['method'] == 'ukrpost') {
             $delivery_info['info']['method'] = 'Укрпочта';

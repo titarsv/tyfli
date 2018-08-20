@@ -70,7 +70,7 @@ class CheckoutController extends Controller
         $delivery_method = $request->delivery;
         $delivery_info = [
             'method'    => $delivery_method,
-            'info'      => ''
+            'info'      => $request->$delivery_method
         ];
 
         $data = [

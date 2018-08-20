@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Order;
 use Crypt;
 use Illuminate\Support\Facades\Session;
+use App\Models\Newpost;
 
 class CartController extends Controller
 {
@@ -108,11 +109,40 @@ class CartController extends Controller
             $user = User::find(Sentinel::check()->id);
         }
 
+//        if(empty($user)){
+//            return redirect('/login');
+//        }
+
+        $newpost = new Newpost();
+        $regions = $newpost->getRegions();
+
+        if(!empty($user)){
+            $address = $user->user_data->address();
+        }else{
+            $address = '';
+        }
+        $cities = [];
+        $departments = [];
+        if(!empty($address)){
+            if(!empty($address->npregion)){
+                $region = $newpost->getRegionRef($address->npregion);
+                $cities = $newpost->getCities($region->region_id);
+            }
+            if(!empty($address->npcity)){
+                $city = $newpost->getCityRef($address->npregion);
+                $departments = $newpost->getWarehouses($city->city_id);
+            }
+        }
+
         return view('public.order')
             ->with('user', $user)
             ->with('products', $products)
             ->with('cart', $current_cart)
-            ->with('delivery_price', 0);
+            ->with('delivery_price', 0)
+            ->with('address', $address)
+            ->with('cities', $cities)
+            ->with('departments', $departments)
+            ->with('regions', $regions);
     }
 
     /**

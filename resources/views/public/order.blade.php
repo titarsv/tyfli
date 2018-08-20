@@ -177,6 +177,36 @@
                                                         <label for="delivery2">Доставка на склад новой почты</label>
                                                         <p class="delivery-popup-text"> - указана усредненная стоимость доставки, сумма может меняться в зависимости от веса посылки. Доставка осуществляется за счет покупателя.</p>
                                                         {{--<p class="delivery-popup-price">(за доставку +50,00 грн.)</p>--}}
+                                                        <div id="np_department">
+                                                            <div class="profile-data-item">
+                                                                <h5 class="data-name">Область</h5>
+                                                                <select name="newpost[npregion]" id="region" onchange="newpostUpdate('region', jQuery(this).val());">
+                                                                    @foreach($regions as $region)
+                                                                        <option value="{{ $region->id }}"{{ isset($address->npregion) && $address->npregion == $region->id ? ' selected' : '' }}>{{ $region->name_ru }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="profile-data-item">
+                                                                <h5 class="data-name">Населённый пункт</h5>
+                                                                <select name="newpost[npcity]" id="checkout-step__city" onchange="newpostUpdate('city', jQuery(this).val());">
+                                                                    @forelse($cities as $city)
+                                                                        <option value="{{ $city->id }}"{{ isset($address->npcity) && $address->npcity == $city->id ? ' selected' : '' }}>{{ $city->name_ru }}</option>
+                                                                    @empty
+                                                                        <option value="">Выберите область</option>
+                                                                    @endforelse
+                                                                </select>
+                                                            </div>
+                                                            <div class="profile-data-item">
+                                                                <h5 class="data-name">Отделение</h5>
+                                                                <select name="newpost[npdepartment]" id="checkout-step__warehouse" >
+                                                                    @forelse($departments as $department)
+                                                                        <option value="{{ $department->id }}"{{ isset($address->npdepartment) && $address->npdepartment == $department->id ? ' selected' : '' }}>{{ $department->address_ru }}</option>
+                                                                    @empty
+                                                                        <option value="">Выберите населённый пункт</option>
+                                                                    @endforelse
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div class="delivery-popup-item">

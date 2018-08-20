@@ -205,3 +205,14 @@
         background-color: darken(#5F98B9, 10%);
     }
 }
+
+#np_department{
+    display: none;
+    select{
+        width: 100%;
+    }
+}
+
+#delivery2:checked + span + label + p + #np_department{
+    display: block;
+}

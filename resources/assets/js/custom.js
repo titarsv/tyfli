@@ -800,6 +800,7 @@ window.newpostUpdate = function(id, value) {
         };
         var path = 'checkout/cities';
         var selector = jQuery('#checkout-step__city');
+        $('#checkout-step__warehouse').html('<option value="">Выберите населённый пункт</option>');
     }
     selector.find('option').text('Обновляются данные, ожидайте...');
     selector.attr('disabled', 'disabled');
