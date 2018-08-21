@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="form-comment">
                                     <h5>Комментарий</h5>
-                                    <textarea name="" id="" cols="30" rows="10" class="leave-comment"></textarea>
+                                    <textarea name="comment" id="" cols="30" rows="10" class="leave-comment"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-5 col-xs-12 no-padding cart-receipt-wrp">

@@ -82,6 +82,7 @@ class CheckoutController extends Controller
                 'name'  => $user->first_name.' '.$user->last_name,
                 'email' => $user->email,
                 'phone' => isset($user->user_data->phone) ? $user->user_data->phone : "",
+                'comment' => $request->comment
             ]),
             'delivery'  => json_encode($delivery_info),
             'payment'   => $request->payment,

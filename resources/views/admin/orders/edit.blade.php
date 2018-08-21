@@ -101,6 +101,12 @@
                                     <td>Дата заказа</td>
                                     <td>{!! $order->date !!} {!! $order->time !!}</td>
                                 </tr>
+                                @if(isset($order->user->comment))
+                                <tr>
+                                    <td>Комментарий к заказу</td>
+                                    <td>{!! $order->user->comment !!}</td>
+                                </tr>
+                                @endif
                             </table>
                         </div>
                     </div>
