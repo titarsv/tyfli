@@ -133,7 +133,9 @@
                                 </span>
                             </div>
                         </div>
-                        {!! html_entity_decode($article->text) !!}
+                        <div style="clear: both;">
+                            {!! preg_replace('/<([spanuli]+)(?:([\'"]).*?\2|.)*?>/', "<$1>", strip_tags(html_entity_decode($article->text), '<p><img><b><ul><ol><li><table><tr><td>')); !!}
+                        </div>
                         @if($next || $prev)
                         <div class="col-sm-12 hidden-xs">
                             <h5 class="next-article-title">

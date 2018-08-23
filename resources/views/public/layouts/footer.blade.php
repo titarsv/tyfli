@@ -10,6 +10,7 @@
                     <li><a href="{{env('APP_URL')}}/page/delivery"><p>Оплата и Доставка</p> </a></li>
                     <li><a href="{{env('APP_URL')}}/page/garantiya-i-vozvrat"><p>Гарантия и Возврат</p></a></li>
                     <li><a href="{{env('APP_URL')}}/page/sizes"><p>Таблица размеров</p></a></li>
+                    <li><a href="{{env('APP_URL')}}/page/politika-konfidentsialnosti"><p>Политика конфиденциальности</p></a></li>
                 </ul>
             </div>
             <div class="col-sm-2 col-xs-12">
@@ -62,19 +63,24 @@
                     </div>
                 </form>
                 <div class="social-links social-links-footer">
-                    <a href="https://www.instagram.com" target="blank">
+                    <a href="https://www.instagram.com/tyflicom/" target="blank">
                         <i>&#xE804</i>
                     </a>
-                    <a href="https://www.facebook.com" target="blank">
+                    <a href="https://www.facebook.com/tyfli.commarina/" target="blank">
                         <i>&#xE803</i>
                     </a>
-                    <a href="https://www.vkontakte.com" target="blank">
-                        <i>&#xE800</i>
-                    </a>
+                    {{--<a href="https://www.vkontakte.com" target="blank">--}}
+                        {{--<i>&#xE800</i>--}}
+                    {{--</a>--}}
                 </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <p class="footer-copyright">© 2013- 2018 Tyfli.com Все права защищены</p>
+                <p class="footer-copyright">
+                    © 2013- 2018 Tyfli.com Все права защищены
+                    <!--noindex-->
+                    <span>Разработано: <a href="http://23lab.net/" target="_blank" rel="nofollow"><img src="http://23lab.net/images/logo.png"></a></span>
+                    <!--/noindex-->
+                </p>
             </div>
         </div>
     </div>

@@ -876,11 +876,13 @@ class ProductsController extends Controller
             $variations = [];
             foreach ($data['tables']['product_attributes'] as $key => $attr){
                 if($attr['attribute_id'] == 7){
-                    $variations[] = [
-                        'id' => [$attr['attribute_value_id']],
-                        'price' => $price,
-                        'stock' => isset($attr['with_stock']) ? $attr['with_stock'] : 1
-                    ];
+                    if(!empty($attr['attribute_value_id'])) {
+                        $variations[] = [
+                            'id' => [$attr['attribute_value_id']],
+                            'price' => $price,
+                            'stock' => isset($attr['with_stock']) ? $attr['with_stock'] : 1
+                        ];
+                    }
                     if(isset($data['tables']['product_attributes'][$key]['with_stock'])){
                         unset($data['tables']['product_attributes'][$key]['with_stock']);
                     }
@@ -901,7 +903,7 @@ class ProductsController extends Controller
                     'id' => $key+1,
                     'errors' => ['Не указан артикул товара']
                 ];
-                break;
+                continue;
             }
             $product = Products::where('articul', $row['tables']['products']['articul'])->first();
             if(empty($product)){
@@ -909,7 +911,7 @@ class ProductsController extends Controller
                     'id' => $key+1,
                     'errors' => ['Не удалось найти товар с артикулом: '.$row['tables']['products']['articul']]
                 ];
-                break;
+                continue;
             }
             $old_price = $product->price;
             if($old_price == $row['tables']['products']['price']){
@@ -927,12 +929,15 @@ class ProductsController extends Controller
 
             if (!empty($row['tables']['product_attributes'])) {
                 $ids = [];
+                $product_attributes = [];
                 foreach ($row['tables']['product_attributes'] as $attribute) {
-                    $product_attributes[] = [
-                        'product_id' => $product->id,
-                        'attribute_id' => $attribute['attribute_id'],
-                        'attribute_value_id' => $attribute['attribute_value_id'],
-                    ];
+                    if(!empty($attribute['attribute_value_id'])) {
+                        $product_attributes[] = [
+                            'product_id' => $product->id,
+                            'attribute_id' => $attribute['attribute_id'],
+                            'attribute_value_id' => $attribute['attribute_value_id'],
+                        ];
+                    }
                     if(!in_array($attribute['attribute_id'], $ids)){
                         $ids[] = $attribute['attribute_id'];
                     }

@@ -346,6 +346,21 @@ i{
     line-height: 16px;
     margin-bottom: 25px;
     margin-top: 20px;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 30px;
+    -moz-column-gap: 30px;
+    column-gap: 30px;
+    h1{
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #333;
+        min-height: auto;
+        line-height: 1.2;
+        font-family: Oswald;
+    }
     h2{
         font-size: 24px;
         font-weight: 600;
@@ -384,6 +399,8 @@ i{
     margin-top: 15px;
 }
 .static_page{
+    padding-left: 15px;
+    padding-right: 15px;
     &, p, ol, ul{
         font-family: HelveticaNeue;
         font-size: 14px;

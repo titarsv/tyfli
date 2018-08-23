@@ -219,9 +219,9 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="social-links">
-                        <a href=""><img src="/images/homepage-icons/instagram icon.svg" alt=""></a>
-                        <a href=""><img src="/images/homepage-icons/facebook icon.svg" alt=""></a>
-                        <a href=""><img src="/images/homepage-icons/vkontakte icon.svg" alt=""></a>
+                        <a href="https://www.instagram.com/tyflicom/"><img src="/images/homepage-icons/instagram icon.svg" alt=""></a>
+                        <a href="https://www.facebook.com/tyfli.commarina/"><img src="/images/homepage-icons/facebook icon.svg" alt=""></a>
+                        {{--<a href=""><img src="/images/homepage-icons/vkontakte icon.svg" alt=""></a>--}}
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -259,7 +259,7 @@
                     <h3 class="section-title">
                         Поделись своим образом в Instagram
                     </h3>
-                    <p>Ставь хештег <a href="#">#tyflicom</a> в Instagram дай возможность другим увидеть твой образ</p>
+                    <p>Ставь хештег <a href="https://www.instagram.com/tyflicom/">#tyflicom</a> в Instagram дай возможность другим увидеть твой образ</p>
                 </div>
                 <div class="col-sm-12">
                     <div class="js-slider slick-slider slider-margins"
@@ -280,19 +280,8 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-12 hidden-xs home-page-about-us-text">
-                    <span>О нас</span>
+                <div class="col-md-12 col-sm-12 hidden-xs home-page-about-us-text">
                     {!! $settings->about !!}
-                </div>
-                <div class="col-md-6 col-sm-12 hidden-xs home-page-about-us-text">
-                    <p>Почему покупатели выбирают TYFLI.COM</p>
-                    <p>Больше не нужно тратить время на посещение обувных магазинов - мы собрали большую коллекцию
-                        товаров от популярных производителей.</p>
-                    <p>TYFLI.COM предлагает большой выбор модной и качественной продукции по разумным ценам, регулярно
-                        проводятся акции и выгодные предложения.</p>
-                    <p>В нашем магазине представлены туфли классика для мужчин, которые пользуются популярностью среди
-                        покупателей. Линейка наших размеров: 35-40 или 36-41 для женщин и 40-45 для мужчин. Отдельные
-                        бренды предлагают мужскую обувь меньших размеров - от 38. </p>
                 </div>
             </div>
         </div>
