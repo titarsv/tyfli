@@ -129,7 +129,7 @@ class CartController extends Controller
                 $cities = $newpost->getCities($region->region_id);
             }
             if(!empty($address->npcity)){
-                $city = $newpost->getCityRef($address->npregion);
+                $city = $newpost->getCityRef($address->npcity);
                 $departments = $newpost->getWarehouses($city->city_id);
             }
         }
