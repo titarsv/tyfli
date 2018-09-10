@@ -181,7 +181,7 @@
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Населённый пункт</h5>
-                                    <select name="npcity" id="checkout-step__city" onchange="newpostUpdate('city', jQuery(this).val());" disabled="disabled">
+                                    <select name="npcity" id="checkout-step__city" onchange="newpostUpdate('city', jQuery(this).val());">
                                         @forelse($cities as $city)
                                             <option value="{{ $city->id }}"{{ isset($address->npcity) && $address->npcity == $city->id ? ' selected' : '' }}>{{ $city->name_ru }}</option>
                                         @empty
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="profile-data-item">
                                     <h5 class="data-name">Отделение</h5>
-                                    <select name="npdepartment" id="checkout-step__warehouse" disabled="disabled">
+                                    <select name="npdepartment" id="checkout-step__warehouse">
                                         @forelse($departments as $department)
                                             <option value="{{ $department->id }}"{{ isset($address->npdepartment) && $address->npdepartment == $department->id ? ' selected' : '' }}>{{ $department->address_ru }}</option>
                                         @empty

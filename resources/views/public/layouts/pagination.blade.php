@@ -12,7 +12,7 @@
                 @if($paginator->lastPage() <= 11)
 
                     @for ($c=1; $c<=$paginator->lastPage(); $c++)
-                        <li><li><a href="{{ $cp->url($paginator->url($c), $c) }}"><p class="{{ ($paginator->currentPage() == $c) ? 'active-page' : '' }}">{{ $c }}</p></a></li>
+                        <li><a href="{{ $cp->url($paginator->url($c), $c) }}"><p class="{{ ($paginator->currentPage() == $c) ? 'active-page' : '' }}">{{ $c }}</p></a></li>
                     @endfor
 
                 @elseif($paginator->currentPage() < 7)

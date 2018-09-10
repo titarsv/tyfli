@@ -113,10 +113,10 @@ class CheckoutController extends Controller
 
         $cart->current_cart()->delete();
 
-        Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => true], function($msg) use ($setting){
+        Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => true], function($msg) use ($setting, $order_id){
             $msg->from('admin@tyfli.com', 'Интернет-магазин Tyfli.com');
             $msg->to(get_object_vars($setting->get_setting('notify_emails')));
-            $msg->subject('Новый заказ');
+            $msg->subject('Новый заказ №'.$order_id);
         });
 
         Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => false], function($msg) use ($order_user){

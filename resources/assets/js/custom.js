@@ -370,6 +370,11 @@ $(function() {
                     swal('Подписка', response.success, 'success');
                 }
 
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'mailing'
+                });
+
                 $('.subscribe-form').find('input[type="email"]').val('');
             }
         });
@@ -467,6 +472,10 @@ $(function() {
                             html += text + '<br>';
                         });
                     } else if (response.success) {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            'event': 'order'
+                        });
                         if (response.success == 'liqpay') {
                             LiqPayCheckout.init({
                                 data: response.liqpay.data,

@@ -3,6 +3,23 @@
     <title>Брендовая обувь от интерент магазина - tyfli.com</title>
     <meta name="description" content="Брендовая обувь, купить брендовую обувь в интернет магазине - tyfli.com . У нас самый большой выбор женской и мужской обуви разных брендов высокого качества."/>
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
+    <!-- Код тега ремаркетинга Google -->
+    <script type="text/javascript">
+        var google_tag_params = {
+            dynx_itemid: '',
+            dynx_pagetype: 'other',
+            dynx_totalvalue: '',
+        };
+    </script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 789556637;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
 @endsection
 
 @section('breadcrumbs')
@@ -10,6 +27,12 @@
 @endsection
 
 @section('content')
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/789556637/?guid=ON&amp;script=0"/>
+        </div>
+    </noscript>
+
     <section>
         <div class="container">
             <div class="row">

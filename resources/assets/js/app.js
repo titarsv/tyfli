@@ -274,6 +274,51 @@ $(function() {
         };
     });
 
+    $('.header-list-wrp a, .footer-phones-list-wrp a').click(function(){
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'click2number'
+        });
+    });
+
+    // $('#subscribe').on('sent', function(){
+    //     window.dataLayer = window.dataLayer || [];
+    //     window.dataLayer.push({
+    //         'event': 'mailing'
+    //     });
+    // });
+
+    $('.btn_buy').click(function (e) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'add2cart'
+        });
+    });
+
+    $(document).on('click', '[href="https://tyfli.com/cart"]', function(e){
+        e.preventDefault();
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'go2cart'
+        });
+        location = $(this).attr('href');
+    });
+
+    $(document).on('click', '[href="https://tyfli.com/checkout"]', function(e){
+        e.preventDefault();
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'go2design'
+        });
+        location = $(this).attr('href');
+    });
+
+    $('.one-click-form').on('sent', function(){
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'buy1click'
+        });
+    });
 });
 
 require('./custom.js');

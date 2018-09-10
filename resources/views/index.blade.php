@@ -3,9 +3,33 @@
     <title>{!! $settings->meta_title !!}</title>
     <meta name="description" content="{!! $settings->meta_description !!}">
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
+
+    <!-- Код тега ремаркетинга Google -->
+    <script type="text/javascript">
+        var google_tag_params = {
+            dynx_itemid: '',
+            dynx_pagetype: 'home',
+            dynx_totalvalue: '',
+        };
+    </script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 789556637;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
 @endsection
 
 @section('content')
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/789556637/?guid=ON&amp;script=0"/>
+        </div>
+    </noscript>
+
     @if($slideshow->count())
         <div class="header-slider-wrp">
             <div class="container-fluid">

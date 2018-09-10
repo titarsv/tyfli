@@ -720,7 +720,6 @@ class ProductsController extends Controller
                 $prepared_data = [];
 
                 foreach ($data as $row) {
-
                     $row_data = ['tables' => []];
                     foreach ($row as $key => $val){
                         $field = ['options' => $this->get_field_options($key)];
@@ -827,7 +826,8 @@ class ProductsController extends Controller
 
                     $row_data = $this->addSizesVariations($row_data);
 
-                    $prepared_data[] = $row_data;
+                    if(isset($row_data['tables']['products']) && isset($row_data['tables']['products']['articul']))
+                        $prepared_data[] = $row_data;
                 }
 
                 if($request->update){

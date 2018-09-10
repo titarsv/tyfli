@@ -528,11 +528,10 @@ class UserController extends Controller
         $domain = $_SERVER['HTTP_HOST'];
         $_SESSION['http_host'] = $domain;
 
-        $sendTo = 'titarsv@gmail.com';
         $from = "info@$domain";
         $title = '';
 
-        $subject = "Заявка $domain " . $title;
+        $subject = 'Перезвоните мне!';
 
         if(count($_FILES)){
             //print_r($_FILES);
@@ -584,6 +583,14 @@ class UserController extends Controller
 
             $msg .= "</body></html>";
 
+            if(isset($data->form)){
+                if($data->form->val == 'Сообщить о снижении цены'){
+                    $subject = 'Снижение цены!';
+                }elseif($data->form->val == 'Быстрый заказ'){
+                    $subject = 'Новый заказ в 1 клик!';
+                }
+            }
+
             if(!empty($files)){
 
                 foreach($files as $file){
@@ -594,32 +601,15 @@ class UserController extends Controller
 
             $setting = new Settings();
 
-            Mail::send('emails.sendmail', ['html' => $msg], function($msg) use ($setting){
+            Mail::send('emails.sendmail', ['html' => $msg], function($msg) use ($setting, $subject){
                 $msg->from('admin@tyfli.com', 'Интернет-магазин Tyfli.com');
                 $msg->to(get_object_vars($setting->get_setting('notify_emails')));
-                $msg->subject('Перезвоните мне!');
+                $msg->subject($subject);
             });
 
             header("HTTP/1.0 200 OK");
             echo '{"status":"success"}';
 
-//            if(!empty($path)){
-//                if ($this->send_mail($sendTo, $subject, $msg, $path)) {
-//                    header("HTTP/1.0 200 OK");
-//                    echo '{"status":"success"}';
-//                } else {
-//                    header("HTTP/1.0 404 Not Found");
-//                    echo '{"status":"error"}';
-//                }
-//            }else{
-//                if (mail($sendTo, $subject, $msg, $headers)) {
-//                    header("HTTP/1.0 200 OK");
-//                    echo '{"status":"success"}';
-//                } else {
-//                    header("HTTP/1.0 404 Not Found");
-//                    echo '{"status":"error"}';
-//                }
-//            }
         } else {
             header("HTTP/1.0 404 Not Found");
             echo '{"status":"error"}';
