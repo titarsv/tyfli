@@ -1129,4 +1129,36 @@ class ProductsController extends Controller
         );
         return strtr($string, $converter);
     }
+
+    public function export(Products $products){
+        $data = [];
+        foreach($products->with('image')->get() as $product){
+            $data[] = [
+                'ID' => $product->id,
+                'Item title' => $product->name,
+                'Final URL' => env('APP_URL').'/product/'.$product->url_alias,
+                'Image URL' => empty($product->image) ? env('APP_URL').'/uploads/no_image.jpg' : env('APP_URL').$product->image->url(),
+                'Price' => (!empty($product->old_price) && $product->price < $product->old_price) ? $product->old_price.' UAH' : $product->price.' UAH',
+                'Sale Price' => (!empty($product->old_price) && $product->price < $product->old_price) ? $product->price.' UAH' : ''
+            ];
+        }
+
+        Excel::create('remarketing', function($excel) use ($data) {
+
+            // Set the title
+            $excel->setTitle('Remarketing');
+
+            // Chain the setters
+            $excel->setCreator('Triplefork')
+                ->setCompany('Triplefork');
+
+            // Call them separately
+            $excel->setDescription('Remarketing');
+
+            $excel->sheet('First sheet', function($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+
+        })->download('xls');
+    }
 }
