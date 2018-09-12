@@ -131,7 +131,7 @@
                                     {{--{!! $product->category ? $product->category->name : '' !!}--}}
                                 </td>
                                 <td class="status" align="center">
-                                    <span class="{!! $product->stock ? 'on' : 'off' !!}">
+                                    <span class="{!! $product->stock ? 'on' : 'off' !!}" data-id="{{ $product->id }}" style="cursor: pointer;">
                                         <span class="runner"></span>
                                     </span>
                                 </td>

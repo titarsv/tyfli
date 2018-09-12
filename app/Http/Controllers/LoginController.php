@@ -13,6 +13,7 @@ use Mail;
 use Carbon\Carbon;
 use App\Http\Controllers\CartController;
 use Socialite;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {

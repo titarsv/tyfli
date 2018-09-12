@@ -287,6 +287,13 @@ class ProductsController extends Controller
             ->with('attributes', Attribute::all());
     }
 
+    public function updatestok(Request $request, $id){
+        $product = Products::find($id);
+
+        $product->update(['stock' => $request->stock]);
+
+        return json_encode($product->toArray());
+    }
 
     /**
      * Update the specified resource in storage.

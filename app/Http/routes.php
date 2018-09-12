@@ -116,6 +116,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
         Route::post('/edit/{id}', 'ProductsController@update');
         Route::get('/getattributevalues', 'ProductsController@getAttributes');
         Route::post('/getattributevalues', 'ProductsController@getAttributeValues');
+        Route::post('/updatestok/{id}', 'ProductsController@updatestok');
     });
     Route::match(['get', 'post'], '/upload-products', 'ProductsController@upload');
     Route::get('/export-products', 'ProductsController@export');

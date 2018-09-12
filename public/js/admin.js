@@ -495,6 +495,19 @@ $(document).ready(function(){
 
     $('.chosen-select').chosen();
 
+    $(document).on('click', '.status .off', function(){
+        var $this = $(this);
+        $.post('/admin/products/updatestok/'+$this.data('id'), {'stock': 1}, function(){
+            $this.removeClass('off').addClass('on');
+        });
+    });
+
+    $(document).on('click', '.status .on', function(){
+        var $this = $(this);
+        $.post('/admin/products/updatestok/'+$this.data('id'), {'stock': 0}, function(){
+            $this.removeClass('on').addClass('off');
+        });
+    });
 });
 
 function navigate()
