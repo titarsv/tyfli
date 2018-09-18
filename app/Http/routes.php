@@ -41,7 +41,7 @@ Route::post('/review/add-likes', 'ReviewsController@addLikes');
 
 Route::get('/reviews', 'ReviewsController@shopReviews');
 
-Route::post('/saveUserData', 'UserController@saveUserData');
+Route::post('/saveuserdata', 'UserController@saveUserData');
 
 
 /**
@@ -67,6 +67,8 @@ Route::get('/forgotten', 'LoginController@forgotten');
 Route::post('/forgotten', 'LoginController@reminder');
 Route::get('/lostpassword', 'LoginController@lostpassword');
 Route::post('/lostpassword', 'LoginController@changePassword');
+
+Route::get('/export-products', 'ProductsController@export');
 
 /**
  * Admin routing

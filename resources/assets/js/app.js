@@ -229,7 +229,7 @@ $(function() {
                 user_birth: $('[name="user-birth"]').val()
             };
 
-            $.post('/saveUserData', data, function(response){
+            $.post('/saveuseruata', data, function(response){
                 window.location = window.location;
             });
         }

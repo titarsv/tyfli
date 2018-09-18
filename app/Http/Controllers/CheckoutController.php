@@ -64,7 +64,9 @@ class CheckoutController extends Controller
         $user = User::find($user->id);
 
         if (!$user) {
-	        return response()->json(['error' => 'Вы не авторизованы.']);
+	        return response()->json(['error' => ['auth' => 'Вы не авторизованы.']]);
+        }elseif(!isset($user->user_data->phone) || empty($user->user_data->phone)){
+            return response()->json(['error' => ['phone' => 'Укажите контактный номер телефона в личном кабинете.']]);
         }
 
         $delivery_method = $request->delivery;

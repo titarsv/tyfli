@@ -42,8 +42,8 @@
   flex-wrap: wrap;
   padding-left: 15px;
 }
-.not-valid + .checkbox-custom{
-  border-color: #f00;
+.not-valid + .checkbox-custom + label{
+  color: #f00;
 }
 .homepage-product-card-img-wrp{
   padding: 50%;
@@ -110,9 +110,6 @@
   width: 100%;
   height: 100%;
   border-bottom: 1px solid transparent;
-}
-.agreement-container .not-valid + .checkbox-custom {
-  border-color: red;
 }
 .agreement-container .not-valid + .checkbox-custom + label:before{
   border-color: red;

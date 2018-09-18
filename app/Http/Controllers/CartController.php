@@ -201,8 +201,9 @@ class CartController extends Controller
      */
     public static function cartToUser($user_id)
     {
-        $user_cart_id = Session::get('user_id');
-        $current_cart_from_sess = Cart::where('user_id', $user_cart_id)->first();
+//        $user_cart_id = Session::get('user_id');
+//        $current_cart_from_sess = Cart::where('user_id', $user_cart_id)->first();
+        $current_cart_from_sess = Cart::where('session_id', Session::getId())->first();
         $current_cart = [];
         if(!is_null($current_cart_from_sess)) {
             $current_cart_from_sess->update(['user_id' => $user_id]);

@@ -1139,7 +1139,7 @@ class ProductsController extends Controller
 
     public function export(Products $products){
         $data = [];
-        foreach($products->with('image')->get() as $product){
+        foreach($products->where('stock', 1)->with('image')->get() as $product){
             $data[] = [
                 'ID' => $product->id,
                 'Item title' => $product->name,
@@ -1166,6 +1166,6 @@ class ProductsController extends Controller
                 $sheet->fromArray($data);
             });
 
-        })->download('xls');
+        })->download('csv');
     }
 }

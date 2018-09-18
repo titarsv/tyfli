@@ -471,6 +471,7 @@ $(function() {
                             $('[name="' + error[0] + '[' + error[1] + ']"').addClass('input-error');
                             html += text + '<br>';
                         });
+                        swal('Не удалось создать заказ', response.error, 'error');
                     } else if (response.success) {
                         window.dataLayer = window.dataLayer || [];
                         window.dataLayer.push({

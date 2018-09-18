@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
 use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 use App\Http\Requests;
@@ -30,12 +31,12 @@ class LoginController extends Controller
         if (Sentinel::check()) {
             $user_id = Sentinel::check()->id;
             $cart = CartController::cartToUser($user_id);
-            if(is_object($cart)) {
+            if(is_object($cart)){
                 $cart->full_cart_update();
             }
-            if (Sentinel::inRole('admin') or Sentinel::inRole('manager')) {
+            if (Sentinel::inRole('admin') or Sentinel::inRole('manager')){
                 return redirect('/admin');
-            } elseif (Sentinel::inRole('user')) {
+            } elseif (Sentinel::inRole('user')){
                 return redirect('/user');
             }
         } else {
@@ -51,7 +52,10 @@ class LoginController extends Controller
     {
         if (Sentinel::check()) {
             $user_id = Sentinel::check()->id;
-            CartController::cartToUser($user_id);
+            $cart = CartController::cartToUser($user_id);
+            if(is_object($cart)){
+                $cart->full_cart_update();
+            }
             if (Sentinel::inRole('admin') or Sentinel::inRole('manager')) {
                 return redirect('/admin');
             } elseif (Sentinel::inRole('user')) {
@@ -201,7 +205,10 @@ class LoginController extends Controller
                 $auth = Sentinel::authenticateAndRemember($credentials);
                 $user_id = $user_exists->id;
                 if($auth){
-                    CartController::cartToUser($user_id);
+                    $cart = CartController::cartToUser($user_id);
+                    if(is_object($cart)){
+                        $cart->full_cart_update();
+                    }
                     return redirect('/user')
                         ->with('status', 'Вы успешно зарегистрированы! Добро пожаловать в личный кабинет');
                 } else {
@@ -232,7 +239,10 @@ class LoginController extends Controller
         $userRole = Sentinel::findRoleByName('user');
         $userRole->users()->attach($user);
 
-        CartController::cartToUser($user->id);
+        $cart = CartController::cartToUser($user->id);
+        if(is_object($cart)){
+            $cart->full_cart_update();
+        }
 
         $user_data->create([
             'user_id'   => $user->id,
@@ -417,8 +427,8 @@ class LoginController extends Controller
             }else{
                 $name = explode('  ', $user->name);
                 $credentials = [
-                    'first_name' => $name[0],
-                    'last_name' => $name[1],
+                    'first_name' => isset($name[0]) ? $name[0] : '',
+                    'last_name' => isset($name[1]) ? $name[1] : '',
                     'email'     => $user->email,
                     'password'  => Hash::make(str_random(8))
                 ];

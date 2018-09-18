@@ -88,8 +88,13 @@
         </div>
         <div class="one-click-btn-wrp">
             <div class="hover-pro-card-btn-container">
-                <a class="js-toggle-one-click-btn" data-toggle=".one-click-form"><p class="hover-pro-card-btn">Купить в 1 клик</p></a>
-                <button class="hover-pro-card-cart-btn btn_buy" data-prod-id="{{ $product->id }}"><img src="/images/homepage-icons/cart icon.svg" alt="cart icon"></button>
+                @if(empty($sizes))
+                    <a class="js-toggle-one-click-btn" data-toggle=".one-click-form"><p class="hover-pro-card-btn">Купить в 1 клик</p></a>
+                    <button class="hover-pro-card-cart-btn btn_buy" data-prod-id="{{ $product->id }}"><img src="/images/homepage-icons/cart icon.svg" alt="cart icon"></button>
+                @else
+                    <a class="js-toggle-one-click-btn" data-toggle=".one-click-form"><p class="hover-pro-card-btn">Купить в 1 клик</p></a>
+                    <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}" class="hover-pro-card-cart-btn"><img src="/images/homepage-icons/cart icon.svg" alt="cart icon"></a>
+                @endif
             </div>
             <form action="" class="one-click-form unactive ajax_form"
                   data-error-title="Ошибка отправки!"
