@@ -2,7 +2,7 @@
 @section('meta')
     <title>
         @if(empty($category->meta_title)))
-            {!! $category->name !!}}
+            {!! $category->name !!}
         @else
             {!! $category->meta_title !!}
         @endif
@@ -189,7 +189,7 @@
                             <div class="product-filters-wrp">
                                 <div class="row">
                                     <fieldset class="col-xs-8 sorting-dropdown chosen-select-prod-grid">
-                                        <select name="sorting-select" class="chosen-select" id="sorting-select" data-chosen-settings='{"disable_search_threshold":10, "width":"100%"}'>
+                                        <select name="sorting-select" class="chosen-select" id="sorting-select-min" data-chosen-settings='{"disable_search_threshold":10, "width":"100%"}'>
                                             <option value="date-desc"{{ isset($_GET['order']) && $_GET['order'] == 'date-desc' ? ' selected="selected"' : '' }}>От новых к старым</option>
                                             <option value="price-asc"{{ isset($_GET['order']) && $_GET['order'] == 'price-asc' ? ' selected="selected"' : '' }}>От дешевых к дорогим</option>
                                             <option value="price-desc"{{ isset($_GET['order']) && $_GET['order'] == 'price-desc' ? ' selected="selected"' : '' }}>От дорогих к дешевым</option>

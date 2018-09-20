@@ -617,7 +617,7 @@ $(function() {
     });
 
     // Сортировка
-    $('#sorting-select').change(function () {
+    $('#sorting-select, #sorting-select-min').change(function () {
         var s = window.location.search.replace('?', '').split('&');
         var search = {};
         if(s.length){
