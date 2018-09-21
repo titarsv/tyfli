@@ -206,6 +206,7 @@ class CartController extends Controller
         $current_cart_from_sess = Cart::where('session_id', Session::getId())->first();
         $current_cart = [];
         if(!is_null($current_cart_from_sess)) {
+            Cart::where('user_id', $user_id)->delete();
             $current_cart_from_sess->update(['user_id' => $user_id]);
             $current_cart = $current_cart_from_sess;
         }
