@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use App\Http\Controllers\CartController;
 use Socialite;
 use Illuminate\Support\Facades\Hash;
+use Cookie;
 
 class LoginController extends Controller
 {
@@ -26,20 +27,28 @@ class LoginController extends Controller
  * Страница авторизации
  * @return mixed
  */
-    public function login()
+    public function login(Request $request)
     {
+        $redirect = Cookie::get('redirect');
         if (Sentinel::check()) {
             $user_id = Sentinel::check()->id;
             $cart = CartController::cartToUser($user_id);
             if(is_object($cart)){
                 $cart->full_cart_update();
             }
-            if (Sentinel::inRole('admin') or Sentinel::inRole('manager')){
+            if(!empty($redirect)){
+                return redirect('/'.$redirect);
+            }elseif(isset($request->redirect)){
+                return redirect('/'.$request->redirect);
+            }elseif (Sentinel::inRole('admin') or Sentinel::inRole('manager')){
                 return redirect('/admin');
             } elseif (Sentinel::inRole('user')){
                 return redirect('/user');
             }
         } else {
+            if(isset($request->redirect)){
+                Cookie::queue('redirect', $request->redirect, 60, null, null, false, false);
+            }
             return view('login')->with('process', 'authenticate');
         }
     }
@@ -48,7 +57,7 @@ class LoginController extends Controller
      * Страница регистрации
      * @return mixed
      */
-    public function registration()
+    public function registration(Request $request)
     {
         if (Sentinel::check()) {
             $user_id = Sentinel::check()->id;
@@ -56,12 +65,19 @@ class LoginController extends Controller
             if(is_object($cart)){
                 $cart->full_cart_update();
             }
-            if (Sentinel::inRole('admin') or Sentinel::inRole('manager')) {
+            if(!empty($redirect)){
+                return redirect('/'.$redirect);
+            }elseif(isset($request->redirect)){
+                return redirect('/'.$request->redirect);
+            }elseif (Sentinel::inRole('admin') or Sentinel::inRole('manager')) {
                 return redirect('/admin');
             } elseif (Sentinel::inRole('user')) {
                 return redirect('/user');
             }
         } else {
+            if(isset($request->redirect)){
+                Cookie::queue('redirect', $request->redirect, 60, null, null, false, false);
+            }
             return view('registration')->with('process', 'authenticate');
         }
     }
@@ -119,6 +135,8 @@ class LoginController extends Controller
         }
         if(isset($request->referrer) and $request->referrer == '/cart'){
             return redirect('/cart');
+        }elseif(isset($request->referrer) and $request->referrer == '/checkou'){
+            return redirect('/checkou');
         }
         return redirect ('/login')
             ->with('process', 'authenticate');
