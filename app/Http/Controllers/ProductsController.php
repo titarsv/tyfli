@@ -927,14 +927,21 @@ class ProductsController extends Controller
                 $old_price = 0;
             }
 
+            if(!empty($row['tables']['product_attributes'])){
+                $stock = 1;
+            }else{
+                $stock = 0;
+            }
+
             $product->fill([
                 'price' => $row['tables']['products']['price'],
-                'old_price' => $old_price
+                'old_price' => $old_price,
+                'stock' => $stock
             ]);
 
             $product->push();
 
-            if (!empty($row['tables']['product_attributes'])) {
+            if(!empty($row['tables']['product_attributes'])){
                 $ids = [];
                 $product_attributes = [];
                 foreach ($row['tables']['product_attributes'] as $attribute) {

@@ -73,7 +73,8 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
 //    }
 
     public function checkIfUnregistered($phone, $email){
-        return $this->where('email', $email)->orWhere('phone', $phone)->first();
+//        return $this->where('email', $email)->orWhere('phone', $phone)->first();
+        return $this->where('email', $email)->first();
     }
 
     /**

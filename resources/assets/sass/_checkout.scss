@@ -24,6 +24,37 @@
 }
 .order-form{
     margin: 25px 0;
+    .no-padding{
+        width: calc(41.66666667% - 15px);
+    }
+    @include bp(sm){
+        .no-padding{
+            width: 100%;
+        }
+        & > .row{
+            display: flex;
+            flex-direction: column;
+            > div{
+                &:nth-child(1){
+                    order: 1;
+                }
+                &:nth-child(2){
+                    order: 2;
+                }
+                &:nth-child(3){
+                    order: 4;
+                }
+                &:nth-child(4){
+                    order: 3;
+                    padding-right: 15px;
+                    margin-bottom: 15px;
+                    .leave-comment{
+                        max-width: unset;
+                    }
+                }
+            }
+        }
+    }
 }
 .prod-quantity{
     display: flex;
@@ -106,6 +137,12 @@
             padding: 0 10px;
         }
     }
+    input{
+        width: calc(100% - 100px);
+        @include bp(md){
+            width: calc(100% - 83px);
+        }
+    }
 }
 .leave-comment{
     color: #444444;
@@ -119,7 +156,6 @@
     @include bp (xs){
         height: 70px;
         width: 100%;
-        max-width: 200px;
         margin-bottom: 15px;
     }
 }
@@ -128,12 +164,19 @@
 }
 .form-comment{
     display: flex;
+    margin-top: 15px;
     h5{
         color: #9B9B9B;
         font-family: "HelveticaNeueLight";
         font-size: 12px;
         line-height: 50px;
         width: 80px;
+        min-width: 100px;
+    }
+    .leave-comment{
+        width: calc(100% - 100px);
+        margin: 0;
+        height: 100px;
     }
 }
 .agreement-container{

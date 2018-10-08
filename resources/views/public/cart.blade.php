@@ -174,15 +174,15 @@
                         </div>
                         <div class="col-md-12 no-padding">
                             <div class="cart-receipt-btn">
-                                @if($user_logged)
+                                {{--@if($user_logged)--}}
                                     <a href="{{env('APP_URL')}}/checkout">
                                         <p class="checkout-btn process">Перейти к оформлению</p>
                                     </a>
-                                @else
-                                    <a href="{{env('APP_URL')}}/login?redirect=checkout">
-                                        <p class="checkout-btn process">Перейти к оформлению</p>
-                                    </a>
-                                @endif
+                                {{--@else--}}
+                                    {{--<a href="{{env('APP_URL')}}/login?redirect=checkout">--}}
+                                        {{--<p class="checkout-btn process">Перейти к оформлению</p>--}}
+                                    {{--</a>--}}
+                                {{--@endif--}}
                             </div>
                         </div>
                     </div>

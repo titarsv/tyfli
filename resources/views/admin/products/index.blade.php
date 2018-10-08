@@ -101,6 +101,7 @@
                     <thead>
                         <tr class="success">
                             <td>Название</td>
+                            <td>Артикул</td>
                             <td align="center">Изображение товара</td>
                             <td align="center">Категория</td>
                             <td align="center">Наличие</td>
@@ -111,6 +112,7 @@
                         @forelse($products as $product)
                             <tr>
                                 <td>{!! $product->name !!}</td>
+                                <td>{!! $product->articul !!}</td>
                                 @if(!empty($product->image))
                                     <td align="center">
                                         <img src="{!! $product->image->url('product_list')!!}"

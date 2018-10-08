@@ -138,6 +138,7 @@
 
 .close-prod-item{
     width: 25px;
+    padding: 0;
     @include bp (sm){
         width: 50px;
     }

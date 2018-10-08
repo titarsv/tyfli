@@ -457,10 +457,6 @@ $(function() {
                 type: 'post',
                 data: $(this).parents('form').serialize(),
                 beforeSend: function(){
-                    $('.checkout-step__body').addClass('checkout-step__body_loader');
-                    $('.checkout-step__body_second .error-message').fadeOut(300, function(){
-                        $('.checkout-step__body_second .error-message__text').html('');
-                    });
                     $('select, input').removeClass('input-error');
                 },
                 success: function(response) {
@@ -468,10 +464,11 @@ $(function() {
                         var html = '';
                         $.each(response.error, function (id, text){
                             var error = id.split('.');
-                            $('[name="' + error[0] + '[' + error[1] + ']"').addClass('input-error');
+                            console.log(error);
+                            $('[name="' + error[0] + '"]').addClass('input-error');
                             html += text + '<br>';
                         });
-                        swal('Не удалось создать заказ', response.error, 'error');
+                        swal('Не удалось создать заказ', html, 'error');
                     } else if (response.success) {
                         window.dataLayer = window.dataLayer || [];
                         window.dataLayer.push({

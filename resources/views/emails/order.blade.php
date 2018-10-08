@@ -49,8 +49,13 @@
 
 @if($admin)
     <p><strong>Заказчик:</strong> {!! $user['name'] !!}</p>
-    <p><strong>E-mail:</strong> {!! $user['email'] !!}</p>
+    @if(strpos($user['email'], '@placeholder.com') === false)
+        <p><strong>E-mail:</strong> {!! $user['email'] !!}</p>
+    @endif
     <p><strong>Телефон:</strong> {!! $user['phone'] !!}</p>
+    @if(!empty($user['comment']))
+    <p><strong>Комментарий к заказу:</strong> {!! $user['comment'] !!}</p>
+    @endif
 @else
     <p style="font-size: 16px; color: #333;">Уважаемый {!! $user['name'] !!}! Благодарим Вас за заказ в интернет-магазине Tyfli.com! В ближайшее время с Вами свяжется наш менеджер для уточнения деталей заказа!</p>
 @endif

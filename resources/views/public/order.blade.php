@@ -136,6 +136,30 @@
                             </div>
                             <div class="col-sm-7 col-xs-12">
                                 <div class="form-conditions">
+                                    <h5>Имя Фамилия</h5>
+                                    <input type="text"
+                                           name="first_name"
+                                           id="name"
+                                           class="profile-edit-data-input @if($errors->has('first_name')) input_error @endif"
+                                           value="{!! old('first_name') ? old('first_name') : ( isset($user) && $user ? $user->first_name : '' ) !!}">
+                                </div>
+                                <div class="form-conditions">
+                                    <h5>Телефон*</h5>
+                                    <input type="text"
+                                           name="phone"
+                                           id="phone"
+                                           class="profile-edit-data-input @if($errors->has('phone')) input_error @endif"
+                                           value="{!! old('phone') ? old('phone') : ( isset($user) && $user ? $user->phone : '' ) !!}">
+                                </div>
+                                <div class="form-conditions">
+                                    <h5>E-mail</h5>
+                                    <input type="text"
+                                           name="email"
+                                           id="email"
+                                           class="profile-edit-data-input @if($errors->has('email')) input_error @endif"
+                                           value="{!! old('email') ? old('email') : ( isset($user) && $user ? $user->email : '' ) !!}">
+                                </div>
+                                <div class="form-conditions">
                                     <h5>Доставка</h5>
                                     <span id="current-delivery">Доставка на склад новой почты</span>
                                     <a href="" class="form-conditions-btn popup-btn" data-mfp-src="#delivery-popup"><p>Изменить</p></a>
@@ -144,10 +168,6 @@
                                     <h5>Оплата</h5>
                                     <span id="current-pay">На расчетный счет Приват Банка</span>
                                     <a href="" class="form-conditions-btn popup-btn" data-mfp-src="#pay-popup"><p>Изменить</p></a>
-                                </div>
-                                <div class="form-comment">
-                                    <h5>Комментарий</h5>
-                                    <textarea name="comment" id="" cols="30" rows="10" class="leave-comment"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-5 col-xs-12 no-padding cart-receipt-wrp">
@@ -175,25 +195,31 @@
                                     <div class="agreement-container">
                                         <input type="checkbox" name="agreement" value="" id="safe-agreement" class="checkbox">
                                         <span class="checkbox-custom"></span>
-                                        <label for="safe-agreement">Соглашаюсь с условиями безопасности</label>
+                                        <label for="safe-agreement" style="position: relative;">Соглашаюсь с условиями безопасности</label>
                                     </div>
                                     <div class="agreement-container">
                                         <input type="checkbox" name="agreement" value="" id="public-agreement" class="checkbox">
                                         <span class="checkbox-custom"></span>
-                                        <label for="public-agreement">Соглашаюсь с условиями Договора публичной оферты и возврата</label>
+                                        <label for="public-agreement" style="position: relative;">Соглашаюсь с условиями Договора публичной оферты и возврата</label>
                                     </div>
                                 </div>
-                                <div class="cart-receipt-btn">
-                                    @if($user_logged)
+                                <div class="cart-receipt-btn" style="margin-top: 5px;">
+                                    {{--@if($user_logged)--}}
                                         <button type="submit" class="checkout-btn" id="checkout-btn">Оформить заказ</button>
-                                    @else
-                                        <a href="{{env('APP_URL')}}/login" class="checkout-btn">Оформить заказ</a>
-                                    @endif
+                                    {{--@else--}}
+                                        {{--<a href="{{env('APP_URL')}}/login" class="checkout-btn">Оформить заказ</a>--}}
+                                    {{--@endif--}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-comment">
+                                    <h5>Комментарий</h5>
+                                    <textarea name="comment" id="" cols="30" rows="10" class="leave-comment"></textarea>
                                 </div>
                             </div>
                         </div>
                         {{--POP-UP DELIVERY--}}
-                        <div class="mfp-hide">
+                        <div class="hidden">
                             <div id="delivery-popup">
                                 <div class="container">
                                     <div class="row popup-centered">
@@ -274,7 +300,7 @@
                             </div>
                         </div>
                         {{--POP-UP PAY--}}
-                        <div class="mfp-hide">
+                        <div class="hidden">
                             <div id="pay-popup">
                                 <div class="container">
                                     <div class="row popup-centered">

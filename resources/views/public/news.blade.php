@@ -157,7 +157,7 @@
                                 </div>
                             @endforeach
                         @endif
-                        @include('public.layouts.pagination', ['paginator' => $articles])
+                        @include('public.layouts.pagination', ['paginator' => $items])
                         <div class="visible-xs-inline-block col-xs-12">
                             <p class=" sections-links-title">Разделы</p>
                             <ul class="sections-links">

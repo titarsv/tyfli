@@ -28,9 +28,10 @@ class CheckoutController extends Controller
      * @param Request $request
      * @param Order $order
      * @param Cart $cart
+     * @param User $users
      * @return \Illuminate\Http\JsonResponse
      */
-    public function createOrder(Request $request, Order $order, Cart $cart)
+    public function createOrder(Request $request, Order $order, Cart $cart, User $users)
     {
         $cart = $cart->current_cart();
 
@@ -44,11 +45,14 @@ class CheckoutController extends Controller
         }
 
         $rules = [
+            'phone'     => 'required|regex:/^[0-9\-! ,\'\"\/+@\.:\(\)]+$/',
             'payment' => 'required',
             'delivery' => 'required'
         ];
 
         $messages = [
+            'phone.required'    => 'Вы не указали телефон!',
+            'phone.regex'       => 'Некорректный номер телефона!',
             'payment'          => 'Не выбран способ оплаты!',
             'delivery'          => 'Не выбран способ доставки!'
         ];
@@ -60,14 +64,33 @@ class CheckoutController extends Controller
             return response()->json(['error' => $errors]);
         }
 
+        if(empty($request->email)){
+            $request->email = 'email'.rand(0, 1000000).'@placeholder.com';
+            while($users->checkIfUnregistered($request->phone, $request->email)){
+                $request->email = 'email'.rand(0, 1000000).'@placeholder.com';
+            }
+        }
+
         $user = Sentinel::check();
-        $user = User::find($user->id);
 
         if (!$user) {
-	        return response()->json(['error' => ['auth' => 'Вы не авторизованы.']]);
-        }elseif(!isset($user->user_data->phone) || empty($user->user_data->phone)){
-            return response()->json(['error' => ['phone' => 'Укажите контактный номер телефона в личном кабинете.']]);
+            $existed_user = $users->checkIfUnregistered($request->phone, $request->email);
+
+            if(!is_null($existed_user)) {
+                $user = $existed_user;
+            } else {
+                $register = new LoginController();
+                $user = $register->storeAsUnregistered($request);
+            }
         }
+
+        $user = User::find($user->id);
+
+//        if (!$user) {
+//	        return response()->json(['error' => ['auth' => 'Вы не авторизованы.']]);
+//        }elseif(!isset($user->user_data->phone) || empty($user->user_data->phone)){
+//          return response()->json(['error' => ['phone' => 'Укажите контактный номер телефона в личном кабинете.']]);
+//        }
 
         $delivery_method = $request->delivery;
         $delivery_info = [
@@ -81,9 +104,9 @@ class CheckoutController extends Controller
             'total_quantity'    => $cart->total_quantity,
             'total_price'       => $cart->total_price,
             'user_info'         => json_encode([
-                'name'  => $user->first_name.' '.$user->last_name,
-                'email' => $user->email,
-                'phone' => isset($user->user_data->phone) ? $user->user_data->phone : "",
+                'name'  => !empty($request->first_name) ? $request->first_name : ($user->first_name.' '.$user->last_name),
+                'email' => !empty($request->email) ? $request->email : $user->email,
+                'phone' => !empty($request->phone) ? $request->phone : (isset($user->user_data->phone) ? $user->user_data->phone : ""),
                 'comment' => $request->comment
             ]),
             'delivery'  => json_encode($delivery_info),

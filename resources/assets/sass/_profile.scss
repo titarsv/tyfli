@@ -139,6 +139,9 @@
     font-family: "HelveticaNeue";
     font-size: 18px;
     height: 50px;
+    &.input-error{
+      border-color: #f00;
+    }
 }
 .profile-edit-data-input.unactive{
     display: none;
