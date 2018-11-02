@@ -47,6 +47,14 @@ class Cart extends Model
             $cart = $this->create_cart($user_id);
         }
 
+	    $products_in_cart = json_decode($cart->products, true);
+        foreach($products_in_cart as $id => $data){
+        	$product = Products::find($id);
+        	if(!$product->stock){
+		        $cart->remove_product($id);
+	        }
+        }
+
         return $cart;
     }
 
