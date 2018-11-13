@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-sm-12 col-xs-12">
                     <div class="js-slider slick-slider slider-brands"
-                         data-slick='{"slidesToShow": 6, "responsive":[{"breakpoint":1200,"settings":{"slidesToShow": 4}},{"breakpoint":768,"settings":{"slidesToShow": 3, "arrows": false}},{"breakpoint":480,"settings":{"slidesToShow": 2, "arrows": false}}]}'>
+                         data-slick='{"slidesToShow": 6, "responsive":[{"breakpoint":1200,"settings":{"slidesToShow": 4}},{"breakpoint":768,"settings":{"slidesToShow": 3}},{"breakpoint":480,"settings":{"slidesToShow": 2}}]}'>
                         @foreach($brands as $brand)
                             <div class="slider-brand-item">
                                 <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">

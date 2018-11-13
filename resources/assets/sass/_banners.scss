@@ -81,15 +81,36 @@
     }
     .bag-category-banner-btn{
         @include bp(sm){
-            display: none;
+            //display: none;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          right: 0;
+          opacity: 0;
          }
     }
 }
+@include bp(sm){
+  .sales-banner-text-wrp .hidden-xs{
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
 .sales-banner-btn{
-        @include bp(sm){
-            display: none;
-         }
-    }
+  @include bp(sm){
+    //display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    opacity: 0;
+  }
+}
 .bag-category-banner-title{
     margin-left: 27%;
     p{

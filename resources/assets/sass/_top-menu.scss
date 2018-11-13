@@ -151,10 +151,12 @@
         font-size: 28px;
         font-family: 'Oswald', sans-serif;
         @include bp(lg){
-            font-size: 22.5px;
+            font-size: 21px;
         }
         @include bp(md){
-            font-size: 16.5px;
+          font-size: 15px;
+          line-height: 2;
+          margin: 0;
         }
         @include bp(sm){
             display: none;
