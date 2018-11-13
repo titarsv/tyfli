@@ -233,9 +233,9 @@
                             @if($products->currentPage() == 1)
                                 @if(!empty($seo))
                                     {!! $seo->description !!}
-                                @else
-                                    <span>О нас</span>
-                                    {!! $settings->about !!}
+                                {{--@else--}}
+                                    {{--<span>О нас</span>--}}
+                                    {{--{!! $settings->about !!}--}}
                                 @endif
                             @endif
                         </div>
