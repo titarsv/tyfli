@@ -35,6 +35,7 @@
                     <li>г.Харьков,</li>
                     <li>пр-т Науки 41/43</li>
                     <li>ул. Полтавкий шлях 147</li>
+                    <li>пл. Павловская, д.10 "А"</li>
                 </ul>
             </div>
             <div class="col-sm-2 col-xs-12 footer-phones-list-wrp">

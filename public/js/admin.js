@@ -238,9 +238,30 @@ $(document).ready(function(){
         html += '<td class="col-md-1" align="center">';
         html += '<button class="btn btn-danger" onclick="$(this).parent().parent().remove();">Удалить</button>';
         html += '</td></tr>';
-        
-        
-        
+
+
+
+
+        if ($('#modules-table tr.empty').length) {
+            $('#modules-table tr.empty').remove();
+        }
+        $('#modules-table').append(html);
+        iterator.val(i);
+        $('[data-toggle="tooltip"]').tooltip();
+
+    });
+
+    $('#button-add-shop').on('click', function() {
+        var iterator = $('#slideshow-iterator');
+        var i = iterator.val();
+        i++;
+
+        var html = '<tr>';
+        html += '<td class="col-md-5"> <div><input type="text" name="slide[' + i + '][slide_title]" class="form-control" value="" /> </div></td>';
+        html += '<td class="col-md-3"><input placeholder="Широта" type="text" name="slide[' + i + '][lat]" class="form-control" value="" /><input placeholder="Долгота" type="text" name="slide[' + i + '][lng]" class="form-control" value="" /></td>';
+        html += '<td class="col-md-3"><input placeholder="Пн-Пт" type="text" name="slide[' + i + '][wt]" class="form-control" value="" /><input placeholder="Сб-Вс" type="text" name="slide[' + i + '][ht]" class="form-control" value="" /> </td>';
+        html += '<td class="col-md-1" align="center"><button class="btn btn-danger" onclick="$(this).parent().parent().remove();">Удалить</button></td>';
+        html += '</tr>';
 
         if ($('#modules-table tr.empty').length) {
             $('#modules-table tr.empty').remove();
@@ -388,7 +409,7 @@ $(document).ready(function(){
 
             $.each($('[data-autocomplete="selected-products"]'), function (i, value) {
                 if($(value).attr('data-target') == target) {
-                   var output = $(value).children('ul');
+                    var output = $(value).children('ul');
 
                     if ($(output).find('li.empty').length) {
                         output.html(html);
@@ -806,11 +827,11 @@ function filterProducts(button)
     var url = '?';
 
     $.each(buttons, function(i, value){
-       if ($(value).hasClass('active')){
-           sortBy = $(value).attr('data-sort');
-           sortValue = $(value).attr('data-value');
-           url += '&' + sortBy + '=' + sortValue;
-       }
+        if ($(value).hasClass('active')){
+            sortBy = $(value).attr('data-sort');
+            sortValue = $(value).attr('data-value');
+            url += '&' + sortBy + '=' + sortValue;
+        }
 
     });
 
