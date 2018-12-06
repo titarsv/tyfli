@@ -59,9 +59,9 @@
     line-height: 16px;
     padding: 10px;
     background-color: #EFEFEF;
-    @include bp (xs){
-        display: none;
-    }
+    //@include bp (xs){
+    //    display: none;
+    //}
 }
 .product-discount{
     color: #D8232A;
@@ -96,7 +96,8 @@
         font-size: 16px;
         font-weight: 500;
         line-height: 19px;
-        min-height: 40px;
+        height: 40px;
+        overflow: hidden;
         @include bp(xs){
             min-height: 57px;
         }
@@ -172,9 +173,9 @@
     bottom: 30px;
     font-size: 17px;
     right: 15px;
-    @include bp (xs){
-        display: none;
-    }
+    //@include bp (xs){
+    //    display: none;
+    //}
 }
 .old-price::before{
     content: url('../images/homepage-icons/sale price line icon.svg');
