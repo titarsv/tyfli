@@ -115,6 +115,9 @@
     span:first-child{
         color: #4A4A4A;
         display: block;
+        @include bp(xs){
+            height: 36px;
+        }
     }
     p:last-child{
         span{

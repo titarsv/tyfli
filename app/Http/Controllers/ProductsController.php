@@ -665,7 +665,7 @@ class ProductsController extends Controller
 		 // Установка текущей страницы пагинации
         $request->page = (int) str_replace('page', '', $page);
 		
-        $data = $products->search($search_text, str_replace('page', '', $page), 18);
+        $data = $products->search($search_text, str_replace('page', '', $page), 24);
         
         if(method_exists($data, 'total')) {
             $paginator = $data->appends(['text' => $search_text]);
