@@ -20,6 +20,11 @@
     </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
     </script>
+    @include('public.layouts.microdata.open_graph', [
+     'title' => 'Отзывы',
+     'description' => 'Отзывы',
+     'image' => '/images/logo.png'
+     ])
 @endsection
 
 @section('breadcrumbs')

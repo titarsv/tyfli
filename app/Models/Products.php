@@ -136,6 +136,11 @@ class Products extends Model
         return $this->belongsToMany('App\Models\Products', 'related_products', 'product_id', 'related_id');
     }
 
+    // Главная категория
+    public function main_category(){
+        return $this->categories()->first();
+    }
+
     public function in_wish(){
         $user = Sentinel::check();
 

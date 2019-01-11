@@ -20,6 +20,11 @@
     </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
     </script>
+    @include('public.layouts.microdata.open_graph', [
+     'title' => 'Поиск: '.$search_text,
+     'description' => 'Поиск по запросу: '.$search_text,
+     'image' => '/images/logo.png'
+     ])
 @endsection
 
 @section('breadcrumbs')

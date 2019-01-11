@@ -36,6 +36,13 @@
     </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
     </script>
+
+    @include('public.layouts.microdata.product', ['product' => $product, 'gallery' => $gallery, 'brand' => $brand])
+    @include('public.layouts.microdata.open_graph', [
+     'title' => empty($product->meta_title) ? $product->name.' купить по выгодной цене' : $product->meta_title,
+     'description' => empty($product->meta_description) ? 'Купить '.$product->name.' в Харькове' : $product->meta_description,
+     'image' => !empty($product->image) ? $product->image->url() : '/images/logo.png'
+     ])
 @endsection
 
 @section('breadcrumbs')
@@ -404,10 +411,10 @@
                     <div class="product-social-links">
                         <div class="product-social-links-icons">
                             <a href="https://www.instagram.com/tyflicom/">
-                                <i>&#xE804</i>
+                                <i>&#xE804;</i>
                             </a>
                             <a href="https://www.facebook.com/tyfli.commarina/">
-                                <i>&#xE803</i>
+                                <i>&#xE803;</i>
                             </a>
                             {{--<a href="https://www.vkontakte.com">--}}
                                 {{--<i>&#xE800</i>--}}

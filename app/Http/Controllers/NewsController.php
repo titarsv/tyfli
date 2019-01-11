@@ -192,7 +192,22 @@ class NewsController extends Controller
 
     public function show($alias, News $blog)
     {
-        $article = $blog->where('url_alias', $alias)->first();
+        $parts = explode('/', $_SERVER['REQUEST_URI']);
+        $categories = [
+            'article' => 'Статьи',
+            'news_item' => 'Новости и акции',
+            'handling_item' => 'Уход за обувью'
+        ];
+        if(!isset($parts[1]) || !isset($categories[$parts[1]])){
+            abort(404);
+        }else{
+            $category = $categories[$parts[1]];
+        }
+
+        $article = $blog->where('url_alias', $alias)->where('category', $category)->first();
+        if(empty($article)){
+            abort(404);
+        }
 //        setlocale(LC_TIME, 'RU');
 //        $article->date = iconv("cp1251", "UTF-8", $article->updated_at->formatLocalized('%d %b %Y'));
 
@@ -211,6 +226,10 @@ class NewsController extends Controller
 
     public function news(Request $request, News $blog, $page = 'page1')
     {
+        if(strpos($page, 'page') !== 0){
+            abort(404);
+        }
+
         $page = (int) str_replace('page', '', $page);
 
         Paginator::currentPageResolver(function () use ($page) {
@@ -232,6 +251,10 @@ class NewsController extends Controller
 
     public function articles(Request $request, News $blog, $page = 'page1')
     {
+        if(strpos($page, 'page') !== 0){
+            abort(404);
+        }
+
         $page = (int) str_replace('page', '', $page);
 
         Paginator::currentPageResolver(function () use ($page) {
@@ -253,6 +276,10 @@ class NewsController extends Controller
 
     public function handling(Request $request, News $blog, $page = 'page1')
     {
+        if(strpos($page, 'page') !== 0){
+            abort(404);
+        }
+
         $page = (int) str_replace('page', '', $page);
 
         Paginator::currentPageResolver(function () use ($page) {

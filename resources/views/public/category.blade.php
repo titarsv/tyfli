@@ -43,6 +43,12 @@
     </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
     </script>
+
+    @include('public.layouts.microdata.open_graph', [
+     'title' => empty($category->meta_title) ? $category->name : $category->meta_title,
+     'description' => $category->meta_description,
+     'image' => '/images/logo.png'
+     ])
 @endsection
 
 @section('breadcrumbs')

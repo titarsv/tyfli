@@ -21,6 +21,11 @@
     </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
     </script>
+    @include('public.layouts.microdata.open_graph', [
+     'title' => $settings->meta_title,
+     'description' => $settings->meta_description,
+     'image' => '/images/logo.png'
+     ])
 @endsection
 
 @section('content')
@@ -254,12 +259,12 @@
                         @foreach($articles as $article)
                             <div class="article-slider-item">
                                 <div class="article-slider-item-img">
-                                    <a href="{{env('APP_URL')}}/news/{!!$article->url_alias !!}">
+                                    <a href="{{env('APP_URL')}}/news_item/{!!$article->url_alias !!}">
                                         <img src="{!! $article->image->url('blog_list') !!}" alt="">
                                     </a>
                                 </div>
                                 <h5 class="article-slider-item-title">
-                                    <a href="{{env('APP_URL')}}/news/{!!$article->url_alias !!}">{!! $article->title !!}</a>
+                                    <a href="{{env('APP_URL')}}/news_item/{!!$article->url_alias !!}">{!! $article->title !!}</a>
                                 </h5>
                                 <span class="article-slider-item-data">
                                         {!! $article->created_at !!}
@@ -272,7 +277,7 @@
         </div>
 
         <a href="#" class="fixed-up-btn fixed-up-btn-center">
-            <i>&#xE809</i>
+            <i>&#xE809;</i>
         </a>
 
     </section>

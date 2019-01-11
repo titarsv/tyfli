@@ -1,2 +1,13 @@
 User-agent: *
-Disallow: /
+Disallow: /*?order
+Disallow: /login
+Disallow: /registration
+Disallow: /forgotten
+Disallow: /cart
+Disallow: /user/
+Disallow: /checkout
+Disallow: /search
+Disallow: /catalog/dlya-zhenschin
+Disallow: /catalog/dlya-muzhchin
+Disallow: /catalog/outlet
+Sitemap: https://tyfli.com/sitemap.xml

@@ -194,6 +194,141 @@
                             <h5 class="title">{{ $content->name }}</h5>
                         </div>
                         {!! html_entity_decode($content->content) !!}
+                        @if($content->name == 'Контакты')
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC96SDGLoCVZnudpRXVacFABY750-UHhSc"></script>
+                            @foreach($shops as $i => $shop)
+                                <div class="col-md-12">
+                                    <div class="store-address">
+                                        {!! $shop->slide_title !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="schedule">
+                                        <p>График работы магазина</p>
+                                        <div class="schedule-time">
+                                            <span>{!! $shop->wt or '' !!}</span>
+                                            <span>{!! $shop->ht or '' !!}</span>
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        google.maps.event.addDomListener(window, 'load', init);
+                                        function init() {
+                                            var mapOptions = {
+                                                zoom: 17,
+                                                scrollwheel: false,
+                                                center: new google.maps.LatLng({!! $shop->lat or '' !!}, {!! $shop->lng or '' !!}),
+                                                styles: [
+                                                    {
+                                                        "featureType": "administrative",
+                                                        "elementType": "all",
+                                                        "stylers": [
+                                                            {
+                                                                "visibility": "on"
+                                                            },
+                                                            {
+                                                                "lightness": 33
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "featureType": "landscape",
+                                                        "elementType": "all",
+                                                        "stylers": [
+                                                            {
+                                                                "color": "#f2e5d4"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "featureType": "poi.park",
+                                                        "elementType": "geometry",
+                                                        "stylers": [
+                                                            {
+                                                                "color": "#c5dac6"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "featureType": "poi.park",
+                                                        "elementType": "labels",
+                                                        "stylers": [
+                                                            {
+                                                                "visibility": "on"
+                                                            },
+                                                            {
+                                                                "lightness": 20
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "featureType": "road",
+                                                        "elementType": "all",
+                                                        "stylers": [
+                                                            {
+                                                                "lightness": 20
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "featureType": "road.highway",
+                                                        "elementType": "geometry",
+                                                        "stylers": [
+                                                            {
+                                                                "color": "#c5c6c6"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "featureType": "road.arterial",
+                                                        "elementType": "geometry",
+                                                        "stylers": [
+                                                            {
+                                                                "color": "#e4d7c6"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "featureType": "road.local",
+                                                        "elementType": "geometry",
+                                                        "stylers": [
+                                                            {
+                                                                "color": "#fbfaf7"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "featureType": "water",
+                                                        "elementType": "all",
+                                                        "stylers": [
+                                                            {
+                                                                "visibility": "on"
+                                                            },
+                                                            {
+                                                                "color": "#acbcc9"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            };
+
+                                            var mapElement = document.getElementById('map_{{$i}}');
+                                            var map = new google.maps.Map(mapElement, mapOptions);
+                                            var image = new google.maps.MarkerImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAoCAMAAADaOGodAAABblBMVEUAAAAA//+AgIBVqqpAgL9mmcxVqqptkrZgn79VjsZmmbNVlb9bkrZhnrZdl7lel71hlbldm7lfmbZclbhemrxilrdgmbldlbthmLZfmrhdl7lel7tflrlgmrddmblhmrlglrhfmLldmrphl7lemrhgmLhemLhel7pgmLdfl7hgl7lfl7lfmLhembpgl7hgmLlfmblgmblfl7pemLhgmblfmLlfl7lgmbpemblfmLpfmLlgmLpfmbhemLlfl7pfl7lfmLhgmLlfmLlfl7hemblfmLpfmLlfmLlfmLlfmLlfmblemLpfmLlgmLlfmLlfmLlfmLhfmLlfmLlfmLhgmLlfmLlfmLlfmblfmLlfmLlemLlfmblfmLlfmLlfmLpfmblfmLlemLlfmLlembpfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLlfmLn///98Tb0KAAAAeHRSTlMAAQIDBAUGBwgJCgwOFRYbHSEjJCYnKCkqKywxMzU3Oj0+P0JESE9RUlNYW2FkZW1udXZ3eHl7fX+BhoiJioyRlJWZm52eo6Sqq6ytrrCys7y+wcPIycvMzc/Q0dPU1dbX2N/g4uPk6O7v8PLz9PX29/j5+vv8/f67kv4BAAAAAWJLR0R5odzU0AAAAWZJREFUGBl1wQlDEkEABeCHUChqoICaeYR5o6aWHWahppL3feEV4rFlVirB+/ntzLDs7LJ+Hyxt79fODMM43/zS8wRO/Ue0XY8HYatdodNpHJbwMd1+JKBUH1K5WpxNZ6j8ikNKUcp0+2CKLVE6eApTe5HCWgglbymNw5SmsFeDshSFiwDw7J6mQhtsoUsKA0CSwhZ0HyjMAzMUPkKXoJAFdimMQNdAoViHHIVR6FooRXFDYRq6PkoduKNwGYAmTeklzikNwxbLU2rEMqWfzbCE9ikZVXhN5boLSmSHyioQLlApfnvlB1o//2ZJEsAGywrGPctuagH00lsKpkCOXgrNEIboZQGSP8tK+SiUJCvNocSfpdtDFJZuun2CbZlOuRBskVs6DEL3jrpNOFR/p+3uOZxePLBsDG6TtGxXwS14QuVPHJU6/lF6Ay9TFHb98BI8Jfm3Cd468+QEHjPGdR8e4/taD91/Ht8FzKrPMw8AAAAASUVORK5CYII=',
+                                                new google.maps.Size(56, 75),
+                                                new google.maps.Point(0,0),
+                                                new google.maps.Point(26, 66));
+                                            var marker = new google.maps.Marker({
+                                                position: new google.maps.LatLng(50.033428, 36.220437),
+                                                map: map,
+                                                icon: image
+                                            });
+                                        }
+                                    </script>
+                                    <div class="map" id="map_{{$i}}"></div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

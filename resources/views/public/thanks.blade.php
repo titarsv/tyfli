@@ -1,6 +1,11 @@
 @extends('public.layouts.main')
 @section('meta')
     <title>Спасибо за заказ</title>
+    @include('public.layouts.microdata.open_graph', [
+     'title' => 'Спасибо за заказ',
+     'description' => 'Спасибо за заказ',
+     'image' => '/images/logo.png'
+     ])
 @endsection
 @section('content')
     <nav class="breadrumbs">

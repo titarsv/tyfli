@@ -80,6 +80,16 @@ $(function() {
     e.stopPropagation();
     hideOnClickOutside($(this).data('toggle'));
   });
+    $toggleElem.click(function(e) {
+        if($(this).attr('href') == 'javascript:void(0)'){
+            e.preventDefault();
+            var $toggleTarget = $($(this).data('toggle'));
+            $('.top-menu-catalog-wrp').not($toggleTarget).removeClass('is-open');
+            $toggleTarget.addClass('is-open');
+            e.stopPropagation();
+            hideOnClickOutside($(this).data('toggle'));
+        }
+    });
   $('.header').on('mouseleave', function(){
       $('.top-menu-catalog-wrp').removeClass('is-open');
   });

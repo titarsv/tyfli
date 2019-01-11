@@ -20,6 +20,11 @@
     </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
     </script>
+    @include('public.layouts.microdata.open_graph', [
+     'title' => 'Брендовая обувь от интерент магазина - tyfli.com',
+     'description' => 'Брендовая обувь, купить брендовую обувь в интернет магазине - tyfli.com . У нас самый большой выбор женской и мужской обуви разных брендов высокого качества.',
+     'image' => '/images/logo.png'
+     ])
 @endsection
 
 @section('breadcrumbs')

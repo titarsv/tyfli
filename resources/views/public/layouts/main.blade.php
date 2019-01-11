@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" prefix="og: http://ogp.me/ns#">
 @include('public.layouts.header')
 
 <body class="{{ Request::path()=='/' ? ' home' : '' }}">

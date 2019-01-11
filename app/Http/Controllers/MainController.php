@@ -25,7 +25,7 @@ class MainController extends Controller
         $men_new_prod = $categories->get_products(2, null, [8 => [113]], ['id', 'desc'], 3, []);
         $big_sizes = $categories->get_products(11, null, [1 => [11]], ['id', 'desc'], 2, []);
         $blog = new News();
-        $articles = $blog->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12);
+        $articles = $blog->where('published', 1)->where('category', 'Новости и акции')->orderBy('updated_at', 'desc')->paginate(12);
 
         return view('index')
 	        ->with('women_new_prod', $women_new_prod)
@@ -506,7 +506,10 @@ class MainController extends Controller
             "/производитель/alita" => "/catalog/tovary/brend-alita",
             "/производитель/la-vida/sef_поцена" => "/catalog/tovary/brend-lavida",
             "/производитель/la-vida/sef_поproduct_popularity/dirasc" => "/catalog/tovary/brend-lavida",
-            "/производитель/sothby-s/dirasc" => "/catalog/tovary/brend-sothbys"
+            "/производитель/sothby-s/dirasc" => "/catalog/tovary/brend-sothbys",
+            "/catalog/dlya-zhenschin" => "/",
+            "/catalog/dlya-muzhchin" => "/",
+            "/catalog/outlet" => "/",
         );
 
         if(isset($redirects[urldecode(str_replace(env('APP_URL', 'https://tyfli.com'), '', url()->current()))])){

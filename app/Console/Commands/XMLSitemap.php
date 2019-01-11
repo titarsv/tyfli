@@ -73,11 +73,13 @@ class XMLSitemap extends Command
             $row->addChild("priority","0.8");
         }
         foreach (Categories::where('status', 1)->get() as $result) {
-            $row  = $xmlbase->addChild("url");
-            $row->addChild("loc",$site_url.'/catalog/'.$result->url_alias);
-            $row->addChild("lastmod",$result->created_at->format("Y-m-d\TH:i:sP"));
-            $row->addChild("changefreq","monthly");
-            $row->addChild("priority","0.9");
+            if(!in_array($result->url_alias, ['tovary', 'dlya-zhenschin', 'dlya-muzhchin', 'outlet'])){
+                $row  = $xmlbase->addChild("url");
+                $row->addChild("loc",$site_url.'/catalog/'.$result->url_alias);
+                $row->addChild("lastmod",$result->created_at->format("Y-m-d\TH:i:sP"));
+                $row->addChild("changefreq","monthly");
+                $row->addChild("priority","0.9");
+            }
         }
 //        foreach (News::where('published', 1)->get() as $result) {
 //            $row  = $xmlbase->addChild("url");

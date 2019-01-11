@@ -72,12 +72,15 @@ class News extends Model
     public function next(){
         return $this->where('published', true)
             ->where('id', '>', $this->id)
+            ->where('category', $this->category)
             ->first();
     }
 
     public function prev(){
         return $this->where('published', true)
             ->where('id', '<', $this->id)
+            ->where('category', $this->category)
+            ->orderBy('id', 'desc')
             ->first();
     }
 }

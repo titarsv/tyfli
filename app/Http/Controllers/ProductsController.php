@@ -543,7 +543,7 @@ class ProductsController extends Controller
      */
     public function show($alias, Request $request, Products $products)
     {
-        $product = $products->where('url_alias', $alias)->first();
+        $product = $products->where('url_alias', $alias)->where('stock', 1)->first();
 
         if(empty($product)){
             abort(404);

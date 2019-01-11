@@ -40,7 +40,7 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
     $breadcrumbs->parent('home');
     if(!empty($category[0])) {
         foreach (array_reverse($category[0]->get_parent_categories()) as $category) {
-            if (!empty($category)) {
+            if (!empty($category) && !in_array($category->url_alias, ['tovary', 'dlya-zhenschin', 'dlya-muzhchin', 'outlet'])) {
                 if (is_object($category[0])) {
                     $name = $category[0]->name;
                     $alias = $category[0]->url_alias;
@@ -48,12 +48,12 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
                     $name = $category['name'];
                     $alias = $category['url_alias'];
                 }
+                $breadcrumbs->push($name, url('/catalog/' . $alias));
             }
-            $breadcrumbs->push($name, url('/catalog/' . $alias));
         }
     }elseif(is_object($category)){
         foreach (array_reverse($category->get_parent_categories()) as $category) {
-            if (!empty($category)) {
+            if (!empty($category) && !in_array($category->url_alias, ['tovary', 'dlya-zhenschin', 'dlya-muzhchin', 'outlet'])) {
                 if (is_object($category[0])) {
                     $name = $category[0]->name;
                     $alias = $category[0]->url_alias;
@@ -61,8 +61,8 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
                     $name = $category['name'];
                     $alias = $category['url_alias'];
                 }
+                $breadcrumbs->push($name, url('/catalog/' . $alias));
             }
-            $breadcrumbs->push($name, url('/catalog/' . $alias));
         }
     }else{
         if (!empty($category)) {

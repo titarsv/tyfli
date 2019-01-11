@@ -20,6 +20,11 @@
     </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
     </script>
+    @include('public.layouts.microdata.open_graph', [
+     'title' => 'Новости',
+     'description' => $settings->meta_description,
+     'image' => '/images/logo.png'
+     ])
 @endsection
 
 @section('content')
@@ -58,7 +63,7 @@
                                 <div class="information-accordion-links unactive">
                                     {{--<h5>Повседневная обувь</h5>--}}
                                     @foreach($news as $item)
-                                        <a href="{{env('APP_URL')}}/news/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
+                                        <a href="{{env('APP_URL')}}/news_item/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
                                     @endforeach
                                 </div>
                             </div>
@@ -92,7 +97,7 @@
                                 <div class="information-accordion-links unactive">
                                     {{--<h5>Повседневная обувь</h5>--}}
                                     @foreach($handling as $item)
-                                        <a href="{{env('APP_URL')}}/handling/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
+                                        <a href="{{env('APP_URL')}}/handling_item/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
                                     @endforeach
                                 </div>
                             </div>

@@ -4,6 +4,11 @@
     <title>Вход в личный кабинет</title>
     <meta name="description" content="{!! $settings->meta_description !!}">
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
+    @include('public.layouts.microdata.open_graph', [
+     'title' => 'Вход в личный кабинет',
+     'description' => '$settings->meta_description',
+     'image' => '/images/logo.png'
+     ])
 @endsection
 
 @section('breadcrumbs')

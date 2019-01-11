@@ -6,6 +6,11 @@
     @if(!empty($content->robots))
         <meta name="robots" content="{!! $content->robots !!}">
     @endif
+    @include('public.layouts.microdata.open_graph', [
+     'title' => $content->meta_title,
+     'description' => $content->meta_description,
+     'image' => '/images/logo.png'
+     ])
 @endsection
 
 @section('breadcrumbs')
