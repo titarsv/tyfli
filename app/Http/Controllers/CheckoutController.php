@@ -39,6 +39,17 @@ class CheckoutController extends Controller
             return response()->json(['error' => ['cart' => 'В корзине нет товаров!']]);
         }
 
+        $not_available = [];
+        foreach($cart->get_products() as $product){
+            if(empty($product['product']->stock)){
+                $not_available[] = $product;
+            }
+        }
+
+        if(!empty($not_available)){
+            return response()->json(['error' => ['cart' => 'В корзине нет товаров!']]);
+        }
+
         $errors = $this->validateFields($request->all());
         if ($errors) {
             return response()->json(['error' => $errors]);

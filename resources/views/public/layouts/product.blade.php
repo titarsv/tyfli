@@ -21,7 +21,7 @@
             $colors = array_merge([$product->id => ['color' => $product->colors->first()->value, 'slug' => $product->url_alias, 'image' => $product->image->url('product_list')]], $colors);
         }else{
             foreach ($product->colors as $color){
-                $colors[] = ['color' => $color->value, 'slug' => $product->url_alias, 'image' => $product->image->url('product_list')];
+               $colors[] = ['color' => $color->value, 'slug' => $product->url_alias, 'image' => empty($product->image) ? '/uploads/no_image.jpg' : $product->image->url('product_list')];
             }
         }
     }

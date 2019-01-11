@@ -237,7 +237,11 @@
                         <input class="hidden" type="radio" id="var_{{ $variation }}" name="variation" value="{{ $val['id'] }}" data-price="{{ $val['price'] }}">
                         @endforeach
                         <div class="prod-btn">
-                            <input type="button" value="КУПИТЬ" class="buy-btn btn_buy" data-prod-id="{{ $product->id}}">
+                            @if($product->stock)
+                                <input type="button" value="КУПИТЬ" class="buy-btn btn_buy" data-prod-id="{{ $product->id}}">
+                            @else
+                                <input type="button" value="НЕТ В НАЛИЧИИ" class="buy-btn" disabled style="background-color: #494949;">
+                            @endif
                             <div class="append-btn wishlist-add{{ $product->in_wish() ? ' active' : '' }}" data-prod-id="{{ $product->id}}" data-user-id="{{ $user ? $user->id : 0}}">
                                 <i class="product-card-like">&#xE801</i>
                                 <i class="inactive-wishlist-icon fill-wish-heart">&#xE807</i>
@@ -263,9 +267,11 @@
                         @endforeach
                     </ul>
                     <div class="one-click-btn-wrp">
+                        @if($product->stock)
                         <a href="javascript:void(0);" class="one-click-btn js-toggle-click-btn"  data-toggle=".one-click-form">
                             <p>Купить в 1 клик</p>
                         </a>
+                        @endif
                         <form action="" class="one-click-form unactive ajax_form"
                               data-error-title="Ошибка отправки!"
                               data-error-message="Попробуйте отправить заявку через некоторое время."
