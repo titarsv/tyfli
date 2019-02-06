@@ -27,6 +27,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-5">
+                        &nbsp;
                         <a href="{{env('APP_URL')}}">
                             <div class="logo">
                                 <div class="logo-img">
@@ -66,7 +67,7 @@
         <div class="top-menu-wrp">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2 hidden-sm"></div>
+                    <div class="col-md-2 hidden-sm">&nbsp;</div>
                     <div class="col-md-10 col-sm-12 top-menu-container">
                         <ul class="top-menu">
                             <li{{ !empty($root_category) && $root_category->url_alias == 'dlya-zhenschin' ? ' class=active' : '' }}><a href="javascript:void(0)" class="js-toggle" aria-label="Open Navigation" data-toggle=".women-catalog">Для женщин</a></li>

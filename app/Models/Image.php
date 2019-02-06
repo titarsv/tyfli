@@ -165,11 +165,11 @@ class Image extends Model
         if($products > 0)
             return true;
 
-        $slideshow = ModuleSlideshow::where('image_id', $id)
-            ->take(1)
-            ->count();
-        if($slideshow > 0)
-            return true;
+//        $slideshow = ModuleSlideshow::where('image_id', $id)
+//            ->take(1)
+//            ->count();
+//        if($slideshow > 0)
+//            return true;
 
         return false;
     }

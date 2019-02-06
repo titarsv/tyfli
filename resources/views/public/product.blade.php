@@ -34,8 +34,7 @@
         var google_remarketing_only = true;
         /* ]]> */
     </script>
-    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
 
     @include('public.layouts.microdata.product', ['product' => $product, 'gallery' => $gallery, 'brand' => $brand])
     @include('public.layouts.microdata.open_graph', [
